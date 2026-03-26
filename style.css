@@ -479,6 +479,10 @@ body { background-color: var(--renk-bg); color: #ffffff; font-family: var(--font
 .form-kontrol:focus { outline: none; border-bottom-color: #00ffcc; box-shadow: 0 8px 15px -10px rgba(0,255,204,0.4); }
 textarea.form-kontrol { resize: none; }
 .form-buton { width: 100%; margin-top: 16px; font-size: 1rem; padding: 16px; border-radius: 12px; }
+.form-buton:disabled { opacity: 0.5; cursor: not-allowed; }
+.form-durum { margin-top: 12px; font-size: 0.85rem; font-family: var(--font-kod); min-height: 20px; }
+.form-durum.basarili { color: #00ffcc; }
+.form-durum.hata { color: #ff4444; }
 
 /* ========================================= */
 /* --- FOOTER ---                            */
@@ -516,7 +520,7 @@ textarea.form-kontrol { resize: none; }
     .hero-butonlar { justify-content: center; }
     .hero-istatistik { justify-content: center; }
     .hero-typing-alani { justify-content: center; }
-    .portre-kapsayici { position: relative; width: 80%; height: 55vh; right: auto; }
+    .portre-kapsayici { position: relative; width: 80%; max-width: 350px; height: 50vh; right: auto; margin: 20px auto 0; overflow: hidden; }
     .iletisim-izgara { grid-template-columns: 1fr; }
     .proje-grid { grid-template-columns: 1fr; }
     .hakkimda-detaylar { gap: 12px; }

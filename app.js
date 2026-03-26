@@ -81,13 +81,13 @@ document.addEventListener('DOMContentLoaded', () => DilYoneticisi.baslat());
     const bootMetinleri = {
         tr: {
             loglar: ['✓ Tüm sistemler çevrimiçi', '✓ Portfolio hazır'],
-            yorum: '// Sistem hazır — ENTER ile giriş yapın',
-            ipucu: '[ ENTER ] tuşuna basarak giriş yap'
+            yorum: '// Sistem hazır — Devam etmek için tıklayın',
+            ipucu: 'Devam etmek için tıklayın veya ENTER tuşuna basın'
         },
         en: {
             loglar: ['✓ All systems online', '✓ Portfolio ready'],
-            yorum: '// System ready — Press ENTER to enter',
-            ipucu: 'Press [ ENTER ] to enter'
+            yorum: '// System ready — Click to continue',
+            ipucu: 'Click to continue or press ENTER'
         }
     };
     const bt = bootMetinleri[dil];
@@ -382,24 +382,58 @@ document.addEventListener('DOMContentLoaded', () => DilYoneticisi.baslat());
         requestAnimationFrame(closeAnim);
     });
 
-    // Mobil dokunma desteği
+    // Mobil dokunma desteği — yatay hareket X-ray açar, dikey scroll engellenmez
+    let touchStartX = 0, touchStartY = 0, touchActive = false;
+
+    portreKapsayici.addEventListener('touchstart', (e) => {
+        const t = e.touches[0];
+        touchStartX = t.clientX;
+        touchStartY = t.clientY;
+        touchActive = false;
+    }, { passive: true });
+
     portreKapsayici.addEventListener('touchmove', (e) => {
         const touch = e.touches[0];
-        const rect = portreKapsayici.getBoundingClientRect();
-        mouseX = touch.clientX - rect.left;
-        mouseY = touch.clientY - rect.top;
-        if (!isHovering) {
-            isHovering = true;
-            katmanNormal.style.transition = 'none';
-            animFrame = requestAnimationFrame(updateMask);
+        const dx = Math.abs(touch.clientX - touchStartX);
+        const dy = Math.abs(touch.clientY - touchStartY);
+
+        // Sadece yatay hareket baskınsa X-ray aç (dikey scroll engellenmez)
+        if (!touchActive && dx > 10 && dx > dy * 1.5) {
+            touchActive = true;
+        }
+
+        if (touchActive) {
+            const rect = portreKapsayici.getBoundingClientRect();
+            mouseX = touch.clientX - rect.left;
+            mouseY = touch.clientY - rect.top;
+            if (!isHovering) {
+                isHovering = true;
+                katmanNormal.style.transition = 'none';
+                animFrame = requestAnimationFrame(updateMask);
+            }
         }
     }, { passive: true });
 
     portreKapsayici.addEventListener('touchend', () => {
+        touchActive = false;
         isHovering = false;
         if (animFrame) cancelAnimationFrame(animFrame);
-        katmanNormal.style.webkitMaskImage = 'none';
-        katmanNormal.style.maskImage = 'none';
+        // Küçülerek kapat
+        let closeRadius = REVEAL_RADIUS;
+        const closeX = currentX, closeY = currentY;
+        function closeTouchAnim() {
+            closeRadius -= 15;
+            if (closeRadius <= 0) {
+                katmanNormal.style.webkitMaskImage = 'none';
+                katmanNormal.style.maskImage = 'none';
+                return;
+            }
+            const mask = `radial-gradient(circle ${closeRadius}px at ${closeX}px ${closeY}px, transparent 0%, transparent 35%, rgba(0,0,0,0.4) 55%, rgba(0,0,0,0.8) 70%, black 85%)`;
+            katmanNormal.style.webkitMaskImage = mask;
+            katmanNormal.style.maskImage = mask;
+            requestAnimationFrame(closeTouchAnim);
+        }
+        requestAnimationFrame(closeTouchAnim);
     });
 })();
 
@@ -613,3 +647,81 @@ document.querySelectorAll('a[href^="#"]').forEach(a => {
         if (t) t.scrollIntoView({ behavior: 'smooth', block: 'start' });
     });
 });
+
+// ==========================================
+// 10. İLETİŞİM FORMU (EmailJS)
+// ==========================================
+(() => {
+    // EmailJS başlat — SEN BUNU KENDİ HESABINLA DEĞİŞTİRMELİSİN
+    // https://www.emailjs.com adresinden ücretsiz hesap aç
+    // Service ID, Template ID ve Public Key'ini aşağıya yaz
+    const EMAILJS_PUBLIC_KEY = 'YOUR_PUBLIC_KEY'; // emailjs.com > Account > Public Key
+    const EMAILJS_SERVICE_ID = 'YOUR_SERVICE_ID'; // emailjs.com > Email Services
+    const EMAILJS_TEMPLATE_ID = 'YOUR_TEMPLATE_ID'; // emailjs.com > Email Templates
+
+    if (typeof emailjs !== 'undefined' && EMAILJS_PUBLIC_KEY !== 'YOUR_PUBLIC_KEY') {
+        emailjs.init(EMAILJS_PUBLIC_KEY);
+    }
+
+    const form = document.getElementById('iletisimFormu');
+    const durumEl = document.getElementById('formDurum');
+    const gonderBtn = document.getElementById('formGonderBtn');
+    if (!form) return;
+
+    const durumMetinleri = {
+        tr: { gonderiliyor: 'Gönderiliyor...', basarili: 'Mesajınız gönderildi!', hata: 'Bir hata oluştu. Lütfen mail ile iletişime geçin.' },
+        en: { gonderiliyor: 'Sending...', basarili: 'Your message has been sent!', hata: 'An error occurred. Please contact via email.' }
+    };
+
+    form.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const dil = DilYoneticisi.aktif();
+        const mt = durumMetinleri[dil];
+
+        // EmailJS ayarlanmamışsa mailto fallback
+        if (EMAILJS_PUBLIC_KEY === 'YOUR_PUBLIC_KEY') {
+            const name = form.from_name.value;
+            const email = form.from_email.value;
+            const message = form.message.value;
+            const subject = encodeURIComponent(`Portfolio İletişim: ${name}`);
+            const body = encodeURIComponent(`Ad: ${name}\nEmail: ${email}\n\nMesaj:\n${message}`);
+            window.location.href = `mailto:erdi-ocal@hotmail.com?subject=${subject}&body=${body}`;
+            durumEl.textContent = mt.basarili;
+            durumEl.className = 'form-durum basarili';
+            form.reset();
+            return;
+        }
+
+        // EmailJS ile gönder
+        durumEl.textContent = mt.gonderiliyor;
+        durumEl.className = 'form-durum';
+        gonderBtn.disabled = true;
+
+        emailjs.sendForm(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, form)
+            .then(() => {
+                durumEl.textContent = mt.basarili;
+                durumEl.className = 'form-durum basarili';
+                form.reset();
+            })
+            .catch(() => {
+                durumEl.textContent = mt.hata;
+                durumEl.className = 'form-durum hata';
+            })
+            .finally(() => { gonderBtn.disabled = false; });
+    });
+})();
+
+// ==========================================
+// 11. SAĞ TIK & DEVTOOLS KORUMASI
+// ==========================================
+(() => {
+    // Sağ tık engelle
+    document.addEventListener('contextmenu', (e) => e.preventDefault());
+
+    // F12, Ctrl+Shift+I, Ctrl+Shift+J, Ctrl+U engelle
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'F12') { e.preventDefault(); return; }
+        if (e.ctrlKey && e.shiftKey && (e.key === 'I' || e.key === 'i' || e.key === 'J' || e.key === 'j' || e.key === 'C' || e.key === 'c')) { e.preventDefault(); return; }
+        if (e.ctrlKey && (e.key === 'U' || e.key === 'u')) { e.preventDefault(); return; }
+    });
+})();

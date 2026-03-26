@@ -9,6 +9,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
 </head>
 <body>
 
@@ -243,11 +244,12 @@
                     </div>
                 </div>
                 <div class="iletisim-form-alani">
-                    <form action="#" class="ozel-form">
-                        <input type="text" class="form-kontrol" data-tr-ph="Adınız Soyadınız" data-en-ph="Your Name" placeholder="Adınız Soyadınız" required>
-                        <input type="email" class="form-kontrol" data-tr-ph="E-posta Adresiniz" data-en-ph="Your Email" placeholder="E-posta Adresiniz" required>
-                        <textarea class="form-kontrol" rows="4" data-tr-ph="Mesajınız..." data-en-ph="Your Message..." placeholder="Mesajınız..." required></textarea>
-                        <button type="submit" class="btn btn-dolu form-buton" data-tr="Gönder" data-en="Send"><span class="btn-icerik">Gönder</span> <span class="btn-ok">&rarr;</span></button>
+                    <form id="iletisimFormu" class="ozel-form">
+                        <input type="text" name="from_name" class="form-kontrol" data-tr-ph="Adınız Soyadınız" data-en-ph="Your Name" placeholder="Adınız Soyadınız" required>
+                        <input type="email" name="from_email" class="form-kontrol" data-tr-ph="E-posta Adresiniz" data-en-ph="Your Email" placeholder="E-posta Adresiniz" required>
+                        <textarea class="form-kontrol" name="message" rows="4" data-tr-ph="Mesajınız..." data-en-ph="Your Message..." placeholder="Mesajınız..." required></textarea>
+                        <button type="submit" class="btn btn-dolu form-buton" id="formGonderBtn" data-tr="Gönder" data-en="Send"><span class="btn-icerik">Gönder</span> <span class="btn-ok">&rarr;</span></button>
+                        <p id="formDurum" class="form-durum"></p>
                     </form>
                 </div>
             </div>
