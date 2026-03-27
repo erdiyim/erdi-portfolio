@@ -32,64 +32,75 @@
     --renk-nav-bg: rgba(245, 245, 247, 0.9);
     --renk-glitch-bg: #e8e8ea;
 }
-[data-theme="light"] .vurgu { color: var(--renk-vurgu); }
+[data-theme="light"] .vurgu { color: #00b894; }
 [data-theme="light"] .kayan-yazi.gri-yazi { color: rgba(0,0,0,0.04); }
 [data-theme="light"] .kayan-yazi.beyaz-yazi { color: rgba(0,0,0,0.06); }
-[data-theme="light"] #navbar.scrolled { background: var(--renk-nav-bg); border-bottom-color: var(--renk-border); }
-[data-theme="light"] .nav-link { color: var(--renk-metin-soluk); }
-[data-theme="light"] .nav-link:hover { color: var(--renk-metin); background: rgba(0,0,0,0.04); }
-[data-theme="light"] .nav-logo { color: var(--renk-metin); }
+[data-theme="light"] #navbar.scrolled { background: rgba(245,245,247,0.9); border-bottom-color: rgba(0,0,0,0.08); }
+[data-theme="light"] .nav-link { color: rgba(26,26,46,0.65); }
+[data-theme="light"] .nav-link:hover { color: #1a1a2e; background: rgba(0,0,0,0.04); }
+[data-theme="light"] .nav-logo { color: #1a1a2e; }
 [data-theme="light"] #mobil-menu { background: rgba(245,245,247,0.97); }
-[data-theme="light"] .mobil-link { color: var(--renk-metin); }
-[data-theme="light"] .hero-baslik { color: var(--renk-metin); }
-[data-theme="light"] .hero-typing-alani { color: var(--renk-metin-soluk); }
-[data-theme="light"] .bolum-baslik { color: var(--renk-metin); }
-[data-theme="light"] .aciklama-metin { color: var(--renk-metin-soluk); }
-[data-theme="light"] .detay-item { background: rgba(0,0,0,0.02); border-color: var(--renk-border); }
-[data-theme="light"] .detay-item:hover { border-color: var(--renk-vurgu-border); }
-[data-theme="light"] .detay-deger { color: var(--renk-metin); }
-[data-theme="light"] .detay-alt { color: var(--renk-metin-cok-soluk); }
-[data-theme="light"] .deneyim-item { color: var(--renk-metin-soluk); background: var(--renk-vurgu-bg); border-color: var(--renk-border); }
-[data-theme="light"] .deneyim-item:hover { color: var(--renk-vurgu); }
-[data-theme="light"] .yetenek-kart { background: var(--renk-kart); border-color: var(--renk-border); }
-[data-theme="light"] .yetenek-kart h3 { color: var(--renk-metin); }
-[data-theme="light"] .yetenek-etiketler span { color: var(--renk-metin-soluk); background: var(--renk-vurgu-bg); border-color: var(--renk-border); }
-[data-theme="light"] .proje-kart { background: var(--renk-kart); border-color: var(--renk-border); box-shadow: 0 10px 30px rgba(0,0,0,0.08); }
-[data-theme="light"] .proje-detay h3 { color: var(--renk-metin); }
-[data-theme="light"] .proje-detay p { color: var(--renk-metin-soluk); }
+[data-theme="light"] .mobil-link { color: #1a1a2e; }
+[data-theme="light"] .hero-baslik { color: #1a1a2e; }
+[data-theme="light"] .hero-typing-alani { color: rgba(26,26,46,0.65); }
+[data-theme="light"] .bolum-baslik { color: #1a1a2e; }
+[data-theme="light"] .aciklama-metin { color: rgba(26,26,46,0.65); }
+[data-theme="light"] .detay-item { background: rgba(0,0,0,0.02); border-color: rgba(0,0,0,0.08); }
+[data-theme="light"] .detay-item:hover { border-color: rgba(0,184,148,0.2); }
+[data-theme="light"] .detay-deger { color: #1a1a2e; }
+[data-theme="light"] .detay-alt { color: rgba(26,26,46,0.4); }
+[data-theme="light"] .deneyim-item { color: rgba(26,26,46,0.65); background: rgba(0,184,148,0.08); border-color: rgba(0,0,0,0.08); }
+[data-theme="light"] .deneyim-item:hover { color: #00b894; }
+[data-theme="light"] .yetenek-kart { background: rgba(0,0,0,0.03); border-color: rgba(0,0,0,0.08); color: #1a1a2e; }
+[data-theme="light"] .yetenek-kart h3 { color: #1a1a2e; }
+[data-theme="light"] .yetenek-etiketler span { color: rgba(26,26,46,0.65); background: rgba(0,184,148,0.08); border-color: rgba(0,0,0,0.08); }
+[data-theme="light"] .yetenek-kart:hover { border-color: rgba(0,184,148,0.4); box-shadow: 0 25px 50px rgba(0,0,0,0.12); }
+[data-theme="light"] .yetenek-kart:hover .yetenek-etiketler span { color: #00b894; border-color: rgba(0,184,148,0.3); }
+[data-theme="light"] .yetenek-kart::before { background: radial-gradient(circle at 50% 0%, rgba(0,184,148,0.08) 0%, transparent 60%); }
+[data-theme="light"] .proje-kart { background: rgba(0,0,0,0.03); border-color: rgba(0,0,0,0.08); box-shadow: 0 10px 30px rgba(0,0,0,0.08); }
+[data-theme="light"] .proje-kart:hover { border-color: rgba(0,184,148,0.4); box-shadow: 0 25px 60px rgba(0,184,148,0.1); }
+[data-theme="light"] .proje-kart::after { background: radial-gradient(circle at var(--mouse-x, 50%) var(--mouse-y, 50%), rgba(0,184,148,0.08) 0%, transparent 60%); }
+[data-theme="light"] .proje-kart:hover .proje-detay h3 { color: #00b894; }
+[data-theme="light"] .proje-detay h3 { color: #1a1a2e; }
+[data-theme="light"] .proje-detay p { color: rgba(26,26,46,0.65); }
 [data-theme="light"] .proje-numara { color: rgba(0,0,0,0.04); }
+[data-theme="light"] .proje-kart:hover .proje-numara { color: rgba(0,184,148,0.15); }
 [data-theme="light"] .proje-gorsel-tutucu { background: linear-gradient(135deg, rgba(0,184,148,0.05), rgba(0,0,0,0.02)); }
-[data-theme="light"] .etiketler span { background: var(--renk-vurgu-bg); color: var(--renk-vurgu); border-color: var(--renk-vurgu-border); }
-[data-theme="light"] .iletisim-bilgi h3 { color: var(--renk-vurgu); }
-[data-theme="light"] .bilgi-satir p { color: var(--renk-metin-soluk); }
-[data-theme="light"] .form-kontrol { color: var(--renk-metin); border-bottom-color: rgba(0,0,0,0.1); }
-[data-theme="light"] .form-kontrol::placeholder { color: var(--renk-metin-cok-soluk); }
-[data-theme="light"] .form-kontrol:focus { border-bottom-color: var(--renk-vurgu); }
-[data-theme="light"] .btn-cerceve { color: var(--renk-metin); border-color: rgba(0,0,0,0.15); }
-[data-theme="light"] .btn-cerceve:hover { border-color: var(--renk-vurgu); color: var(--renk-vurgu); }
-[data-theme="light"] .btn-dolu { background: var(--renk-vurgu); }
-[data-theme="light"] .sosyal-link { color: var(--renk-metin-soluk); border-color: rgba(0,0,0,0.1); }
-[data-theme="light"] .sosyal-link:hover { color: var(--renk-vurgu); border-color: var(--renk-vurgu); }
-[data-theme="light"] #footer { border-top-color: var(--renk-border); }
-[data-theme="light"] .footer-logo { color: var(--renk-metin); }
-[data-theme="light"] .footer-alt-yazi { color: var(--renk-metin-cok-soluk); }
-[data-theme="light"] .footer-sosyal a { color: var(--renk-metin-cok-soluk); }
-[data-theme="light"] .footer-sag p { color: var(--renk-metin-cok-soluk); }
-[data-theme="light"] .cam-kart-genis { background: rgba(0,0,0,0.02); border-color: var(--renk-border); }
-[data-theme="light"] .bolum-ust-etiket { color: var(--renk-vurgu); }
-[data-theme="light"] .detay-baslik { color: var(--renk-vurgu); }
-[data-theme="light"] .istatistik-sayi { color: var(--renk-vurgu); }
-[data-theme="light"] .istatistik-etiket { color: var(--renk-metin-cok-soluk); }
-[data-theme="light"] .typing-cursor { color: var(--renk-vurgu); }
-[data-theme="light"] .hero-ust-etiket { color: var(--renk-vurgu); }
-[data-theme="light"] .nav-link-ozel { color: var(--renk-vurgu) !important; border-color: rgba(0,184,148,0.3); }
+[data-theme="light"] .etiketler span { background: rgba(0,184,148,0.08); color: #00b894; border-color: rgba(0,184,148,0.2); }
+[data-theme="light"] .iletisim-bilgi h3 { color: #00b894; }
+[data-theme="light"] .bilgi-satir p { color: rgba(26,26,46,0.65); }
+[data-theme="light"] .form-kontrol { color: #1a1a2e; border-bottom-color: rgba(0,0,0,0.1); background: transparent; }
+[data-theme="light"] .form-kontrol::placeholder { color: rgba(26,26,46,0.4); }
+[data-theme="light"] .form-kontrol:focus { border-bottom-color: #00b894; }
+[data-theme="light"] .btn-cerceve { color: #1a1a2e; border-color: rgba(0,0,0,0.15); }
+[data-theme="light"] .btn-cerceve:hover { border-color: #00b894; color: #00b894; }
+[data-theme="light"] .btn-dolu { background: #00b894; }
+[data-theme="light"] .sosyal-link { color: rgba(26,26,46,0.65); border-color: rgba(0,0,0,0.1); }
+[data-theme="light"] .sosyal-link:hover { color: #00b894; border-color: #00b894; }
+[data-theme="light"] #footer { border-top-color: rgba(0,0,0,0.08); }
+[data-theme="light"] .footer-logo { color: #1a1a2e; }
+[data-theme="light"] .footer-alt-yazi { color: rgba(26,26,46,0.4); }
+[data-theme="light"] .footer-sosyal a { color: rgba(26,26,46,0.4); }
+[data-theme="light"] .footer-sag p { color: rgba(26,26,46,0.4); }
+[data-theme="light"] .cam-kart-genis { background: rgba(0,0,0,0.02); border-color: rgba(0,0,0,0.08); }
+[data-theme="light"] .bolum-ust-etiket { color: #00b894; }
+[data-theme="light"] .detay-baslik { color: #00b894; }
+[data-theme="light"] .istatistik-sayi { color: #00b894; }
+[data-theme="light"] .istatistik-etiket { color: rgba(26,26,46,0.4); }
+[data-theme="light"] .typing-cursor { color: #00b894; }
+[data-theme="light"] .hero-ust-etiket { color: #00b894; }
+[data-theme="light"] .nav-link-ozel { color: #00b894 !important; border-color: rgba(0,184,148,0.3); }
 [data-theme="light"] .dil-toggle { background: rgba(0,0,0,0.04); border-color: rgba(0,0,0,0.1); }
-[data-theme="light"] .dil-secim { color: var(--renk-metin-cok-soluk); }
-[data-theme="light"] .dil-secim.aktif-dil { color: var(--renk-vurgu); }
-[data-theme="light"] #hamburger span { background: var(--renk-metin); }
+[data-theme="light"] .dil-secim { color: rgba(26,26,46,0.4); }
+[data-theme="light"] .dil-secim.aktif-dil { color: #00b894; }
+[data-theme="light"] #hamburger span { background: #1a1a2e; }
 [data-theme="light"] .portre-glow { background: radial-gradient(ellipse, rgba(0,184,148,0.15) 0%, transparent 70%); }
 [data-theme="light"] .bolum-ayirici { background: linear-gradient(90deg, transparent, rgba(0,184,148,0.3), transparent); }
 [data-theme="light"] ::-webkit-scrollbar-thumb { background: rgba(0,184,148,0.3); }
+[data-theme="light"] .cursor-trail { mix-blend-mode: multiply; }
+
+/* Theme geçişinde tüm transitionları devre dışı bırak */
+.tema-gecis * { transition: none !important; }
 
 * { margin: 0; padding: 0; box-sizing: border-box; }
 ::selection { background: rgba(0, 255, 204, 0.3); color: #fff; }
@@ -533,7 +544,9 @@ body { background-color: var(--renk-bg); color: var(--renk-metin); font-family: 
 .yetenek-kart {
     background: var(--renk-kart); border: 1px solid var(--renk-border);
     border-radius: 20px; padding: 36px 20px; text-align: center;
-    transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+    transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1),
+                box-shadow 0.5s cubic-bezier(0.16, 1, 0.3, 1),
+                border-color 0.3s ease;
     position: relative; overflow: hidden;
 }
 .yetenek-kart::before {
@@ -562,7 +575,7 @@ body { background-color: var(--renk-bg); color: var(--renk-metin); font-family: 
     background: var(--renk-kart); backdrop-filter: blur(10px);
     border: 1px solid var(--renk-border); border-radius: 20px; overflow: hidden; text-align: left;
     transition: transform 0.15s ease-out, box-shadow 0.3s ease, border-color 0.3s ease;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
     transform-style: preserve-3d;
     will-change: transform;
     position: relative;

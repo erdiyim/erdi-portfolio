@@ -78,7 +78,15 @@ const TemaYoneticisi = (() => {
     function uygula(tema) {
         aktifTema = tema;
         localStorage.setItem('tema', tema);
+        // Geçiş sırasında tüm transitionları devre dışı bırak
+        document.documentElement.classList.add('tema-gecis');
         document.documentElement.setAttribute('data-theme', tema);
+        // Bir frame sonra transitionları geri aç
+        requestAnimationFrame(() => {
+            requestAnimationFrame(() => {
+                document.documentElement.classList.remove('tema-gecis');
+            });
+        });
     }
 
     function degistir() {
