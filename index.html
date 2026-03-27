@@ -8,6 +8,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
     <link rel="stylesheet" href="style.css">
     <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
 </head>
@@ -55,6 +56,10 @@
                 <span class="dil-ayrac">|</span>
                 <span class="dil-secim" data-dil="en">EN</span>
             </button>
+            <button id="temaBtn" class="tema-toggle" aria-label="Tema Değiştir">
+                <svg class="ikon-ay" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+                <svg class="ikon-gunes" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+            </button>
         </div>
         <button id="hamburger" aria-label="Menü">
             <span></span><span></span><span></span>
@@ -73,18 +78,22 @@
             <span class="dil-ayrac">|</span>
             <span class="dil-secim" data-dil="en">EN</span>
         </button>
+        <button id="temaBtnMobil" class="tema-toggle mobil-tema-toggle" aria-label="Tema Değiştir">
+            <svg class="ikon-ay" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+            <svg class="ikon-gunes" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+        </button>
     </div>
 
     <!-- HERO BÖLÜMÜ -->
     <main id="ana-ekran" class="reveal-container">
-        <div class="kayan-yazi-kapsayici arka-yazi">
+        <div class="kayan-yazi-kapsayici arka-yazi" data-parallax="0.3">
             <h1 class="kayan-yazi gri-yazi">CREATIVE DEVELOPER &bull; SYSTEM ARCHITECT &bull; PROBLEM SOLVER &bull; CREATIVE DEVELOPER &bull; SYSTEM ARCHITECT &bull; PROBLEM SOLVER &bull;</h1>
         </div>
-        <div class="kayan-yazi-kapsayici on-yazi">
+        <div class="kayan-yazi-kapsayici on-yazi" data-parallax="0.5">
             <h1 class="kayan-yazi beyaz-yazi">BUILD WITH CODE &bull; DESIGN SYSTEMS &bull; SHIP &amp; REPEAT &bull; BUILD WITH CODE &bull; DESIGN SYSTEMS &bull; SHIP &amp; REPEAT &bull;</h1>
         </div>
 
-        <div class="hero-icerik">
+        <div class="hero-icerik" data-parallax="0.15">
             <p class="hero-ust-etiket anim" data-anim="fade-right" data-tr="&#60;Merhaba Dünya /&#62;" data-en="&#60;Hello World /&#62;">&#60;Merhaba Dünya /&#62;</p>
             <h1 class="hero-baslik anim" data-anim="fade-right" data-delay="1">Erdi<br><span class="vurgu">Öcal</span></h1>
             <div class="hero-typing-alani anim" data-anim="fade-right" data-delay="2">
@@ -119,6 +128,7 @@
             <div class="portre-glow"></div>
         </div>
     </main>
+    <div class="bolum-ayirici anim" data-anim="scale-in"></div>
 
     <!-- HAKKIMDA -->
     <section id="hakkimda" class="bolum-container">
@@ -150,6 +160,7 @@
             </div>
         </div>
     </section>
+    <div class="bolum-ayirici anim" data-anim="scale-in"></div>
 
     <!-- YETENEKLER -->
     <section id="yetenekler" class="bolum-container">
@@ -185,6 +196,7 @@
             </div>
         </div>
     </section>
+    <div class="bolum-ayirici anim" data-anim="scale-in"></div>
 
     <!-- PROJELER -->
     <section id="projeler" class="bolum-container">
@@ -219,6 +231,7 @@
             </div>
         </div>
     </section>
+    <div class="bolum-ayirici anim" data-anim="scale-in"></div>
 
     <!-- İLETİŞİM -->
     <section id="iletisim" class="bolum-container">

@@ -1,4 +1,11 @@
 // ==========================================
+// -1. SAYFA YENİLEMEDE EN YUKARI + SCROLL KİLİDİ
+// ==========================================
+window.scrollTo(0, 0);
+if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
+document.body.style.overflow = 'hidden'; // Boot ekranı bitene kadar scroll kapalı
+
+// ==========================================
 // 0. DİL DESTEĞİ (TR/EN)
 // ==========================================
 const DilYoneticisi = (() => {
@@ -62,8 +69,38 @@ const DilYoneticisi = (() => {
     return { uygula, dilDegistir, aktif, baslat };
 })();
 
-// Sayfa yüklenince dil sistemini başlat
-document.addEventListener('DOMContentLoaded', () => DilYoneticisi.baslat());
+// ==========================================
+// 0.5 TEMA DESTEĞİ (DARK/LIGHT)
+// ==========================================
+const TemaYoneticisi = (() => {
+    let aktifTema = localStorage.getItem('tema') || 'dark';
+
+    function uygula(tema) {
+        aktifTema = tema;
+        localStorage.setItem('tema', tema);
+        document.documentElement.setAttribute('data-theme', tema);
+    }
+
+    function degistir() {
+        uygula(aktifTema === 'dark' ? 'light' : 'dark');
+    }
+
+    function baslat() {
+        // Butonları bağla
+        const temaBtn = document.getElementById('temaBtn');
+        const temaBtnMobil = document.getElementById('temaBtnMobil');
+        if (temaBtn) temaBtn.addEventListener('click', degistir);
+        if (temaBtnMobil) temaBtnMobil.addEventListener('click', degistir);
+
+        // Başlangıç temasını uygula
+        uygula(aktifTema);
+    }
+
+    return { uygula, degistir, aktif: () => aktifTema, baslat };
+})();
+
+// Sayfa yüklenince dil ve tema sistemini başlat
+document.addEventListener('DOMContentLoaded', () => { DilYoneticisi.baslat(); TemaYoneticisi.baslat(); });
 
 // ==========================================
 // 1. SİNEMATİK GİRİŞ MOTORU
@@ -151,6 +188,7 @@ document.addEventListener('DOMContentLoaded', () => DilYoneticisi.baslat());
         setTimeout(() => {
             acilisEkrani.classList.add('kapaniyor');
             acilisEkrani.style.display = 'none';
+            document.body.style.overflow = ''; // Scroll kilidini aç
             navbar.classList.add('gorunur');
             document.querySelectorAll('#ana-ekran .anim').forEach(el => el.classList.add('gorunur'));
             sayaclariBaslat();
@@ -267,7 +305,7 @@ document.addEventListener('DOMContentLoaded', () => DilYoneticisi.baslat());
         const w = canvas.width / dpr;
         const h = canvas.height / dpr;
         // Siyah arka plan (harfler net görünsün)
-        ctx.fillStyle = '#050505';
+        ctx.fillStyle = getComputedStyle(document.documentElement).getPropertyValue('--renk-glitch-bg').trim() || '#050505';
         ctx.fillRect(0, 0, w, h);
         ctx.font = `${CHAR_H - 4}px 'JetBrains Mono', 'Courier New', monospace`;
         ctx.textBaseline = 'top';
@@ -623,7 +661,36 @@ document.querySelectorAll('.anim').forEach(el => {
 });
 
 // ==========================================
-// 8. İSTATİSTİK SAYACI
+// 8. PARALLAX MOTORU
+// ==========================================
+(() => {
+    const parallaxEls = document.querySelectorAll('[data-parallax]');
+    if (!parallaxEls.length) return;
+
+    let ticking = false;
+
+    function updateParallax() {
+        const scrollY = window.scrollY;
+
+        parallaxEls.forEach(el => {
+            const speed = parseFloat(el.dataset.parallax);
+            const offset = scrollY * speed;
+            el.style.transform = `translateY(${offset}px)`;
+        });
+
+        ticking = false;
+    }
+
+    window.addEventListener('scroll', () => {
+        if (!ticking) {
+            requestAnimationFrame(updateParallax);
+            ticking = true;
+        }
+    }, { passive: true });
+})();
+
+// ==========================================
+// 9. İSTATİSTİK SAYACI
 // ==========================================
 function sayaclariBaslat() {
     document.querySelectorAll('.istatistik-sayi').forEach(sayi => {
@@ -638,13 +705,17 @@ function sayaclariBaslat() {
 }
 
 // ==========================================
-// 9. SMOOTH SCROLL
+// 9. SMOOTH SCROLL (navbar offset ile)
 // ==========================================
 document.querySelectorAll('a[href^="#"]').forEach(a => {
     a.addEventListener('click', function(e) {
         e.preventDefault();
-        const t = document.querySelector(this.getAttribute('href'));
-        if (t) t.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        const hedef = document.querySelector(this.getAttribute('href'));
+        if (hedef) {
+            const navbarYukseklik = document.getElementById('navbar').offsetHeight;
+            const hedefPozisyon = hedef.getBoundingClientRect().top + window.scrollY - navbarYukseklik - 20;
+            window.scrollTo({ top: hedefPozisyon, behavior: 'smooth' });
+        }
     });
 });
 
@@ -712,7 +783,86 @@ document.querySelectorAll('a[href^="#"]').forEach(a => {
 })();
 
 // ==========================================
-// 11. SAĞ TIK & DEVTOOLS KORUMASI
+// 11. 3D TİLT KART EFEKTİ
+// ==========================================
+(() => {
+    const kartlar = document.querySelectorAll('.proje-kart');
+    const MAX_TILT = 12; // derece
+
+    kartlar.forEach(kart => {
+        kart.addEventListener('mousemove', (e) => {
+            const rect = kart.getBoundingClientRect();
+            const x = e.clientX - rect.left;
+            const y = e.clientY - rect.top;
+            const centerX = rect.width / 2;
+            const centerY = rect.height / 2;
+
+            const rotateY = ((x - centerX) / centerX) * MAX_TILT;
+            const rotateX = ((centerY - y) / centerY) * MAX_TILT;
+
+            kart.style.transform = `perspective(800px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.02, 1.02, 1.02)`;
+
+            // Işık yansıması pozisyonu
+            const percentX = (x / rect.width) * 100;
+            const percentY = (y / rect.height) * 100;
+            kart.style.setProperty('--mouse-x', percentX + '%');
+            kart.style.setProperty('--mouse-y', percentY + '%');
+        });
+
+        kart.addEventListener('mouseleave', () => {
+            kart.style.transform = 'perspective(800px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)';
+        });
+    });
+})();
+
+// ==========================================
+// 12. CURSOR TRAIL (IŞIK İZİ) EFEKTİ
+// ==========================================
+(() => {
+    // Mobil cihazlarda çalışmasın
+    if (window.matchMedia('(hover: none)').matches) return;
+
+    const TRAIL_COUNT = 8;
+    const trails = [];
+
+    for (let i = 0; i < TRAIL_COUNT; i++) {
+        const el = document.createElement('div');
+        el.className = 'cursor-trail';
+        document.body.appendChild(el);
+        trails.push({ el, x: 0, y: 0 });
+    }
+
+    let mouseX = 0, mouseY = 0;
+
+    document.addEventListener('mousemove', (e) => {
+        mouseX = e.clientX;
+        mouseY = e.clientY;
+    });
+
+    function animateTrail() {
+        const currentHue = (window._particleHue || 170) % 360;
+
+        trails.forEach((trail, i) => {
+            // Her iz farklı gecikmeyle takip eder
+            const speed = 0.15 - (i * 0.012);
+            trail.x += (mouseX - trail.x) * speed;
+            trail.y += (mouseY - trail.y) * speed;
+
+            const scale = 1 - (i / TRAIL_COUNT) * 0.7;
+            const opacity = (1 - i / TRAIL_COUNT) * 0.5;
+
+            trail.el.style.transform = `translate(${trail.x - 9}px, ${trail.y - 9}px) scale(${scale})`;
+            trail.el.style.opacity = opacity;
+            trail.el.style.background = `radial-gradient(circle, hsla(${currentHue}, 100%, 65%, 0.9), hsla(${currentHue}, 100%, 50%, 0) 70%)`;
+        });
+
+        requestAnimationFrame(animateTrail);
+    }
+    requestAnimationFrame(animateTrail);
+})();
+
+// ==========================================
+// 13. SAĞ TIK & DEVTOOLS KORUMASI
 // ==========================================
 (() => {
     // Sağ tık engelle
