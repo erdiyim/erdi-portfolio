@@ -38,6 +38,8 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
     <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <link rel="icon" type="image/png" href="favicon.png">
+    <link rel="apple-touch-icon" href="apple-touch-icon.png">
     <link rel="preload" href="erdi-portrait.webp" as="image">
     <link rel="preload" href="app.js" as="script">
     <link rel="stylesheet" href="style.css">
@@ -128,10 +130,10 @@
     <!-- HERO BÖLÜMÜ -->
     <main id="ana-ekran" class="reveal-container">
         <div class="kayan-yazi-kapsayici arka-yazi" data-parallax="0.3">
-            <h1 class="kayan-yazi gri-yazi">CREATIVE DEVELOPER &bull; SYSTEM ARCHITECT &bull; PROBLEM SOLVER &bull; CREATIVE DEVELOPER &bull; SYSTEM ARCHITECT &bull; PROBLEM SOLVER &bull;</h1>
+            <h1 class="kayan-yazi gri-yazi" data-tr="YARATICI GELİŞTİRİCİ &bull; SİSTEM MİMARI &bull; PROBLEM ÇÖZÜCÜ &bull; YARATICI GELİŞTİRİCİ &bull; SİSTEM MİMARI &bull; PROBLEM ÇÖZÜCÜ &bull;" data-en="CREATIVE DEVELOPER &bull; SYSTEM ARCHITECT &bull; PROBLEM SOLVER &bull; CREATIVE DEVELOPER &bull; SYSTEM ARCHITECT &bull; PROBLEM SOLVER &bull;">CREATIVE DEVELOPER &bull; SYSTEM ARCHITECT &bull; PROBLEM SOLVER &bull; CREATIVE DEVELOPER &bull; SYSTEM ARCHITECT &bull; PROBLEM SOLVER &bull;</h1>
         </div>
         <div class="kayan-yazi-kapsayici on-yazi" data-parallax="0.5">
-            <h1 class="kayan-yazi beyaz-yazi">BUILD WITH CODE &bull; DESIGN SYSTEMS &bull; SHIP &amp; REPEAT &bull; BUILD WITH CODE &bull; DESIGN SYSTEMS &bull; SHIP &amp; REPEAT &bull;</h1>
+            <h1 class="kayan-yazi beyaz-yazi" data-tr="KODLA İNŞA ET &bull; SİSTEM TASARLA &bull; GÖNDER &amp; TEKRARLA &bull; KODLA İNŞA ET &bull; SİSTEM TASARLA &bull; GÖNDER &amp; TEKRARLA &bull;" data-en="BUILD WITH CODE &bull; DESIGN SYSTEMS &bull; SHIP &amp; REPEAT &bull; BUILD WITH CODE &bull; DESIGN SYSTEMS &bull; SHIP &amp; REPEAT &bull;">BUILD WITH CODE &bull; DESIGN SYSTEMS &bull; SHIP &amp; REPEAT &bull; BUILD WITH CODE &bull; DESIGN SYSTEMS &bull; SHIP &amp; REPEAT &bull;</h1>
         </div>
 
         <div class="hero-icerik">
@@ -351,9 +353,12 @@
                 </div>
                 <div class="iletisim-form-alani">
                     <form id="iletisimFormu" class="ozel-form">
-                        <input type="text" name="from_name" class="form-kontrol" data-tr-ph="Adınız Soyadınız" data-en-ph="Your Name" placeholder="Adınız Soyadınız" required>
-                        <input type="email" name="from_email" class="form-kontrol" data-tr-ph="E-posta Adresiniz" data-en-ph="Your Email" placeholder="E-posta Adresiniz" required>
-                        <textarea class="form-kontrol" name="message" rows="4" data-tr-ph="Mesajınız..." data-en-ph="Your Message..." placeholder="Mesajınız..." required></textarea>
+                        <label for="formAd" class="sr-only" data-tr="Adınız Soyadınız" data-en="Your Name">Adınız Soyadınız</label>
+                        <input type="text" id="formAd" name="from_name" class="form-kontrol" data-tr-ph="Adınız Soyadınız" data-en-ph="Your Name" placeholder="Adınız Soyadınız" required>
+                        <label for="formEmail" class="sr-only" data-tr="E-posta Adresiniz" data-en="Your Email">E-posta Adresiniz</label>
+                        <input type="email" id="formEmail" name="from_email" class="form-kontrol" data-tr-ph="E-posta Adresiniz" data-en-ph="Your Email" placeholder="E-posta Adresiniz" required>
+                        <label for="formMesaj" class="sr-only" data-tr="Mesajınız" data-en="Your Message">Mesajınız</label>
+                        <textarea class="form-kontrol" id="formMesaj" name="message" rows="4" data-tr-ph="Mesajınız..." data-en-ph="Your Message..." placeholder="Mesajınız..." required></textarea>
                         <button type="submit" class="btn btn-dolu form-buton" id="formGonderBtn" data-tr="Gönder" data-en="Send"><span class="btn-icerik">Gönder</span> <span class="btn-ok">&rarr;</span></button>
                         <p id="formDurum" class="form-durum"></p>
                     </form>
@@ -364,7 +369,7 @@
 
     <!-- BLOG MODAL -->
     <div class="blog-modal-overlay" id="blogModalOverlay">
-        <div class="blog-modal" id="blogModal">
+        <div class="blog-modal" id="blogModal" role="dialog" aria-modal="true">
             <div class="blog-modal-header">
                 <div class="blog-modal-header-sol">
                     <span class="blog-modal-kategori" id="blogModalKategori"></span>

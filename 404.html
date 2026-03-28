@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>404 | Erdi Öcal</title>
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <link rel="icon" type="image/png" href="favicon.png">
+    <link rel="apple-touch-icon" href="apple-touch-icon.png">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            min-height: 100vh; display: flex; align-items: center; justify-content: center;
+            background: #050505; color: #fff; font-family: 'Inter', sans-serif;
+            overflow: hidden;
+        }
+        .container { text-align: center; z-index: 1; padding: 20px; }
+        .glitch-404 {
+            font-size: clamp(6rem, 20vw, 12rem); font-weight: 900; letter-spacing: -5px;
+            background: linear-gradient(135deg, #00ffcc, #00b894);
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+            background-clip: text; position: relative;
+            animation: glitchShake 3s infinite;
+        }
+        .glitch-404::before, .glitch-404::after {
+            content: '404'; position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            background: linear-gradient(135deg, #00ffcc, #00b894);
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+        }
+        .glitch-404::before { animation: glitchLeft 2s infinite; clip-path: inset(20% 0 40% 0); }
+        .glitch-404::after { animation: glitchRight 2.5s infinite; clip-path: inset(60% 0 10% 0); }
+        @keyframes glitchShake {
+            0%, 100% { transform: translate(0); }
+            20% { transform: translate(-2px, 2px); }
+            40% { transform: translate(2px, -2px); }
+            60% { transform: translate(-1px, -1px); }
+            80% { transform: translate(1px, 1px); }
+        }
+        @keyframes glitchLeft { 0%, 100% { transform: translate(0); } 50% { transform: translate(-4px, 0); } }
+        @keyframes glitchRight { 0%, 100% { transform: translate(0); } 50% { transform: translate(4px, 0); } }
+        .message {
+            font-family: 'JetBrains Mono', monospace; font-size: 1rem;
+            color: rgba(255,255,255,0.5); margin: 20px 0 10px;
+        }
+        .message span { color: #00ffcc; }
+        .sub { color: rgba(255,255,255,0.35); font-size: 0.9rem; margin-bottom: 40px; }
+        .back-btn {
+            display: inline-flex; align-items: center; gap: 8px;
+            padding: 14px 32px; border-radius: 30px; font-weight: 600;
+            font-family: 'Inter', sans-serif; font-size: 0.95rem;
+            background: #00ffcc; color: #050505; text-decoration: none;
+            transition: all 0.3s ease;
+        }
+        .back-btn:hover { background: #fff; box-shadow: 0 0 30px rgba(255,255,255,0.3); transform: translateY(-3px); }
+        .particles { position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; }
+        .particle {
+            position: absolute; width: 2px; height: 2px; background: #00ffcc; border-radius: 50%;
+            opacity: 0.3; animation: float 6s infinite ease-in-out;
+        }
+        @keyframes float {
+            0%, 100% { transform: translateY(0) scale(1); opacity: 0.3; }
+            50% { transform: translateY(-100px) scale(1.5); opacity: 0.6; }
+        }
+    </style>
+</head>
+<body>
+    <div class="particles" id="particles"></div>
+    <div class="container">
+        <div class="glitch-404">404</div>
+        <p class="message"><span>$</span> cd /home &mdash; <span>sayfa bulunamadı</span></p>
+        <p class="sub">Aradığın sayfa başka bir evrene taşınmış olabilir.</p>
+        <a href="/" class="back-btn">&larr; Ana Sayfaya Dön</a>
+    </div>
+    <script>
+        const container = document.getElementById('particles');
+        for (let i = 0; i < 30; i++) {
+            const p = document.createElement('div');
+            p.className = 'particle';
+            p.style.left = Math.random() * 100 + '%';
+            p.style.top = Math.random() * 100 + '%';
+            p.style.animationDelay = Math.random() * 6 + 's';
+            p.style.animationDuration = (4 + Math.random() * 4) + 's';
+            container.appendChild(p);
+        }
+    </script>
+</body>
+</html>
