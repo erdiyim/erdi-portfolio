@@ -608,6 +608,80 @@ body { background-color: var(--renk-bg); color: var(--renk-metin); font-family: 
 }
 
 /* ========================================= */
+/* --- BLOG / YAZILAR ---                    */
+/* ========================================= */
+.blog-icerik { width: 100%; max-width: 1200px; text-align: center; }
+.blog-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(320px, 100%), 1fr)); gap: 28px; }
+.blog-kart {
+    background: var(--renk-kart); border: 1px solid var(--renk-border);
+    border-radius: 20px; padding: 32px 28px; text-align: left;
+    transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+                box-shadow 0.3s ease, border-color 0.3s ease;
+    position: relative; overflow: hidden; display: flex; flex-direction: column;
+}
+.blog-kart::before {
+    content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 3px;
+    background: linear-gradient(90deg, #00ffcc, rgba(0,255,204,0.2));
+    opacity: 0; transition: opacity 0.3s ease;
+}
+.blog-kart:hover::before { opacity: 1; }
+.blog-kart:hover {
+    transform: translateY(-8px);
+    border-color: rgba(0,255,204,0.3);
+    box-shadow: 0 20px 50px rgba(0,0,0,0.4);
+}
+.blog-kart-ust {
+    display: flex; justify-content: space-between; align-items: center;
+    margin-bottom: 16px;
+}
+.blog-kategori {
+    background: rgba(0,255,204,0.1); color: #00ffcc;
+    padding: 4px 14px; border-radius: 20px; font-size: 0.75rem; font-weight: 700;
+    letter-spacing: 0.5px; text-transform: uppercase;
+    border: 1px solid rgba(0,255,204,0.15);
+}
+.blog-tarih {
+    color: rgba(255,255,255,0.3); font-size: 0.8rem; font-family: var(--font-kod);
+}
+.blog-kart h3 {
+    color: #fff; font-size: 1.2rem; font-weight: 700; line-height: 1.4;
+    margin-bottom: 12px; transition: color 0.3s ease;
+}
+.blog-kart:hover h3 { color: #00ffcc; }
+.blog-kart p {
+    color: rgba(255,255,255,0.5); font-size: 0.9rem; line-height: 1.7;
+    flex: 1; margin-bottom: 20px;
+}
+.blog-alt {
+    display: flex; justify-content: space-between; align-items: flex-end;
+    margin-top: auto;
+}
+.blog-etiketler { display: flex; flex-wrap: wrap; gap: 6px; }
+.blog-etiketler span {
+    background: rgba(255,255,255,0.04); color: rgba(255,255,255,0.45);
+    padding: 3px 10px; border-radius: 12px; font-size: 0.72rem; font-weight: 500;
+    border: 1px solid rgba(255,255,255,0.06);
+}
+.blog-oku {
+    color: #00ffcc; font-size: 0.85rem; font-weight: 600; cursor: pointer;
+    transition: transform 0.3s ease, letter-spacing 0.3s ease;
+    white-space: nowrap;
+}
+.blog-kart:hover .blog-oku { letter-spacing: 1px; }
+
+/* Blog Light Mode */
+[data-theme="light"] .blog-kart { background: rgba(0,0,0,0.02); border-color: rgba(0,0,0,0.08); }
+[data-theme="light"] .blog-kart:hover { border-color: rgba(0,184,148,0.3); box-shadow: 0 20px 50px rgba(0,0,0,0.1); }
+[data-theme="light"] .blog-kart::before { background: linear-gradient(90deg, #00b894, rgba(0,184,148,0.2)); }
+[data-theme="light"] .blog-kategori { background: rgba(0,184,148,0.1); color: #00b894; border-color: rgba(0,184,148,0.2); }
+[data-theme="light"] .blog-tarih { color: rgba(26,26,46,0.3); }
+[data-theme="light"] .blog-kart h3 { color: #1a1a2e; }
+[data-theme="light"] .blog-kart:hover h3 { color: #00b894; }
+[data-theme="light"] .blog-kart p { color: rgba(26,26,46,0.55); }
+[data-theme="light"] .blog-etiketler span { background: rgba(0,0,0,0.03); color: rgba(26,26,46,0.45); border-color: rgba(0,0,0,0.06); }
+[data-theme="light"] .blog-oku { color: #00b894; }
+
+/* ========================================= */
 /* --- İLETİŞİM ---                          */
 /* ========================================= */
 .iletisim-kapsayici { max-width: 900px; }

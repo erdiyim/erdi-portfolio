@@ -4,7 +4,11 @@
       "mcp__Claude_Preview__preview_start",
       "WebFetch(domain:framer.university)",
       "WebFetch(domain:framer.com)",
-      "WebFetch(domain:framerusercontent.com)"
+      "WebFetch(domain:framerusercontent.com)",
+      "Bash(git status:*)",
+      "Bash(git add:*)",
+      "Bash(git commit:*)",
+      "Bash(git push:*)"
     ]
   }
 }
