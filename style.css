@@ -114,7 +114,7 @@ body { background-color: var(--renk-bg); color: var(--renk-metin); font-family: 
 /* ========================================= */
 #acilis-ekrani {
     position: fixed; top: 0; left: 0;
-    width: 100%; height: 100vh;
+    width: 100%; height: 100vh; height: 100dvh;
     background: #020202;
     z-index: 9999;
     display: flex; justify-content: center; align-items: center;
@@ -253,6 +253,10 @@ body { background-color: var(--renk-bg); color: var(--renk-metin); font-family: 
     visibility: hidden;
     transition: opacity 0.3s ease, visibility 0.3s ease;
 }
+#acilis-ekrani ~ main,
+#acilis-ekrani ~ #navbar { visibility: hidden; }
+#acilis-ekrani.kapaniyor ~ main,
+#acilis-ekrani.kapaniyor ~ #navbar { visibility: visible; }
 
 /* ========================================= */
 /* --- NAVİGASYON ---                        */
