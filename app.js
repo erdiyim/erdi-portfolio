@@ -1282,7 +1282,56 @@ Type: CNAME | Name: www | Value: cname.vercel-dns.com</pre>
 })();
 
 // ==========================================
-// 14. SAĞ TIK & DEVTOOLS KORUMASI
+// 14. MANYETİK BUTON EFEKTİ
+// ==========================================
+(() => {
+    // Dokunmatik cihazlarda devre dışı
+    if ('ontouchstart' in window) return;
+
+    const selektor = '.btn, .nav-link, .nav-link-ozel, .footer-sosyal a, .blog-oku, .tema-btn, .dil-btn';
+    const KUVVET = 0.35;   // ne kadar çekilsin (0-1)
+    const MESAFE = 60;     // px — tetikleme mesafesi
+
+    function bagla(el) {
+        el.addEventListener('mouseenter', () => {
+            el.style.transition = 'transform 0.15s cubic-bezier(0.23, 1, 0.32, 1)';
+        });
+
+        el.addEventListener('mousemove', (e) => {
+            const rect = el.getBoundingClientRect();
+            const merkezX = rect.left + rect.width / 2;
+            const merkezY = rect.top + rect.height / 2;
+            const dx = e.clientX - merkezX;
+            const dy = e.clientY - merkezY;
+
+            el.style.transform = `translate(${dx * KUVVET}px, ${dy * KUVVET}px) scale(1.05)`;
+        });
+
+        el.addEventListener('mouseleave', () => {
+            el.style.transition = 'transform 0.4s cubic-bezier(0.23, 1, 0.32, 1)';
+            el.style.transform = 'translate(0, 0) scale(1)';
+        });
+    }
+
+    document.querySelectorAll(selektor).forEach(bagla);
+
+    // Dinamik eklenen elementler için MutationObserver
+    const observer = new MutationObserver((mutations) => {
+        mutations.forEach(m => {
+            m.addedNodes.forEach(node => {
+                if (node.nodeType !== 1) return;
+                if (node.matches && node.matches(selektor)) bagla(node);
+                if (node.querySelectorAll) {
+                    node.querySelectorAll(selektor).forEach(bagla);
+                }
+            });
+        });
+    });
+    observer.observe(document.body, { childList: true, subtree: true });
+})();
+
+// ==========================================
+// 15. SAĞ TIK & DEVTOOLS KORUMASI
 // ==========================================
 (() => {
     // Sağ tık engelle
