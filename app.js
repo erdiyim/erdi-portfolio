@@ -165,21 +165,43 @@ document.addEventListener('DOMContentLoaded', () => { DilYoneticisi.baslat(); Te
         '});',
     ];
 
+    const bootProgress = document.getElementById('bootProgress');
     let satirIndex = 0;
     let hazir = false;
     let girisYapildi = false;
+    let assetlerHazir = false;
+
+    // Asset preload tracker
+    const assetler = [];
+    const portre = new Image();
+    portre.src = 'erdi-portrait.png';
+    assetler.push(new Promise(r => { portre.onload = r; portre.onerror = r; }));
+    // Font kontrolü
+    if (document.fonts) assetler.push(document.fonts.ready);
+
+    function ilerlemeGuncelle(yuzde) {
+        if (bootProgress) bootProgress.style.width = yuzde + '%';
+    }
 
     function satirEkle() {
         if (satirIndex >= kodlar.length) {
-            hazir = true;
-            bootIpucu.innerHTML = bt.ipucu;
-            bootIpucu.classList.add('hazir');
+            ilerlemeGuncelle(85);
+            // Asset'ler hazır olana kadar bekle
+            Promise.all(assetler).then(() => {
+                assetlerHazir = true;
+                ilerlemeGuncelle(100);
+                hazir = true;
+                bootIpucu.innerHTML = bt.ipucu;
+                bootIpucu.classList.add('hazir');
+            });
             return;
         }
         const satirHTML = `<div><span class="kod-satir-numara">${String(satirIndex + 1).padStart(2, '0')}</span>${kodlar[satirIndex]}</div>`;
         kodSatirlari.innerHTML += satirHTML;
         satirIndex++;
         kodSatirlari.scrollTop = kodSatirlari.scrollHeight;
+        // İlerleme: kod satırları %0-80 aralığında
+        ilerlemeGuncelle(Math.round((satirIndex / kodlar.length) * 80));
         const gecikme = kodlar[satirIndex - 1] === '' ? 80 : Math.random() * 60 + 40;
         setTimeout(satirEkle, gecikme);
     }
@@ -190,6 +212,11 @@ document.addEventListener('DOMContentLoaded', () => { DilYoneticisi.baslat(); Te
         girisYapildi = true;
 
         monitorCerceve.classList.add('zoom');
+
+        // Boot bitince ağır motorları başlat (particle, glitch)
+        if (typeof window._baslatAgirMotorlar === 'function') {
+            window._baslatAgirMotorlar();
+        }
 
         setTimeout(() => { zoomGecis.classList.add('aktif'); }, 500);
 
@@ -212,7 +239,9 @@ document.addEventListener('DOMContentLoaded', () => { DilYoneticisi.baslat(); Te
 // ==========================================
 // 2. LETTER GLITCH MOTORU (Framer tarzı)
 // ==========================================
-(() => {
+// Lazy: boot bitene kadar başlamaz
+window._agirMotorlar = window._agirMotorlar || [];
+window._agirMotorlar.push(function glitchMotorBaslat() {
     const canvas = document.getElementById('glitchTuvali');
     if (!canvas) return;
     const ctx = canvas.getContext('2d');
@@ -361,7 +390,7 @@ document.addEventListener('DOMContentLoaded', () => { DilYoneticisi.baslat(); Te
             initGrid();
         }, 200);
     });
-})();
+});
 
 // ==========================================
 // 3. X-RAY HOVER EFEKTİ (FRAMER TARZI)
@@ -486,6 +515,8 @@ document.addEventListener('DOMContentLoaded', () => { DilYoneticisi.baslat(); Te
 // ==========================================
 // 4. 3D AĞ & PARÇACIK MOTORU
 // ==========================================
+// Lazy: boot bitene kadar başlamaz
+window._agirMotorlar.push(function parcacikMotorBaslat() {
 const tuval = document.getElementById('tuval');
 const c = tuval.getContext('2d');
 tuval.width = window.innerWidth;
@@ -606,6 +637,13 @@ window.addEventListener('resize', () => {
 });
 parcacikOlustur();
 render();
+});
+
+// Ağır motorları başlat (boot bitince çağrılır)
+window._baslatAgirMotorlar = function() {
+    (window._agirMotorlar || []).forEach(fn => fn());
+    window._agirMotorlar = [];
+};
 
 // ==========================================
 // 5. TYPING EFEKTİ

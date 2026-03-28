@@ -9,6 +9,8 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
     <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <link rel="preload" href="erdi-portrait.png" as="image">
+    <link rel="preload" href="app.js" as="script">
     <link rel="stylesheet" href="style.css">
     <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
 </head>
@@ -33,6 +35,7 @@
                 </div>
             </div>
             <div class="boot-alt-bilgi">
+                <div class="boot-progress-bar"><div class="boot-progress-fill" id="bootProgress"></div></div>
                 <p class="boot-ipucu" id="bootIpucu" data-tr="sistem başlatılıyor..." data-en="booting system...">sistem başlatılıyor<span class="nokta-anim">...</span></p>
             </div>
         </div>

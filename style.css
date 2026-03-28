@@ -215,6 +215,21 @@ body { background-color: var(--renk-bg); color: var(--renk-metin); font-family: 
 .nokta-anim { animation: noktalar 1.5s step-end infinite; }
 @keyframes noktalar { 0%{content:'.'} 33%{content:'..'} 66%{content:'...'} }
 
+.boot-progress-bar {
+    width: 240px; height: 3px;
+    background: rgba(255,255,255,0.06);
+    border-radius: 3px;
+    margin: 0 auto 14px;
+    overflow: hidden;
+}
+.boot-progress-fill {
+    width: 0%; height: 100%;
+    background: linear-gradient(90deg, #00ffcc, #82aaff);
+    border-radius: 3px;
+    transition: width 0.3s ease-out;
+    box-shadow: 0 0 8px rgba(0,255,204,0.4);
+}
+
 /* Zoom Geçiş */
 .zoom-gecis {
     position: fixed; top: 0; left: 0;
