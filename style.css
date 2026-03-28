@@ -943,6 +943,32 @@ textarea.form-kontrol { resize: none; }
     .monitor-cerceve { width: 280px; height: 170px; }
 }
 
+/* Scroll Progress Bar */
+.scroll-ilerleme {
+    position: fixed; top: 0; left: 0; height: 3px; width: 0%;
+    background: linear-gradient(90deg, #00ffcc, #00b894, #00ffcc);
+    z-index: 10001; transition: width 0.1s linear;
+    box-shadow: 0 0 10px rgba(0,255,204,0.5);
+}
+[data-theme="light"] .scroll-ilerleme {
+    background: linear-gradient(90deg, #00b894, #009974, #00b894);
+    box-shadow: 0 0 10px rgba(0,184,148,0.4);
+}
+
+/* Text Scramble Efekti */
+.scramble-aktif { display: inline-block; }
+
+/* Konfeti Efekti */
+.konfeti-parca {
+    position: fixed; width: 10px; height: 10px; z-index: 10002;
+    pointer-events: none; border-radius: 2px;
+    animation: konfeti-dusme 1.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+}
+@keyframes konfeti-dusme {
+    0% { opacity: 1; transform: translateY(0) rotate(0deg) scale(1); }
+    100% { opacity: 0; transform: translateY(100vh) rotate(720deg) scale(0.3); }
+}
+
 /* Minimum font boyutları - aşırı küçük pencere/zoom durumu */
 @media (max-width: 360px) {
     html { font-size: 14px; }

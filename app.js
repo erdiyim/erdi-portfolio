@@ -828,6 +828,7 @@ document.querySelectorAll('a[href^="#"]').forEach(a => {
             durumEl.textContent = mt.basarili;
             durumEl.className = 'form-durum basarili';
             form.reset();
+            if (typeof konfetiFirlat === 'function') konfetiFirlat();
             return;
         }
 
@@ -841,6 +842,7 @@ document.querySelectorAll('a[href^="#"]').forEach(a => {
                 durumEl.textContent = mt.basarili;
                 durumEl.className = 'form-durum basarili';
                 form.reset();
+                if (typeof konfetiFirlat === 'function') konfetiFirlat();
             })
             .catch(() => {
                 durumEl.textContent = mt.hata;
@@ -1331,7 +1333,99 @@ Type: CNAME | Name: www | Value: cname.vercel-dns.com</pre>
 })();
 
 // ==========================================
-// 15. SAĞ TIK & DEVTOOLS KORUMASI
+// 15. SCROLL PROGRESS BAR
+// ==========================================
+(() => {
+    const bar = document.getElementById('scrollIlerleme');
+    if (!bar) return;
+
+    function guncelle() {
+        const scrollTop = window.scrollY;
+        const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+        const yuzde = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
+        bar.style.width = yuzde + '%';
+    }
+
+    window.addEventListener('scroll', guncelle, { passive: true });
+    guncelle();
+})();
+
+// ==========================================
+// 16. TEXT SCRAMBLE EFEKTİ
+// ==========================================
+(() => {
+    if ('ontouchstart' in window) return;
+
+    const KARAKTERLER = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789@#$%&*!?<>/';
+    const HIZI = 40;       // ms per frame
+    const ADIM = 3;        // her frame'de kaç harf çözülsün
+
+    function scramble(el) {
+        const orijinal = el.getAttribute('data-scramble-orijinal') || el.textContent;
+        if (!el.getAttribute('data-scramble-orijinal')) {
+            el.setAttribute('data-scramble-orijinal', orijinal);
+        }
+
+        let cozulen = 0;
+        const uzunluk = orijinal.length;
+
+        const interval = setInterval(() => {
+            let sonuc = '';
+            for (let i = 0; i < uzunluk; i++) {
+                if (orijinal[i] === ' ') {
+                    sonuc += ' ';
+                } else if (i < cozulen) {
+                    sonuc += orijinal[i];
+                } else {
+                    sonuc += KARAKTERLER[Math.floor(Math.random() * KARAKTERLER.length)];
+                }
+            }
+            el.textContent = sonuc;
+            cozulen += ADIM;
+
+            if (cozulen >= uzunluk) {
+                clearInterval(interval);
+                el.textContent = orijinal;
+            }
+        }, HIZI);
+    }
+
+    // Bölüm başlıklarına uygula
+    document.querySelectorAll('.bolum-baslik').forEach(el => {
+        el.addEventListener('mouseenter', () => scramble(el));
+    });
+
+    // Nav linklere uygula
+    document.querySelectorAll('.nav-link').forEach(el => {
+        el.addEventListener('mouseenter', () => scramble(el));
+    });
+})();
+
+// ==========================================
+// 17. KONFETİ EFEKTİ (FORM BAŞARI)
+// ==========================================
+function konfetiFirlat() {
+    const renkler = ['#00ffcc', '#00b894', '#fff', '#ffd700', '#ff6b6b', '#a29bfe', '#fd79a8'];
+    const PARCA_SAYISI = 50;
+
+    for (let i = 0; i < PARCA_SAYISI; i++) {
+        const parca = document.createElement('div');
+        parca.className = 'konfeti-parca';
+        parca.style.left = Math.random() * 100 + 'vw';
+        parca.style.top = '-10px';
+        parca.style.backgroundColor = renkler[Math.floor(Math.random() * renkler.length)];
+        parca.style.width = (Math.random() * 8 + 5) + 'px';
+        parca.style.height = (Math.random() * 8 + 5) + 'px';
+        parca.style.animationDelay = (Math.random() * 0.8) + 's';
+        parca.style.animationDuration = (Math.random() * 1 + 1) + 's';
+        document.body.appendChild(parca);
+
+        setTimeout(() => parca.remove(), 2500);
+    }
+}
+
+// ==========================================
+// 18. SAĞ TIK & DEVTOOLS KORUMASI
 // ==========================================
 (() => {
     // Sağ tık engelle
