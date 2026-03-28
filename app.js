@@ -794,9 +794,9 @@ document.querySelectorAll('a[href^="#"]').forEach(a => {
     // EmailJS başlat — SEN BUNU KENDİ HESABINLA DEĞİŞTİRMELİSİN
     // https://www.emailjs.com adresinden ücretsiz hesap aç
     // Service ID, Template ID ve Public Key'ini aşağıya yaz
-    const EMAILJS_PUBLIC_KEY = 'YOUR_PUBLIC_KEY'; // emailjs.com > Account > Public Key
-    const EMAILJS_SERVICE_ID = 'YOUR_SERVICE_ID'; // emailjs.com > Email Services
-    const EMAILJS_TEMPLATE_ID = 'YOUR_TEMPLATE_ID'; // emailjs.com > Email Templates
+    const EMAILJS_PUBLIC_KEY = 'Bo16beLb1nd0W-st5';
+    const EMAILJS_SERVICE_ID = 'service_4akwrb6';
+    const EMAILJS_TEMPLATE_ID = 'template_52zrbgs';
 
     if (typeof emailjs !== 'undefined' && EMAILJS_PUBLIC_KEY !== 'YOUR_PUBLIC_KEY') {
         emailjs.init(EMAILJS_PUBLIC_KEY);
