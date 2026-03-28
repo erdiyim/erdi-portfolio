@@ -111,6 +111,28 @@ const TemaYoneticisi = (() => {
 document.addEventListener('DOMContentLoaded', () => { DilYoneticisi.baslat(); TemaYoneticisi.baslat(); });
 
 // ==========================================
+// 0.6 CANLI SAAT
+// ==========================================
+(() => {
+    const saatEl = document.getElementById('saatDeger');
+    if (!saatEl) return;
+
+    function guncelle() {
+        const simdi = new Date();
+        const saat = simdi.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+        const gun = simdi.getDate();
+        const aylar = DilYoneticisi.aktif() === 'tr'
+            ? ['Oca','Şub','Mar','Nis','May','Haz','Tem','Ağu','Eyl','Eki','Kas','Ara']
+            : ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+        const ay = aylar[simdi.getMonth()];
+        saatEl.textContent = `${saat} · ${gun} ${ay}`;
+    }
+
+    guncelle();
+    setInterval(guncelle, 10000); // her 10 saniyede güncelle
+})();
+
+// ==========================================
 // 1. SİNEMATİK GİRİŞ MOTORU
 // ==========================================
 (() => {
