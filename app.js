@@ -264,6 +264,8 @@ document.addEventListener('DOMContentLoaded', () => { DilYoneticisi.baslat(); Te
 // Lazy: boot bitene kadar başlamaz
 window._agirMotorlar = window._agirMotorlar || [];
 window._agirMotorlar.push(function glitchMotorBaslat() {
+    // Mobilde glitch motorunu devre dışı bırak (performans)
+    if (window.innerWidth < 768 || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
     const canvas = document.getElementById('glitchTuvali');
     if (!canvas) return;
     const ctx = canvas.getContext('2d');
@@ -539,6 +541,8 @@ window._agirMotorlar.push(function glitchMotorBaslat() {
 // ==========================================
 // Lazy: boot bitene kadar başlamaz
 window._agirMotorlar.push(function parcacikMotorBaslat() {
+// Mobilde parçacık motorunu devre dışı bırak (performans)
+if (window.innerWidth < 768 || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
 const tuval = document.getElementById('tuval');
 const c = tuval.getContext('2d');
 tuval.width = window.innerWidth;

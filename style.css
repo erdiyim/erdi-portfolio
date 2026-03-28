@@ -985,3 +985,24 @@ textarea.form-kontrol { resize: none; }
     .blog-kart h3 { font-size: 1rem; }
     .istatistik-sayi { font-size: 1.3rem; }
 }
+
+/* CV İndir Butonu */
+.cv-btn { gap: 6px; }
+.cv-btn svg { flex-shrink: 0; }
+
+/* Reduced Motion — erişilebilirlik */
+@media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+    .kayan-yazi-kapsayici { animation: none !important; }
+    .portre-glow { animation: none !important; }
+    .yanip-sonen-imlec { animation: none !important; }
+    .typing-cursor { animation: none !important; }
+    .boot-progress-fill { animation: none !important; }
+    #tuval, .glitch-katman { display: none !important; }
+    .cursor-trail { display: none !important; }
+}
