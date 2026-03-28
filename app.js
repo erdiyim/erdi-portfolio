@@ -6,6 +6,26 @@ if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
 document.body.style.overflow = 'hidden'; // Boot ekranı bitene kadar scroll kapalı
 
 // ==========================================
+// LENIS SMOOTH SCROLL
+// ==========================================
+let lenis;
+if (typeof Lenis !== 'undefined') {
+    lenis = new Lenis({
+        duration: 1.2,
+        easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+        touchMultiplier: 2,
+        infinite: false
+    });
+    lenis.stop(); // Boot ekranı bitene kadar durdur
+
+    function lenisRaf(time) {
+        lenis.raf(time);
+        requestAnimationFrame(lenisRaf);
+    }
+    requestAnimationFrame(lenisRaf);
+}
+
+// ==========================================
 // 0. DİL DESTEĞİ (TR/EN)
 // ==========================================
 const DilYoneticisi = (() => {
@@ -246,6 +266,7 @@ document.addEventListener('DOMContentLoaded', () => { DilYoneticisi.baslat(); Te
             acilisEkrani.classList.add('kapaniyor');
             acilisEkrani.style.display = 'none';
             document.body.style.overflow = ''; // Scroll kilidini aç
+            if (lenis) lenis.start(); // Lenis smooth scroll başlat
             navbar.classList.add('gorunur');
             document.querySelectorAll('#ana-ekran .anim').forEach(el => el.classList.add('gorunur'));
             sayaclariBaslat();
@@ -785,8 +806,13 @@ document.querySelectorAll('a[href^="#"]').forEach(a => {
         const hedef = document.querySelector(this.getAttribute('href'));
         if (hedef) {
             const navbarYukseklik = document.getElementById('navbar').offsetHeight;
-            const hedefPozisyon = hedef.getBoundingClientRect().top + window.scrollY - navbarYukseklik - 20;
-            window.scrollTo({ top: hedefPozisyon, behavior: 'smooth' });
+            const offset = -(navbarYukseklik + 20);
+            if (lenis) {
+                lenis.scrollTo(hedef, { offset });
+            } else {
+                const hedefPozisyon = hedef.getBoundingClientRect().top + window.scrollY - navbarYukseklik - 20;
+                window.scrollTo({ top: hedefPozisyon, behavior: 'smooth' });
+            }
         }
     });
 });
@@ -1251,11 +1277,13 @@ Type: CNAME | Name: www | Value: cname.vercel-dns.com</pre>
 
         overlay.classList.add('aktif');
         document.body.style.overflow = 'hidden';
+        if (lenis) lenis.stop();
     }
 
     function modalKapat() {
         overlay.classList.remove('aktif');
         document.body.style.overflow = '';
+        if (lenis) lenis.start();
     }
 
     // Kart tıklama

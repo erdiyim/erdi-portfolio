@@ -104,7 +104,7 @@
 
 * { margin: 0; padding: 0; box-sizing: border-box; }
 ::selection { background: rgba(0, 255, 204, 0.3); color: #fff; }
-html { scroll-behavior: smooth; }
+html { scroll-behavior: auto; }
 body { background-color: var(--renk-bg); color: var(--renk-metin); font-family: var(--font-baslik); overflow-x: hidden; }
 [data-theme="light"] body { background-color: #f5f5f7; color: #1a1a2e; }
 .vurgu { color: var(--renk-vurgu); }
