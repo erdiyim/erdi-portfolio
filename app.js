@@ -908,7 +908,359 @@ document.querySelectorAll('a[href^="#"]').forEach(a => {
 })();
 
 // ==========================================
-// 13. SAĞ TIK & DEVTOOLS KORUMASI
+// 13. BLOG MODAL SİSTEMİ
+// ==========================================
+(() => {
+    const overlay = document.getElementById('blogModalOverlay');
+    const modal = document.getElementById('blogModal');
+    const baslikEl = document.getElementById('blogModalBaslik');
+    const kategoriEl = document.getElementById('blogModalKategori');
+    const tarihEl = document.getElementById('blogModalTarih');
+    const etiketlerEl = document.getElementById('blogModalEtiketler');
+    const icerikEl = document.getElementById('blogModalIcerik');
+    const kapatBtn = document.getElementById('blogModalKapat');
+    if (!overlay) return;
+
+    const dil = () => DilYoneticisi.aktif();
+
+    // Blog yazıları veritabanı
+    const yazilar = {
+        'react-vs-vanilla': {
+            tr: {
+                baslik: 'React vs Vanilla JS: Ne Zaman Hangisi?',
+                kategori: 'Frontend',
+                tarih: 'Mart 2026',
+                etiketler: ['React', 'JavaScript', 'Performans'],
+                icerik: `
+                    <h3>Giriş</h3>
+                    <p>Modern web dünyasında framework seçimi, projenin geleceğini belirleyen en kritik kararlardan biri. Her projeye React eklemek refleks haline geldi ama <strong>gerçekten her zaman doğru seçim mi?</strong></p>
+
+                    <h3>Vanilla JS Ne Zaman Parlıyor?</h3>
+                    <p>Bazı senaryolarda saf JavaScript, framework'lerden çok daha iyi performans gösterir:</p>
+                    <ul>
+                        <li><strong>Statik portfolyo siteleri</strong> — Bu site gibi! DOM manipülasyonu az, animasyonlar CSS + Canvas ile yapılıyor.</li>
+                        <li><strong>Landing page'ler</strong> — Tek sayfalık tanıtım siteleri için 45KB'lık React bundle gereksiz.</li>
+                        <li><strong>Küçük widget'lar</strong> — Embed edilecek hafif bileşenler.</li>
+                        <li><strong>Performans kritik uygulamalar</strong> — Her milisaniyenin önemli olduğu yerler.</li>
+                    </ul>
+                    <pre>// Vanilla JS ile basit bir toggle
+document.querySelector('.btn').addEventListener('click', () => {
+    document.body.classList.toggle('dark-mode');
+});</pre>
+
+                    <h3>React Ne Zaman Şart?</h3>
+                    <p>React'in gücü karmaşık state yönetimi ve bileşen tekrarı gerektiren projelerde ortaya çıkar:</p>
+                    <ul>
+                        <li><strong>Dashboard'lar</strong> — Gerçek zamanlı veri, tablolar, grafikler.</li>
+                        <li><strong>E-ticaret</strong> — Sepet, filtreleme, ödeme akışı gibi iç içe state'ler.</li>
+                        <li><strong>SaaS uygulamaları</strong> — Çok sayfalı, rol bazlı, API yoğun projeler.</li>
+                        <li><strong>Takım projeleri</strong> — Component-based mimari, ekip içi tutarlılığı artırır.</li>
+                    </ul>
+
+                    <h3>Karar Matrisi</h3>
+                    <p>Projenize karar verirken şu sorulara cevap arayın:</p>
+                    <ul>
+                        <li>Sayfada kaç bağımsız state var? → <strong>3'ten azsa:</strong> Vanilla yeterli.</li>
+                        <li>Bileşen tekrarı var mı? → <strong>Evet:</strong> React mantıklı.</li>
+                        <li>SEO kritik mi? → <strong>Evet:</strong> Next.js veya SSG düşünün.</li>
+                        <li>Bundle boyutu önemli mi? → <strong>Evet:</strong> Vanilla veya Preact.</li>
+                    </ul>
+
+                    <h3>Sonuç</h3>
+                    <p>Doğru araç, projeye göre değişir. <strong>Bu portfolyo sitesi saf JavaScript ile yazıldı</strong> — particle engine, X-ray efekti, 3D kartlar, tüm animasyonlar framework'süz. Sonuç: 0 dependency, anında yükleme, tam kontrol.</p>
+                `
+            },
+            en: {
+                baslik: 'React vs Vanilla JS: When to Use Which?',
+                kategori: 'Frontend',
+                tarih: 'March 2026',
+                etiketler: ['React', 'JavaScript', 'Performance'],
+                icerik: `
+                    <h3>Introduction</h3>
+                    <p>In the modern web world, choosing a framework is one of the most critical decisions that shapes a project's future. Adding React to every project has become a reflex, but <strong>is it always the right choice?</strong></p>
+
+                    <h3>When Does Vanilla JS Shine?</h3>
+                    <p>In certain scenarios, pure JavaScript outperforms frameworks significantly:</p>
+                    <ul>
+                        <li><strong>Static portfolio sites</strong> — Like this one! Minimal DOM manipulation, animations via CSS + Canvas.</li>
+                        <li><strong>Landing pages</strong> — A 45KB React bundle is overkill for single-page promos.</li>
+                        <li><strong>Small widgets</strong> — Lightweight embeddable components.</li>
+                        <li><strong>Performance-critical apps</strong> — Where every millisecond counts.</li>
+                    </ul>
+                    <pre>// Simple toggle with Vanilla JS
+document.querySelector('.btn').addEventListener('click', () => {
+    document.body.classList.toggle('dark-mode');
+});</pre>
+
+                    <h3>When Is React Essential?</h3>
+                    <p>React's power emerges in projects requiring complex state management and component reuse:</p>
+                    <ul>
+                        <li><strong>Dashboards</strong> — Real-time data, tables, charts.</li>
+                        <li><strong>E-commerce</strong> — Cart, filtering, payment flows with nested states.</li>
+                        <li><strong>SaaS applications</strong> — Multi-page, role-based, API-heavy projects.</li>
+                        <li><strong>Team projects</strong> — Component-based architecture ensures team consistency.</li>
+                    </ul>
+
+                    <h3>Decision Matrix</h3>
+                    <p>Ask these questions when deciding:</p>
+                    <ul>
+                        <li>How many independent states on the page? → <strong>Less than 3:</strong> Vanilla is enough.</li>
+                        <li>Component reuse needed? → <strong>Yes:</strong> React makes sense.</li>
+                        <li>Is SEO critical? → <strong>Yes:</strong> Consider Next.js or SSG.</li>
+                        <li>Does bundle size matter? → <strong>Yes:</strong> Vanilla or Preact.</li>
+                    </ul>
+
+                    <h3>Conclusion</h3>
+                    <p>The right tool depends on the project. <strong>This portfolio was built with pure JavaScript</strong> — particle engine, X-ray effect, 3D cards, all animations without any framework. Result: 0 dependencies, instant loading, full control.</p>
+                `
+            }
+        },
+        'css-xray-efekti': {
+            tr: {
+                baslik: 'CSS Mask ile X-Ray Efekti Nasıl Yapılır?',
+                kategori: 'CSS',
+                tarih: 'Şubat 2026',
+                etiketler: ['CSS', 'Canvas', 'Animasyon'],
+                icerik: `
+                    <h3>Perde Arkası</h3>
+                    <p>Bu portfolyödeki fotoğraf hover efekti, <strong>Framer'ın ünlü X-Ray bileşeninden</strong> ilham alıyor. Fare ile fotoğrafın üzerine geldiğinizde, bir daire içinde kod matrisi görünür. İşte bu efektin nasıl çalıştığı.</p>
+
+                    <h3>Katmanlı Mimari</h3>
+                    <p>Efekt 4 katmandan oluşuyor:</p>
+                    <ol>
+                        <li><strong>Glitch Canvas (z-index: 1)</strong> — Rastgele harf ve sembollerle dolu bir canvas. Renkleri particle network ile senkronize.</li>
+                        <li><strong>CRT Overlay (z-index: 2)</strong> — Eski monitör tarama çizgileri efekti.</li>
+                        <li><strong>CRT Flicker (z-index: 3)</strong> — Titreşim animasyonu.</li>
+                        <li><strong>Normal Fotoğraf (z-index: 5)</strong> — En üstte, mask ile delik açılıyor.</li>
+                    </ol>
+
+                    <h3>Sihirli Kısım: CSS Mask</h3>
+                    <p>Fotoğrafın altındaki kodu göstermek için <code>mask-image</code> ile bir delik açıyoruz:</p>
+                    <pre>// Mouse pozisyonunda radial-gradient mask
+const mask = \`radial-gradient(
+    circle 130px at \${x}px \${y}px,
+    transparent 0%, transparent 35%,
+    rgba(0,0,0,0.4) 55%,
+    rgba(0,0,0,0.8) 70%,
+    black 85%
+)\`;
+element.style.maskImage = mask;</pre>
+                    <p><code>transparent</code> kısımlar deliği oluşturur, <code>black</code> kısımlar fotoğrafı gösterir. Gradient geçişi sayesinde kenarlar yumuşak.</p>
+
+                    <h3>Silüet Maskeleme</h3>
+                    <p>Glitch canvas'ın fotoğraf dışına taşmaması için PNG silüet kullanılıyor:</p>
+                    <pre>.glitch-katman, .crt-overlay {
+    mask-image: url('erdi-portrait.png');
+    mask-size: contain;
+    mask-position: bottom center;
+    mask-repeat: no-repeat;
+}</pre>
+
+                    <h3>Renk Senkronizasyonu</h3>
+                    <p>Glitch harfleri, arka plan particle ağının rengini takip eder. <code>window._particleHue</code> değişkeni üzerinden HSL renk paylaşılır ve <code>hslToRgb</code> ile canvas'a uygulanır.</p>
+
+                    <h3>Sonuç</h3>
+                    <p>Sıfır framework, sıfır kütüphane — sadece <strong>CSS mask-image + Canvas API + matematiksel renk interpolasyonu</strong>. Efektin tamamı ~120 satır JavaScript.</p>
+                `
+            },
+            en: {
+                baslik: 'How to Create an X-Ray Effect with CSS Mask?',
+                kategori: 'CSS',
+                tarih: 'February 2026',
+                etiketler: ['CSS', 'Canvas', 'Animation'],
+                icerik: `
+                    <h3>Behind the Scenes</h3>
+                    <p>The photo hover effect in this portfolio is inspired by <strong>Framer's famous X-Ray component</strong>. When you hover over the photo, a code matrix appears within a circle. Here's how it works.</p>
+
+                    <h3>Layered Architecture</h3>
+                    <p>The effect consists of 4 layers:</p>
+                    <ol>
+                        <li><strong>Glitch Canvas (z-index: 1)</strong> — A canvas filled with random letters and symbols. Colors synced with the particle network.</li>
+                        <li><strong>CRT Overlay (z-index: 2)</strong> — Old monitor scan line effect.</li>
+                        <li><strong>CRT Flicker (z-index: 3)</strong> — Flicker animation.</li>
+                        <li><strong>Normal Photo (z-index: 5)</strong> — On top, with a hole opened via mask.</li>
+                    </ol>
+
+                    <h3>The Magic: CSS Mask</h3>
+                    <p>To reveal the code beneath the photo, we create a hole using <code>mask-image</code>:</p>
+                    <pre>// Radial-gradient mask at mouse position
+const mask = \`radial-gradient(
+    circle 130px at \${x}px \${y}px,
+    transparent 0%, transparent 35%,
+    rgba(0,0,0,0.4) 55%,
+    rgba(0,0,0,0.8) 70%,
+    black 85%
+)\`;
+element.style.maskImage = mask;</pre>
+                    <p><code>transparent</code> areas create the hole, <code>black</code> areas show the photo. Gradient transitions create soft edges.</p>
+
+                    <h3>Silhouette Masking</h3>
+                    <p>To prevent the glitch canvas from spilling outside the photo, a PNG silhouette is used:</p>
+                    <pre>.glitch-layer, .crt-overlay {
+    mask-image: url('erdi-portrait.png');
+    mask-size: contain;
+    mask-position: bottom center;
+    mask-repeat: no-repeat;
+}</pre>
+
+                    <h3>Color Synchronization</h3>
+                    <p>Glitch characters follow the background particle network's color. The HSL color is shared via <code>window._particleHue</code> and applied to the canvas using <code>hslToRgb</code>.</p>
+
+                    <h3>Conclusion</h3>
+                    <p>Zero frameworks, zero libraries — just <strong>CSS mask-image + Canvas API + mathematical color interpolation</strong>. The entire effect is ~120 lines of JavaScript.</p>
+                `
+            }
+        },
+        'vercel-deploy': {
+            tr: {
+                baslik: 'Vercel ile Ücretsiz Deploy: Adım Adım Rehber',
+                kategori: 'DevOps',
+                tarih: 'Aralık 2025',
+                etiketler: ['Vercel', 'CI/CD', 'GitHub'],
+                icerik: `
+                    <h3>Neden Vercel?</h3>
+                    <p>Statik siteler ve frontend projeleri için Vercel, <strong>en hızlı ve en kolay deploy çözümü</strong>. Ücretsiz plan: sınırsız deploy, HTTPS, global CDN, custom domain.</p>
+
+                    <h3>Adım 1: GitHub Deposu Hazırla</h3>
+                    <p>Projenizi GitHub'a push'layın. Vercel, repo'nuzu doğrudan okuyacak:</p>
+                    <pre>git init
+git add .
+git commit -m "Initial commit"
+git remote add origin https://github.com/user/repo.git
+git push -u origin main</pre>
+
+                    <h3>Adım 2: Vercel'e Bağlan</h3>
+                    <p><strong>vercel.com</strong>'a gidin ve GitHub hesabınızla giriş yapın. "New Project" butonuna tıklayıp repo'nuzu seçin.</p>
+                    <ul>
+                        <li><strong>Framework Preset:</strong> "Other" (statik site için)</li>
+                        <li><strong>Build Command:</strong> Boş bırakın</li>
+                        <li><strong>Output Directory:</strong> <code>./</code> (root)</li>
+                    </ul>
+
+                    <h3>Adım 3: Custom Domain</h3>
+                    <p>Vercel dashboard'da "Domains" sekmesine gidin. Domain'inizi ekleyin ve DNS ayarlarını yapın:</p>
+                    <pre>Tip: A     | Ad: @    | Değer: 76.76.21.21
+Tip: CNAME | Ad: www  | Değer: cname.vercel-dns.com</pre>
+                    <p>DNS yayılımı genellikle 10 dakika ile 24 saat arasında sürer. Vercel otomatik olarak <strong>SSL sertifikası</strong> oluşturur.</p>
+
+                    <h3>Adım 4: Otomatik CI/CD</h3>
+                    <p>Artık her <code>git push</code> otomatik deploy tetikler:</p>
+                    <ol>
+                        <li>Kod'u değiştirin</li>
+                        <li><code>git add . && git commit -m "update" && git push</code></li>
+                        <li>Vercel otomatik build + deploy yapar (~15 saniye)</li>
+                        <li>Preview URL ile test edin, sonra production'a promote edin</li>
+                    </ol>
+
+                    <h3>Bonus: Environment Variables</h3>
+                    <p>API key'ler gibi hassas değerler için Vercel dashboard'daki "Environment Variables" bölümünü kullanın. Asla repo'ya commit etmeyin!</p>
+
+                    <h3>Sonuç</h3>
+                    <p>Bu portfolyo sitesi tam olarak bu yöntemle deploy edildi: <strong>GitHub push → Vercel otomatik build → erdiocal.com'da canlı</strong>. Toplam maliyet: 0₺.</p>
+                `
+            },
+            en: {
+                baslik: 'Free Deployment with Vercel: Step-by-Step Guide',
+                kategori: 'DevOps',
+                tarih: 'December 2025',
+                etiketler: ['Vercel', 'CI/CD', 'GitHub'],
+                icerik: `
+                    <h3>Why Vercel?</h3>
+                    <p>For static sites and frontend projects, Vercel is the <strong>fastest and easiest deploy solution</strong>. Free plan: unlimited deploys, HTTPS, global CDN, custom domain.</p>
+
+                    <h3>Step 1: Prepare GitHub Repository</h3>
+                    <p>Push your project to GitHub. Vercel will read your repo directly:</p>
+                    <pre>git init
+git add .
+git commit -m "Initial commit"
+git remote add origin https://github.com/user/repo.git
+git push -u origin main</pre>
+
+                    <h3>Step 2: Connect to Vercel</h3>
+                    <p>Go to <strong>vercel.com</strong> and sign in with your GitHub account. Click "New Project" and select your repo.</p>
+                    <ul>
+                        <li><strong>Framework Preset:</strong> "Other" (for static sites)</li>
+                        <li><strong>Build Command:</strong> Leave empty</li>
+                        <li><strong>Output Directory:</strong> <code>./</code> (root)</li>
+                    </ul>
+
+                    <h3>Step 3: Custom Domain</h3>
+                    <p>Go to "Domains" tab in Vercel dashboard. Add your domain and configure DNS:</p>
+                    <pre>Type: A     | Name: @   | Value: 76.76.21.21
+Type: CNAME | Name: www | Value: cname.vercel-dns.com</pre>
+                    <p>DNS propagation typically takes 10 minutes to 24 hours. Vercel automatically generates an <strong>SSL certificate</strong>.</p>
+
+                    <h3>Step 4: Automatic CI/CD</h3>
+                    <p>Now every <code>git push</code> triggers an automatic deploy:</p>
+                    <ol>
+                        <li>Make your changes</li>
+                        <li><code>git add . && git commit -m "update" && git push</code></li>
+                        <li>Vercel auto-builds and deploys (~15 seconds)</li>
+                        <li>Test with preview URL, then promote to production</li>
+                    </ol>
+
+                    <h3>Bonus: Environment Variables</h3>
+                    <p>For sensitive values like API keys, use the "Environment Variables" section in Vercel dashboard. Never commit them to the repo!</p>
+
+                    <h3>Conclusion</h3>
+                    <p>This portfolio site was deployed exactly this way: <strong>GitHub push → Vercel auto-build → live on erdiocal.com</strong>. Total cost: $0.</p>
+                `
+            }
+        }
+    };
+
+    function modalAc(blogId) {
+        const d = dil();
+        const yazi = yazilar[blogId];
+        if (!yazi || !yazi[d]) return;
+        const data = yazi[d];
+
+        baslikEl.textContent = data.baslik;
+        kategoriEl.textContent = data.kategori;
+        tarihEl.textContent = data.tarih;
+        etiketlerEl.innerHTML = data.etiketler.map(e => `<span>${e}</span>`).join('');
+        icerikEl.innerHTML = data.icerik;
+
+        overlay.classList.add('aktif');
+        document.body.style.overflow = 'hidden';
+    }
+
+    function modalKapat() {
+        overlay.classList.remove('aktif');
+        document.body.style.overflow = '';
+    }
+
+    // Kart tıklama
+    document.querySelectorAll('.blog-kart').forEach(kart => {
+        // "Oku →" butonuna tıklama
+        const okuBtn = kart.querySelector('.blog-oku');
+        if (okuBtn) {
+            okuBtn.addEventListener('click', (e) => {
+                e.stopPropagation();
+                const blogId = kart.dataset.blog;
+                if (blogId) modalAc(blogId);
+            });
+        }
+        // Kart'ın kendisine tıklama
+        kart.style.cursor = 'pointer';
+        kart.addEventListener('click', () => {
+            const blogId = kart.dataset.blog;
+            if (blogId) modalAc(blogId);
+        });
+    });
+
+    // Kapatma
+    kapatBtn.addEventListener('click', modalKapat);
+    overlay.addEventListener('click', (e) => {
+        if (e.target === overlay) modalKapat();
+    });
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && overlay.classList.contains('aktif')) modalKapat();
+    });
+})();
+
+// ==========================================
+// 14. SAĞ TIK & DEVTOOLS KORUMASI
 // ==========================================
 (() => {
     // Sağ tık engelle

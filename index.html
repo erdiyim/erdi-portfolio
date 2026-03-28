@@ -245,7 +245,7 @@
             <h2 class="bolum-baslik anim" data-anim="scale-in" data-delay="1" data-tr="Teknik Yazılarım" data-en="Technical Blog">Teknik Yazılarım</h2>
             <p class="aciklama-metin anim" data-anim="fade-up" data-delay="2" style="margin-bottom: 50px;" data-tr="Öğrendiklerimi, deneyimlerimi ve teknik çözümlerimi paylaştığım yazılar." data-en="Articles where I share my learnings, experiences, and technical solutions.">Öğrendiklerimi, deneyimlerimi ve teknik çözümlerimi paylaştığım yazılar.</p>
             <div class="blog-grid">
-                <article class="blog-kart anim" data-anim="fade-left" data-delay="2">
+                <article class="blog-kart anim" data-anim="fade-left" data-delay="2" data-blog="react-vs-vanilla">
                     <div class="blog-kart-ust">
                         <span class="blog-kategori" data-tr="Frontend" data-en="Frontend">Frontend</span>
                         <span class="blog-tarih">2026</span>
@@ -257,7 +257,7 @@
                         <span class="blog-oku" data-tr="Oku →" data-en="Read →">Oku →</span>
                     </div>
                 </article>
-                <article class="blog-kart anim" data-anim="fade-up" data-delay="3">
+                <article class="blog-kart anim" data-anim="fade-up" data-delay="3" data-blog="css-xray-efekti">
                     <div class="blog-kart-ust">
                         <span class="blog-kategori">CSS</span>
                         <span class="blog-tarih">2026</span>
@@ -269,7 +269,7 @@
                         <span class="blog-oku" data-tr="Oku →" data-en="Read →">Oku →</span>
                     </div>
                 </article>
-                <article class="blog-kart anim" data-anim="fade-right" data-delay="4">
+                <article class="blog-kart anim" data-anim="fade-right" data-delay="4" data-blog="vercel-deploy">
                     <div class="blog-kart-ust">
                         <span class="blog-kategori">DevOps</span>
                         <span class="blog-tarih">2025</span>
@@ -321,6 +321,27 @@
             </div>
         </div>
     </section>
+
+    <!-- BLOG MODAL -->
+    <div class="blog-modal-overlay" id="blogModalOverlay">
+        <div class="blog-modal" id="blogModal">
+            <div class="blog-modal-header">
+                <div class="blog-modal-header-sol">
+                    <span class="blog-modal-kategori" id="blogModalKategori"></span>
+                    <span class="blog-modal-tarih" id="blogModalTarih"></span>
+                </div>
+                <button class="blog-modal-kapat" id="blogModalKapat" aria-label="Kapat">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+                </button>
+            </div>
+            <div class="blog-modal-konu">
+                <h2 id="blogModalBaslik"></h2>
+                <div class="blog-modal-etiketler" id="blogModalEtiketler"></div>
+            </div>
+            <div class="blog-modal-ayirici"></div>
+            <div class="blog-modal-icerik" id="blogModalIcerik"></div>
+        </div>
+    </div>
 
     <!-- FOOTER -->
     <footer id="footer">
