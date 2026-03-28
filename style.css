@@ -990,19 +990,11 @@ textarea.form-kontrol { resize: none; }
 .cv-btn { gap: 6px; }
 .cv-btn svg { flex-shrink: 0; }
 
-/* Reduced Motion — erişilebilirlik */
+/* Reduced Motion — sadece gereksiz tekrarlayan animasyonları azalt, ana efektleri koru */
 @media (prefers-reduced-motion: reduce) {
-    *, *::before, *::after {
-        animation-duration: 0.01ms !important;
-        animation-iteration-count: 1 !important;
-        transition-duration: 0.01ms !important;
-        scroll-behavior: auto !important;
-    }
-    .kayan-yazi-kapsayici { animation: none !important; }
+    .kayan-yazi-kapsayici { animation-duration: 60s !important; }
     .portre-glow { animation: none !important; }
-    .yanip-sonen-imlec { animation: none !important; }
-    .typing-cursor { animation: none !important; }
-    .boot-progress-fill { animation: none !important; }
-    #tuval, .glitch-katman { display: none !important; }
+    .crt-flicker { animation: none !important; }
     .cursor-trail { display: none !important; }
+    scroll-behavior: auto;
 }
