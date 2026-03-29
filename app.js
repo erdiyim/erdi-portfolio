@@ -800,19 +800,63 @@ function sayaclariBaslat() {
 // ==========================================
 // 9. SMOOTH SCROLL (navbar offset ile)
 // ==========================================
+// Sayfa geçiş animasyonu yöneticisi
+const sayfaGecis = document.getElementById('sayfaGecis');
+let gecisAktif = false;
+
+function gecisIleScrollYap(hedef) {
+    if (gecisAktif || !hedef) return;
+    gecisAktif = true;
+
+    const navbarYukseklik = document.getElementById('navbar').offsetHeight;
+
+    // 1. Şeritleri aşağı indir (sahneyi kapat)
+    sayfaGecis.classList.remove('cikis');
+    sayfaGecis.classList.add('giris');
+
+    // 2. Şeritler kapandıktan sonra (400ms + 4*60ms = ~640ms) anında scroll yap
+    setTimeout(() => {
+        const hedefPozisyon = hedef.getBoundingClientRect().top + window.scrollY - navbarYukseklik - 20;
+        if (lenis) {
+            lenis.scrollTo(hedefPozisyon, { immediate: true });
+        } else {
+            window.scrollTo(0, hedefPozisyon);
+        }
+
+        // 3. Kısa bekleme sonra şeritleri aç (sahneyi aç)
+        setTimeout(() => {
+            sayfaGecis.classList.remove('giris');
+            sayfaGecis.classList.add('cikis');
+
+            setTimeout(() => {
+                sayfaGecis.classList.remove('cikis');
+                gecisAktif = false;
+            }, 650);
+        }, 100);
+    }, 550);
+}
+
 document.querySelectorAll('a[href^="#"]').forEach(a => {
     a.addEventListener('click', function(e) {
         e.preventDefault();
         const hedef = document.querySelector(this.getAttribute('href'));
-        if (hedef) {
+        if (!hedef) return;
+
+        // Hedef zaten görünürdeyse geçiş animasyonu olmadan direkt scroll
+        const rect = hedef.getBoundingClientRect();
+        const gorunurMu = rect.top >= -100 && rect.top <= window.innerHeight * 0.5;
+
+        if (gorunurMu) {
             const navbarYukseklik = document.getElementById('navbar').offsetHeight;
             const offset = -(navbarYukseklik + 20);
             if (lenis) {
                 lenis.scrollTo(hedef, { offset });
             } else {
-                const hedefPozisyon = hedef.getBoundingClientRect().top + window.scrollY - navbarYukseklik - 20;
-                window.scrollTo({ top: hedefPozisyon, behavior: 'smooth' });
+                const pos = hedef.getBoundingClientRect().top + window.scrollY - navbarYukseklik - 20;
+                window.scrollTo({ top: pos, behavior: 'smooth' });
             }
+        } else {
+            gecisIleScrollYap(hedef);
         }
     });
 });

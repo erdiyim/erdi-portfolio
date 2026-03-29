@@ -986,6 +986,36 @@ textarea.form-kontrol { resize: none; }
     .istatistik-sayi { font-size: 1.3rem; }
 }
 
+/* Sayfa Geçiş Animasyonu */
+.sayfa-gecis {
+    position: fixed; top: 0; left: 0; width: 100%; height: 100vh;
+    z-index: 10000; pointer-events: none;
+    display: flex;
+}
+.sayfa-gecis-serit {
+    flex: 1; height: 100%;
+    background: #050505;
+    transform: scaleY(0);
+    transform-origin: top;
+}
+[data-theme="light"] .sayfa-gecis-serit { background: #f5f5f7; }
+.sayfa-gecis.giris .sayfa-gecis-serit {
+    animation: seritGiris 0.4s cubic-bezier(0.77, 0, 0.175, 1) forwards;
+    animation-delay: calc(var(--i) * 0.06s);
+}
+.sayfa-gecis.cikis .sayfa-gecis-serit {
+    animation: seritCikis 0.4s cubic-bezier(0.77, 0, 0.175, 1) forwards;
+    animation-delay: calc(var(--i) * 0.06s);
+}
+@keyframes seritGiris {
+    0% { transform: scaleY(0); transform-origin: top; }
+    100% { transform: scaleY(1); transform-origin: top; }
+}
+@keyframes seritCikis {
+    0% { transform: scaleY(1); transform-origin: bottom; }
+    100% { transform: scaleY(0); transform-origin: bottom; }
+}
+
 /* Screen Reader Only — erişilebilirlik */
 .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0; }
 
