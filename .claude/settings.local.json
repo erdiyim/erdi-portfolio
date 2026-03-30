@@ -8,7 +8,14 @@
       "Bash(git status:*)",
       "Bash(git add:*)",
       "Bash(git commit:*)",
-      "Bash(git push:*)"
+      "Bash(git push:*)",
+      "Bash(npx --yes sharp-cli -- -i erdi-portrait.png -o erdi-portrait.webp --format webp --quality 80)",
+      "Bash(npx --yes sharp-cli -- -i favicon.svg -o favicon.png --resize 32 32)",
+      "Bash(npx --yes sharp-cli -- -i favicon.svg -o apple-touch-icon.png --resize 180 180)",
+      "Bash(npx --yes sharp-cli -- --help)",
+      "Bash(node -e \":*)",
+      "Bash(npx --yes sharp-cli -- -i favicon.svg -o favicon.png resize 32 32)",
+      "Bash(npx --yes sharp-cli -- -i favicon.svg -o apple-touch-icon.png resize 180 180)"
     ]
   }
 }

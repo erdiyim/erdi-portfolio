@@ -1378,7 +1378,7 @@ Type: CNAME | Name: www | Value: cname.vercel-dns.com</pre>
             numara: '01',
             etiketler: ['JavaScript', 'HTML/CSS', 'TMDB API', 'UI/UX', 'Responsive'],
             tr: {
-                baslik: 'ErdiHUB (Netflix Klonu)',
+                baslik: 'Netflix Klonu',
                 icerik: `
                     <h3>Problem</h3>
                     <p>Modern bir yayın platformu arayüzü oluşturmak — kullanıcı profil yönetimi, dinamik içerik listeleme ve responsive tasarım gerektiren kapsamlı bir frontend projesi.</p>
@@ -1391,11 +1391,11 @@ Type: CNAME | Name: www | Value: cname.vercel-dns.com</pre>
                         <li>Tam responsive tasarım — mobil, tablet, masaüstü</li>
                     </ul>
                     <h3>Sonuç</h3>
-                    <p>Vanilla JavaScript ile sıfır framework kullanarak, Netflix'in temel kullanıcı deneyimini başarıyla yeniden oluşturdum. API yönetimi, state management ve karmaşık UI pattern'ları konusunda derin deneyim kazandım.</p>
+                    <p>Vanilla JavaScript ile sıfır framework kullanarak, Netflix'in temel kullanıcı deneyimini başarıyla yeniden oluşturduk. API yönetimi, state management ve karmaşık UI pattern'ları konusunda derin deneyim kazandık.</p>
                 `
             },
             en: {
-                baslik: 'ErdiHUB (Netflix Clone)',
+                baslik: 'Netflix Clone',
                 icerik: `
                     <h3>Problem</h3>
                     <p>Building a modern streaming platform interface — a comprehensive frontend project requiring user profile management, dynamic content listing, and responsive design.</p>
@@ -1429,7 +1429,7 @@ Type: CNAME | Name: www | Value: cname.vercel-dns.com</pre>
                         <li>Çoklu restoran desteği (multi-tenant mimari)</li>
                     </ul>
                     <h3>Sonuç</h3>
-                    <p>Basılı menü maliyetleri sıfıra indi. Menü güncellemeleri anlık yapılabilir hale geldi. Sipariş hızı %50 arttı. Sistem şu anda aktif olarak kullanılmakta.</p>
+                    <p>Shaperon Works olarak basılı menü maliyetlerini sıfıra indirdik. Menü güncellemeleri anlık yapılabilir hale geldi. Sipariş hızı %50 arttı. Sistem şu anda aktif olarak kullanılmakta.</p>
                 `
             },
             en: {
@@ -1446,7 +1446,7 @@ Type: CNAME | Name: www | Value: cname.vercel-dns.com</pre>
                         <li>Multi-restaurant support (multi-tenant architecture)</li>
                     </ul>
                     <h3>Result</h3>
-                    <p>Printed menu costs dropped to zero. Menu updates became instant. Order speed increased by 50%. System is currently in active use.</p>
+                    <p>As Shaperon Works, we reduced printed menu costs to zero. Menu updates became instant. Order speed increased by 50%. System is currently in active use.</p>
                 `
             }
         },
@@ -1454,37 +1454,37 @@ Type: CNAME | Name: www | Value: cname.vercel-dns.com</pre>
             numara: '03',
             etiketler: ['HTML/CSS', 'JavaScript', 'SEO', 'WhatsApp API', 'Responsive'],
             tr: {
-                baslik: 'Halıflex Eskişehir',
+                baslik: 'Halıflex — Kurumsal Web Sitesi',
                 icerik: `
                     <h3>Problem</h3>
-                    <p>Yerel halı yıkama işletmesinin dijital varlığı yoktu. Müşteriler işletmeyi bulmakta zorlanıyor, sipariş süreci telefonla yürütülüyordu.</p>
+                    <p>Bir işletmenin dijital varlığı yoktu. Müşteriler işletmeyi bulmakta zorlanıyor, sipariş süreci tamamen telefonla yürütülüyordu.</p>
                     <h3>Çözüm</h3>
                     <ul>
                         <li>SEO odaklı kurumsal web sitesi tasarımı</li>
                         <li>WhatsApp Business API ile tek tıkla iletişim</li>
-                        <li>Google Maps entegrasyonu ve yerel SEO optimizasyonu</li>
+                        <li>Google Maps entegrasyonu ve SEO optimizasyonu</li>
                         <li>Hizmet katalogu ve fiyat listesi modülleri</li>
                         <li>Mobil uyumlu tasarım (müşterilerin %80'i mobil)</li>
                     </ul>
                     <h3>Sonuç</h3>
-                    <p>Google'da "halı yıkama eskişehir" aramasında ilk sayfaya çıktı. Müşteri talepleri %40 arttı. WhatsApp üzerinden sipariş dönüşüm oranı %65'e ulaştı.</p>
+                    <p>Shaperon Works olarak müşterinin dijital varlığını sıfırdan oluşturduk. Müşteri talepleri gözle görülür şekilde arttı. WhatsApp entegrasyonu sayesinde iletişim süreci hızlandı. Bu proje, kurumsal web sitesi oluşturma kapasitemizin kanıtı oldu.</p>
                 `
             },
             en: {
-                baslik: 'Halıflex Eskişehir',
+                baslik: 'Halıflex — Corporate Website',
                 icerik: `
                     <h3>Problem</h3>
-                    <p>A local carpet cleaning business had no digital presence. Customers struggled to find the business, and orders were handled entirely by phone.</p>
+                    <p>A business had no digital presence. Customers struggled to find the business, and orders were handled entirely by phone.</p>
                     <h3>Solution</h3>
                     <ul>
                         <li>SEO-focused corporate website design</li>
                         <li>One-click contact via WhatsApp Business API</li>
-                        <li>Google Maps integration and local SEO optimization</li>
+                        <li>Google Maps integration and SEO optimization</li>
                         <li>Service catalog and pricing modules</li>
                         <li>Mobile-responsive design (80% of customers are mobile)</li>
                     </ul>
                     <h3>Result</h3>
-                    <p>Ranked on the first page of Google for "carpet cleaning eskişehir". Customer inquiries increased by 40%. WhatsApp order conversion rate reached 65%.</p>
+                    <p>As Shaperon Works, we built the client's digital presence from scratch. Customer inquiries increased visibly. Communication sped up thanks to WhatsApp integration. This project proved our capability to create corporate websites.</p>
                 `
             }
         }
