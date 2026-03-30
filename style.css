@@ -1016,6 +1016,179 @@ textarea.form-kontrol { resize: none; }
     100% { transform: scaleY(0); transform-origin: bottom; }
 }
 
+/* ========================================= */
+/* --- DENEYİM TİMELINE ---                 */
+/* ========================================= */
+.timeline-icerik { max-width: 900px; margin: 0 auto; text-align: center; }
+.timeline { position: relative; margin-top: 60px; padding: 20px 0; }
+.timeline-cizgi {
+    position: absolute; left: 50%; top: 0; bottom: 0; width: 2px;
+    background: linear-gradient(to bottom, transparent, rgba(0,255,204,0.3), rgba(0,255,204,0.3), transparent);
+    transform: translateX(-50%);
+}
+.timeline-item {
+    position: relative; display: flex; align-items: flex-start;
+    margin-bottom: 50px; width: 50%; text-align: left;
+}
+.timeline-item:nth-child(odd) { padding-right: 50px; justify-content: flex-end; }
+.timeline-item:nth-child(even) { padding-left: 50px; margin-left: 50%; }
+.timeline-nokta {
+    position: absolute; top: 20px; width: 14px; height: 14px;
+    background: #050505; border: 2px solid rgba(0,255,204,0.5);
+    border-radius: 50%; z-index: 2;
+}
+.timeline-nokta.aktif {
+    background: #00ffcc; border-color: #00ffcc;
+    box-shadow: 0 0 15px rgba(0,255,204,0.5);
+}
+.timeline-item:nth-child(odd) .timeline-nokta { right: -7px; }
+.timeline-item:nth-child(even) .timeline-nokta { left: -7px; }
+.timeline-tarih {
+    position: absolute; top: 16px; font-family: var(--font-kod);
+    font-size: 0.85rem; font-weight: 700; color: #00ffcc;
+}
+.timeline-item:nth-child(odd) .timeline-tarih { right: -90px; }
+.timeline-item:nth-child(even) .timeline-tarih { left: -90px; }
+.timeline-kart {
+    background: var(--renk-kart); border: 1px solid var(--renk-border);
+    border-radius: 16px; padding: 24px; width: 100%;
+    transition: all 0.3s ease;
+}
+.timeline-kart:hover { border-color: rgba(0,255,204,0.3); transform: translateY(-3px); box-shadow: 0 15px 40px rgba(0,0,0,0.3); }
+.timeline-kart.aktif-kart { border-color: rgba(0,255,204,0.3); box-shadow: 0 0 30px rgba(0,255,204,0.05); }
+.timeline-kart h3 { color: #fff; font-size: 1.15rem; margin-bottom: 10px; }
+.timeline-kart p { color: rgba(255,255,255,0.5); font-size: 0.9rem; line-height: 1.7; margin-bottom: 14px; }
+.timeline-etiketler { display: flex; flex-wrap: wrap; gap: 6px; }
+.timeline-etiketler span {
+    background: rgba(0,255,204,0.08); color: #00ffcc;
+    padding: 3px 10px; border-radius: 12px; font-size: 0.72rem; font-weight: 600;
+    border: 1px solid rgba(0,255,204,0.12);
+}
+@media (max-width: 768px) {
+    .timeline-cizgi { left: 20px; }
+    .timeline-item, .timeline-item:nth-child(even) {
+        width: 100%; margin-left: 0; padding-left: 55px; padding-right: 0;
+    }
+    .timeline-item:nth-child(odd) { padding-right: 0; padding-left: 55px; justify-content: flex-start; }
+    .timeline-nokta, .timeline-item:nth-child(odd) .timeline-nokta,
+    .timeline-item:nth-child(even) .timeline-nokta { left: 13px; right: auto; }
+    .timeline-tarih, .timeline-item:nth-child(odd) .timeline-tarih,
+    .timeline-item:nth-child(even) .timeline-tarih {
+        position: relative; left: auto; right: auto; top: auto;
+        display: block; margin-bottom: 8px;
+    }
+}
+/* Light mode timeline */
+[data-theme="light"] .timeline-cizgi { background: linear-gradient(to bottom, transparent, rgba(0,184,148,0.3), rgba(0,184,148,0.3), transparent); }
+[data-theme="light"] .timeline-nokta { background: #f5f5f7; border-color: rgba(0,184,148,0.5); }
+[data-theme="light"] .timeline-nokta.aktif { background: #00b894; border-color: #00b894; }
+[data-theme="light"] .timeline-tarih { color: #00b894; }
+[data-theme="light"] .timeline-kart { background: rgba(0,0,0,0.02); border-color: rgba(0,0,0,0.08); }
+[data-theme="light"] .timeline-kart:hover { border-color: rgba(0,184,148,0.3); box-shadow: 0 15px 40px rgba(0,0,0,0.08); }
+[data-theme="light"] .timeline-kart h3 { color: #1a1a2e; }
+[data-theme="light"] .timeline-kart p { color: rgba(26,26,46,0.6); }
+[data-theme="light"] .timeline-etiketler span { background: rgba(0,184,148,0.08); color: #00b894; border-color: rgba(0,184,148,0.15); }
+
+/* ========================================= */
+/* --- REFERANSLAR / TESTİMONİALS ---        */
+/* ========================================= */
+.referanslar-icerik { max-width: 1100px; margin: 0 auto; text-align: center; }
+.referans-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(300px, 100%), 1fr)); gap: 28px; margin-top: 50px; }
+.referans-kart {
+    background: var(--renk-kart); border: 1px solid var(--renk-border);
+    border-radius: 20px; padding: 30px; text-align: left;
+    transition: all 0.3s ease; position: relative;
+}
+.referans-kart::before {
+    content: '"'; position: absolute; top: 16px; right: 24px;
+    font-size: 4rem; color: rgba(0,255,204,0.08); font-family: Georgia, serif; line-height: 1;
+}
+.referans-kart:hover { border-color: rgba(0,255,204,0.3); transform: translateY(-4px); box-shadow: 0 20px 50px rgba(0,0,0,0.3); }
+.referans-ust { display: flex; align-items: center; gap: 14px; margin-bottom: 18px; }
+.referans-avatar {
+    width: 46px; height: 46px; border-radius: 50%;
+    background: linear-gradient(135deg, #00ffcc, #00b894);
+    display: flex; align-items: center; justify-content: center;
+    font-weight: 800; font-size: 0.85rem; color: #050505; flex-shrink: 0;
+}
+.referans-bilgi h4 { color: #fff; font-size: 0.95rem; margin-bottom: 2px; }
+.referans-bilgi span { color: rgba(255,255,255,0.35); font-size: 0.78rem; }
+.referans-kart > p { color: rgba(255,255,255,0.55); font-size: 0.92rem; line-height: 1.75; font-style: italic; }
+.referans-yildizlar { margin-top: 16px; color: #ffd700; font-size: 0.9rem; letter-spacing: 2px; }
+/* Light mode referanslar */
+[data-theme="light"] .referans-kart { background: rgba(0,0,0,0.02); border-color: rgba(0,0,0,0.08); }
+[data-theme="light"] .referans-kart::before { color: rgba(0,184,148,0.1); }
+[data-theme="light"] .referans-kart:hover { border-color: rgba(0,184,148,0.3); box-shadow: 0 20px 50px rgba(0,0,0,0.08); }
+[data-theme="light"] .referans-bilgi h4 { color: #1a1a2e; }
+[data-theme="light"] .referans-bilgi span { color: rgba(26,26,46,0.45); }
+[data-theme="light"] .referans-kart > p { color: rgba(26,26,46,0.6); }
+
+/* ========================================= */
+/* --- PROJE DETAY MODAL ---                 */
+/* ========================================= */
+.proje-modal-overlay {
+    position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(0,0,0,0.75); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
+    z-index: 8000; display: flex; justify-content: center; align-items: center;
+    opacity: 0; visibility: hidden; transition: opacity 0.35s ease, visibility 0.35s ease;
+    padding: 30px;
+}
+.proje-modal-overlay.aktif { opacity: 1; visibility: visible; }
+.proje-modal {
+    width: 100%; max-width: 750px; max-height: 85vh;
+    background: #0f0f1a; border: 1px solid rgba(0,255,204,0.12);
+    border-radius: 16px; display: flex; flex-direction: column;
+    transform: scale(0.7) translateY(40px); opacity: 0;
+    transition: transform 0.45s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.35s ease;
+    box-shadow: 0 30px 80px rgba(0,0,0,0.6), 0 0 60px rgba(0,255,204,0.04);
+    overflow: hidden;
+}
+.proje-modal-overlay.aktif .proje-modal { transform: scale(1) translateY(0); opacity: 1; }
+.proje-modal-header {
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 20px 24px; border-bottom: 1px solid rgba(255,255,255,0.06); flex-shrink: 0;
+}
+.proje-modal-numara {
+    font-family: var(--font-kod); font-size: 1.5rem; font-weight: 900;
+    color: rgba(0,255,204,0.3);
+}
+.proje-modal-govde {
+    padding: 28px; overflow-y: auto; flex: 1;
+}
+.proje-modal-govde h2 { color: #fff; font-size: 1.6rem; font-weight: 800; margin-bottom: 14px; }
+.proje-modal-etiketler { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 24px; }
+.proje-modal-etiketler span {
+    background: rgba(0,255,204,0.08); color: #00ffcc;
+    padding: 4px 12px; border-radius: 14px; font-size: 0.75rem; font-weight: 600;
+    border: 1px solid rgba(0,255,204,0.15);
+}
+.proje-modal-bolumler h3 {
+    color: #00ffcc; font-size: 0.85rem; text-transform: uppercase;
+    letter-spacing: 1px; margin: 24px 0 10px; font-weight: 700;
+}
+.proje-modal-bolumler h3:first-child { margin-top: 0; }
+.proje-modal-bolumler p { color: rgba(255,255,255,0.55); font-size: 0.92rem; line-height: 1.8; }
+.proje-modal-bolumler ul { list-style: none; padding: 0; }
+.proje-modal-bolumler ul li {
+    color: rgba(255,255,255,0.55); font-size: 0.9rem; line-height: 1.8;
+    padding-left: 18px; position: relative;
+}
+.proje-modal-bolumler ul li::before { content: '▸'; position: absolute; left: 0; color: #00ffcc; }
+.proje-incele {
+    display: inline-block; margin-top: 16px; color: #00ffcc; font-size: 0.85rem;
+    font-weight: 600; cursor: pointer; transition: letter-spacing 0.3s ease;
+}
+.proje-kart:hover .proje-incele { letter-spacing: 1px; }
+/* Light mode proje modal */
+[data-theme="light"] .proje-modal { background: #f9f9fb; border-color: rgba(0,0,0,0.1); }
+[data-theme="light"] .proje-modal-numara { color: rgba(0,184,148,0.4); }
+[data-theme="light"] .proje-modal-govde h2 { color: #1a1a2e; }
+[data-theme="light"] .proje-modal-bolumler h3 { color: #00b894; }
+[data-theme="light"] .proje-modal-bolumler p { color: rgba(26,26,46,0.6); }
+[data-theme="light"] .proje-modal-bolumler ul li { color: rgba(26,26,46,0.6); }
+[data-theme="light"] .proje-modal-bolumler ul li::before { color: #00b894; }
+[data-theme="light"] .proje-incele { color: #00b894; }
+
 /* Screen Reader Only — erişilebilirlik */
 .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0; }
 
