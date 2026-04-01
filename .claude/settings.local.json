@@ -15,7 +15,14 @@
       "Bash(npx --yes sharp-cli -- --help)",
       "Bash(node -e \":*)",
       "Bash(npx --yes sharp-cli -- -i favicon.svg -o favicon.png resize 32 32)",
-      "Bash(npx --yes sharp-cli -- -i favicon.svg -o apple-touch-icon.png resize 180 180)"
+      "Bash(npx --yes sharp-cli -- -i favicon.svg -o apple-touch-icon.png resize 180 180)",
+      "Bash(npm install:*)",
+      "Bash(terser app.js -o app.min.js --compress --mangle)",
+      "Bash(csso style.css -o style.min.css)",
+      "Bash(curl -sL \"https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js\" -o emailjs.min.js)",
+      "Bash(curl -sL \"https://unpkg.com/lenis@1/dist/lenis.min.js\" -o lenis.min.js)",
+      "Bash(npm list:*)",
+      "Bash(npx sharp-cli:*)"
     ]
   }
 }

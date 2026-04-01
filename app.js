@@ -1789,11 +1789,11 @@ function konfetiFirlat() {
 
     function gaBaslat() {
         // GA zaten head'de yüklü, opt-out'u kaldır
-        window['ga-disable-G-XXXXXXXXXX'] = false;
+        window['ga-disable-G-VGZ26N6CFE'] = false;
     }
 
     function gaDeaktif() {
         // GA'yı devre dışı bırak
-        window['ga-disable-G-XXXXXXXXXX'] = true;
+        window['ga-disable-G-VGZ26N6CFE'] = true;
     }
 })();
