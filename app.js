@@ -914,6 +914,10 @@ document.querySelectorAll('a[href^="#"]').forEach(a => {
         const dil = DilYoneticisi.aktif();
         const mt = durumMetinleri[dil];
 
+        // Honeypot spam kontrolü
+        const honeypot = form.querySelector('[name="website"]');
+        if (honeypot && honeypot.value) return;
+
         // EmailJS ayarlanmamışsa mailto fallback
         if (EMAILJS_PUBLIC_KEY === 'YOUR_PUBLIC_KEY') {
             const name = form.from_name.value;

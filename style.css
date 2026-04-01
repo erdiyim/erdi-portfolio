@@ -1197,6 +1197,17 @@ textarea.form-kontrol { resize: none; }
 .cv-btn svg { flex-shrink: 0; }
 
 /* Reduced Motion — sadece gereksiz tekrarlayan animasyonları azalt, ana efektleri koru */
+/* HONEYPOT (SPAM KORUMA) */
+.honeypot-alan {
+    position: absolute;
+    left: -9999px;
+    width: 0;
+    height: 0;
+    opacity: 0;
+    overflow: hidden;
+    pointer-events: none;
+}
+
 /* COOKIE BANNER */
 .cookie-banner {
     position: fixed;
