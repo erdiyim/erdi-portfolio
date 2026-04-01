@@ -1123,6 +1123,26 @@ textarea.form-kontrol { resize: none; }
 [data-theme="light"] .referans-bilgi span { color: rgba(26,26,46,0.45); }
 [data-theme="light"] .referans-kart > p { color: rgba(26,26,46,0.6); }
 
+/* Mobilde referans carousel */
+@media (max-width: 768px) {
+    .referans-grid {
+        display: flex;
+        overflow-x: auto;
+        scroll-snap-type: x mandatory;
+        -webkit-overflow-scrolling: touch;
+        gap: 16px;
+        padding-bottom: 12px;
+        scrollbar-width: none;
+    }
+    .referans-grid::-webkit-scrollbar { display: none; }
+    .referans-kart {
+        min-width: 85vw;
+        scroll-snap-align: center;
+        flex-shrink: 0;
+    }
+    .referans-kart:hover { transform: none; }
+}
+
 /* ========================================= */
 /* --- PROJE DETAY MODAL ---                 */
 /* ========================================= */
