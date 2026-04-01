@@ -1197,6 +1197,29 @@ textarea.form-kontrol { resize: none; }
 .cv-btn svg { flex-shrink: 0; }
 
 /* Reduced Motion — sadece gereksiz tekrarlayan animasyonları azalt, ana efektleri koru */
+/* İÇERİĞE ATLA (SKIP TO CONTENT) */
+.icerige-atla {
+    position: fixed;
+    top: -100%;
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--renk-vurgu);
+    color: #050505;
+    padding: 12px 24px;
+    border-radius: 0 0 8px 8px;
+    font-family: var(--font-kod);
+    font-size: 0.85rem;
+    font-weight: 700;
+    text-decoration: none;
+    z-index: 10000;
+    transition: top 0.3s;
+}
+.icerige-atla:focus {
+    top: 0;
+    outline: 2px solid var(--renk-vurgu);
+    outline-offset: 2px;
+}
+
 /* FORM LOADING STATE */
 .form-buton.yukleniyor {
     position: relative;
