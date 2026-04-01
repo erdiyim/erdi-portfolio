@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Erdi Öcal — Teknik Yazılar</title>
+    <link>https://erdiocal.com</link>
+    <description>Erdi Öcal'ın web geliştirme, frontend, backend ve DevOps üzerine teknik yazıları.</description>
+    <language>tr</language>
+    <lastBuildDate>Tue, 01 Apr 2026 00:00:00 +0300</lastBuildDate>
+    <atom:link href="https://erdiocal.com/feed.xml" rel="self" type="application/rss+xml"/>
+
+    <item>
+      <title>React vs Vanilla JS: Ne Zaman Hangisi?</title>
+      <link>https://erdiocal.com/#blog</link>
+      <description>Her projeye React eklemek doğru mu? Vanilla JS'in hâlâ parlak olduğu senaryolar ve framework seçim kriterleri.</description>
+      <category>Frontend</category>
+      <pubDate>Mon, 01 Jan 2026 00:00:00 +0300</pubDate>
+      <guid>https://erdiocal.com/blog/react-vs-vanilla</guid>
+    </item>
+
+    <item>
+      <title>CSS Mask ile X-Ray Efekti Nasıl Yapılır?</title>
+      <link>https://erdiocal.com/#blog</link>
+      <description>Bu portfolyödeki hover efektinin perde arkası: mask-image, canvas ve radial-gradient ile sinematik bir deneyim oluşturmak.</description>
+      <category>CSS</category>
+      <pubDate>Mon, 01 Jan 2026 00:00:00 +0300</pubDate>
+      <guid>https://erdiocal.com/blog/css-xray-efekti</guid>
+    </item>
+
+    <item>
+      <title>Vercel ile Ücretsiz Deploy: Adım Adım Rehber</title>
+      <link>https://erdiocal.com/#blog</link>
+      <description>GitHub entegrasyonu, custom domain ayarları ve otomatik CI/CD pipeline kurulumunu sıfırdan anlatıyorum.</description>
+      <category>DevOps</category>
+      <pubDate>Mon, 01 Dec 2025 00:00:00 +0300</pubDate>
+      <guid>https://erdiocal.com/blog/vercel-deploy</guid>
+    </item>
+
+  </channel>
+</rss>
