@@ -1197,6 +1197,49 @@ textarea.form-kontrol { resize: none; }
 .cv-btn svg { flex-shrink: 0; }
 
 /* Reduced Motion — sadece gereksiz tekrarlayan animasyonları azalt, ana efektleri koru */
+/* COOKIE BANNER */
+.cookie-banner {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: var(--renk-nav-bg);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-top: 1px solid var(--renk-border);
+    padding: 16px 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    z-index: 9999;
+    animation: cookieSlideUp 0.5s ease-out;
+}
+@keyframes cookieSlideUp {
+    from { transform: translateY(100%); }
+    to { transform: translateY(0); }
+}
+.cookie-banner p {
+    font-size: 0.85rem;
+    color: var(--renk-metin-soluk);
+    margin: 0;
+    flex: 1;
+}
+.cookie-butonlar {
+    display: flex;
+    gap: 10px;
+    flex-shrink: 0;
+}
+.cookie-btn {
+    padding: 8px 18px !important;
+    font-size: 0.8rem !important;
+    min-width: auto !important;
+}
+@media (max-width: 768px) {
+    .cookie-banner { flex-direction: column; text-align: center; padding: 14px 16px; }
+    .cookie-butonlar { width: 100%; justify-content: center; }
+}
+
 /* İÇERİĞE ATLA (SKIP TO CONTENT) */
 .icerige-atla {
     position: fixed;

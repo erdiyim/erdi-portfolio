@@ -1751,3 +1751,45 @@ function konfetiFirlat() {
     }
 }
 
+// ==========================================
+// 19. COOKIE BANNER & GA KONTROL
+// ==========================================
+(() => {
+    const banner = document.getElementById('cookieBanner');
+    const kabulBtn = document.getElementById('cookieKabul');
+    const reddetBtn = document.getElementById('cookieReddet');
+    if (!banner) return;
+
+    const tercih = localStorage.getItem('cookie-tercih');
+
+    if (!tercih) {
+        // İlk ziyaret — banner göster
+        banner.style.display = 'flex';
+    } else if (tercih === 'kabul') {
+        // Daha önce kabul etti — GA çalışsın
+        gaBaslat();
+    }
+    // 'reddet' ise hiçbir şey yapma
+
+    kabulBtn?.addEventListener('click', () => {
+        localStorage.setItem('cookie-tercih', 'kabul');
+        banner.style.display = 'none';
+        gaBaslat();
+    });
+
+    reddetBtn?.addEventListener('click', () => {
+        localStorage.setItem('cookie-tercih', 'reddet');
+        banner.style.display = 'none';
+        gaDeaktif();
+    });
+
+    function gaBaslat() {
+        // GA zaten head'de yüklü, opt-out'u kaldır
+        window['ga-disable-G-XXXXXXXXXX'] = false;
+    }
+
+    function gaDeaktif() {
+        // GA'yı devre dışı bırak
+        window['ga-disable-G-XXXXXXXXXX'] = true;
+    }
+})();

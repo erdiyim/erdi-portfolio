@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- Google Analytics -->
+    <!-- Google Analytics (cookie onayına bağlı) -->
+    <script>window['ga-disable-G-XXXXXXXXXX'] = (localStorage.getItem('cookie-tercih') !== 'kabul');</script>
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
     <script>
         window.dataLayer = window.dataLayer || [];
@@ -528,6 +529,15 @@
                 <div class="proje-modal-etiketler" id="projeModalEtiketler"></div>
                 <div class="proje-modal-bolumler" id="projeModalIcerik"></div>
             </div>
+        </div>
+    </div>
+
+    <!-- COOKIE BANNER -->
+    <div id="cookieBanner" class="cookie-banner" style="display:none;">
+        <p data-tr="Bu site deneyiminizi iyileştirmek için çerez kullanır." data-en="This site uses cookies to improve your experience.">Bu site deneyiminizi iyileştirmek için çerez kullanır.</p>
+        <div class="cookie-butonlar">
+            <button id="cookieKabul" class="btn btn-dolu cookie-btn" data-tr="Kabul Et" data-en="Accept">Kabul Et</button>
+            <button id="cookieReddet" class="btn btn-cerceve cookie-btn" data-tr="Reddet" data-en="Decline">Reddet</button>
         </div>
     </div>
 
