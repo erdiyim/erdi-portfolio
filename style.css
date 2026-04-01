@@ -1466,6 +1466,31 @@ textarea.form-kontrol { resize: none; }
     .yukari-btn { bottom: 20px; right: 20px; width: 42px; height: 42px; }
 }
 
+/* PRINT STYLESHEET */
+@media print {
+    *, *::before, *::after { animation: none !important; transition: none !important; }
+    body { background: #fff !important; color: #000 !important; font-size: 12pt; }
+    #tuval, .scroll-ilerleme, .sayfa-gecis, #acilis-ekrani, .yukari-btn,
+    .cursor-dot, .cursor-ring, .cursor-trail, .cookie-banner, .scroll-indicator,
+    .crt-overlay, .crt-flicker, .portre-glow, .glitch-katman,
+    .kayan-yazi-kapsayici, .bolum-ayirici, #navbar, #mobil-menu, #footer,
+    .icerige-atla { display: none !important; }
+    main, section, .bolum-container, .cam-kart-genis { visibility: visible !important; opacity: 1 !important; }
+    .bolum-container { padding: 20px 0; page-break-inside: avoid; }
+    .hero-icerik { position: static !important; }
+    .portre-kapsayici { display: none; }
+    .bolum-baslik { color: #000 !important; font-size: 18pt; }
+    .aciklama-metin, p, span { color: #333 !important; }
+    .vurgu { color: #00896b !important; }
+    .proje-kart, .blog-kart, .referans-kart, .yetenek-kart, .timeline-kart {
+        border: 1px solid #ccc !important; background: #fff !important;
+        box-shadow: none !important; break-inside: avoid;
+    }
+    a { color: #00896b !important; text-decoration: underline; }
+    a[href]::after { content: " (" attr(href) ")"; font-size: 9pt; color: #666; }
+    .btn, .cv-btn { border: 1px solid #000 !important; background: none !important; color: #000 !important; }
+}
+
 @media (prefers-reduced-motion: reduce) {
     .kayan-yazi-kapsayici { animation-duration: 60s !important; }
     .portre-glow { animation: none !important; }
