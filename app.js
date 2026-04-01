@@ -26,6 +26,29 @@ if (typeof Lenis !== 'undefined') {
 }
 
 // ==========================================
+// MODAL FOCUS TRAP YARDIMCISI
+// ==========================================
+function focusTrapKur(modalEl) {
+    const FOCUSABLE = 'a[href], button:not([disabled]), textarea, input, select, [tabindex]:not([tabindex="-1"])';
+    function handler(e) {
+        if (e.key !== 'Tab') return;
+        const focusable = modalEl.querySelectorAll(FOCUSABLE);
+        if (focusable.length === 0) return;
+        const ilk = focusable[0];
+        const son = focusable[focusable.length - 1];
+        if (e.shiftKey) {
+            if (document.activeElement === ilk) { e.preventDefault(); son.focus(); }
+        } else {
+            if (document.activeElement === son) { e.preventDefault(); ilk.focus(); }
+        }
+    }
+    return {
+        aktif: () => { document.addEventListener('keydown', handler); const f = modalEl.querySelector(FOCUSABLE); if (f) f.focus(); },
+        deaktif: () => { document.removeEventListener('keydown', handler); }
+    };
+}
+
+// ==========================================
 // 0. DİL DESTEĞİ (TR/EN)
 // ==========================================
 const DilYoneticisi = (() => {
@@ -1029,6 +1052,7 @@ document.querySelectorAll('a[href^="#"]').forEach(a => {
     const icerikEl = document.getElementById('blogModalIcerik');
     const kapatBtn = document.getElementById('blogModalKapat');
     if (!overlay) return;
+    const blogFocusTrap = focusTrapKur(modal);
 
     const dil = () => DilYoneticisi.aktif();
 
@@ -1333,12 +1357,14 @@ Type: CNAME | Name: www | Value: cname.vercel-dns.com</pre>
         overlay.classList.add('aktif');
         document.body.style.overflow = 'hidden';
         if (lenis) lenis.stop();
+        blogFocusTrap.aktif();
     }
 
     function modalKapat() {
         overlay.classList.remove('aktif');
         document.body.style.overflow = '';
         if (lenis) lenis.start();
+        blogFocusTrap.deaktif();
     }
 
     // Kart tıklama
@@ -1380,7 +1406,9 @@ Type: CNAME | Name: www | Value: cname.vercel-dns.com</pre>
     const etiketlerEl = document.getElementById('projeModalEtiketler');
     const icerikEl = document.getElementById('projeModalIcerik');
     const kapatBtn = document.getElementById('projeModalKapat');
+    const projeModal = document.getElementById('projeModal');
     if (!overlay) return;
+    const projeFocusTrap = focusTrapKur(projeModal);
 
     const dil = () => DilYoneticisi.aktif();
 
@@ -1515,12 +1543,14 @@ Type: CNAME | Name: www | Value: cname.vercel-dns.com</pre>
         overlay.classList.add('aktif');
         document.body.style.overflow = 'hidden';
         if (lenis) lenis.stop();
+        projeFocusTrap.aktif();
     }
 
     function projeModalKapat() {
         overlay.classList.remove('aktif');
         document.body.style.overflow = '';
         if (lenis) lenis.start();
+        projeFocusTrap.deaktif();
     }
 
     document.querySelectorAll('.proje-kart').forEach(kart => {
