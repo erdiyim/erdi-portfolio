@@ -1597,7 +1597,23 @@ Type: CNAME | Name: www | Value: cname.vercel-dns.com</pre>
 })();
 
 // ==========================================
-// 15.5. YUKARI ÇIK BUTONU
+// 15.5. HERO SCROLL INDICATOR
+// ==========================================
+(() => {
+    const ind = document.getElementById('scrollIndicator');
+    if (!ind) return;
+
+    window.addEventListener('scroll', () => {
+        if (window.scrollY > 200) {
+            ind.classList.add('gizli');
+        } else {
+            ind.classList.remove('gizli');
+        }
+    }, { passive: true });
+})();
+
+// ==========================================
+// 15.6. YUKARI ÇIK BUTONU
 // ==========================================
 (() => {
     const btn = document.getElementById('yukariBtn');

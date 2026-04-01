@@ -1197,6 +1197,65 @@ textarea.form-kontrol { resize: none; }
 .cv-btn svg { flex-shrink: 0; }
 
 /* Reduced Motion — sadece gereksiz tekrarlayan animasyonları azalt, ana efektleri koru */
+/* HERO SCROLL INDICATOR */
+.scroll-indicator {
+    position: absolute;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    opacity: 0.6;
+    transition: opacity 0.3s;
+    animation: scrollBounce 2s ease-in-out infinite;
+    z-index: 5;
+}
+.scroll-indicator:hover { opacity: 1; }
+.scroll-indicator span {
+    font-family: var(--font-kod);
+    font-size: 0.7rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--renk-metin-soluk);
+}
+.scroll-fare {
+    width: 24px;
+    height: 38px;
+    border: 2px solid var(--renk-metin-soluk);
+    border-radius: 12px;
+    position: relative;
+}
+.scroll-tekerlek {
+    width: 3px;
+    height: 8px;
+    background: var(--renk-vurgu);
+    border-radius: 2px;
+    position: absolute;
+    top: 6px;
+    left: 50%;
+    transform: translateX(-50%);
+    animation: scrollWheel 1.5s ease-in-out infinite;
+}
+@keyframes scrollWheel {
+    0% { opacity: 1; transform: translateX(-50%) translateY(0); }
+    100% { opacity: 0; transform: translateX(-50%) translateY(12px); }
+}
+@keyframes scrollBounce {
+    0%, 100% { transform: translateX(-50%) translateY(0); }
+    50% { transform: translateX(-50%) translateY(8px); }
+}
+.scroll-indicator.gizli {
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.5s, visibility 0.5s;
+}
+@media (max-width: 768px) {
+    .scroll-indicator { bottom: 15px; }
+    .scroll-fare { width: 20px; height: 32px; }
+}
+
 /* YUKARI ÇIK BUTONU */
 .yukari-btn {
     position: fixed;
