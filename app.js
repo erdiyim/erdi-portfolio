@@ -910,6 +910,12 @@ document.querySelectorAll('a[href^="#"]').forEach(a => {
         durumEl.textContent = mt.gonderiliyor;
         durumEl.className = 'form-durum';
         gonderBtn.disabled = true;
+        const btnIcerik = gonderBtn.querySelector('.btn-icerik');
+        const btnOk = gonderBtn.querySelector('.btn-ok');
+        const orijinalMetin = btnIcerik ? btnIcerik.textContent : '';
+        if (btnIcerik) btnIcerik.textContent = mt.gonderiliyor;
+        if (btnOk) btnOk.style.display = 'none';
+        gonderBtn.classList.add('yukleniyor');
 
         emailjs.sendForm(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, form)
             .then(() => {
@@ -922,7 +928,12 @@ document.querySelectorAll('a[href^="#"]').forEach(a => {
                 durumEl.textContent = mt.hata;
                 durumEl.className = 'form-durum hata';
             })
-            .finally(() => { gonderBtn.disabled = false; });
+            .finally(() => {
+                gonderBtn.disabled = false;
+                gonderBtn.classList.remove('yukleniyor');
+                if (btnIcerik) btnIcerik.textContent = orijinalMetin;
+                if (btnOk) btnOk.style.display = '';
+            });
     });
 })();
 

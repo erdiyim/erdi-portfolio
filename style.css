@@ -1197,6 +1197,28 @@ textarea.form-kontrol { resize: none; }
 .cv-btn svg { flex-shrink: 0; }
 
 /* Reduced Motion — sadece gereksiz tekrarlayan animasyonları azalt, ana efektleri koru */
+/* FORM LOADING STATE */
+.form-buton.yukleniyor {
+    position: relative;
+    pointer-events: none;
+    opacity: 0.7;
+}
+.form-buton.yukleniyor::after {
+    content: '';
+    width: 16px;
+    height: 16px;
+    border: 2px solid transparent;
+    border-top-color: currentColor;
+    border-radius: 50%;
+    animation: formSpin 0.6s linear infinite;
+    display: inline-block;
+    margin-left: 8px;
+    vertical-align: middle;
+}
+@keyframes formSpin {
+    to { transform: rotate(360deg); }
+}
+
 /* HERO SCROLL INDICATOR */
 .scroll-indicator {
     position: absolute;
