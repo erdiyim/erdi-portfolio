@@ -1751,17 +1751,3 @@ function konfetiFirlat() {
     }
 }
 
-// ==========================================
-// 18. SAĞ TIK & DEVTOOLS KORUMASI
-// ==========================================
-(() => {
-    // Sağ tık engelle
-    document.addEventListener('contextmenu', (e) => e.preventDefault());
-
-    // F12, Ctrl+Shift+I, Ctrl+Shift+J, Ctrl+U engelle
-    document.addEventListener('keydown', (e) => {
-        if (e.key === 'F12') { e.preventDefault(); return; }
-        if (e.ctrlKey && e.shiftKey && (e.key === 'I' || e.key === 'i' || e.key === 'J' || e.key === 'j' || e.key === 'C' || e.key === 'c')) { e.preventDefault(); return; }
-        if (e.ctrlKey && (e.key === 'U' || e.key === 'u')) { e.preventDefault(); return; }
-    });
-})();
