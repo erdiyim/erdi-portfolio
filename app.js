@@ -438,8 +438,15 @@ window._agirMotorlar.push(function glitchMotorBaslat() {
     }
 
     let lastGlitchTime = 0;
+    const glitchCanvas = document.getElementById('glitchTuvali');
     function animate(timestamp) {
         animId = requestAnimationFrame(animate);
+
+        // Viewport dışındaysa render atla
+        if (glitchCanvas) {
+            const rect = glitchCanvas.getBoundingClientRect();
+            if (rect.bottom < 0 || rect.top > window.innerHeight) return;
+        }
 
         if (timestamp - lastGlitchTime >= GLITCH_SPEED) {
             updateGlitch();
@@ -599,9 +606,9 @@ window.addEventListener('mouseout', () => { fare.x = undefined; fare.y = undefin
 let hue = 170;
 window._particleHue = hue;
 const parcaciklar = [];
-const PARCACIK_YOGUNLUK = 12000;
-const BAGLANTI_MESAFE = 120;
-const FARE_MESAFE = 180;
+const PARCACIK_YOGUNLUK = 18000;
+const BAGLANTI_MESAFE = 90;
+const FARE_MESAFE = 150;
 
 class Parcacik {
     constructor() {
@@ -646,12 +653,16 @@ function parcacikOlustur() {
     for (let i = 0; i < count; i++) parcaciklar.push(new Parcacik());
 }
 
+let _hueFrame = 0;
 function render() {
     requestAnimationFrame(render);
     c.clearRect(0, 0, tuval.width, tuval.height);
     hue += 0.12;
     window._particleHue = hue;
-    document.documentElement.style.setProperty('--hue', hue);
+    // CSS custom property'yi her 5 frame'de güncelle (repaint azalt)
+    if (++_hueFrame % 5 === 0) {
+        document.documentElement.style.setProperty('--hue', hue);
+    }
 
     const len = parcaciklar.length;
     c.fillStyle = `hsla(${hue}, 100%, 60%, 0.7)`;
@@ -664,6 +675,8 @@ function render() {
     }
 
     const maxDist = BAGLANTI_MESAFE * BAGLANTI_MESAFE;
+    c.lineWidth = 0.6;
+    c.beginPath();
     for (let i = 0; i < len; i++) {
         for (let j = i + 1; j < len; j++) {
             const dx = parcaciklar[i].x - parcaciklar[j].x;
@@ -672,31 +685,28 @@ function render() {
             if (dy > BAGLANTI_MESAFE || dy < -BAGLANTI_MESAFE) continue;
             const dist = dx * dx + dy * dy;
             if (dist < maxDist) {
-                const alpha = (1 - dist / maxDist) * 0.3;
-                c.strokeStyle = `hsla(${hue}, 80%, 50%, ${alpha})`;
-                c.lineWidth = 0.6;
-                c.beginPath();
                 c.moveTo(parcaciklar[i].x, parcaciklar[i].y);
                 c.lineTo(parcaciklar[j].x, parcaciklar[j].y);
-                c.stroke();
             }
         }
     }
+    c.strokeStyle = `hsla(${hue}, 80%, 50%, 0.15)`;
+    c.stroke();
 
     if (fare.x != null) {
+        c.lineWidth = 1;
+        c.beginPath();
         for (let i = 0; i < len; i++) {
             const dx = fare.x - parcaciklar[i].x;
             const dy = fare.y - parcaciklar[i].y;
-            const dist = Math.sqrt(dx * dx + dy * dy);
-            if (dist < 200) {
-                c.strokeStyle = `hsla(${hue}, 100%, 70%, ${(1 - dist / 200) * 0.5})`;
-                c.lineWidth = 1;
-                c.beginPath();
+            const dist = dx * dx + dy * dy;
+            if (dist < 40000) {
                 c.moveTo(fare.x, fare.y);
                 c.lineTo(parcaciklar[i].x, parcaciklar[i].y);
-                c.stroke();
             }
         }
+        c.strokeStyle = `hsla(${hue}, 100%, 70%, 0.3)`;
+        c.stroke();
     }
 }
 
@@ -745,7 +755,7 @@ const navbar = document.getElementById('navbar');
 const hamburger = document.getElementById('hamburger');
 const mobilMenu = document.getElementById('mobil-menu');
 
-window.addEventListener('scroll', () => { navbar.classList.toggle('scrolled', window.scrollY > 50); });
+window.addEventListener('scroll', () => { navbar.classList.toggle('scrolled', window.scrollY > 50); }, { passive: true });
 
 hamburger.addEventListener('click', () => {
     hamburger.classList.toggle('aktif');
@@ -1021,22 +1031,24 @@ document.querySelectorAll('a[href^="#"]').forEach(a => {
         mouseY = e.clientY;
     });
 
+    let _trailHueFrame = 0;
     function animateTrail() {
         const currentHue = (window._particleHue || 170) % 360;
+        const updateBg = (++_trailHueFrame % 6 === 0);
 
-        trails.forEach((trail, i) => {
-            // Her iz farklı gecikmeyle takip eder
+        for (let i = 0; i < TRAIL_COUNT; i++) {
+            const trail = trails[i];
             const speed = 0.15 - (i * 0.012);
             trail.x += (mouseX - trail.x) * speed;
             trail.y += (mouseY - trail.y) * speed;
 
             const scale = 1 - (i / TRAIL_COUNT) * 0.7;
-            const opacity = (1 - i / TRAIL_COUNT) * 0.5;
-
             trail.el.style.transform = `translate(${trail.x - 9}px, ${trail.y - 9}px) scale(${scale})`;
-            trail.el.style.opacity = opacity;
-            trail.el.style.background = `radial-gradient(circle, hsla(${currentHue}, 100%, 65%, 0.9), hsla(${currentHue}, 100%, 50%, 0) 70%)`;
-        });
+            trail.el.style.opacity = (1 - i / TRAIL_COUNT) * 0.5;
+            if (updateBg) {
+                trail.el.style.background = `radial-gradient(circle, hsla(${currentHue}, 100%, 65%, 0.9), hsla(${currentHue}, 100%, 50%, 0) 70%)`;
+            }
+        }
 
         requestAnimationFrame(animateTrail);
     }
