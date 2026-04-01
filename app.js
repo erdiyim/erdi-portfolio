@@ -1597,6 +1597,30 @@ Type: CNAME | Name: www | Value: cname.vercel-dns.com</pre>
 })();
 
 // ==========================================
+// 15.5. YUKARI ÇIK BUTONU
+// ==========================================
+(() => {
+    const btn = document.getElementById('yukariBtn');
+    if (!btn) return;
+
+    window.addEventListener('scroll', () => {
+        if (window.scrollY > 600) {
+            btn.classList.add('gorunur');
+        } else {
+            btn.classList.remove('gorunur');
+        }
+    }, { passive: true });
+
+    btn.addEventListener('click', () => {
+        if (lenis) {
+            lenis.scrollTo(0, { duration: 1.5 });
+        } else {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+    });
+})();
+
+// ==========================================
 // 16. TEXT SCRAMBLE EFEKTİ
 // ==========================================
 (() => {

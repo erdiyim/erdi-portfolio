@@ -1197,6 +1197,51 @@ textarea.form-kontrol { resize: none; }
 .cv-btn svg { flex-shrink: 0; }
 
 /* Reduced Motion — sadece gereksiz tekrarlayan animasyonları azalt, ana efektleri koru */
+/* YUKARI ÇIK BUTONU */
+.yukari-btn {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background: var(--renk-vurgu);
+    color: #050505;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(20px);
+    transition: opacity 0.4s, visibility 0.4s, transform 0.4s, background 0.3s;
+    z-index: 900;
+    box-shadow: 0 4px 20px rgba(0, 255, 204, 0.3);
+}
+.yukari-btn.gorunur {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+.yukari-btn:hover {
+    background: #fff;
+    transform: translateY(-3px);
+    box-shadow: 0 6px 25px rgba(0, 255, 204, 0.5);
+}
+[data-theme="light"] .yukari-btn {
+    background: var(--renk-vurgu);
+    box-shadow: 0 4px 20px rgba(0, 184, 148, 0.3);
+}
+[data-theme="light"] .yukari-btn:hover {
+    background: #1a1a2e;
+    color: #fff;
+    box-shadow: 0 6px 25px rgba(0, 184, 148, 0.5);
+}
+@media (max-width: 768px) {
+    .yukari-btn { bottom: 20px; right: 20px; width: 42px; height: 42px; }
+}
+
 @media (prefers-reduced-motion: reduce) {
     .kayan-yazi-kapsayici { animation-duration: 60s !important; }
     .portre-glow { animation: none !important; }
