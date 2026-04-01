@@ -1809,7 +1809,56 @@ function konfetiFirlat() {
 }
 
 // ==========================================
-// 19. COOKIE BANNER & GA KONTROL
+// 19. EASTER EGG — KONAMI CODE
+// ==========================================
+(() => {
+    const kod = ['ArrowUp','ArrowUp','ArrowDown','ArrowDown','ArrowLeft','ArrowRight','ArrowLeft','ArrowRight','b','a'];
+    let adim = 0;
+
+    document.addEventListener('keydown', (e) => {
+        if (e.key === kod[adim]) {
+            adim++;
+            if (adim === kod.length) {
+                adim = 0;
+                easterEggCalistir();
+            }
+        } else {
+            adim = 0;
+        }
+    });
+
+    function easterEggCalistir() {
+        // Matrix efekti — ekranda yeşil karakterler yağsın
+        if (typeof konfetiFirlat === 'function') konfetiFirlat();
+
+        const overlay = document.createElement('div');
+        overlay.style.cssText = 'position:fixed;inset:0;z-index:99999;pointer-events:none;overflow:hidden;';
+        document.body.appendChild(overlay);
+
+        const chars = 'アイウエオカキクケコサシスセソタチツテト01';
+        for (let i = 0; i < 40; i++) {
+            const col = document.createElement('div');
+            col.style.cssText = `position:absolute;top:-100%;left:${Math.random()*100}vw;font-family:var(--font-kod);font-size:${12+Math.random()*14}px;color:#00ffcc;opacity:${0.3+Math.random()*0.5};writing-mode:vertical-rl;animation:matrixFall ${2+Math.random()*3}s linear ${Math.random()*2}s forwards;white-space:nowrap;`;
+            let txt = '';
+            for (let j = 0; j < 20; j++) txt += chars[Math.floor(Math.random()*chars.length)];
+            col.textContent = txt;
+            overlay.appendChild(col);
+        }
+
+        setTimeout(() => overlay.remove(), 6000);
+    }
+
+    // CSS animasyonu ekle
+    if (!document.getElementById('easterEggStyle')) {
+        const s = document.createElement('style');
+        s.id = 'easterEggStyle';
+        s.textContent = '@keyframes matrixFall{0%{top:-20%;opacity:0}10%{opacity:1}90%{opacity:1}100%{top:110%;opacity:0}}';
+        document.head.appendChild(s);
+    }
+})();
+
+// ==========================================
+// 20. COOKIE BANNER & GA KONTROL
 // ==========================================
 (() => {
     const banner = document.getElementById('cookieBanner');
