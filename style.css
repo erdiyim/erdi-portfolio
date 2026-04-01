@@ -1197,6 +1197,52 @@ textarea.form-kontrol { resize: none; }
 .cv-btn svg { flex-shrink: 0; }
 
 /* Reduced Motion — sadece gereksiz tekrarlayan animasyonları azalt, ana efektleri koru */
+/* CUSTOM CURSOR */
+.cursor-dot {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 8px;
+    height: 8px;
+    background: var(--renk-vurgu);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 99999;
+    transition: width 0.2s, height 0.2s, background 0.2s;
+    mix-blend-mode: difference;
+}
+.cursor-ring {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 36px;
+    height: 36px;
+    border: 1.5px solid var(--renk-vurgu);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 99998;
+    opacity: 0.5;
+    transition: width 0.3s, height 0.3s, opacity 0.3s, border-color 0.3s;
+}
+.cursor-dot.cursor-hover {
+    width: 12px;
+    height: 12px;
+    background: #fff;
+}
+.cursor-ring.cursor-hover {
+    width: 50px;
+    height: 50px;
+    opacity: 0.8;
+    border-color: #fff;
+}
+/* Gerçek cursor gizle */
+@media (hover: hover) {
+    * { cursor: none !important; }
+}
+@media (hover: none) {
+    .cursor-dot, .cursor-ring { display: none !important; }
+}
+
 /* HONEYPOT (SPAM KORUMA) */
 .honeypot-alan {
     position: absolute;

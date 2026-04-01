@@ -1008,12 +1008,53 @@ document.querySelectorAll('a[href^="#"]').forEach(a => {
 })();
 
 // ==========================================
-// 12. CURSOR TRAIL (IŞIK İZİ) EFEKTİ
+// 12. CUSTOM CURSOR & CURSOR TRAIL
 // ==========================================
 (() => {
     // Mobil cihazlarda çalışmasın
     if (window.matchMedia('(hover: none)').matches) return;
 
+    // --- Custom Cursor (dot + ring) ---
+    const dot = document.createElement('div');
+    dot.className = 'cursor-dot';
+    const ring = document.createElement('div');
+    ring.className = 'cursor-ring';
+    document.body.appendChild(dot);
+    document.body.appendChild(ring);
+
+    let cursorX = 0, cursorY = 0;
+    let ringX = 0, ringY = 0;
+
+    document.addEventListener('mousemove', (e) => {
+        cursorX = e.clientX;
+        cursorY = e.clientY;
+        dot.style.transform = `translate(${cursorX - 4}px, ${cursorY - 4}px)`;
+    });
+
+    function animateRing() {
+        ringX += (cursorX - ringX) * 0.15;
+        ringY += (cursorY - ringY) * 0.15;
+        ring.style.transform = `translate(${ringX - 18}px, ${ringY - 18}px)`;
+        requestAnimationFrame(animateRing);
+    }
+    requestAnimationFrame(animateRing);
+
+    // Hover büyütme
+    const hoverTargets = 'a, button, .proje-kart, .blog-kart, .referans-kart, input, textarea';
+    document.addEventListener('mouseover', (e) => {
+        if (e.target.closest(hoverTargets)) {
+            ring.classList.add('cursor-hover');
+            dot.classList.add('cursor-hover');
+        }
+    });
+    document.addEventListener('mouseout', (e) => {
+        if (e.target.closest(hoverTargets)) {
+            ring.classList.remove('cursor-hover');
+            dot.classList.remove('cursor-hover');
+        }
+    });
+
+    // --- Cursor Trail ---
     const TRAIL_COUNT = 8;
     const trails = [];
 
