@@ -1125,18 +1125,25 @@ textarea.form-kontrol { resize: none; }
 
 /* Mobilde referans carousel */
 @media (max-width: 768px) {
+    .referanslar-icerik {
+        max-width: 100%;
+        overflow: hidden;
+    }
     .referans-grid {
         display: flex;
         overflow-x: auto;
         scroll-snap-type: x mandatory;
         -webkit-overflow-scrolling: touch;
         gap: 16px;
-        padding-bottom: 12px;
+        padding: 0 16px 12px;
+        margin-left: -16px;
+        margin-right: -16px;
         scrollbar-width: none;
     }
     .referans-grid::-webkit-scrollbar { display: none; }
     .referans-kart {
-        min-width: 85vw;
+        min-width: 80vw;
+        max-width: 80vw;
         scroll-snap-align: center;
         flex-shrink: 0;
     }

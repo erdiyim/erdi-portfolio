@@ -719,10 +719,18 @@ parcacikOlustur();
 render();
 });
 
-// Ağır motorları başlat (boot bitince çağrılır)
+// Ağır motorları başlat (boot bitince çağrılır — sıralı, kasma önlenir)
 window._baslatAgirMotorlar = function() {
-    (window._agirMotorlar || []).forEach(fn => fn());
+    const motorlar = window._agirMotorlar || [];
     window._agirMotorlar = [];
+    let i = 0;
+    function siradaki() {
+        if (i < motorlar.length) {
+            motorlar[i++]();
+            requestAnimationFrame(siradaki);
+        }
+    }
+    requestAnimationFrame(siradaki);
 };
 
 // ==========================================
