@@ -132,63 +132,85 @@ body { background-color: var(--renk-bg); color: var(--renk-metin); font-family: 
 }
 
 /* 3D Monitör */
-.monitor { perspective: 1000px; }
+.monitor { perspective: 1200px; transform-style: preserve-3d; }
 
 .monitor-cerceve {
     width: 560px; height: 340px;
-    background: linear-gradient(160deg, #2a2a3e 0%, #1a1a2e 30%, #0f0f1a 100%);
-    border-radius: 16px;
-    padding: 16px 16px 20px;
+    background: linear-gradient(170deg, #303048 0%, #222238 20%, #18182a 50%, #0e0e1c 100%);
+    border-radius: 18px;
+    padding: 18px 18px 28px;
     position: relative;
+    transform-style: preserve-3d;
     box-shadow:
-        0 0 0 1px rgba(255,255,255,0.06),
-        0 0 0 3px rgba(0, 255, 204, 0.08),
-        0 30px 80px rgba(0, 0, 0, 0.9),
-        0 0 120px rgba(0, 255, 204, 0.04),
-        inset 0 1px 0 rgba(255,255,255,0.08),
-        inset 0 -2px 0 rgba(0,0,0,0.3);
-    transform: rotateX(3deg) rotateY(-1deg);
+        /* dış çerçeve kenarları */
+        0 0 0 1px rgba(255,255,255,0.08),
+        0 0 0 2px rgba(0,0,0,0.6),
+        /* alt gölge — yere temas hissi */
+        0 40px 80px -20px rgba(0, 0, 0, 0.95),
+        0 20px 40px -10px rgba(0, 0, 0, 0.7),
+        /* ambient glow */
+        0 0 100px rgba(0, 255, 204, 0.03),
+        /* iç kenar ışık */
+        inset 0 1px 0 rgba(255,255,255,0.1),
+        inset 0 -1px 0 rgba(0,0,0,0.4),
+        inset 1px 0 0 rgba(255,255,255,0.04),
+        inset -1px 0 0 rgba(255,255,255,0.04);
+    transform: rotateX(5deg) rotateY(-2deg);
     transition: transform 1s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-/* Monitör alt logo alanı */
+/* Üst kenar ışık yansıması */
+.monitor-cerceve::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 20px; right: 20px;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.15), transparent);
+    border-radius: 18px 18px 0 0;
+}
+
+/* Alt logo çentiği */
 .monitor-cerceve::after {
     content: '';
     position: absolute;
-    bottom: 7px;
+    bottom: 10px;
     left: 50%;
     transform: translateX(-50%);
-    width: 40px;
-    height: 4px;
-    border-radius: 2px;
-    background: rgba(255,255,255,0.06);
+    width: 50px;
+    height: 5px;
+    border-radius: 3px;
+    background: rgba(255,255,255,0.04);
+    box-shadow: inset 0 1px 2px rgba(0,0,0,0.3);
 }
 
-/* LED gösterge */
+.monitor-ekran {
+    width: 100%; height: 100%;
+    background: #08080f;
+    border-radius: 8px;
+    overflow: hidden;
+    position: relative;
+    border: 1px solid rgba(255,255,255,0.05);
+    box-shadow:
+        inset 0 0 40px rgba(0,0,0,0.6),
+        inset 0 0 80px rgba(0,255,204,0.015),
+        0 0 1px rgba(0,0,0,0.8);
+}
+
+/* Ekran alt LED */
 .monitor-ekran::after {
     content: '';
     position: absolute;
-    bottom: -12px;
-    right: 20px;
+    bottom: -16px;
+    right: 24px;
     width: 6px;
     height: 6px;
     border-radius: 50%;
     background: #00ffcc;
-    box-shadow: 0 0 8px #00ffcc, 0 0 20px rgba(0,255,204,0.3);
+    box-shadow: 0 0 6px #00ffcc, 0 0 15px rgba(0,255,204,0.3);
     animation: ledYanip 2s ease-in-out infinite;
     z-index: 2;
 }
-@keyframes ledYanip { 0%,100%{opacity:1} 50%{opacity:0.4} }
-
-.monitor-ekran {
-    width: 100%; height: 100%;
-    background: #0a0a12;
-    border-radius: 8px;
-    overflow: hidden;
-    position: relative;
-    border: 1px solid rgba(0, 255, 204, 0.08);
-    box-shadow: inset 0 0 30px rgba(0,0,0,0.5), inset 0 0 80px rgba(0,255,204,0.02);
-}
+@keyframes ledYanip { 0%,100%{opacity:1} 50%{opacity:0.3} }
 
 .ekran-icerik {
     padding: 20px;
@@ -221,25 +243,35 @@ body { background-color: var(--renk-bg); color: var(--renk-metin); font-family: 
     position: absolute; top: 0; left: 0;
     width: 100%; height: 100%;
     background:
-        linear-gradient(165deg, rgba(255,255,255,0.06) 0%, transparent 35%),
-        linear-gradient(340deg, rgba(0,255,204,0.02) 0%, transparent 50%);
+        linear-gradient(155deg, rgba(255,255,255,0.08) 0%, rgba(255,255,255,0.02) 20%, transparent 40%),
+        linear-gradient(340deg, rgba(0,255,204,0.03) 0%, transparent 50%),
+        radial-gradient(ellipse at 30% 20%, rgba(255,255,255,0.03), transparent 60%);
     pointer-events: none;
     border-radius: 8px;
 }
 
 /* Monitör Ayak */
-.monitor-ayak { display: flex; flex-direction: column; align-items: center; }
+.monitor-ayak { display: flex; flex-direction: column; align-items: center; transform-style: preserve-3d; }
 .monitor-ayak-ust {
-    width: 50px; height: 40px;
-    background: linear-gradient(180deg, #1e1e32 0%, #151525 50%, #0f0f1a 100%);
-    border-radius: 0 0 6px 6px;
-    box-shadow: inset -2px 0 4px rgba(0,0,0,0.3), inset 2px 0 4px rgba(0,0,0,0.3);
+    width: 60px; height: 50px;
+    background: linear-gradient(180deg, #252540 0%, #1a1a30 30%, #12122a 70%, #0c0c1a 100%);
+    border-radius: 0 0 4px 4px;
+    box-shadow:
+        inset -3px 0 6px rgba(0,0,0,0.4),
+        inset 3px 0 6px rgba(0,0,0,0.4),
+        inset 0 -2px 4px rgba(0,0,0,0.3),
+        2px 0 0 rgba(255,255,255,0.03),
+        -2px 0 0 rgba(255,255,255,0.03);
+    clip-path: polygon(10% 0%, 90% 0%, 100% 100%, 0% 100%);
 }
 .monitor-ayak-taban {
-    width: 140px; height: 10px;
+    width: 160px; height: 12px;
     background: linear-gradient(180deg, #1e1e32, #0a0a14);
-    border-radius: 0 0 50% 50% / 0 0 100% 100%;
-    box-shadow: 0 6px 20px rgba(0,0,0,0.6), 0 2px 8px rgba(0,0,0,0.4);
+    border-radius: 50%;
+    box-shadow:
+        0 4px 15px rgba(0,0,0,0.7),
+        0 8px 30px rgba(0,0,0,0.4),
+        inset 0 2px 3px rgba(255,255,255,0.04);
 }
 
 /* Boot Alt Bilgi */
