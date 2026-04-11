@@ -78,28 +78,37 @@
 
     <!-- SİNEMATİK GİRİŞ EKRANI -->
     <div id="acilis-ekrani">
+        <!-- Masa yüzeyi -->
+        <div class="masa-yuzeyi"></div>
         <div class="boot-sahne">
-            <div class="monitor">
-                <div class="monitor-cerceve">
-                    <div class="monitor-ekran">
+            <div class="laptop" id="laptop">
+                <!-- Kapak (ekran) — açılır kapanır -->
+                <div class="laptop-kapak" id="laptopKapak">
+                    <div class="laptop-kapak-arka"></div>
+                    <div class="laptop-ekran">
                         <div class="ekran-icerik">
                             <div class="kod-satirlari" id="kodSatirlari"></div>
                             <span class="yanip-sonen-imlec">_</span>
                         </div>
                         <div class="ekran-yansima"></div>
+                        <div class="ekran-kamera"></div>
                     </div>
-                    <!-- 3D yan yüzeyler -->
-                    <div class="monitor-sag-yuz"></div>
-                    <div class="monitor-alt-yuz"></div>
                 </div>
-                <div class="monitor-ayak">
-                    <div class="monitor-ayak-ust"></div>
-                    <div class="monitor-ayak-taban"></div>
+                <!-- Gövde (klavye) -->
+                <div class="laptop-govde">
+                    <div class="laptop-klavye">
+                        <div class="tus-satir"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div>
+                        <div class="tus-satir"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div>
+                        <div class="tus-satir"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div>
+                        <div class="tus-satir"><span></span><span></span><span class="bosluk-tusu"></span><span></span><span></span></div>
+                    </div>
+                    <div class="laptop-touchpad"></div>
+                    <div class="laptop-govde-kenar"></div>
                 </div>
             </div>
-            <div class="boot-alt-bilgi">
+            <div class="boot-alt-bilgi" id="bootAltBilgi">
                 <div class="boot-progress-bar"><div class="boot-progress-fill" id="bootProgress"></div></div>
-                <p class="boot-ipucu" id="bootIpucu" data-tr="sistem başlatılıyor..." data-en="booting system...">sistem başlatılıyor<span class="nokta-anim">...</span></p>
+                <p class="boot-ipucu" id="bootIpucu" data-tr="Devam etmek için tıklayın veya ENTER tuşuna basın" data-en="Click or press ENTER to continue">Devam etmek için tıklayın veya ENTER tuşuna basın</p>
             </div>
         </div>
         <div class="zoom-gecis" id="zoomGecis"></div>

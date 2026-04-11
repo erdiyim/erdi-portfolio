@@ -176,13 +176,15 @@ document.addEventListener('DOMContentLoaded', () => { DilYoneticisi.baslat(); Te
 })();
 
 // ==========================================
-// 1. SİNEMATİK GİRİŞ MOTORU
+// 1. SİNEMATİK GİRİŞ MOTORU (Laptop)
 // ==========================================
 (() => {
     const acilisEkrani = document.getElementById('acilis-ekrani');
     const kodSatirlari = document.getElementById('kodSatirlari');
     const bootIpucu = document.getElementById('bootIpucu');
-    const monitorCerceve = document.querySelector('.monitor-cerceve');
+    const bootAltBilgi = document.getElementById('bootAltBilgi');
+    const laptopKapak = document.getElementById('laptopKapak');
+    const laptop = document.getElementById('laptop');
     const zoomGecis = document.getElementById('zoomGecis');
     const navbar = document.getElementById('navbar');
 
@@ -234,26 +236,28 @@ document.addEventListener('DOMContentLoaded', () => { DilYoneticisi.baslat(); Te
     let satirIndex = 0;
     let hazir = false;
     let girisYapildi = false;
-    let assetlerHazir = false;
 
-    // Asset preload tracker
+    // Asset preload
     const assetler = [];
     const portre = new Image();
     portre.src = 'erdi-portrait.png';
     assetler.push(new Promise(r => { portre.onload = r; portre.onerror = r; }));
-    // Font kontrolü
     if (document.fonts) assetler.push(document.fonts.ready);
 
     function ilerlemeGuncelle(yuzde) {
         if (bootProgress) bootProgress.style.width = yuzde + '%';
     }
 
+    // 1. Laptop kapalı başlıyor, 800ms sonra açılmaya başlar
+    setTimeout(() => {
+        laptopKapak.classList.add('acik');
+    }, 800);
+
+    // 2. Kapak açıldıktan sonra kod yazmaya başla (açılma 1.8s)
     function satirEkle() {
         if (satirIndex >= kodlar.length) {
             ilerlemeGuncelle(85);
-            // Asset'ler hazır olana kadar bekle
             Promise.all(assetler).then(() => {
-                assetlerHazir = true;
                 ilerlemeGuncelle(100);
                 hazir = true;
                 bootIpucu.innerHTML = bt.ipucu;
@@ -265,37 +269,37 @@ document.addEventListener('DOMContentLoaded', () => { DilYoneticisi.baslat(); Te
         kodSatirlari.innerHTML += satirHTML;
         satirIndex++;
         kodSatirlari.scrollTop = kodSatirlari.scrollHeight;
-        // İlerleme: kod satırları %0-80 aralığında
         ilerlemeGuncelle(Math.round((satirIndex / kodlar.length) * 80));
         const gecikme = kodlar[satirIndex - 1] === '' ? 80 : Math.random() * 60 + 40;
         setTimeout(satirEkle, gecikme);
     }
-    setTimeout(satirEkle, 600);
+    // Kodlar kapak açılma ortasında başlasın
+    setTimeout(satirEkle, 1800);
 
+    // 3. Tıklayınca zoom — ekrana yaklaşma
     function girisYap() {
         if (!hazir || girisYapildi) return;
         girisYapildi = true;
 
-        monitorCerceve.classList.add('zoom');
+        laptop.classList.add('zoom');
 
-        // Boot bitince ağır motorları başlat (particle, glitch)
         if (typeof window._baslatAgirMotorlar === 'function') {
             window._baslatAgirMotorlar();
         }
 
-        setTimeout(() => { zoomGecis.classList.add('aktif'); }, 500);
+        setTimeout(() => { zoomGecis.classList.add('aktif'); }, 600);
 
         setTimeout(() => {
             acilisEkrani.classList.add('kapaniyor');
             acilisEkrani.style.display = 'none';
-            document.body.style.overflow = ''; // Scroll kilidini aç
-            if (lenis) lenis.start(); // Lenis smooth scroll başlat
+            document.body.style.overflow = '';
+            if (lenis) lenis.start();
             navbar.classList.add('gorunur');
             document.querySelectorAll('#ana-ekran .anim').forEach(el => el.classList.add('gorunur'));
             sayaclariBaslat();
-        }, 1100);
+        }, 1200);
 
-        setTimeout(() => { zoomGecis.classList.remove('aktif'); }, 1300);
+        setTimeout(() => { zoomGecis.classList.remove('aktif'); }, 1500);
     }
 
     window.addEventListener('keydown', (e) => { if (e.key === 'Enter') girisYap(); });

@@ -131,98 +131,219 @@ body { background-color: var(--renk-bg); color: var(--renk-metin); font-family: 
     to { opacity: 1; transform: scale(1) translateY(0); }
 }
 
-/* 3D Monitör */
-.monitor { perspective: 800px; }
+/* ============ 3D LAPTOP ============ */
 
-.monitor-cerceve {
-    width: 560px; height: 340px;
-    background: linear-gradient(170deg, #2d2d44 0%, #1e1e32 30%, #141428 100%);
-    border-radius: 16px;
-    padding: 16px 16px 26px;
-    position: relative;
-    transform-style: preserve-3d;
-    transform: rotateY(-15deg) rotateX(5deg);
-    transition: transform 1s cubic-bezier(0.16, 1, 0.3, 1);
-    box-shadow:
-        0 40px 80px -20px rgba(0,0,0,0.9),
-        0 0 60px rgba(0,255,204,0.03);
-}
-
-/* Sağ yan yüzey — 3D kalınlık */
-.monitor-sag-yuz {
+/* Masa yüzeyi */
+.masa-yuzeyi {
     position: absolute;
-    top: 4px; bottom: 4px; right: 0;
-    width: 20px;
-    background: linear-gradient(180deg, #1a1a2e 0%, #0e0e1c 50%, #080814 100%);
-    transform-origin: right center;
-    transform: rotateY(90deg) translateZ(0px);
-    border-radius: 0 4px 4px 0;
+    bottom: 0; left: 0; right: 0;
+    height: 35%;
+    background: linear-gradient(180deg, #0c0c16 0%, #0a0a12 40%, #08080e 100%);
+    z-index: 0;
 }
-
-/* Alt yüzey — 3D kalınlık */
-.monitor-alt-yuz {
-    position: absolute;
-    left: 4px; right: 4px; bottom: 0;
-    height: 20px;
-    background: linear-gradient(90deg, #0c0c1a 0%, #101022 50%, #0c0c1a 100%);
-    transform-origin: center bottom;
-    transform: rotateX(-90deg) translateZ(0px);
-    border-radius: 0 0 4px 4px;
-}
-
-/* Üst kenar ışık */
-.monitor-cerceve::before {
+.masa-yuzeyi::before {
     content: '';
     position: absolute;
-    top: 0; left: 20px; right: 20px;
+    top: 0; left: 0; right: 0;
     height: 1px;
-    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.12), transparent);
-    border-radius: 16px 16px 0 0;
-    z-index: 2;
+    background: linear-gradient(90deg, transparent 10%, rgba(255,255,255,0.04) 50%, transparent 90%);
 }
-
-/* Alt logo çentiği */
-.monitor-cerceve::after {
+/* Ambient ışık yansıması masada */
+.masa-yuzeyi::after {
     content: '';
     position: absolute;
-    bottom: 9px;
+    top: 10px;
     left: 50%;
     transform: translateX(-50%);
-    width: 50px;
-    height: 5px;
-    border-radius: 3px;
-    background: rgba(255,255,255,0.04);
-    box-shadow: inset 0 1px 2px rgba(0,0,0,0.3);
+    width: 500px;
+    height: 120px;
+    background: radial-gradient(ellipse, rgba(0,255,204,0.03) 0%, transparent 70%);
+    pointer-events: none;
+}
+
+/* Laptop container */
+.laptop {
+    position: relative;
+    transform-style: preserve-3d;
+    perspective: 1800px;
     z-index: 2;
 }
 
-.monitor-ekran {
+/* === KAPAK (EKRAN TARAFI) === */
+.laptop-kapak {
+    width: 540px; height: 360px;
+    position: relative;
+    transform-style: preserve-3d;
+    transform-origin: center bottom;
+    /* Başlangıç: kapalı (-92deg) */
+    transform: rotateX(-92deg);
+    transition: transform 1.8s cubic-bezier(0.34, 1.2, 0.64, 1);
+}
+.laptop-kapak.acik {
+    transform: rotateX(-20deg);
+}
+
+/* Kapak arka yüzey (Apple logosu tarafı) */
+.laptop-kapak-arka {
+    position: absolute;
     width: 100%; height: 100%;
+    background: linear-gradient(145deg, #2a2a3e 0%, #1c1c30 40%, #141428 100%);
+    border-radius: 14px 14px 0 0;
+    backface-visibility: hidden;
+    transform: rotateY(180deg);
+    box-shadow:
+        inset 0 0 0 1px rgba(255,255,255,0.06),
+        0 -2px 20px rgba(0,0,0,0.5);
+}
+/* Logo */
+.laptop-kapak-arka::after {
+    content: 'EÖ';
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%) rotateY(180deg);
+    font-family: var(--font-baslik);
+    font-size: 1.6rem;
+    font-weight: 800;
+    color: rgba(0,255,204,0.15);
+    letter-spacing: 2px;
+}
+
+/* Ekran yüzey */
+.laptop-ekran {
+    position: absolute;
+    width: 100%; height: 100%;
+    background: #0e0e1a;
+    border-radius: 14px 14px 0 0;
+    padding: 14px 14px 22px;
+    backface-visibility: hidden;
+    box-shadow:
+        inset 0 0 0 1px rgba(255,255,255,0.06),
+        inset 0 0 0 2px rgba(0,0,0,0.8);
+    overflow: hidden;
+}
+
+/* Webcam noktası */
+.ekran-kamera {
+    position: absolute;
+    top: 6px; left: 50%;
+    transform: translateX(-50%);
+    width: 5px; height: 5px;
+    border-radius: 50%;
+    background: #1a1a2e;
+    border: 1px solid rgba(255,255,255,0.08);
+}
+
+/* Ekran içeriği */
+.laptop-ekran .ekran-icerik {
+    width: 100%; height: calc(100% - 8px);
+    margin-top: 8px;
     background: #08080f;
-    border-radius: 8px;
+    border-radius: 4px;
     overflow: hidden;
     position: relative;
-    border: 1px solid rgba(255,255,255,0.05);
-    box-shadow:
-        inset 0 0 40px rgba(0,0,0,0.6),
-        inset 0 0 60px rgba(0,255,204,0.015);
+    padding: 16px 18px;
+    font-family: var(--font-kod);
+    font-size: 0.78rem;
+    line-height: 1.75;
+    color: rgba(0, 255, 204, 0.7);
+    box-shadow: inset 0 0 30px rgba(0,0,0,0.5);
 }
 
-/* LED gösterge */
-.monitor-ekran::after {
+/* Yansıma */
+.laptop-ekran .ekran-yansima {
+    position: absolute;
+    top: 14px; left: 14px;
+    right: 14px; bottom: 22px;
+    background:
+        linear-gradient(155deg, rgba(255,255,255,0.06) 0%, transparent 35%),
+        radial-gradient(ellipse at 30% 20%, rgba(255,255,255,0.03), transparent 60%);
+    pointer-events: none;
+    border-radius: 4px;
+    z-index: 5;
+}
+
+/* === GÖVDE (KLAVYE TARAFI) === */
+.laptop-govde {
+    width: 560px; height: 24px;
+    position: relative;
+    transform-style: preserve-3d;
+    margin-top: -1px;
+}
+
+/* Gövde üst yüzey (klavyeli kısım) */
+.laptop-govde::before {
     content: '';
     position: absolute;
-    bottom: -14px;
-    right: 24px;
-    width: 6px;
-    height: 6px;
-    border-radius: 50%;
-    background: #00ffcc;
-    box-shadow: 0 0 6px #00ffcc, 0 0 15px rgba(0,255,204,0.3);
-    animation: ledYanip 2s ease-in-out infinite;
-    z-index: 2;
+    width: 100%; height: 340px;
+    background: linear-gradient(180deg, #1e1e32 0%, #18182c 50%, #141428 100%);
+    border-radius: 0 0 10px 10px;
+    transform-origin: top center;
+    transform: rotateX(-70deg);
+    box-shadow:
+        0 4px 20px rgba(0,0,0,0.6),
+        inset 0 0 0 1px rgba(255,255,255,0.04);
 }
-@keyframes ledYanip { 0%,100%{opacity:1} 50%{opacity:0.3} }
+
+/* Klavye */
+.laptop-klavye {
+    position: absolute;
+    top: 20px; left: 50%;
+    transform: translateX(-50%) rotateX(-70deg);
+    transform-origin: top center;
+    width: 460px;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    z-index: 3;
+}
+.tus-satir {
+    display: flex;
+    gap: 3px;
+    justify-content: center;
+}
+.tus-satir span {
+    width: 28px; height: 18px;
+    background: rgba(0,0,0,0.3);
+    border-radius: 3px;
+    border: 1px solid rgba(255,255,255,0.03);
+    box-shadow: inset 0 -1px 0 rgba(0,0,0,0.2);
+}
+.bosluk-tusu {
+    width: 140px !important;
+}
+
+/* Touchpad */
+.laptop-touchpad {
+    position: absolute;
+    top: 120px; left: 50%;
+    transform: translateX(-50%) rotateX(-70deg);
+    transform-origin: top center;
+    width: 120px; height: 70px;
+    background: rgba(0,0,0,0.15);
+    border-radius: 8px;
+    border: 1px solid rgba(255,255,255,0.03);
+    z-index: 3;
+}
+
+/* Gövde ön kenar (kalınlık) */
+.laptop-govde-kenar {
+    position: absolute;
+    bottom: -6px; left: 5px; right: 5px;
+    height: 6px;
+    background: linear-gradient(180deg, #1a1a2e 0%, #101020 100%);
+    border-radius: 0 0 4px 4px;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.5);
+}
+/* Kenar çentik (açma yeri) */
+.laptop-govde-kenar::after {
+    content: '';
+    position: absolute;
+    top: 0; left: 50%;
+    transform: translateX(-50%);
+    width: 40px; height: 3px;
+    border-radius: 0 0 3px 3px;
+    background: rgba(255,255,255,0.03);
+}
 
 .ekran-icerik {
     padding: 20px;
@@ -260,30 +381,6 @@ body { background-color: var(--renk-bg); color: var(--renk-metin); font-family: 
         radial-gradient(ellipse at 30% 20%, rgba(255,255,255,0.03), transparent 60%);
     pointer-events: none;
     border-radius: 8px;
-}
-
-/* Monitör Ayak */
-.monitor-ayak { display: flex; flex-direction: column; align-items: center; transform-style: preserve-3d; }
-.monitor-ayak-ust {
-    width: 60px; height: 50px;
-    background: linear-gradient(180deg, #252540 0%, #1a1a30 30%, #12122a 70%, #0c0c1a 100%);
-    border-radius: 0 0 4px 4px;
-    box-shadow:
-        inset -3px 0 6px rgba(0,0,0,0.4),
-        inset 3px 0 6px rgba(0,0,0,0.4),
-        inset 0 -2px 4px rgba(0,0,0,0.3),
-        2px 0 0 rgba(255,255,255,0.03),
-        -2px 0 0 rgba(255,255,255,0.03);
-    clip-path: polygon(10% 0%, 90% 0%, 100% 100%, 0% 100%);
-}
-.monitor-ayak-taban {
-    width: 160px; height: 12px;
-    background: linear-gradient(180deg, #1e1e32, #0a0a14);
-    border-radius: 50%;
-    box-shadow:
-        0 4px 15px rgba(0,0,0,0.7),
-        0 8px 30px rgba(0,0,0,0.4),
-        inset 0 2px 3px rgba(255,255,255,0.04);
 }
 
 /* Boot Alt Bilgi */
@@ -332,9 +429,14 @@ body { background-color: var(--renk-bg); color: var(--renk-metin); font-family: 
 .zoom-gecis.aktif { opacity: 1; pointer-events: all; }
 
 /* Monitör zoom animasyonu */
-.monitor-cerceve.zoom {
-    transform: rotateY(0deg) rotateX(0deg) scale(3.5);
-    transition: transform 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+/* Laptop zoom — ekrana yaklaşma */
+.laptop.zoom .laptop-kapak {
+    transform: rotateX(0deg) scale(2.8);
+    transition: transform 1.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.laptop.zoom .laptop-govde {
+    opacity: 0;
+    transition: opacity 0.4s ease;
 }
 
 #acilis-ekrani.kapaniyor {
@@ -985,7 +1087,9 @@ textarea.form-kontrol { resize: none; }
 @media (max-width: 1024px) {
     .hero-icerik { left: 5%; max-width: 400px; }
     .portre-kapsayici { width: 48%; right: 2%; }
-    .monitor-cerceve { width: 440px; height: 270px; }
+    .laptop-kapak { width: 440px; height: 290px; }
+    .laptop-govde { width: 460px; }
+    .laptop-klavye { width: 370px; }
 }
 
 @media (max-width: 768px) {
@@ -1005,8 +1109,10 @@ textarea.form-kontrol { resize: none; }
     .bolum-container { padding: 80px 16px; }
     .cam-kart-genis { padding: 40px 20px; }
     .yetenek-grid { grid-template-columns: repeat(2, 1fr); }
-    .monitor-cerceve { width: 320px; height: 200px; }
-    .ekran-icerik { font-size: 0.65rem; padding: 12px; }
+    .laptop-kapak { width: 340px; height: 226px; }
+    .laptop-govde { width: 360px; }
+    .laptop-klavye { width: 290px; }
+    .laptop-ekran .ekran-icerik { font-size: 0.65rem; padding: 12px; }
 }
 
 @media (max-width: 480px) {
@@ -1015,7 +1121,10 @@ textarea.form-kontrol { resize: none; }
     .istatistik-sayi { font-size: 1.5rem; }
     .bolum-baslik { font-size: 2rem; }
     .yetenek-grid { grid-template-columns: 1fr; }
-    .monitor-cerceve { width: 280px; height: 170px; }
+    .laptop-kapak { width: 290px; height: 193px; }
+    .laptop-govde { width: 310px; }
+    .laptop-klavye { width: 250px; }
+    .laptop-ekran .ekran-icerik { font-size: 0.6rem; padding: 10px; }
 }
 
 /* Scroll Progress Bar */
