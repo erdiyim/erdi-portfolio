@@ -287,7 +287,7 @@ document.addEventListener('DOMContentLoaded', () => { DilYoneticisi.baslat(); Te
             window._baslatAgirMotorlar();
         }
 
-        setTimeout(() => { zoomGecis.classList.add('aktif'); }, 600);
+        setTimeout(() => { zoomGecis.classList.add('aktif'); }, 900);
 
         setTimeout(() => {
             acilisEkrani.classList.add('kapaniyor');
@@ -297,9 +297,9 @@ document.addEventListener('DOMContentLoaded', () => { DilYoneticisi.baslat(); Te
             navbar.classList.add('gorunur');
             document.querySelectorAll('#ana-ekran .anim').forEach(el => el.classList.add('gorunur'));
             sayaclariBaslat();
-        }, 1200);
+        }, 1500);
 
-        setTimeout(() => { zoomGecis.classList.remove('aktif'); }, 1500);
+        setTimeout(() => { zoomGecis.classList.remove('aktif'); }, 1900);
     }
 
     window.addEventListener('keydown', (e) => { if (e.key === 'Enter') girisYap(); });

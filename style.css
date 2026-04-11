@@ -167,6 +167,7 @@ body { background-color: var(--renk-bg); color: var(--renk-metin); font-family: 
     transform-style: preserve-3d;
     perspective: 1800px;
     z-index: 2;
+    transition: transform 1.4s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 /* === KAPAK (EKRAN TARAFI) === */
@@ -264,74 +265,76 @@ body { background-color: var(--renk-bg); color: var(--renk-metin); font-family: 
 
 /* === GÖVDE (KLAVYE TARAFI) === */
 .laptop-govde {
-    width: 560px; height: 24px;
+    width: 560px; height: 14px;
     position: relative;
     transform-style: preserve-3d;
     margin-top: -1px;
+    transition: transform 1.4s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.6s ease;
 }
 
-/* Gövde üst yüzey (klavyeli kısım) */
+/* Gövde üst yüzey — perspektifli eğik yüzey */
 .laptop-govde::before {
     content: '';
     position: absolute;
-    width: 100%; height: 340px;
-    background: linear-gradient(180deg, #1e1e32 0%, #18182c 50%, #141428 100%);
+    width: 100%; height: 200px;
+    background: linear-gradient(180deg, #22223a 0%, #1a1a2e 30%, #141428 100%);
     border-radius: 0 0 10px 10px;
     transform-origin: top center;
-    transform: rotateX(-70deg);
+    transform: rotateX(-75deg);
     box-shadow:
         0 4px 20px rgba(0,0,0,0.6),
-        inset 0 0 0 1px rgba(255,255,255,0.04);
+        inset 0 0 0 1px rgba(255,255,255,0.05);
 }
 
-/* Klavye */
+/* Klavye — eğik yüzey üzerinde */
 .laptop-klavye {
     position: absolute;
-    top: 20px; left: 50%;
-    transform: translateX(-50%) rotateX(-70deg);
+    top: 8px; left: 50%;
+    transform: translateX(-50%) rotateX(-75deg);
     transform-origin: top center;
-    width: 460px;
+    width: 420px;
     display: flex;
     flex-direction: column;
-    gap: 4px;
+    gap: 3px;
     z-index: 3;
+    padding: 8px 12px;
 }
 .tus-satir {
     display: flex;
-    gap: 3px;
+    gap: 2px;
     justify-content: center;
 }
 .tus-satir span {
-    width: 28px; height: 18px;
-    background: rgba(0,0,0,0.3);
-    border-radius: 3px;
-    border: 1px solid rgba(255,255,255,0.03);
-    box-shadow: inset 0 -1px 0 rgba(0,0,0,0.2);
+    width: 26px; height: 14px;
+    background: rgba(0,0,0,0.35);
+    border-radius: 2px;
+    border: 1px solid rgba(255,255,255,0.04);
+    box-shadow: 0 1px 0 rgba(255,255,255,0.02), inset 0 -1px 0 rgba(0,0,0,0.3);
 }
 .bosluk-tusu {
-    width: 140px !important;
+    width: 120px !important;
 }
 
-/* Touchpad */
+/* Touchpad — eğik yüzey üzerinde */
 .laptop-touchpad {
     position: absolute;
-    top: 120px; left: 50%;
-    transform: translateX(-50%) rotateX(-70deg);
+    top: 80px; left: 50%;
+    transform: translateX(-50%) rotateX(-75deg);
     transform-origin: top center;
-    width: 120px; height: 70px;
-    background: rgba(0,0,0,0.15);
-    border-radius: 8px;
-    border: 1px solid rgba(255,255,255,0.03);
+    width: 100px; height: 55px;
+    background: rgba(0,0,0,0.12);
+    border-radius: 6px;
+    border: 1px solid rgba(255,255,255,0.04);
     z-index: 3;
 }
 
 /* Gövde ön kenar (kalınlık) */
 .laptop-govde-kenar {
     position: absolute;
-    bottom: -6px; left: 5px; right: 5px;
-    height: 6px;
+    bottom: -5px; left: 3px; right: 3px;
+    height: 5px;
     background: linear-gradient(180deg, #1a1a2e 0%, #101020 100%);
-    border-radius: 0 0 4px 4px;
+    border-radius: 0 0 3px 3px;
     box-shadow: 0 3px 10px rgba(0,0,0,0.5);
 }
 /* Kenar çentik (açma yeri) */
@@ -340,9 +343,9 @@ body { background-color: var(--renk-bg); color: var(--renk-metin); font-family: 
     position: absolute;
     top: 0; left: 50%;
     transform: translateX(-50%);
-    width: 40px; height: 3px;
+    width: 36px; height: 2px;
     border-radius: 0 0 3px 3px;
-    background: rgba(255,255,255,0.03);
+    background: rgba(255,255,255,0.04);
 }
 
 .ekran-icerik {
@@ -428,15 +431,18 @@ body { background-color: var(--renk-bg); color: var(--renk-metin); font-family: 
 
 .zoom-gecis.aktif { opacity: 1; pointer-events: all; }
 
-/* Monitör zoom animasyonu */
-/* Laptop zoom — ekrana yaklaşma */
+/* Laptop zoom — tüm laptop yaklaşma */
+.laptop.zoom {
+    transform: scale(3) translateY(-10%);
+    transition: transform 1.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
 .laptop.zoom .laptop-kapak {
-    transform: rotateX(0deg) scale(2.8);
+    transform: rotateX(-5deg);
     transition: transform 1.4s cubic-bezier(0.16, 1, 0.3, 1);
 }
 .laptop.zoom .laptop-govde {
     opacity: 0;
-    transition: opacity 0.4s ease;
+    transition: opacity 0.8s ease 0.3s;
 }
 
 #acilis-ekrani.kapaniyor {
