@@ -117,6 +117,7 @@ body { background-color: var(--renk-bg); color: var(--renk-metin); font-family: 
     background: #020202;
     z-index: 9999;
     display: flex; justify-content: center; align-items: center;
+    overflow: hidden;
 }
 
 @keyframes sahneGir {
@@ -152,25 +153,25 @@ body { background-color: var(--renk-bg); color: var(--renk-metin); font-family: 
     pointer-events: none;
 }
 
-/* Laptop — üstten hafif bakış açısı */
+/* Laptop — hafif üstten bakış */
 .laptop {
     position: relative;
     transform-style: preserve-3d;
     z-index: 2;
-    transform: rotateX(16deg);
-    transition: transform 1.6s cubic-bezier(0.16, 1, 0.3, 1);
+    transform: rotateX(6deg);
+    transition: transform 1.8s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .boot-sahne {
     display: flex; flex-direction: column;
     align-items: center; gap: 20px;
-    perspective: 1400px;
+    perspective: 1800px;
     animation: sahneGir 1s ease-out forwards;
 }
 
 /* === KAPAK (EKRAN/LID) === */
 .laptop-kapak {
-    width: 500px; height: 330px;
+    width: 500px; height: 320px;
     position: relative;
     transform-style: preserve-3d;
     transform-origin: center bottom;
@@ -178,7 +179,7 @@ body { background-color: var(--renk-bg); color: var(--renk-metin); font-family: 
     transition: transform 1.8s cubic-bezier(0.34, 1.2, 0.64, 1);
 }
 .laptop-kapak.acik {
-    transform: rotateX(-75deg);
+    transform: rotateX(-82deg);
 }
 
 /* Kapak arka yüzey */
@@ -262,18 +263,18 @@ body { background-color: var(--renk-bg); color: var(--renk-metin); font-family: 
 
 /* === GÖVDE (BASE) — gerçek görünür gövde === */
 .laptop-govde {
-    width: 520px;
-    height: 160px;
+    width: 516px;
+    height: 145px;
     position: relative;
-    background: linear-gradient(180deg, #2c2c44 0%, #24243a 20%, #1c1c30 60%, #161628 100%);
-    border-radius: 2px 2px 10px 10px;
+    background: linear-gradient(180deg, #2e2e48 0%, #26263e 15%, #1e1e34 50%, #181830 100%);
+    border-radius: 2px 2px 12px 12px;
     margin-top: -2px;
     box-shadow:
         0 8px 30px rgba(0,0,0,0.6),
         0 2px 8px rgba(0,0,0,0.4),
-        inset 0 1px 0 rgba(255,255,255,0.06),
-        inset 0 0 0 1px rgba(255,255,255,0.03);
-    transition: transform 1.6s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.6s ease;
+        inset 0 1px 0 rgba(255,255,255,0.07),
+        inset 0 0 0 1px rgba(255,255,255,0.04);
+    transition: opacity 0.3s ease, transform 0.5s ease;
 }
 
 /* Menteşe çizgisi — ekran ve gövde arasındaki bağlantı */
@@ -457,20 +458,17 @@ body { background-color: var(--renk-bg); color: var(--renk-metin); font-family: 
 
 /* Laptop zoom — tüm laptop yaklaşma */
 .laptop.zoom {
-    transform: rotateX(0deg) scale(3.2) translateY(-15%);
-    transition: transform 1.8s cubic-bezier(0.16, 1, 0.3, 1);
-}
-.laptop.zoom .laptop-kapak {
-    transform: rotateX(-5deg);
+    transform: rotateX(0deg) scale(2.5) translateY(-30%);
     transition: transform 1.6s cubic-bezier(0.16, 1, 0.3, 1);
 }
 .laptop.zoom .laptop-govde {
     opacity: 0;
-    transition: opacity 0.6s ease 0.4s;
+    transform: translateY(15px);
+    transition: opacity 0.25s ease, transform 0.4s ease;
 }
 .laptop.zoom::after {
     opacity: 0;
-    transition: opacity 0.4s ease;
+    transition: opacity 0.3s ease;
 }
 
 #acilis-ekrani.kapaniyor {
