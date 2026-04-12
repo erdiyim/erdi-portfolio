@@ -33,8 +33,8 @@
     --renk-glitch-bg: #e8e8ea;
 }
 [data-theme="light"] .vurgu { color: #00b894; }
-[data-theme="light"] .kayan-yazi.gri-yazi { color: rgba(0,0,0,0.04); }
-[data-theme="light"] .kayan-yazi.beyaz-yazi { color: rgba(0,0,0,0.06); }
+[data-theme="light"] .kayan-yazi.gri-yazi { color: rgba(0,0,0,0.06); }
+[data-theme="light"] .kayan-yazi.beyaz-yazi { color: rgba(0,0,0,0.09); }
 [data-theme="light"] #navbar.scrolled { background: rgba(245,245,247,0.9); border-bottom-color: rgba(0,0,0,0.08); }
 [data-theme="light"] .nav-link { color: rgba(26,26,46,0.65); }
 [data-theme="light"] .nav-link:hover { color: #1a1a2e; background: rgba(0,0,0,0.04); }
@@ -596,8 +596,8 @@ body { background-color: var(--renk-bg); color: var(--renk-metin); font-family: 
 .arka-yazi { top: 15%; z-index: 0; }
 .on-yazi { top: 55%; z-index: 0; }
 .kayan-yazi { font-size: 10vw; font-weight: 900; text-transform: uppercase; letter-spacing: -2px; display: inline-block; }
-.gri-yazi { color: rgba(255,255,255,0.02); animation: yaziSola 50s linear infinite; }
-.beyaz-yazi { color: rgba(255,255,255,0.04); animation: yaziSaga 40s linear infinite; }
+.gri-yazi { color: rgba(255,255,255,0.05); animation: yaziSola 50s linear infinite; }
+.beyaz-yazi { color: rgba(255,255,255,0.08); animation: yaziSaga 40s linear infinite; }
 @keyframes yaziSola { 0%{transform:translateX(0)} 100%{transform:translateX(-50%)} }
 @keyframes yaziSaga { 0%{transform:translateX(-50%)} 100%{transform:translateX(0)} }
 
