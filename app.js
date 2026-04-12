@@ -248,12 +248,12 @@ document.addEventListener('DOMContentLoaded', () => { DilYoneticisi.baslat(); Te
         if (bootProgress) bootProgress.style.width = yuzde + '%';
     }
 
-    // 1. Laptop KAPALI başlıyor → 1s sonra kapak açılmaya başlar (2s animasyon)
+    // 1. Laptop KAPALI başlıyor → 1.2s sonra kapak açılmaya başlar (2.5s animasyon)
     setTimeout(() => {
         laptopKapak.classList.add('acik');
-    }, 1000);
+    }, 1200);
 
-    // 2. Kapak açıldıktan sonra kod yazmaya başla (açılma 2s, 1.5s'de başla)
+    // 2. Kapak açılırken kodlar başlasın (açılma 2.5s, ortasında başla)
     function satirEkle() {
         if (satirIndex >= kodlar.length) {
             ilerlemeGuncelle(85);
@@ -273,8 +273,8 @@ document.addEventListener('DOMContentLoaded', () => { DilYoneticisi.baslat(); Te
         const gecikme = kodlar[satirIndex - 1] === '' ? 80 : Math.random() * 60 + 40;
         setTimeout(satirEkle, gecikme);
     }
-    // Kodlar kapak açılırken ortasında başlasın (1s bekleme + 1.5s açılma)
-    setTimeout(satirEkle, 2500);
+    // Kodlar kapak açılırken ortasında başlasın (1.2s bekleme + 1.5s açılma)
+    setTimeout(satirEkle, 2700);
 
     // 3. Tıklayınca zoom — ekrana yaklaşma
     function girisYap() {
