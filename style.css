@@ -202,20 +202,43 @@ body { background-color: var(--renk-bg); color: var(--renk-metin); font-family: 
         0 0 30px rgba(0,255,204,0.08);
 }
 
-/* CRT açılma efekti — yatay çizgiden tam ekrana */
+/* CRT açılma efekti — karanlıktan yatay çizgi, sonra tam ekran */
 .crt-acilma {
     position: absolute;
     top: 0; left: 0;
     width: 100%; height: 100%;
     background: #050510;
     z-index: 10;
-    transition: clip-path 1.2s cubic-bezier(0.22, 1, 0.36, 1);
-    clip-path: inset(0 0 0 0);
 }
 .monitor.acik .crt-acilma {
-    clip-path: inset(50% 0 50% 0);
-    opacity: 0;
-    transition: clip-path 1.2s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.3s ease 1.2s;
+    animation: crtAcil 1.4s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+@keyframes crtAcil {
+    0% {
+        clip-path: inset(0 0 0 0);
+        background: #050510;
+    }
+    15% {
+        clip-path: inset(49% 0 49% 0);
+        background: rgba(0,255,204,0.15);
+    }
+    30% {
+        clip-path: inset(48% 0 48% 0);
+        background: rgba(0,255,204,0.08);
+    }
+    60% {
+        clip-path: inset(10% 0 10% 0);
+        background: rgba(0,255,204,0.03);
+    }
+    90% {
+        clip-path: inset(0 0 0 0);
+        background: transparent;
+    }
+    100% {
+        clip-path: inset(0 0 0 0);
+        opacity: 0;
+        background: transparent;
+    }
 }
 
 /* CRT tarama çizgileri */
@@ -382,19 +405,41 @@ body { background-color: var(--renk-bg); color: var(--renk-metin); font-family: 
 
 .zoom-gecis.aktif { opacity: 1; pointer-events: all; }
 
-/* Monitör zoom — sinematik yaklaşma */
-.monitor.zoom {
-    transform: scale(2.2) translateY(-10%);
-    transition: transform 1.8s cubic-bezier(0.16, 1, 0.3, 1);
+/* CRT kapanma animasyonu — klasik TV kapanma efekti */
+.monitor.kapaniyor .monitor-ekran {
+    animation: crtKapan 0.8s cubic-bezier(0.55, 0, 1, 0.45) forwards;
 }
-.monitor.zoom .monitor-boyun,
-.monitor.zoom .monitor-ayak {
-    opacity: 0;
-    transition: opacity 0.3s ease;
+.monitor.kapaniyor .monitor-guc-led {
+    background: #333;
+    box-shadow: none;
+    transition: all 0.3s ease;
 }
-.monitor.zoom::after {
+.monitor.kapaniyor ~ .boot-alt-bilgi {
     opacity: 0;
-    transition: opacity 0.3s ease;
+    transition: opacity 0.2s ease;
+}
+
+@keyframes crtKapan {
+    0% {
+        transform: scale(1);
+        filter: brightness(1);
+        opacity: 1;
+    }
+    40% {
+        transform: scaleY(0.01) scaleX(1);
+        filter: brightness(3);
+        opacity: 1;
+    }
+    70% {
+        transform: scaleY(0.01) scaleX(0.3);
+        filter: brightness(5);
+        opacity: 1;
+    }
+    100% {
+        transform: scaleY(0) scaleX(0);
+        filter: brightness(0);
+        opacity: 0;
+    }
 }
 
 #acilis-ekrani.kapaniyor {

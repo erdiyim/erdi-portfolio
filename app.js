@@ -275,18 +275,20 @@ document.addEventListener('DOMContentLoaded', () => { DilYoneticisi.baslat(); Te
     // Kodlar CRT açıldıktan sonra başlasın (1s bekleme + 1.3s açılma efekti)
     setTimeout(satirEkle, 2300);
 
-    // 3. Tıklayınca zoom — ekrana yaklaşma
+    // 3. Tıklayınca CRT kapanma efekti → sayfa geçişi
     function girisYap() {
         if (!hazir || girisYapildi) return;
         girisYapildi = true;
 
-        monitor.classList.add('zoom');
+        // CRT kapanma: ekran ortadan bir çizgiye küçülür
+        monitor.classList.add('kapaniyor');
 
         if (typeof window._baslatAgirMotorlar === 'function') {
             window._baslatAgirMotorlar();
         }
 
-        setTimeout(() => { zoomGecis.classList.add('aktif'); }, 1100);
+        // Beyaz flaş + fade out
+        setTimeout(() => { zoomGecis.classList.add('aktif'); }, 800);
 
         setTimeout(() => {
             acilisEkrani.classList.add('kapaniyor');
@@ -296,9 +298,9 @@ document.addEventListener('DOMContentLoaded', () => { DilYoneticisi.baslat(); Te
             navbar.classList.add('gorunur');
             document.querySelectorAll('#ana-ekran .anim').forEach(el => el.classList.add('gorunur'));
             sayaclariBaslat();
-        }, 1700);
+        }, 1300);
 
-        setTimeout(() => { zoomGecis.classList.remove('aktif'); }, 2100);
+        setTimeout(() => { zoomGecis.classList.remove('aktif'); }, 1800);
     }
 
     window.addEventListener('keydown', (e) => { if (e.key === 'Enter') girisYap(); });
