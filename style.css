@@ -644,6 +644,8 @@ body { background-color: var(--renk-bg); color: var(--renk-metin); font-family: 
     width: 42%; max-width: 650px; min-width: 280px; height: 88vh;
     z-index: 5; cursor: default;
     overflow: hidden;
+    -webkit-mask-image: linear-gradient(to bottom, transparent 0%, black 8%, black 85%, transparent 100%);
+    mask-image: linear-gradient(to bottom, transparent 0%, black 8%, black 85%, transparent 100%);
 }
 
 .portre-glow {
