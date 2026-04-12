@@ -142,26 +142,13 @@ body { background-color: var(--renk-bg); color: var(--renk-metin); font-family: 
     height: 1px;
     background: linear-gradient(90deg, transparent 10%, rgba(255,255,255,0.05) 50%, transparent 90%);
 }
-/* Ekran ışığı masaya yansıma — kapak açılınca belirginleşir */
-.masa-yuzeyi::after {
-    content: '';
-    position: absolute;
-    top: 0; left: 50%;
-    transform: translateX(-50%);
-    width: 600px; height: 180px;
-    background: radial-gradient(ellipse at 50% 0%, rgba(0,255,204,0.04) 0%, transparent 70%);
-    pointer-events: none;
-    opacity: 0;
-    transition: opacity 2s ease 1.5s;
-}
-.laptop-kapak.acik ~ .boot-alt-bilgi ~ .masa-yuzeyi::after,
-#acilis-ekrani .masa-yuzeyi::after { opacity: 1; }
 
 .boot-sahne {
     display: flex; flex-direction: column;
     align-items: center; gap: 24px;
     perspective: 1400px;
     animation: sahneGir 1.2s ease-out forwards;
+    position: relative;
 }
 
 @keyframes sahneGir {
@@ -169,232 +156,168 @@ body { background-color: var(--renk-bg); color: var(--renk-metin); font-family: 
     to { opacity: 1; transform: scale(1) translateY(0); }
 }
 
-/* Laptop — 3/4 açılı sinematik bakış (AE tarzı) */
-.laptop {
+/* === ESKİ MONİTÖR (CRT) === */
+.monitor {
     position: relative;
-    transform-style: preserve-3d;
     z-index: 2;
-    transform: rotateX(18deg) rotateY(-8deg);
-    transition: transform 1.8s cubic-bezier(0.16, 1, 0.3, 1);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
-/* === KAPAK (LID) === */
-.laptop-kapak {
-    width: 520px; height: 340px;
+/* Monitör gövdesi — kalın çerçeveli retro kasa */
+.monitor-govde {
+    width: 520px;
+    height: 380px;
+    background: linear-gradient(180deg, #2a2a3a 0%, #1e1e2e 40%, #18182a 100%);
+    border-radius: 18px;
+    padding: 28px 28px 40px;
     position: relative;
-    transform-style: preserve-3d;
-    transform-origin: center bottom;
-    /* KAPALI: kapak gövde üstünde yatıyor */
-    transform: rotateX(0deg);
-    transition: transform 2.5s cubic-bezier(0.22, 1, 0.36, 1);
-}
-/* AÇIK: doğal açılma açısı */
-.laptop-kapak.acik {
-    transform: rotateX(-78deg);
+    box-shadow:
+        inset 0 1px 0 rgba(255,255,255,0.08),
+        inset 0 -1px 0 rgba(0,0,0,0.4),
+        0 8px 40px rgba(0,0,0,0.6),
+        0 2px 10px rgba(0,0,0,0.4);
+    border: 1px solid rgba(255,255,255,0.05);
 }
 
-/* Kapak arka yüzey — kapalıyken görünen taraf */
-.laptop-kapak-arka {
-    position: absolute;
-    width: 100%; height: 100%;
-    background: linear-gradient(145deg, #3a3a52 0%, #2e2e44 25%, #22223a 60%, #1a1a30 100%);
-    border-radius: 14px 14px 2px 2px;
-    backface-visibility: hidden;
-    transform: rotateY(180deg);
-    box-shadow:
-        inset 0 0 0 1px rgba(255,255,255,0.1),
-        inset 0 1px 0 rgba(255,255,255,0.06),
-        0 -2px 20px rgba(0,0,0,0.5);
-}
-/* EÖ Logo — kapalıyken görünür */
-.laptop-kapak-arka::after {
-    content: 'EÖ';
-    position: absolute;
-    top: 50%; left: 50%;
-    transform: translate(-50%, -50%) rotateY(180deg);
-    font-family: var(--font-baslik);
-    font-size: 1.5rem;
-    font-weight: 800;
-    color: rgba(0,255,204,0.12);
-    letter-spacing: 3px;
-}
-
-/* Ekran yüzey — ince bezel */
-.laptop-ekran {
-    position: absolute;
-    width: 100%; height: 100%;
-    background: #0a0a0a;
-    border-radius: 14px 14px 2px 2px;
-    padding: 12px 12px 18px;
-    backface-visibility: hidden;
-    box-shadow:
-        inset 0 0 0 1.5px rgba(255,255,255,0.06),
-        inset 0 0 0 3px rgba(0,0,0,0.9);
+/* Ekran */
+.monitor-ekran {
+    width: 100%;
+    height: 100%;
+    background: #050510;
+    border-radius: 8px;
+    position: relative;
     overflow: hidden;
+    box-shadow:
+        inset 0 0 0 2px rgba(0,0,0,0.8),
+        inset 0 0 60px rgba(0,0,0,0.5),
+        0 0 15px rgba(0,255,204,0);
+    transition: box-shadow 1.5s ease;
+}
+.monitor.acik .monitor-ekran {
+    box-shadow:
+        inset 0 0 0 2px rgba(0,0,0,0.8),
+        inset 0 0 60px rgba(0,0,0,0.3),
+        0 0 30px rgba(0,255,204,0.08);
 }
 
-/* Ekran ışık efekti — açılınca parlar */
-.laptop-ekran::after {
-    content: '';
+/* CRT açılma efekti — yatay çizgiden tam ekrana */
+.crt-acilma {
     position: absolute;
-    inset: 0;
-    background: rgba(0,255,204,0.03);
-    opacity: 0;
-    transition: opacity 1.5s ease 2s;
-    pointer-events: none;
-    border-radius: 14px;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: #050510;
+    z-index: 10;
+    transition: clip-path 1.2s cubic-bezier(0.22, 1, 0.36, 1);
+    clip-path: inset(0 0 0 0);
 }
-.laptop-kapak.acik .laptop-ekran::after {
+.monitor.acik .crt-acilma {
+    clip-path: inset(50% 0 50% 0);
+    opacity: 0;
+    transition: clip-path 1.2s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.3s ease 1.2s;
+}
+
+/* CRT tarama çizgileri */
+.crt-tarama {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: repeating-linear-gradient(
+        0deg,
+        transparent,
+        transparent 2px,
+        rgba(0,0,0,0.15) 2px,
+        rgba(0,0,0,0.15) 4px
+    );
+    pointer-events: none;
+    z-index: 6;
+    opacity: 0;
+    transition: opacity 0.5s ease 1.5s;
+}
+.monitor.acik .crt-tarama {
     opacity: 1;
 }
 
-/* Webcam */
-.ekran-kamera {
-    position: absolute;
-    top: 5px; left: 50%;
-    transform: translateX(-50%);
-    width: 5px; height: 5px;
-    border-radius: 50%;
-    background: #151520;
-    border: 1px solid rgba(255,255,255,0.08);
-    z-index: 6;
-}
-
 /* Ekran içeriği */
-.laptop-ekran .ekran-icerik {
-    width: 100%; height: calc(100% - 8px);
-    margin-top: 8px;
-    background: #0c0c18;
-    border-radius: 4px;
+.monitor-ekran .ekran-icerik {
+    width: 100%;
+    height: 100%;
+    background: transparent;
     overflow: hidden;
     position: relative;
-    padding: 16px 18px;
+    padding: 18px 20px;
     font-family: var(--font-kod);
-    font-size: 0.78rem;
+    font-size: 0.8rem;
     line-height: 1.75;
-    color: rgba(0, 255, 204, 0.7);
-    box-shadow: inset 0 0 40px rgba(0,0,0,0.6);
+    color: rgba(0, 255, 204, 0.8);
+    z-index: 3;
+    opacity: 0;
+    transition: opacity 0.8s ease 1.3s;
+}
+.monitor.acik .ekran-icerik {
+    opacity: 1;
 }
 
 /* Ekran yansıma */
-.laptop-ekran .ekran-yansima {
+.monitor-ekran .ekran-yansima {
     position: absolute;
-    top: 12px; left: 12px;
-    right: 12px; bottom: 18px;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
     background:
-        linear-gradient(155deg, rgba(255,255,255,0.05) 0%, transparent 25%),
-        radial-gradient(ellipse at 25% 15%, rgba(255,255,255,0.03), transparent 50%);
+        linear-gradient(155deg, rgba(255,255,255,0.04) 0%, transparent 30%),
+        radial-gradient(ellipse at 30% 20%, rgba(255,255,255,0.02), transparent 50%);
     pointer-events: none;
-    border-radius: 4px;
-    z-index: 5;
+    border-radius: 8px;
+    z-index: 7;
 }
 
-/* === GÖVDE (BASE) === */
-.laptop-govde {
-    width: 540px;
-    height: 18px;
-    position: relative;
-    transform-style: preserve-3d;
-    margin-top: -2px;
-    transition: opacity 0.3s ease, transform 0.5s ease;
-}
-
-/* Gövde üst yüzey — eğik perspektif ile klavye alanı */
-.laptop-govde::before {
-    content: '';
+/* Güç LED'i */
+.monitor-guc-led {
     position: absolute;
-    width: 100%;
-    height: 280px;
-    background: linear-gradient(180deg, #32324c 0%, #28283e 15%, #1e1e34 50%, #181830 100%);
-    border-radius: 0 0 10px 10px;
-    transform-origin: top center;
-    transform: rotateX(-76deg);
-    box-shadow:
-        0 6px 25px rgba(0,0,0,0.7),
-        inset 0 0 0 1px rgba(255,255,255,0.06),
-        inset 0 1px 0 rgba(255,255,255,0.08);
-}
-
-/* Gövde ön kenar — kalınlık */
-.laptop-govde-kenar {
-    position: absolute;
-    bottom: -5px; left: 3px; right: 3px;
-    height: 5px;
-    background: linear-gradient(180deg, #1e1e30, #141426);
-    border-radius: 0 0 5px 5px;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.6);
-}
-.laptop-govde-kenar::after {
-    content: '';
-    position: absolute;
-    top: -1px; left: 50%;
-    transform: translateX(-50%);
-    width: 44px; height: 3px;
-    border-radius: 3px 3px 0 0;
-    background: rgba(255,255,255,0.05);
-}
-
-/* Klavye — eğik yüzey üzerinde */
-.laptop-klavye {
-    position: absolute;
-    top: 10px; left: 50%;
-    transform: translateX(-50%) rotateX(-76deg);
-    transform-origin: top center;
-    width: 430px;
-    display: flex;
-    flex-direction: column;
-    gap: 3px;
-    z-index: 3;
-}
-.tus-satir {
-    display: flex;
-    gap: 2px;
-    justify-content: center;
-}
-.tus-satir span {
-    width: 27px; height: 17px;
-    background: rgba(0,0,0,0.3);
-    border-radius: 2px;
-    border: 1px solid rgba(255,255,255,0.05);
-    box-shadow: 0 1px 0 rgba(255,255,255,0.03), inset 0 -1px 0 rgba(0,0,0,0.3);
-}
-.bosluk-tusu {
-    width: 130px !important;
-}
-
-/* Touchpad — eğik yüzey */
-.laptop-touchpad {
-    position: absolute;
-    top: 95px; left: 50%;
-    transform: translateX(-50%) rotateX(-76deg);
-    transform-origin: top center;
-    width: 110px; height: 60px;
-    background: rgba(0,0,0,0.12);
-    border-radius: 7px;
-    border: 1px solid rgba(255,255,255,0.04);
-    z-index: 3;
-}
-
-/* Laptop altı gölge */
-.laptop::after {
-    content: '';
-    position: absolute;
-    bottom: -18px; left: 5%;
-    width: 90%; height: 24px;
-    background: radial-gradient(ellipse, rgba(0,0,0,0.5) 0%, transparent 70%);
-    filter: blur(10px);
-    z-index: -1;
+    bottom: 14px;
+    right: 28px;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #333;
+    box-shadow: inset 0 1px 2px rgba(0,0,0,0.5);
     transition: all 1s ease;
 }
+.monitor.acik .monitor-guc-led {
+    background: #00ffcc;
+    box-shadow: 0 0 8px rgba(0,255,204,0.6), 0 0 20px rgba(0,255,204,0.2);
+}
 
-.ekran-icerik {
-    padding: 20px;
-    font-family: var(--font-kod);
-    font-size: 0.82rem;
-    line-height: 1.8;
-    color: rgba(0, 255, 204, 0.7);
-    height: 100%;
-    overflow: hidden;
+/* Monitör boynu */
+.monitor-boyun {
+    width: 60px;
+    height: 35px;
+    background: linear-gradient(180deg, #1e1e2e 0%, #16162a 100%);
+    border-left: 1px solid rgba(255,255,255,0.04);
+    border-right: 1px solid rgba(255,255,255,0.04);
+}
+
+/* Monitör ayağı */
+.monitor-ayak {
+    width: 160px;
+    height: 12px;
+    background: linear-gradient(180deg, #22223a 0%, #1a1a30 100%);
+    border-radius: 0 0 8px 8px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+    border: 1px solid rgba(255,255,255,0.04);
+    border-top: none;
+}
+
+/* Monitör altı gölge */
+.monitor::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 20%; width: 60%; height: 20px;
+    background: radial-gradient(ellipse, rgba(0,0,0,0.4) 0%, transparent 70%);
+    filter: blur(8px);
+    z-index: -1;
 }
 
 .kod-satirlari { white-space: pre-wrap; }
@@ -413,17 +336,6 @@ body { background-color: var(--renk-bg); color: var(--renk-metin); font-family: 
     font-weight: bold;
 }
 @keyframes imlecYanip { 0%,100%{opacity:1} 50%{opacity:0} }
-
-.ekran-yansima {
-    position: absolute; top: 0; left: 0;
-    width: 100%; height: 100%;
-    background:
-        linear-gradient(155deg, rgba(255,255,255,0.08) 0%, rgba(255,255,255,0.02) 20%, transparent 40%),
-        linear-gradient(340deg, rgba(0,255,204,0.03) 0%, transparent 50%),
-        radial-gradient(ellipse at 30% 20%, rgba(255,255,255,0.03), transparent 60%);
-    pointer-events: none;
-    border-radius: 8px;
-}
 
 /* Boot Alt Bilgi */
 .boot-alt-bilgi { text-align: center; }
@@ -470,20 +382,17 @@ body { background-color: var(--renk-bg); color: var(--renk-metin); font-family: 
 
 .zoom-gecis.aktif { opacity: 1; pointer-events: all; }
 
-/* Laptop zoom — sinematik yaklaşma */
-.laptop.zoom {
-    transform: rotateX(0deg) rotateY(0deg) scale(2.4) translateY(-18%);
+/* Monitör zoom — sinematik yaklaşma */
+.monitor.zoom {
+    transform: scale(2.2) translateY(-10%);
     transition: transform 1.8s cubic-bezier(0.16, 1, 0.3, 1);
 }
-.laptop.zoom .laptop-kapak {
-    transform: rotateX(-72deg);
-    transition: transform 1.4s cubic-bezier(0.16, 1, 0.3, 1);
-}
-.laptop.zoom .laptop-govde {
+.monitor.zoom .monitor-boyun,
+.monitor.zoom .monitor-ayak {
     opacity: 0;
     transition: opacity 0.3s ease;
 }
-.laptop.zoom::after {
+.monitor.zoom::after {
     opacity: 0;
     transition: opacity 0.3s ease;
 }
@@ -1136,11 +1045,8 @@ textarea.form-kontrol { resize: none; }
 @media (max-width: 1024px) {
     .hero-icerik { left: 5%; max-width: 400px; }
     .portre-kapsayici { width: 48%; right: 2%; }
-    .laptop-kapak { width: 420px; height: 275px; }
-    .laptop-govde { width: 440px; }
-    .laptop-klavye { width: 350px; }
-    .tus-satir span { width: 22px; height: 14px; }
-    .bosluk-tusu { width: 105px !important; }
+    .monitor-govde { width: 440px; height: 320px; }
+    .monitor-ekran .ekran-icerik { font-size: 0.72rem; }
 }
 
 @media (max-width: 768px) {
@@ -1160,13 +1066,10 @@ textarea.form-kontrol { resize: none; }
     .bolum-container { padding: 80px 16px; }
     .cam-kart-genis { padding: 40px 20px; }
     .yetenek-grid { grid-template-columns: repeat(2, 1fr); }
-    .laptop-kapak { width: 340px; height: 222px; }
-    .laptop-govde { width: 360px; }
-    .laptop-klavye { width: 290px; }
-    .tus-satir span { width: 18px; height: 12px; }
-    .bosluk-tusu { width: 85px !important; }
-    .laptop-ekran .ekran-icerik { font-size: 0.65rem; padding: 12px; }
-    .laptop { transform: rotateX(18deg) rotateY(-5deg); }
+    .monitor-govde { width: 360px; height: 270px; padding: 20px 20px 32px; }
+    .monitor-ekran .ekran-icerik { font-size: 0.65rem; padding: 12px; }
+    .monitor-boyun { width: 50px; height: 28px; }
+    .monitor-ayak { width: 130px; }
 }
 
 @media (max-width: 480px) {
@@ -1175,13 +1078,10 @@ textarea.form-kontrol { resize: none; }
     .istatistik-sayi { font-size: 1.5rem; }
     .bolum-baslik { font-size: 2rem; }
     .yetenek-grid { grid-template-columns: 1fr; }
-    .laptop-kapak { width: 280px; height: 183px; }
-    .laptop-govde { width: 300px; }
-    .laptop-klavye { width: 240px; }
-    .tus-satir span { width: 15px; height: 10px; }
-    .bosluk-tusu { width: 70px !important; }
-    .laptop-ekran .ekran-icerik { font-size: 0.55rem; padding: 8px; }
-    .laptop { transform: rotateX(16deg) rotateY(-3deg); }
+    .monitor-govde { width: 300px; height: 225px; padding: 16px 16px 28px; border-radius: 12px; }
+    .monitor-ekran .ekran-icerik { font-size: 0.55rem; padding: 8px; }
+    .monitor-boyun { width: 40px; height: 24px; }
+    .monitor-ayak { width: 110px; height: 10px; }
 }
 
 /* Scroll Progress Bar */

@@ -176,15 +176,14 @@ document.addEventListener('DOMContentLoaded', () => { DilYoneticisi.baslat(); Te
 })();
 
 // ==========================================
-// 1. SİNEMATİK GİRİŞ MOTORU (Laptop)
+// 1. SİNEMATİK GİRİŞ MOTORU (CRT Monitör)
 // ==========================================
 (() => {
     const acilisEkrani = document.getElementById('acilis-ekrani');
     const kodSatirlari = document.getElementById('kodSatirlari');
     const bootIpucu = document.getElementById('bootIpucu');
     const bootAltBilgi = document.getElementById('bootAltBilgi');
-    const laptopKapak = document.getElementById('laptopKapak');
-    const laptop = document.getElementById('laptop');
+    const monitor = document.getElementById('monitor');
     const zoomGecis = document.getElementById('zoomGecis');
     const navbar = document.getElementById('navbar');
 
@@ -248,12 +247,12 @@ document.addEventListener('DOMContentLoaded', () => { DilYoneticisi.baslat(); Te
         if (bootProgress) bootProgress.style.width = yuzde + '%';
     }
 
-    // 1. Laptop KAPALI başlıyor → 1.2s sonra kapak açılmaya başlar (2.5s animasyon)
+    // 1. Monitör kapalı başlıyor → 1s sonra CRT açılma efekti
     setTimeout(() => {
-        laptopKapak.classList.add('acik');
-    }, 1200);
+        monitor.classList.add('acik');
+    }, 1000);
 
-    // 2. Kapak açılırken kodlar başlasın (açılma 2.5s, ortasında başla)
+    // 2. CRT açıldıktan sonra kodlar başlasın
     function satirEkle() {
         if (satirIndex >= kodlar.length) {
             ilerlemeGuncelle(85);
@@ -273,15 +272,15 @@ document.addEventListener('DOMContentLoaded', () => { DilYoneticisi.baslat(); Te
         const gecikme = kodlar[satirIndex - 1] === '' ? 80 : Math.random() * 60 + 40;
         setTimeout(satirEkle, gecikme);
     }
-    // Kodlar kapak açılırken ortasında başlasın (1.2s bekleme + 1.5s açılma)
-    setTimeout(satirEkle, 2700);
+    // Kodlar CRT açıldıktan sonra başlasın (1s bekleme + 1.3s açılma efekti)
+    setTimeout(satirEkle, 2300);
 
     // 3. Tıklayınca zoom — ekrana yaklaşma
     function girisYap() {
         if (!hazir || girisYapildi) return;
         girisYapildi = true;
 
-        laptop.classList.add('zoom');
+        monitor.classList.add('zoom');
 
         if (typeof window._baslatAgirMotorlar === 'function') {
             window._baslatAgirMotorlar();
