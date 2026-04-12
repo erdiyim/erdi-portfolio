@@ -95,7 +95,9 @@
 [data-theme="light"] .dil-secim.aktif-dil { color: #00b894; }
 [data-theme="light"] #hamburger span { background: #1a1a2e; }
 [data-theme="light"] .portre-glow { background: radial-gradient(ellipse, rgba(0,184,148,0.15) 0%, transparent 70%); }
-[data-theme="light"] .bolum-ayirici { background: linear-gradient(90deg, transparent, rgba(0,184,148,0.3), transparent); }
+[data-theme="light"] .bolum-ayirici { background: linear-gradient(90deg, transparent, rgba(0,184,148,0.35), transparent); }
+[data-theme="light"] .bolum-ayirici::before { color: rgba(0,184,148,0.5); background: var(--renk-bg); }
+[data-theme="light"] .bolum-ayirici::after { background: radial-gradient(ellipse, rgba(0,184,148,0.06) 0%, transparent 70%); }
 [data-theme="light"] ::-webkit-scrollbar-thumb { background: rgba(0,184,148,0.3); }
 
 /* Theme geçişinde tüm transitionları devre dışı bırak */
@@ -741,9 +743,31 @@ body { background-color: var(--renk-bg); color: var(--renk-metin); font-family: 
 
 /* Bölüm ayırıcı çizgi — bölümler arası neon geçiş */
 .bolum-ayirici {
-    width: 100%; max-width: 200px; height: 1px; margin: 0 auto;
-    background: linear-gradient(90deg, transparent, rgba(0,255,204,0.4), transparent);
-    opacity: 0; transition: opacity 1s ease, max-width 1s ease;
+    width: 100%; max-width: 200px; height: 2px; margin: 60px auto;
+    background: linear-gradient(90deg, transparent, rgba(0,255,204,0.5), transparent);
+    opacity: 0; transition: opacity 1s ease, max-width 1.2s cubic-bezier(0.22, 1, 0.36, 1);
+    position: relative;
+    border: none;
+}
+.bolum-ayirici::before {
+    content: '◆';
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 0.5rem;
+    color: rgba(0,255,204,0.5);
+    background: var(--renk-bg);
+    padding: 0 12px;
+    letter-spacing: 6px;
+}
+.bolum-ayirici::after {
+    content: '';
+    position: absolute;
+    top: -8px; left: 25%; right: 25%;
+    height: 18px;
+    background: radial-gradient(ellipse, rgba(0,255,204,0.06) 0%, transparent 70%);
+    filter: blur(6px);
+    pointer-events: none;
 }
 .bolum-ayirici.gorunur { opacity: 1; max-width: 400px; }
 
