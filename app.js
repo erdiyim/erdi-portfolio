@@ -303,6 +303,26 @@ document.addEventListener('DOMContentLoaded', () => { DilYoneticisi.baslat(); Te
         setTimeout(() => { zoomGecis.classList.remove('aktif'); }, 1800);
     }
 
+    // Atla butonu — animasyonu tamamen atla
+    const atlaBtn = document.getElementById('atlaBtn');
+    function animasyonuAtla() {
+        if (girisYapildi) return;
+        girisYapildi = true;
+
+        if (typeof window._baslatAgirMotorlar === 'function') {
+            window._baslatAgirMotorlar();
+        }
+
+        acilisEkrani.classList.add('kapaniyor');
+        acilisEkrani.style.display = 'none';
+        document.body.style.overflow = '';
+        if (lenis) lenis.start();
+        navbar.classList.add('gorunur');
+        document.querySelectorAll('#ana-ekran .anim').forEach(el => el.classList.add('gorunur'));
+        sayaclariBaslat();
+    }
+    if (atlaBtn) atlaBtn.addEventListener('click', (e) => { e.stopPropagation(); animasyonuAtla(); });
+
     window.addEventListener('keydown', (e) => { if (e.key === 'Enter') girisYap(); });
     acilisEkrani.addEventListener('click', girisYap);
 })();
