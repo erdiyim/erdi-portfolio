@@ -1845,3 +1845,26 @@ function konfetiFirlat() {
         window['ga-disable-G-VGZ26N6CFE'] = true;
     }
 })();
+
+// ==========================================
+// REFERANS INDICATOR
+// ==========================================
+(() => {
+    const grid = document.querySelector('.referans-grid');
+    const noktalar = document.querySelectorAll('.ind-nokta');
+    if (!grid || !noktalar.length) return;
+    grid.addEventListener('scroll', () => {
+        const kartlar = grid.querySelectorAll('.referans-kart');
+        const scrollLeft = grid.scrollLeft;
+        const kartGenislik = kartlar[0] ? kartlar[0].offsetWidth + 16 : 0;
+        const aktifIndex = Math.round(scrollLeft / kartGenislik);
+        noktalar.forEach((n, i) => n.classList.toggle('aktif-nokta', i === aktifIndex));
+    }, { passive: true });
+    noktalar.forEach((nokta, i) => {
+        nokta.addEventListener('click', () => {
+            const kartlar = grid.querySelectorAll('.referans-kart');
+            const kartGenislik = kartlar[0] ? kartlar[0].offsetWidth + 16 : 0;
+            grid.scrollTo({ left: i * kartGenislik, behavior: 'smooth' });
+        });
+    });
+})();

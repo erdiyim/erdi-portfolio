@@ -423,6 +423,12 @@ body { background-color: var(--renk-bg); color: var(--renk-metin); font-family: 
     transition: all 0.4s ease;
 }
 
+.form-buton {
+    width: auto !important;
+    align-self: flex-start;
+    padding-left: 40px !important;
+    padding-right: 40px !important;
+}
 .boot-ipucu.hazir {
     color: #00ffcc;
     text-shadow: 0 0 15px rgba(0,255,204,0.5);
@@ -882,7 +888,7 @@ body { background-color: var(--renk-bg); color: var(--renk-metin); font-family: 
 /* --- PROJELER ---                          */
 /* ========================================= */
 .projeler-icerik { width: 100%; max-width: 1200px; text-align: center; }
-.proje-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(340px, 100%), 1fr)); gap: 32px; margin-top: 50px; }
+.proje-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 32px; margin-top: 50px; }
 .proje-kart {
     background: var(--renk-kart); backdrop-filter: blur(10px);
     border: 1px solid var(--renk-border); border-radius: 20px; overflow: hidden; text-align: left;
@@ -1177,6 +1183,7 @@ textarea.form-kontrol { resize: none; }
     .portre-kapsayici { width: 48%; right: 2%; }
     .monitor-govde { width: 440px; height: 320px; }
     .monitor-ekran .ekran-icerik { font-size: 0.72rem; }
+    .proje-grid { grid-template-columns: 1fr; }
 }
 
 @media (max-width: 768px) {
@@ -1382,6 +1389,28 @@ textarea.form-kontrol { resize: none; }
 .referans-bilgi span { color: rgba(255,255,255,0.35); font-size: 0.78rem; }
 .referans-kart > p { color: rgba(255,255,255,0.55); font-size: 0.92rem; line-height: 1.75; font-style: italic; }
 .referans-yildizlar { margin-top: 16px; color: #ffd700; font-size: 0.9rem; letter-spacing: 2px; }
+/* Referans kaydırma indicator */
+.referans-indicator {
+    display: none;
+    justify-content: center;
+    gap: 8px;
+    margin-top: 16px;
+}
+.ind-nokta {
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.2);
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+.ind-nokta.aktif-nokta {
+    background: #00ffcc;
+    width: 20px;
+    border-radius: 3px;
+}
+@media (max-width: 768px) {
+    .referans-indicator { display: flex; }
+}
 /* Light mode referanslar */
 [data-theme="light"] .referans-kart { background: rgba(0,0,0,0.02); border-color: rgba(0,0,0,0.08); }
 [data-theme="light"] .referans-kart::before { color: rgba(0,184,148,0.1); }
