@@ -1,0 +1,164 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Destek · Support — Luxury Pawn Shop Simulator</title>
+<meta name="description" content="Luxury Pawn Shop Simulator destek / support: iletişim, kayıt, satın alımları geri yükleme, reklamlar, bildirimler ve veri silme.">
+<!-- GDD Eki v0.65: https://erdiocal.com/support adresine yüklenecek tek dosya (dış kaynak yok). App Store "Destek URL'si" ve
+     fastlane support_url.txt bu adresi gösterir; Tools/publish_privacy.ps1 gizlilik sayfasıyla birlikte yayınlar. -->
+<style>
+  :root {
+    --bg: #f7f2e8; --card: #fffdf8; --ink: #2b2118; --muted: #6b5d4f; --line: #e3d8c6;
+    --accent: #7a2e4a; --accent-ink: #ffffff; --gold: #b8892f; --code: #f1e8d8;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #17121a; --card: #211a24; --ink: #efe6d8; --muted: #b3a593; --line: #3a2f3c;
+      --accent: #c46a8c; --accent-ink: #17121a; --gold: #d8ad55; --code: #2d2430;
+    }
+  }
+  * { box-sizing: border-box; }
+  html { -webkit-text-size-adjust: 100%; }
+  body {
+    margin: 0; background: var(--bg); color: var(--ink);
+    font: 16px/1.6 system-ui, -apple-system, "Segoe UI", Roboto, "Noto Sans", sans-serif;
+  }
+  .wrap { max-width: 780px; margin: 0 auto; padding: 24px 16px 64px; }
+  header.top { border-bottom: 3px double var(--gold); padding-bottom: 16px; margin-bottom: 20px; }
+  .brand { font-size: 13px; letter-spacing: .12em; text-transform: uppercase; color: var(--gold); font-weight: 700; margin: 0; }
+  h1 { font-size: 28px; line-height: 1.2; margin: 6px 0 4px; }
+  .meta { color: var(--muted); font-size: 14px; margin: 0; }
+  .tabs { display: flex; gap: 8px; margin: 20px 0 8px; }
+  .tabs input { position: absolute; opacity: 0; pointer-events: none; }
+  .tabs label {
+    flex: 0 0 auto; min-height: 44px; padding: 10px 18px; border: 2px solid var(--accent); border-radius: 999px;
+    color: var(--accent); font-weight: 700; cursor: pointer; user-select: none;
+  }
+  .tabs input:focus-visible + label { outline: 3px solid var(--gold); outline-offset: 2px; }
+  #lang-tr:checked + label, #lang-en:checked + label { background: var(--accent); color: var(--accent-ink); }
+  .policy { display: none; }
+  body:has(#lang-tr:checked) .policy[lang="tr"], body:has(#lang-en:checked) .policy[lang="en"] { display: block; }
+  /* :has desteklemeyen eski tarayıcılar: iki dil alt alta görünür. */
+  @supports not selector(:has(*)) { .policy { display: block; } .tabs { display: none; } }
+  section.card { background: var(--card); border: 1px solid var(--line); border-radius: 14px; padding: 18px 20px; margin: 14px 0; }
+  section.contact { border: 2px solid var(--gold); }
+  .mail { font-size: 20px; font-weight: 700; user-select: all; }
+  h2 { font-size: 20px; margin: 0 0 8px; }
+  h3 { font-size: 16px; margin: 14px 0 6px; }
+  p, li { overflow-wrap: anywhere; }
+  ul { padding-left: 20px; margin: 8px 0; }
+  li { margin: 4px 0; }
+  code { background: var(--code); padding: 1px 5px; border-radius: 4px; font-size: 90%; }
+  a { color: var(--accent); }
+  .note { color: var(--muted); font-size: 14px; }
+  footer { margin-top: 28px; color: var(--muted); font-size: 13px; text-align: center; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="top">
+    <p class="brand">erdiocal · Luxury Pawn Shop Simulator</p>
+    <h1>Destek · Support</h1>
+    <p class="meta">Son güncelleme / Last updated: 03.11.2026 · https://erdiocal.com/support</p>
+  </header>
+
+  <div class="tabs" role="radiogroup" aria-label="Dil / Language">
+    <input type="radio" name="lang" id="lang-tr" checked><label for="lang-tr">Türkçe</label>
+    <input type="radio" name="lang" id="lang-en"><label for="lang-en">English</label>
+  </div>
+
+  <!-- ─────────────────────────── TÜRKÇE ─────────────────────────── -->
+  <article class="policy" lang="tr">
+    <section class="card contact">
+      <h2>Bize yaz</h2>
+      <p class="mail"><a href="mailto:info@erdiocal.com">info@erdiocal.com</a></p>
+      <p>Oyunu bağımsız geliştirici <strong>erdiocal</strong> yapıyor. Hata, satın alma ya da öneri için e-posta at; genellikle birkaç iş günü içinde yanıt veririz. Hızlı çözüm için şunları ekle:</p>
+      <ul>
+        <li>Telefon modeli ve işletim sistemi sürümü (ör. iPhone 13, iOS 26.1)</li>
+        <li>Oyun sürümü (App Store ya da Google Play sayfasında yazar)</li>
+        <li>Ne yaptığını ve ne olduğunu; mümkünse bir ekran görüntüsü</li>
+      </ul>
+    </section>
+
+    <section class="card">
+      <h2>Sık sorulanlar</h2>
+
+      <h3>İlerlemem nerede saklanıyor?</h3>
+      <p>Dükkânın, paran ve koleksiyonun yalnızca telefonundaki kayıt dosyasında durur; hesap açmana gerek yoktur. <strong>Oyunu silersen ilerleme de silinir.</strong> Bulut kaydı şu an yok; eklendiğinde bu sayfada duyuracağız.</p>
+
+      <h3>Satın aldığım paket kayboldu</h3>
+      <p>Oyunda <strong>VIP</strong> düğmesine dokun, ★ VIP MAĞAZA penceresinde <strong>Satın Alımları Geri Yükle</strong>'yi seç. Satın alımlar Apple Kimliğine ya da Google hesabına bağlıdır; aynı hesapla giriş yaptığından emin ol. Düzelmezse makbuzdaki sipariş numarasıyla bize yaz.</p>
+
+      <h3>İade istiyorum</h3>
+      <p>Ödemeleri Apple ve Google alır, iadeye de onlar karar verir: App Store için <a href="https://reportaproblem.apple.com">reportaproblem.apple.com</a>, Google Play için Play Store › Ödemeler ve abonelikler › Bütçe ve geçmiş.</p>
+
+      <h3>Reklamlar</h3>
+      <p>Ödüllü reklamları yalnızca sen istediğinde izlersin (▶ işaretli düğmeler). Ara sıra çıkan geçiş reklamlarını <strong>Reklamları Kaldır</strong> paketi kalıcı olarak kapatır. Kişiselleştirilmiş reklam tercihini menüdeki <strong>Gizlilik ve İzinler › Reklam Tercihleri</strong>'nden değiştirebilirsin.</p>
+
+      <h3>İnternet olmadan oynanır mı?</h3>
+      <p>Evet. Oyun tamamen çevrimdışı oynanır. Reklamlı ödüller ve satın almalar için internet gerekir.</p>
+
+      <h3>Bildirimler</h3>
+      <p>Bildirim izni ikinci oyun sabahında bir kez sorulur. Bildirimler gece 22:00 ile sabah 09:30 arasında gelmez ve günde en çok bir tanedir. Kapatmak için telefonunun Ayarlar › Bildirimler bölümünü kullan.</p>
+
+      <h3>Dil</h3>
+      <p>Menüdeki <strong>Dil / Language</strong> düğmesiyle 9 dil arasında geçiş yapabilirsin: Türkçe, English, Deutsch, Español, Français, Italiano, Português (Brasil), Русский, 日本語.</p>
+
+      <h3>Baştan başlamak istiyorum</h3>
+      <p>Menüdeki <strong>Yeni Oyun Başlat</strong> kaydını sıfırlar; bu işlem geri alınamaz. Satın aldığın paketler <strong>Satın Alımları Geri Yükle</strong> ile geri gelir.</p>
+
+      <h3>Verilerimi silmek istiyorum</h3>
+      <p>Menüdeki <strong>Gizlilik ve İzinler</strong>'de <strong>Analitik Verisi</strong>'ni kapat: toplama durur ve sunucudaki analitik verinin silinmesi istenir. Ayrıca <a href="mailto:info@erdiocal.com">info@erdiocal.com</a> adresine yazabilirsin. Ayrıntılar: <a href="https://erdiocal.com/privacy">Gizlilik Politikası</a>.</p>
+    </section>
+  </article>
+
+  <!-- ─────────────────────────── ENGLISH ─────────────────────────── -->
+  <article class="policy" lang="en">
+    <section class="card contact">
+      <h2>Contact us</h2>
+      <p class="mail"><a href="mailto:info@erdiocal.com">info@erdiocal.com</a></p>
+      <p>The game is made by the independent developer <strong>erdiocal</strong>. E-mail us about bugs, purchases or ideas; we usually reply within a few business days. To help us fix it quickly, include:</p>
+      <ul>
+        <li>Your phone model and OS version (e.g. iPhone 13, iOS 26.1)</li>
+        <li>The game version (shown on the App Store or Google Play page)</li>
+        <li>What you did and what happened; a screenshot if you can</li>
+      </ul>
+    </section>
+
+    <section class="card">
+      <h2>Frequently asked questions</h2>
+
+      <h3>Where is my progress saved?</h3>
+      <p>Your shop, cash and collection live only in the save file on your phone; no account is needed. <strong>Deleting the game deletes your progress.</strong> There is no cloud save yet; we will announce it on this page when it arrives.</p>
+
+      <h3>A purchase is missing</h3>
+      <p>Tap <strong>VIP</strong> in the game and choose <strong>Restore Purchases</strong> in the ★ VIP STORE window. Purchases belong to your Apple ID or Google account, so make sure you are signed in with the same one. If that does not help, e-mail us with the order number from your receipt.</p>
+
+      <h3>I want a refund</h3>
+      <p>Apple and Google take the payments and decide on refunds: for the App Store use <a href="https://reportaproblem.apple.com">reportaproblem.apple.com</a>; for Google Play use Play Store › Payments &amp; subscriptions › Budget &amp; history.</p>
+
+      <h3>Ads</h3>
+      <p>Rewarded ads play only when you choose to watch them (buttons marked ▶). The <strong>Remove Ads</strong> pack turns off the occasional interstitial ads for good. You can change personalized ads any time in the menu under <strong>Privacy &amp; Consent › Ad Preferences</strong>.</p>
+
+      <h3>Can I play offline?</h3>
+      <p>Yes. The whole game plays offline. Rewarded ads and purchases need an internet connection.</p>
+
+      <h3>Notifications</h3>
+      <p>The game asks for notification permission once, on the second in-game morning. Notifications never arrive between 22:00 and 09:30 and come at most once a day. To turn them off, use your phone's Settings › Notifications.</p>
+
+      <h3>Language</h3>
+      <p>Use <strong>Dil / Language</strong> in the menu to switch between 9 languages: Türkçe, English, Deutsch, Español, Français, Italiano, Português (Brasil), Русский, 日本語.</p>
+
+      <h3>I want to start over</h3>
+      <p><strong>New Game</strong> in the menu resets your save; this cannot be undone. Packs you bought come back with <strong>Restore Purchases</strong>.</p>
+
+      <h3>I want my data deleted</h3>
+      <p>In the menu, open <strong>Privacy &amp; Consent</strong> and turn <strong>Analytics Data</strong> off: collection stops and deletion of the analytics data on the server is requested. You can also write to <a href="mailto:info@erdiocal.com">info@erdiocal.com</a>. Details: <a href="https://erdiocal.com/privacy">Privacy Policy</a>.</p>
+    </section>
+  </article>
+
+  <footer>© 2026 erdiocal · Luxury Pawn Shop Simulator · <a href="https://erdiocal.com/privacy">Gizlilik / Privacy</a></footer>
+</div>
+</body>
+</html>
