@@ -5,14 +5,22 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- Açılış ekranı yalnızca ilk ziyarette gösterilir -->
     <script>try { if (localStorage.getItem('acilis-goruldu')) document.documentElement.classList.add('acilis-atla'); } catch (e) {}</script>
-    <!-- Google Analytics (cookie onayına bağlı) -->
-    <script>window['ga-disable-G-VGZ26N6CFE'] = (localStorage.getItem('cookie-tercih') !== 'kabul');</script>
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-VGZ26N6CFE"></script>
+    <!-- Google Analytics: betik yalnızca çerez onayı verildiyse yüklenir (onay anında app.js analitikYukle'yi çağırır) -->
     <script>
         window.dataLayer = window.dataLayer || [];
         function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
-        gtag('config', 'G-VGZ26N6CFE');
+        window.analitikYukle = function () {
+            if (window.analitikYuklendi) return;
+            window.analitikYuklendi = true;
+            window['ga-disable-G-VGZ26N6CFE'] = false;
+            var s = document.createElement('script');
+            s.async = true;
+            s.src = 'https://www.googletagmanager.com/gtag/js?id=G-VGZ26N6CFE';
+            document.head.appendChild(s);
+            gtag('js', new Date());
+            gtag('config', 'G-VGZ26N6CFE');
+        };
+        try { if (localStorage.getItem('cookie-tercih') === 'kabul') window.analitikYukle(); } catch (e) {}
     </script>
     <title>Erdi Öcal | Creative Developer</title>
     <meta name="description" content="Erdi Öcal - Full Stack Developer. Modern web teknolojileri ile kurumsal çözümler üreten yazılım geliştirici.">
