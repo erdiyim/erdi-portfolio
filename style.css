@@ -944,6 +944,8 @@ body { background-color: var(--renk-bg); color: var(--renk-metin); font-family: 
 .proje-gorsel-tutucu:has(.proje-gorsel) { height: auto; aspect-ratio: 5 / 2; }
 .proje-kart-genis { grid-column: 1 / -1; }
 .proje-kart-genis .proje-gorsel-tutucu:has(.proje-gorsel) { aspect-ratio: 4 / 1; }
+/* Geniş kartın görselinde logo solda: dar ekranda kırpılırken sol taraf korunur */
+.proje-kart-genis .proje-gorsel { object-position: left center; }
 @media (max-width: 1024px) { .proje-kart-genis .proje-gorsel-tutucu:has(.proje-gorsel) { aspect-ratio: 5 / 2; } }
 .proje-modal-link { color: #00ffcc; font-weight: 600; text-decoration: none; border-bottom: 1px solid rgba(0,255,204,0.3); }
 .proje-modal-link:hover { border-bottom-color: #00ffcc; }
