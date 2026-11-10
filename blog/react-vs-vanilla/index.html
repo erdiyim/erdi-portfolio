@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>React vs Vanilla JS: Ne Zaman Hangisi? | Erdi Öcal</title>
+    <meta name="description" content="Her projeye React eklemek doğru mu? Vanilla JS'in hâlâ parlak olduğu senaryolar ve framework seçim kriterleri.">
+    <link rel="canonical" href="https://www.erdiocal.com/blog/react-vs-vanilla/">
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="React vs Vanilla JS: Ne Zaman Hangisi?">
+    <meta property="og:description" content="Her projeye React eklemek doğru mu? Vanilla JS'in hâlâ parlak olduğu senaryolar ve framework seçim kriterleri.">
+    <meta property="og:url" content="https://www.erdiocal.com/blog/react-vs-vanilla/">
+    <meta property="og:image" content="https://www.erdiocal.com/og-image.png">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="React vs Vanilla JS: Ne Zaman Hangisi?">
+    <meta name="twitter:description" content="Her projeye React eklemek doğru mu? Vanilla JS'in hâlâ parlak olduğu senaryolar ve framework seçim kriterleri.">
+    <meta name="twitter:image" content="https://www.erdiocal.com/og-image.png">
+    <link rel="alternate" type="application/rss+xml" title="Erdi Öcal — Teknik Keşifler" href="https://www.erdiocal.com/feed.xml">
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+    <link rel="icon" type="image/png" href="/favicon.png">
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "BlogPosting",
+        "headline": "React vs Vanilla JS: Ne Zaman Hangisi?",
+        "description": "Her projeye React eklemek doğru mu? Vanilla JS'in hâlâ parlak olduğu senaryolar ve framework seçim kriterleri.",
+        "inLanguage": "tr",
+        "datePublished": "2026-03-01",
+        "url": "https://www.erdiocal.com/blog/react-vs-vanilla/",
+        "mainEntityOfPage": "https://www.erdiocal.com/blog/react-vs-vanilla/",
+        "image": "https://www.erdiocal.com/og-image.png",
+        "keywords": "React, JavaScript, Performans",
+        "author": {
+            "@type": "Person",
+            "name": "Erdi Öcal",
+            "url": "https://www.erdiocal.com/"
+        },
+        "publisher": {
+            "@type": "Person",
+            "name": "Erdi Öcal",
+            "url": "https://www.erdiocal.com/"
+        }
+    }
+    </script>
+    <script>
+        try { if (localStorage.getItem('tema') === 'light') document.documentElement.setAttribute('data-theme', 'light'); } catch (e) {}
+    </script>
+    <style>
+        :root { --bg: #050505; --kart: rgba(255,255,255,0.03); --cizgi: rgba(255,255,255,0.08); --metin: rgba(255,255,255,0.72); --guclu: #fff; --vurgu: #00ffcc; --kod-bg: rgba(255,255,255,0.04); }
+        [data-theme="light"] { --bg: #f5f7f6; --kart: #fff; --cizgi: rgba(0,0,0,0.08); --metin: rgba(26,26,46,0.75); --guclu: #1a1a2e; --vurgu: #00896b; --kod-bg: rgba(0,0,0,0.04); }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { background: var(--bg); color: var(--metin); font-family: 'Inter', system-ui, sans-serif; line-height: 1.75; font-size: 1rem; }
+        a { color: var(--vurgu); }
+        nav { max-width: 760px; margin: 0 auto; padding: 24px 20px; display: flex; justify-content: space-between; align-items: center; gap: 16px; }
+        .logo { color: var(--guclu); font-weight: 800; font-size: 1.3rem; text-decoration: none; }
+        .logo span { color: var(--vurgu); }
+        .nav-sag { display: flex; align-items: center; gap: 16px; }
+        .geri { font-size: 0.9rem; font-weight: 600; text-decoration: none; }
+        .dil { background: none; border: 1px solid var(--cizgi); color: var(--metin); border-radius: 20px; padding: 6px 12px; font: 600 0.8rem 'JetBrains Mono', monospace; cursor: pointer; }
+        .dil b { color: var(--vurgu); }
+        main { max-width: 760px; margin: 0 auto; padding: 8px 20px 64px; }
+        .yazi { background: var(--kart); border: 1px solid var(--cizgi); border-radius: 20px; padding: 40px; }
+        .ust { display: flex; gap: 12px; align-items: center; font: 0.8rem 'JetBrains Mono', monospace; margin-bottom: 16px; }
+        .kategori { color: var(--vurgu); border: 1px solid var(--vurgu); border-radius: 20px; padding: 2px 12px; }
+        h1 { color: var(--guclu); font-size: clamp(1.7rem, 4vw, 2.4rem); line-height: 1.2; font-weight: 800; letter-spacing: -0.5px; margin-bottom: 16px; }
+        .etiketler { display: flex; flex-wrap: wrap; gap: 8px; }
+        .etiketler span { font-size: 0.75rem; padding: 4px 10px; border-radius: 6px; background: var(--kod-bg); border: 1px solid var(--cizgi); }
+        .ayirici { height: 1px; background: linear-gradient(90deg, var(--vurgu), transparent); margin: 28px 0; opacity: 0.5; }
+        .icerik h3 { color: var(--vurgu); font-size: 1.2rem; margin: 32px 0 12px; }
+        .icerik h3:first-child { margin-top: 0; }
+        .icerik p { margin-bottom: 16px; }
+        .icerik ul, .icerik ol { margin: 12px 0 16px 22px; }
+        .icerik li { margin-bottom: 8px; }
+        .icerik strong { color: var(--guclu); }
+        .icerik code { font-family: 'JetBrains Mono', monospace; font-size: 0.85em; background: var(--kod-bg); color: var(--vurgu); padding: 2px 6px; border-radius: 4px; }
+        .icerik pre { font-family: 'JetBrains Mono', monospace; font-size: 0.82rem; line-height: 1.6; background: var(--kod-bg); border: 1px solid var(--cizgi); border-radius: 12px; padding: 18px; margin: 16px 0 20px; overflow-x: auto; white-space: pre; }
+        footer { text-align: center; font-size: 0.85rem; padding: 0 20px 40px; }
+        @media (max-width: 600px) { .yazi { padding: 24px 18px; border-radius: 16px; } nav { padding: 18px 16px; } main { padding: 4px 16px 48px; } }
+    </style>
+</head>
+<body>
+    <nav>
+        <a href="/" class="logo">E<span>.</span>Öcal</a>
+        <div class="nav-sag">
+            <a href="/#kesifler" class="geri" data-tr="← Tüm yazılar" data-en="← All posts">← Tüm yazılar</a>
+            <button class="dil" id="dilBtn" aria-label="Dil Değiştir / Change language"><b data-d="tr">TR</b> | <span data-d="en">EN</span></button>
+        </div>
+    </nav>
+    <main>
+    <article class="yazi" lang="tr">
+      <div class="ust"><span class="kategori">Frontend</span><span class="tarih">Mart 2026</span></div>
+      <h1>React vs Vanilla JS: Ne Zaman Hangisi?</h1>
+      <div class="etiketler"><span>React</span><span>JavaScript</span><span>Performans</span></div>
+      <div class="ayirici"></div>
+      <div class="icerik"><h3>Giriş</h3>
+        <p>Modern web dünyasında framework seçimi, projenin geleceğini belirleyen en kritik kararlardan biri. Her projeye React eklemek refleks haline geldi ama <strong>gerçekten her zaman doğru seçim mi?</strong></p>
+
+        <h3>Vanilla JS Ne Zaman Parlıyor?</h3>
+        <p>Bazı senaryolarda saf JavaScript, framework'lerden çok daha iyi performans gösterir:</p>
+        <ul>
+            <li><strong>Statik portfolyo siteleri</strong> — Bu site gibi! DOM manipülasyonu az, animasyonlar CSS + Canvas ile yapılıyor.</li>
+            <li><strong>Landing page'ler</strong> — Tek sayfalık tanıtım siteleri için 45KB'lık React bundle gereksiz.</li>
+            <li><strong>Küçük widget'lar</strong> — Embed edilecek hafif bileşenler.</li>
+            <li><strong>Performans kritik uygulamalar</strong> — Her milisaniyenin önemli olduğu yerler.</li>
+        </ul>
+        <pre>// Vanilla JS ile basit bir toggle
+document.querySelector('.btn').addEventListener('click', () => {
+    document.body.classList.toggle('dark-mode');
+});</pre>
+
+        <h3>React Ne Zaman Şart?</h3>
+        <p>React'in gücü karmaşık state yönetimi ve bileşen tekrarı gerektiren projelerde ortaya çıkar:</p>
+        <ul>
+            <li><strong>Dashboard'lar</strong> — Gerçek zamanlı veri, tablolar, grafikler.</li>
+            <li><strong>E-ticaret</strong> — Sepet, filtreleme, ödeme akışı gibi iç içe state'ler.</li>
+            <li><strong>SaaS uygulamaları</strong> — Çok sayfalı, rol bazlı, API yoğun projeler.</li>
+            <li><strong>Takım projeleri</strong> — Component-based mimari, ekip içi tutarlılığı artırır.</li>
+        </ul>
+
+        <h3>Karar Matrisi</h3>
+        <p>Projenize karar verirken şu sorulara cevap arayın:</p>
+        <ul>
+            <li>Sayfada kaç bağımsız state var? → <strong>3'ten azsa:</strong> Vanilla yeterli.</li>
+            <li>Bileşen tekrarı var mı? → <strong>Evet:</strong> React mantıklı.</li>
+            <li>SEO kritik mi? → <strong>Evet:</strong> Next.js veya SSG düşünün.</li>
+            <li>Bundle boyutu önemli mi? → <strong>Evet:</strong> Vanilla veya Preact.</li>
+        </ul>
+
+        <h3>Sonuç</h3>
+        <p>Doğru araç, projeye göre değişir. <strong>Bu portfolyo sitesi saf JavaScript ile yazıldı</strong> — particle engine, X-ray efekti, 3D kartlar, tüm animasyonlar framework'süz. Sonuç: 0 dependency, anında yükleme, tam kontrol.</p></div>
+    </article>
+    <article class="yazi" lang="en" hidden>
+      <div class="ust"><span class="kategori">Frontend</span><span class="tarih">March 2026</span></div>
+      <h1>React vs Vanilla JS: When to Use Which?</h1>
+      <div class="etiketler"><span>React</span><span>JavaScript</span><span>Performance</span></div>
+      <div class="ayirici"></div>
+      <div class="icerik"><h3>Introduction</h3>
+        <p>In the modern web world, choosing a framework is one of the most critical decisions that shapes a project's future. Adding React to every project has become a reflex, but <strong>is it always the right choice?</strong></p>
+
+        <h3>When Does Vanilla JS Shine?</h3>
+        <p>In certain scenarios, pure JavaScript outperforms frameworks significantly:</p>
+        <ul>
+            <li><strong>Static portfolio sites</strong> — Like this one! Minimal DOM manipulation, animations via CSS + Canvas.</li>
+            <li><strong>Landing pages</strong> — A 45KB React bundle is overkill for single-page promos.</li>
+            <li><strong>Small widgets</strong> — Lightweight embeddable components.</li>
+            <li><strong>Performance-critical apps</strong> — Where every millisecond counts.</li>
+        </ul>
+        <pre>// Simple toggle with Vanilla JS
+document.querySelector('.btn').addEventListener('click', () => {
+    document.body.classList.toggle('dark-mode');
+});</pre>
+
+        <h3>When Is React Essential?</h3>
+        <p>React's power emerges in projects requiring complex state management and component reuse:</p>
+        <ul>
+            <li><strong>Dashboards</strong> — Real-time data, tables, charts.</li>
+            <li><strong>E-commerce</strong> — Cart, filtering, payment flows with nested states.</li>
+            <li><strong>SaaS applications</strong> — Multi-page, role-based, API-heavy projects.</li>
+            <li><strong>Team projects</strong> — Component-based architecture ensures team consistency.</li>
+        </ul>
+
+        <h3>Decision Matrix</h3>
+        <p>Ask these questions when deciding:</p>
+        <ul>
+            <li>How many independent states on the page? → <strong>Less than 3:</strong> Vanilla is enough.</li>
+            <li>Component reuse needed? → <strong>Yes:</strong> React makes sense.</li>
+            <li>Is SEO critical? → <strong>Yes:</strong> Consider Next.js or SSG.</li>
+            <li>Does bundle size matter? → <strong>Yes:</strong> Vanilla or Preact.</li>
+        </ul>
+
+        <h3>Conclusion</h3>
+        <p>The right tool depends on the project. <strong>This portfolio was built with pure JavaScript</strong> — particle engine, X-ray effect, 3D cards, all animations without any framework. Result: 0 dependencies, instant loading, full control.</p></div>
+    </article>
+    </main>
+    <footer><a href="/">www.erdiocal.com</a> · &copy; 2026 Erdi Öcal</footer>
+    <script>
+        (function () {
+            var btn = document.getElementById('dilBtn');
+            function uygula(d) {
+                document.documentElement.lang = d;
+                document.querySelectorAll('.yazi').forEach(function (a) { a.hidden = a.lang !== d; });
+                document.querySelectorAll('[data-tr]').forEach(function (el) { el.textContent = el.getAttribute('data-' + d); });
+                btn.innerHTML = d === 'tr' ? '<b>TR</b> | EN' : 'TR | <b>EN</b>';
+                try { localStorage.setItem('dil', d); } catch (e) {}
+            }
+            var dil = 'tr';
+            try { dil = localStorage.getItem('dil') === 'en' ? 'en' : 'tr'; } catch (e) {}
+            if (dil !== 'tr') uygula(dil);
+            btn.addEventListener('click', function () { uygula(document.documentElement.lang === 'tr' ? 'en' : 'tr'); });
+        })();
+    </script>
+</body>
+</html>

@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS Mask ile X-Ray Efekti Nasıl Yapılır? | Erdi Öcal</title>
+    <meta name="description" content="Bu portfolyödeki hover efektinin perde arkası: mask-image, canvas ve radial-gradient ile sinematik bir deneyim oluşturmak.">
+    <link rel="canonical" href="https://www.erdiocal.com/blog/css-xray-efekti/">
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="CSS Mask ile X-Ray Efekti Nasıl Yapılır?">
+    <meta property="og:description" content="Bu portfolyödeki hover efektinin perde arkası: mask-image, canvas ve radial-gradient ile sinematik bir deneyim oluşturmak.">
+    <meta property="og:url" content="https://www.erdiocal.com/blog/css-xray-efekti/">
+    <meta property="og:image" content="https://www.erdiocal.com/og-image.png">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="CSS Mask ile X-Ray Efekti Nasıl Yapılır?">
+    <meta name="twitter:description" content="Bu portfolyödeki hover efektinin perde arkası: mask-image, canvas ve radial-gradient ile sinematik bir deneyim oluşturmak.">
+    <meta name="twitter:image" content="https://www.erdiocal.com/og-image.png">
+    <link rel="alternate" type="application/rss+xml" title="Erdi Öcal — Teknik Keşifler" href="https://www.erdiocal.com/feed.xml">
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+    <link rel="icon" type="image/png" href="/favicon.png">
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "BlogPosting",
+        "headline": "CSS Mask ile X-Ray Efekti Nasıl Yapılır?",
+        "description": "Bu portfolyödeki hover efektinin perde arkası: mask-image, canvas ve radial-gradient ile sinematik bir deneyim oluşturmak.",
+        "inLanguage": "tr",
+        "datePublished": "2026-02-01",
+        "url": "https://www.erdiocal.com/blog/css-xray-efekti/",
+        "mainEntityOfPage": "https://www.erdiocal.com/blog/css-xray-efekti/",
+        "image": "https://www.erdiocal.com/og-image.png",
+        "keywords": "CSS, Canvas, Animasyon",
+        "author": {
+            "@type": "Person",
+            "name": "Erdi Öcal",
+            "url": "https://www.erdiocal.com/"
+        },
+        "publisher": {
+            "@type": "Person",
+            "name": "Erdi Öcal",
+            "url": "https://www.erdiocal.com/"
+        }
+    }
+    </script>
+    <script>
+        try { if (localStorage.getItem('tema') === 'light') document.documentElement.setAttribute('data-theme', 'light'); } catch (e) {}
+    </script>
+    <style>
+        :root { --bg: #050505; --kart: rgba(255,255,255,0.03); --cizgi: rgba(255,255,255,0.08); --metin: rgba(255,255,255,0.72); --guclu: #fff; --vurgu: #00ffcc; --kod-bg: rgba(255,255,255,0.04); }
+        [data-theme="light"] { --bg: #f5f7f6; --kart: #fff; --cizgi: rgba(0,0,0,0.08); --metin: rgba(26,26,46,0.75); --guclu: #1a1a2e; --vurgu: #00896b; --kod-bg: rgba(0,0,0,0.04); }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { background: var(--bg); color: var(--metin); font-family: 'Inter', system-ui, sans-serif; line-height: 1.75; font-size: 1rem; }
+        a { color: var(--vurgu); }
+        nav { max-width: 760px; margin: 0 auto; padding: 24px 20px; display: flex; justify-content: space-between; align-items: center; gap: 16px; }
+        .logo { color: var(--guclu); font-weight: 800; font-size: 1.3rem; text-decoration: none; }
+        .logo span { color: var(--vurgu); }
+        .nav-sag { display: flex; align-items: center; gap: 16px; }
+        .geri { font-size: 0.9rem; font-weight: 600; text-decoration: none; }
+        .dil { background: none; border: 1px solid var(--cizgi); color: var(--metin); border-radius: 20px; padding: 6px 12px; font: 600 0.8rem 'JetBrains Mono', monospace; cursor: pointer; }
+        .dil b { color: var(--vurgu); }
+        main { max-width: 760px; margin: 0 auto; padding: 8px 20px 64px; }
+        .yazi { background: var(--kart); border: 1px solid var(--cizgi); border-radius: 20px; padding: 40px; }
+        .ust { display: flex; gap: 12px; align-items: center; font: 0.8rem 'JetBrains Mono', monospace; margin-bottom: 16px; }
+        .kategori { color: var(--vurgu); border: 1px solid var(--vurgu); border-radius: 20px; padding: 2px 12px; }
+        h1 { color: var(--guclu); font-size: clamp(1.7rem, 4vw, 2.4rem); line-height: 1.2; font-weight: 800; letter-spacing: -0.5px; margin-bottom: 16px; }
+        .etiketler { display: flex; flex-wrap: wrap; gap: 8px; }
+        .etiketler span { font-size: 0.75rem; padding: 4px 10px; border-radius: 6px; background: var(--kod-bg); border: 1px solid var(--cizgi); }
+        .ayirici { height: 1px; background: linear-gradient(90deg, var(--vurgu), transparent); margin: 28px 0; opacity: 0.5; }
+        .icerik h3 { color: var(--vurgu); font-size: 1.2rem; margin: 32px 0 12px; }
+        .icerik h3:first-child { margin-top: 0; }
+        .icerik p { margin-bottom: 16px; }
+        .icerik ul, .icerik ol { margin: 12px 0 16px 22px; }
+        .icerik li { margin-bottom: 8px; }
+        .icerik strong { color: var(--guclu); }
+        .icerik code { font-family: 'JetBrains Mono', monospace; font-size: 0.85em; background: var(--kod-bg); color: var(--vurgu); padding: 2px 6px; border-radius: 4px; }
+        .icerik pre { font-family: 'JetBrains Mono', monospace; font-size: 0.82rem; line-height: 1.6; background: var(--kod-bg); border: 1px solid var(--cizgi); border-radius: 12px; padding: 18px; margin: 16px 0 20px; overflow-x: auto; white-space: pre; }
+        footer { text-align: center; font-size: 0.85rem; padding: 0 20px 40px; }
+        @media (max-width: 600px) { .yazi { padding: 24px 18px; border-radius: 16px; } nav { padding: 18px 16px; } main { padding: 4px 16px 48px; } }
+    </style>
+</head>
+<body>
+    <nav>
+        <a href="/" class="logo">E<span>.</span>Öcal</a>
+        <div class="nav-sag">
+            <a href="/#kesifler" class="geri" data-tr="← Tüm yazılar" data-en="← All posts">← Tüm yazılar</a>
+            <button class="dil" id="dilBtn" aria-label="Dil Değiştir / Change language"><b data-d="tr">TR</b> | <span data-d="en">EN</span></button>
+        </div>
+    </nav>
+    <main>
+    <article class="yazi" lang="tr">
+      <div class="ust"><span class="kategori">CSS</span><span class="tarih">Şubat 2026</span></div>
+      <h1>CSS Mask ile X-Ray Efekti Nasıl Yapılır?</h1>
+      <div class="etiketler"><span>CSS</span><span>Canvas</span><span>Animasyon</span></div>
+      <div class="ayirici"></div>
+      <div class="icerik"><h3>Perde Arkası</h3>
+        <p>Bu portfolyödeki fotoğraf hover efekti, <strong>Framer'ın ünlü X-Ray bileşeninden</strong> ilham alıyor. Fare ile fotoğrafın üzerine geldiğinizde, bir daire içinde kod matrisi görünür. İşte bu efektin nasıl çalıştığı.</p>
+
+        <h3>Katmanlı Mimari</h3>
+        <p>Efekt 4 katmandan oluşuyor:</p>
+        <ol>
+            <li><strong>Glitch Canvas (z-index: 1)</strong> — Rastgele harf ve sembollerle dolu bir canvas. Renkleri particle network ile senkronize.</li>
+            <li><strong>CRT Overlay (z-index: 2)</strong> — Eski monitör tarama çizgileri efekti.</li>
+            <li><strong>CRT Flicker (z-index: 3)</strong> — Titreşim animasyonu.</li>
+            <li><strong>Normal Fotoğraf (z-index: 5)</strong> — En üstte, mask ile delik açılıyor.</li>
+        </ol>
+
+        <h3>Sihirli Kısım: CSS Mask</h3>
+        <p>Fotoğrafın altındaki kodu göstermek için <code>mask-image</code> ile bir delik açıyoruz:</p>
+        <pre>// Mouse pozisyonunda radial-gradient mask
+const mask = `radial-gradient(
+    circle 130px at ${x}px ${y}px,
+    transparent 0%, transparent 35%,
+    rgba(0,0,0,0.4) 55%,
+    rgba(0,0,0,0.8) 70%,
+    black 85%
+)`;
+element.style.maskImage = mask;</pre>
+        <p><code>transparent</code> kısımlar deliği oluşturur, <code>black</code> kısımlar fotoğrafı gösterir. Gradient geçişi sayesinde kenarlar yumuşak.</p>
+
+        <h3>Silüet Maskeleme</h3>
+        <p>Glitch canvas'ın fotoğraf dışına taşmaması için PNG silüet kullanılıyor:</p>
+        <pre>.glitch-katman, .crt-overlay {
+    mask-image: url('erdi-portrait.png');
+    mask-size: contain;
+    mask-position: bottom center;
+    mask-repeat: no-repeat;
+}</pre>
+
+        <h3>Renk Senkronizasyonu</h3>
+        <p>Glitch harfleri, arka plan particle ağının rengini takip eder. <code>window._particleHue</code> değişkeni üzerinden HSL renk paylaşılır ve <code>hslToRgb</code> ile canvas'a uygulanır.</p>
+
+        <h3>Sonuç</h3>
+        <p>Sıfır framework, sıfır kütüphane — sadece <strong>CSS mask-image + Canvas API + matematiksel renk interpolasyonu</strong>. Efektin tamamı ~120 satır JavaScript.</p></div>
+    </article>
+    <article class="yazi" lang="en" hidden>
+      <div class="ust"><span class="kategori">CSS</span><span class="tarih">February 2026</span></div>
+      <h1>How to Create an X-Ray Effect with CSS Mask?</h1>
+      <div class="etiketler"><span>CSS</span><span>Canvas</span><span>Animation</span></div>
+      <div class="ayirici"></div>
+      <div class="icerik"><h3>Behind the Scenes</h3>
+        <p>The photo hover effect in this portfolio is inspired by <strong>Framer's famous X-Ray component</strong>. When you hover over the photo, a code matrix appears within a circle. Here's how it works.</p>
+
+        <h3>Layered Architecture</h3>
+        <p>The effect consists of 4 layers:</p>
+        <ol>
+            <li><strong>Glitch Canvas (z-index: 1)</strong> — A canvas filled with random letters and symbols. Colors synced with the particle network.</li>
+            <li><strong>CRT Overlay (z-index: 2)</strong> — Old monitor scan line effect.</li>
+            <li><strong>CRT Flicker (z-index: 3)</strong> — Flicker animation.</li>
+            <li><strong>Normal Photo (z-index: 5)</strong> — On top, with a hole opened via mask.</li>
+        </ol>
+
+        <h3>The Magic: CSS Mask</h3>
+        <p>To reveal the code beneath the photo, we create a hole using <code>mask-image</code>:</p>
+        <pre>// Radial-gradient mask at mouse position
+const mask = `radial-gradient(
+    circle 130px at ${x}px ${y}px,
+    transparent 0%, transparent 35%,
+    rgba(0,0,0,0.4) 55%,
+    rgba(0,0,0,0.8) 70%,
+    black 85%
+)`;
+element.style.maskImage = mask;</pre>
+        <p><code>transparent</code> areas create the hole, <code>black</code> areas show the photo. Gradient transitions create soft edges.</p>
+
+        <h3>Silhouette Masking</h3>
+        <p>To prevent the glitch canvas from spilling outside the photo, a PNG silhouette is used:</p>
+        <pre>.glitch-layer, .crt-overlay {
+    mask-image: url('erdi-portrait.png');
+    mask-size: contain;
+    mask-position: bottom center;
+    mask-repeat: no-repeat;
+}</pre>
+
+        <h3>Color Synchronization</h3>
+        <p>Glitch characters follow the background particle network's color. The HSL color is shared via <code>window._particleHue</code> and applied to the canvas using <code>hslToRgb</code>.</p>
+
+        <h3>Conclusion</h3>
+        <p>Zero frameworks, zero libraries — just <strong>CSS mask-image + Canvas API + mathematical color interpolation</strong>. The entire effect is ~120 lines of JavaScript.</p></div>
+    </article>
+    </main>
+    <footer><a href="/">www.erdiocal.com</a> · &copy; 2026 Erdi Öcal</footer>
+    <script>
+        (function () {
+            var btn = document.getElementById('dilBtn');
+            function uygula(d) {
+                document.documentElement.lang = d;
+                document.querySelectorAll('.yazi').forEach(function (a) { a.hidden = a.lang !== d; });
+                document.querySelectorAll('[data-tr]').forEach(function (el) { el.textContent = el.getAttribute('data-' + d); });
+                btn.innerHTML = d === 'tr' ? '<b>TR</b> | EN' : 'TR | <b>EN</b>';
+                try { localStorage.setItem('dil', d); } catch (e) {}
+            }
+            var dil = 'tr';
+            try { dil = localStorage.getItem('dil') === 'en' ? 'en' : 'tr'; } catch (e) {}
+            if (dil !== 'tr') uygula(dil);
+            btn.addEventListener('click', function () { uygula(document.documentElement.lang === 'tr' ? 'en' : 'tr'); });
+        })();
+    </script>
+</body>
+</html>

@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vercel ile Ücretsiz Deploy: Adım Adım Rehber | Erdi Öcal</title>
+    <meta name="description" content="GitHub entegrasyonu, custom domain ayarları ve otomatik CI/CD pipeline kurulumunu sıfırdan anlatıyorum.">
+    <link rel="canonical" href="https://www.erdiocal.com/blog/vercel-deploy/">
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="Vercel ile Ücretsiz Deploy: Adım Adım Rehber">
+    <meta property="og:description" content="GitHub entegrasyonu, custom domain ayarları ve otomatik CI/CD pipeline kurulumunu sıfırdan anlatıyorum.">
+    <meta property="og:url" content="https://www.erdiocal.com/blog/vercel-deploy/">
+    <meta property="og:image" content="https://www.erdiocal.com/og-image.png">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Vercel ile Ücretsiz Deploy: Adım Adım Rehber">
+    <meta name="twitter:description" content="GitHub entegrasyonu, custom domain ayarları ve otomatik CI/CD pipeline kurulumunu sıfırdan anlatıyorum.">
+    <meta name="twitter:image" content="https://www.erdiocal.com/og-image.png">
+    <link rel="alternate" type="application/rss+xml" title="Erdi Öcal — Teknik Keşifler" href="https://www.erdiocal.com/feed.xml">
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+    <link rel="icon" type="image/png" href="/favicon.png">
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "BlogPosting",
+        "headline": "Vercel ile Ücretsiz Deploy: Adım Adım Rehber",
+        "description": "GitHub entegrasyonu, custom domain ayarları ve otomatik CI/CD pipeline kurulumunu sıfırdan anlatıyorum.",
+        "inLanguage": "tr",
+        "datePublished": "2025-12-01",
+        "url": "https://www.erdiocal.com/blog/vercel-deploy/",
+        "mainEntityOfPage": "https://www.erdiocal.com/blog/vercel-deploy/",
+        "image": "https://www.erdiocal.com/og-image.png",
+        "keywords": "Vercel, CI/CD, GitHub",
+        "author": {
+            "@type": "Person",
+            "name": "Erdi Öcal",
+            "url": "https://www.erdiocal.com/"
+        },
+        "publisher": {
+            "@type": "Person",
+            "name": "Erdi Öcal",
+            "url": "https://www.erdiocal.com/"
+        }
+    }
+    </script>
+    <script>
+        try { if (localStorage.getItem('tema') === 'light') document.documentElement.setAttribute('data-theme', 'light'); } catch (e) {}
+    </script>
+    <style>
+        :root { --bg: #050505; --kart: rgba(255,255,255,0.03); --cizgi: rgba(255,255,255,0.08); --metin: rgba(255,255,255,0.72); --guclu: #fff; --vurgu: #00ffcc; --kod-bg: rgba(255,255,255,0.04); }
+        [data-theme="light"] { --bg: #f5f7f6; --kart: #fff; --cizgi: rgba(0,0,0,0.08); --metin: rgba(26,26,46,0.75); --guclu: #1a1a2e; --vurgu: #00896b; --kod-bg: rgba(0,0,0,0.04); }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { background: var(--bg); color: var(--metin); font-family: 'Inter', system-ui, sans-serif; line-height: 1.75; font-size: 1rem; }
+        a { color: var(--vurgu); }
+        nav { max-width: 760px; margin: 0 auto; padding: 24px 20px; display: flex; justify-content: space-between; align-items: center; gap: 16px; }
+        .logo { color: var(--guclu); font-weight: 800; font-size: 1.3rem; text-decoration: none; }
+        .logo span { color: var(--vurgu); }
+        .nav-sag { display: flex; align-items: center; gap: 16px; }
+        .geri { font-size: 0.9rem; font-weight: 600; text-decoration: none; }
+        .dil { background: none; border: 1px solid var(--cizgi); color: var(--metin); border-radius: 20px; padding: 6px 12px; font: 600 0.8rem 'JetBrains Mono', monospace; cursor: pointer; }
+        .dil b { color: var(--vurgu); }
+        main { max-width: 760px; margin: 0 auto; padding: 8px 20px 64px; }
+        .yazi { background: var(--kart); border: 1px solid var(--cizgi); border-radius: 20px; padding: 40px; }
+        .ust { display: flex; gap: 12px; align-items: center; font: 0.8rem 'JetBrains Mono', monospace; margin-bottom: 16px; }
+        .kategori { color: var(--vurgu); border: 1px solid var(--vurgu); border-radius: 20px; padding: 2px 12px; }
+        h1 { color: var(--guclu); font-size: clamp(1.7rem, 4vw, 2.4rem); line-height: 1.2; font-weight: 800; letter-spacing: -0.5px; margin-bottom: 16px; }
+        .etiketler { display: flex; flex-wrap: wrap; gap: 8px; }
+        .etiketler span { font-size: 0.75rem; padding: 4px 10px; border-radius: 6px; background: var(--kod-bg); border: 1px solid var(--cizgi); }
+        .ayirici { height: 1px; background: linear-gradient(90deg, var(--vurgu), transparent); margin: 28px 0; opacity: 0.5; }
+        .icerik h3 { color: var(--vurgu); font-size: 1.2rem; margin: 32px 0 12px; }
+        .icerik h3:first-child { margin-top: 0; }
+        .icerik p { margin-bottom: 16px; }
+        .icerik ul, .icerik ol { margin: 12px 0 16px 22px; }
+        .icerik li { margin-bottom: 8px; }
+        .icerik strong { color: var(--guclu); }
+        .icerik code { font-family: 'JetBrains Mono', monospace; font-size: 0.85em; background: var(--kod-bg); color: var(--vurgu); padding: 2px 6px; border-radius: 4px; }
+        .icerik pre { font-family: 'JetBrains Mono', monospace; font-size: 0.82rem; line-height: 1.6; background: var(--kod-bg); border: 1px solid var(--cizgi); border-radius: 12px; padding: 18px; margin: 16px 0 20px; overflow-x: auto; white-space: pre; }
+        footer { text-align: center; font-size: 0.85rem; padding: 0 20px 40px; }
+        @media (max-width: 600px) { .yazi { padding: 24px 18px; border-radius: 16px; } nav { padding: 18px 16px; } main { padding: 4px 16px 48px; } }
+    </style>
+</head>
+<body>
+    <nav>
+        <a href="/" class="logo">E<span>.</span>Öcal</a>
+        <div class="nav-sag">
+            <a href="/#kesifler" class="geri" data-tr="← Tüm yazılar" data-en="← All posts">← Tüm yazılar</a>
+            <button class="dil" id="dilBtn" aria-label="Dil Değiştir / Change language"><b data-d="tr">TR</b> | <span data-d="en">EN</span></button>
+        </div>
+    </nav>
+    <main>
+    <article class="yazi" lang="tr">
+      <div class="ust"><span class="kategori">DevOps</span><span class="tarih">Aralık 2025</span></div>
+      <h1>Vercel ile Ücretsiz Deploy: Adım Adım Rehber</h1>
+      <div class="etiketler"><span>Vercel</span><span>CI/CD</span><span>GitHub</span></div>
+      <div class="ayirici"></div>
+      <div class="icerik"><h3>Neden Vercel?</h3>
+        <p>Statik siteler ve frontend projeleri için Vercel, <strong>en hızlı ve en kolay deploy çözümü</strong>. Ücretsiz plan: sınırsız deploy, HTTPS, global CDN, custom domain.</p>
+
+        <h3>Adım 1: GitHub Deposu Hazırla</h3>
+        <p>Projenizi GitHub'a push'layın. Vercel, repo'nuzu doğrudan okuyacak:</p>
+        <pre>git init
+git add .
+git commit -m "Initial commit"
+git remote add origin https://github.com/user/repo.git
+git push -u origin main</pre>
+
+        <h3>Adım 2: Vercel'e Bağlan</h3>
+        <p><strong>vercel.com</strong>'a gidin ve GitHub hesabınızla giriş yapın. "New Project" butonuna tıklayıp repo'nuzu seçin.</p>
+        <ul>
+            <li><strong>Framework Preset:</strong> "Other" (statik site için)</li>
+            <li><strong>Build Command:</strong> Boş bırakın</li>
+            <li><strong>Output Directory:</strong> <code>./</code> (root)</li>
+        </ul>
+
+        <h3>Adım 3: Custom Domain</h3>
+        <p>Vercel dashboard'da "Domains" sekmesine gidin. Domain'inizi ekleyin ve DNS ayarlarını yapın:</p>
+        <pre>Tip: A     | Ad: @    | Değer: 76.76.21.21
+Tip: CNAME | Ad: www  | Değer: cname.vercel-dns.com</pre>
+        <p>DNS yayılımı genellikle 10 dakika ile 24 saat arasında sürer. Vercel otomatik olarak <strong>SSL sertifikası</strong> oluşturur.</p>
+
+        <h3>Adım 4: Otomatik CI/CD</h3>
+        <p>Artık her <code>git push</code> otomatik deploy tetikler:</p>
+        <ol>
+            <li>Kod'u değiştirin</li>
+            <li><code>git add . && git commit -m "update" && git push</code></li>
+            <li>Vercel otomatik build + deploy yapar (~15 saniye)</li>
+            <li>Preview URL ile test edin, sonra production'a promote edin</li>
+        </ol>
+
+        <h3>Bonus: Environment Variables</h3>
+        <p>API key'ler gibi hassas değerler için Vercel dashboard'daki "Environment Variables" bölümünü kullanın. Asla repo'ya commit etmeyin!</p>
+
+        <h3>Sonuç</h3>
+        <p>Bu portfolyo sitesi tam olarak bu yöntemle deploy edildi: <strong>GitHub push → Vercel otomatik build → erdiocal.com'da canlı</strong>. Toplam maliyet: 0₺.</p></div>
+    </article>
+    <article class="yazi" lang="en" hidden>
+      <div class="ust"><span class="kategori">DevOps</span><span class="tarih">December 2025</span></div>
+      <h1>Free Deployment with Vercel: Step-by-Step Guide</h1>
+      <div class="etiketler"><span>Vercel</span><span>CI/CD</span><span>GitHub</span></div>
+      <div class="ayirici"></div>
+      <div class="icerik"><h3>Why Vercel?</h3>
+        <p>For static sites and frontend projects, Vercel is the <strong>fastest and easiest deploy solution</strong>. Free plan: unlimited deploys, HTTPS, global CDN, custom domain.</p>
+
+        <h3>Step 1: Prepare GitHub Repository</h3>
+        <p>Push your project to GitHub. Vercel will read your repo directly:</p>
+        <pre>git init
+git add .
+git commit -m "Initial commit"
+git remote add origin https://github.com/user/repo.git
+git push -u origin main</pre>
+
+        <h3>Step 2: Connect to Vercel</h3>
+        <p>Go to <strong>vercel.com</strong> and sign in with your GitHub account. Click "New Project" and select your repo.</p>
+        <ul>
+            <li><strong>Framework Preset:</strong> "Other" (for static sites)</li>
+            <li><strong>Build Command:</strong> Leave empty</li>
+            <li><strong>Output Directory:</strong> <code>./</code> (root)</li>
+        </ul>
+
+        <h3>Step 3: Custom Domain</h3>
+        <p>Go to "Domains" tab in Vercel dashboard. Add your domain and configure DNS:</p>
+        <pre>Type: A     | Name: @   | Value: 76.76.21.21
+Type: CNAME | Name: www | Value: cname.vercel-dns.com</pre>
+        <p>DNS propagation typically takes 10 minutes to 24 hours. Vercel automatically generates an <strong>SSL certificate</strong>.</p>
+
+        <h3>Step 4: Automatic CI/CD</h3>
+        <p>Now every <code>git push</code> triggers an automatic deploy:</p>
+        <ol>
+            <li>Make your changes</li>
+            <li><code>git add . && git commit -m "update" && git push</code></li>
+            <li>Vercel auto-builds and deploys (~15 seconds)</li>
+            <li>Test with preview URL, then promote to production</li>
+        </ol>
+
+        <h3>Bonus: Environment Variables</h3>
+        <p>For sensitive values like API keys, use the "Environment Variables" section in Vercel dashboard. Never commit them to the repo!</p>
+
+        <h3>Conclusion</h3>
+        <p>This portfolio site was deployed exactly this way: <strong>GitHub push → Vercel auto-build → live on erdiocal.com</strong>. Total cost: $0.</p></div>
+    </article>
+    </main>
+    <footer><a href="/">www.erdiocal.com</a> · &copy; 2026 Erdi Öcal</footer>
+    <script>
+        (function () {
+            var btn = document.getElementById('dilBtn');
+            function uygula(d) {
+                document.documentElement.lang = d;
+                document.querySelectorAll('.yazi').forEach(function (a) { a.hidden = a.lang !== d; });
+                document.querySelectorAll('[data-tr]').forEach(function (el) { el.textContent = el.getAttribute('data-' + d); });
+                btn.innerHTML = d === 'tr' ? '<b>TR</b> | EN' : 'TR | <b>EN</b>';
+                try { localStorage.setItem('dil', d); } catch (e) {}
+            }
+            var dil = 'tr';
+            try { dil = localStorage.getItem('dil') === 'en' ? 'en' : 'tr'; } catch (e) {}
+            if (dil !== 'tr') uygula(dil);
+            btn.addEventListener('click', function () { uygula(document.documentElement.lang === 'tr' ? 'en' : 'tr'); });
+        })();
+    </script>
+</body>
+</html>

@@ -1377,6 +1377,9 @@ Type: CNAME | Name: www | Value: cname.vercel-dns.com</pre>
         if (okuBtn) {
             okuBtn.addEventListener('click', (e) => {
                 e.stopPropagation();
+                // Ctrl/Cmd/Shift ile tıklanırsa yazının kendi sayfası yeni sekmede açılsın
+                if (e.ctrlKey || e.metaKey || e.shiftKey) return;
+                e.preventDefault();
                 const blogId = kart.dataset.blog;
                 if (blogId) modalAc(blogId);
             });
