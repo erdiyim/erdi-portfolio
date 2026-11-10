@@ -54,6 +54,28 @@ function focusTrapKur(modalEl) {
 const DilYoneticisi = (() => {
     let aktifDil = localStorage.getItem('dil') || 'tr';
 
+    // Çeviride gerçek HTML etiketi var mı? ("<Merhaba Dünya />" gibi düz metin etiketlerini HTML sanma)
+    const HTML_ETIKETI = /<\/?(span|a|br|strong|em|b|i)\b/i;
+
+    function metniYaz(el, metin) {
+        // Butonlarda metin .btn-icerik içinde; yanındaki ok (.btn-ok) korunur
+        const icerik = el.querySelector(':scope > .btn-icerik');
+        if (icerik) { icerik.textContent = metin; return; }
+
+        // span.vurgu, bağlantı gibi biçimli içerik
+        if (HTML_ETIKETI.test(metin)) { el.innerHTML = metin; return; }
+
+        // İkonlu öğeler (ör. CV İndir'deki svg): yalnızca metin düğümünü değiştir, ikon kalsın
+        if (el.children.length) {
+            const dugum = [...el.childNodes].find(n => n.nodeType === Node.TEXT_NODE && n.textContent.trim());
+            if (dugum) {
+                dugum.textContent = (dugum === el.firstChild ? '' : ' ') + metin;
+                return;
+            }
+        }
+        el.textContent = metin;
+    }
+
     function uygula(dil) {
         aktifDil = dil;
         localStorage.setItem('dil', dil);
@@ -62,22 +84,7 @@ const DilYoneticisi = (() => {
         // data-tr / data-en attribute'lu tüm elementleri güncelle
         document.querySelectorAll('[data-tr][data-en]').forEach(el => {
             const metin = el.getAttribute(`data-${dil}`);
-            if (metin) {
-                // innerHTML kullan (span.vurgu gibi HTML içerik için)
-                if (metin.includes('<') || metin.includes('&')) {
-                    el.innerHTML = metin;
-                } else {
-                    el.textContent = metin;
-                }
-            }
-        });
-
-        // Butonlardaki .btn-icerik span'ları güncelle (ok simgesi korunacak)
-        document.querySelectorAll('.btn[data-tr][data-en]').forEach(btn => {
-            const icerikSpan = btn.querySelector('.btn-icerik');
-            if (icerikSpan) {
-                icerikSpan.textContent = btn.getAttribute(`data-${dil}`);
-            }
+            if (metin) metniYaz(el, metin);
         });
 
         // Form placeholder'ları güncelle
@@ -1887,12 +1894,12 @@ function konfetiFirlat() {
     });
 
     function gaBaslat() {
-        // GA zaten head'de yüklü, opt-out'u kaldır
-        window['ga-disable-G-VGZ26N6CFE'] = false;
+        // GA betiği onaydan önce hiç yüklenmez; onayla birlikte head'deki yükleyici çalışır
+        if (typeof window.analitikYukle === 'function') window.analitikYukle();
     }
 
     function gaDeaktif() {
-        // GA'yı devre dışı bırak
+        // Aynı oturumda önce kabul edilip sonra reddedildiyse ölçümü durdur
         window['ga-disable-G-VGZ26N6CFE'] = true;
     }
 })();
