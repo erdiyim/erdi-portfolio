@@ -510,6 +510,10 @@ body { background-color: var(--renk-bg); color: var(--renk-metin); font-family: 
 #acilis-ekrani ~ #navbar { visibility: hidden; }
 #acilis-ekrani.kapaniyor ~ main,
 #acilis-ekrani.kapaniyor ~ #navbar { visibility: visible; }
+/* Tekrar ziyarette açılış ekranı hiç çizilmez (head'deki betik .acilis-atla ekler) */
+.acilis-atla #acilis-ekrani { display: none; }
+.acilis-atla #acilis-ekrani ~ main,
+.acilis-atla #acilis-ekrani ~ #navbar { visibility: visible; }
 
 /* ========================================= */
 /* --- NAVİGASYON ---                        */
@@ -584,10 +588,19 @@ body { background-color: var(--renk-bg); color: var(--renk-metin); font-family: 
 .mobil-link { color: #fff; text-decoration: none; font-size: 2rem; font-weight: 700; transition: color 0.3s ease; }
 .mobil-link:hover { color: #00ffcc; }
 
-@media (max-width: 768px) {
+.nav-link { white-space: nowrap; }
+
+/* Tablet: saat gizlenir, linkler sıkılaşır; dar tablette hamburger menüye geçilir */
+@media (max-width: 1200px) {
+    .canli-saat { display: none; }
+    .nav-link { padding: 8px 10px; }
+    #navbar, #navbar.scrolled { padding-left: 30px; padding-right: 30px; }
+}
+@media (max-width: 960px) {
     #hamburger { display: flex; }
     .nav-linkler { display: none; }
-    #navbar { padding: 15px 20px; }
+    #navbar, #navbar.scrolled { padding-left: 20px; padding-right: 20px; }
+    #navbar { padding-top: 15px; padding-bottom: 15px; }
 }
 
 /* ========================================= */
@@ -915,6 +928,28 @@ body { background-color: var(--renk-bg); color: var(--renk-metin); font-family: 
 }
 .proje-numara { font-size: 5rem; font-weight: 900; color: rgba(255,255,255,0.03); font-family: var(--font-kod); transition: all 0.5s ease; }
 .proje-kart:hover .proje-numara { color: rgba(0,255,204,0.12); transform: scale(1.15); }
+/* Proje kapak görseli: numara görselin üstünde köşede durur */
+.proje-gorsel {
+    position: absolute; inset: 0; width: 100%; height: 100%;
+    object-fit: cover; display: block;
+    transition: transform 0.6s ease, filter 0.4s ease;
+    filter: saturate(0.9) brightness(0.9);
+}
+.proje-kart:hover .proje-gorsel { transform: scale(1.04); filter: saturate(1) brightness(1); }
+.proje-gorsel ~ .proje-numara {
+    position: absolute; right: 16px; bottom: 8px; font-size: 2.6rem; line-height: 1;
+    color: rgba(255,255,255,0.55); text-shadow: 0 2px 12px rgba(0,0,0,0.6);
+}
+.proje-kart:hover .proje-gorsel ~ .proje-numara { color: #00ffcc; transform: none; }
+.proje-gorsel-tutucu:has(.proje-gorsel) { height: auto; aspect-ratio: 5 / 2; }
+.proje-kart-genis { grid-column: 1 / -1; }
+.proje-kart-genis .proje-gorsel-tutucu:has(.proje-gorsel) { aspect-ratio: 4 / 1; }
+@media (max-width: 1024px) { .proje-kart-genis .proje-gorsel-tutucu:has(.proje-gorsel) { aspect-ratio: 5 / 2; } }
+.proje-modal-link { color: #00ffcc; font-weight: 600; text-decoration: none; border-bottom: 1px solid rgba(0,255,204,0.3); }
+.proje-modal-link:hover { border-bottom-color: #00ffcc; }
+.timeline-kart p a { color: #00ffcc; text-decoration: none; border-bottom: 1px solid rgba(0,255,204,0.3); }
+.timeline-kart p a:hover { border-bottom-color: #00ffcc; }
+[data-theme="light"] .proje-modal-link, [data-theme="light"] .timeline-kart p a { color: #00b894; border-bottom-color: rgba(0,184,148,0.35); }
 .proje-detay { padding: 30px; }
 .proje-detay h3 { color: #fff; font-size: 1.4rem; margin-bottom: 12px; transition: color 0.3s ease; }
 .proje-kart:hover .proje-detay h3 { color: #00ffcc; }
