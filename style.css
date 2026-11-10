@@ -630,7 +630,8 @@ body { background-color: var(--renk-bg); color: var(--renk-metin); font-family: 
 .typing-cursor { color: #00ffcc; animation: blink 1s step-end infinite; font-weight: 100; }
 @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0} }
 
-.hero-butonlar { display: flex; gap: 16px; margin-bottom: 50px; }
+.hero-butonlar { display: flex; flex-wrap: wrap; gap: 16px; margin-bottom: 50px; }
+.hero-butonlar .btn { white-space: nowrap; }
 .btn { display: inline-flex; align-items: center; gap: 8px; border: none; border-radius: 30px; font-weight: 600; font-family: var(--font-baslik); font-size: 0.95rem; padding: 14px 32px; cursor: pointer; transition: all 0.3s ease; text-decoration: none; }
 .btn-dolu { background: #00ffcc; color: var(--renk-bg); box-shadow: 0 0 25px rgba(0,255,204,0.3); }
 .btn-dolu:hover { background: #fff; box-shadow: 0 0 30px rgba(255,255,255,0.4); transform: translateY(-3px); }
@@ -1212,6 +1213,9 @@ textarea.form-kontrol { resize: none; }
 @media (max-width: 480px) {
     .hero-baslik { font-size: 2.5rem; letter-spacing: -2px; }
     .hero-istatistik { gap: 20px; }
+    .hero-butonlar { gap: 12px; }
+    .hero-butonlar .btn { flex: 1 1 0; justify-content: center; padding: 12px 16px; }
+    .hero-butonlar .btn-dolu { flex-basis: 100%; }
     .istatistik-sayi { font-size: 1.5rem; }
     .bolum-baslik { font-size: 2rem; }
     .yetenek-grid { grid-template-columns: 1fr; }
@@ -1753,5 +1757,5 @@ textarea.form-kontrol { resize: none; }
     .kayan-yazi-kapsayici { animation-duration: 60s !important; }
     .portre-glow { animation: none !important; }
     .crt-flicker { animation: none !important; }
-    scroll-behavior: auto;
+    html { scroll-behavior: auto; }
 }
