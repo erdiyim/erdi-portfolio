@@ -1,0 +1,625 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Bu dosya scripts/en-sayfa.js ile index.html'den üretilir; elle düzenlemeyin. -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Açılış ekranı yalnızca ilk ziyarette gösterilir -->
+    <script>try { if (localStorage.getItem('acilis-goruldu')) document.documentElement.classList.add('acilis-atla'); } catch (e) {}</script>
+    <!-- Google Analytics: betik yalnızca çerez onayı verildiyse yüklenir (onay anında app.js analitikYukle'yi çağırır) -->
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        window.analitikYukle = function () {
+            if (window.analitikYuklendi) return;
+            window.analitikYuklendi = true;
+            window['ga-disable-G-VGZ26N6CFE'] = false;
+            var s = document.createElement('script');
+            s.async = true;
+            s.src = 'https://www.googletagmanager.com/gtag/js?id=G-VGZ26N6CFE';
+            document.head.appendChild(s);
+            gtag('js', new Date());
+            gtag('config', 'G-VGZ26N6CFE');
+        };
+        try { if (localStorage.getItem('cookie-tercih') === 'kabul') window.analitikYukle(); } catch (e) {}
+    </script>
+    <title>Erdi Öcal | Creative Developer</title>
+    <meta name="description" content="Erdi Öcal - Full Stack Developer. A software developer building corporate solutions with modern web technologies." data-en-content="Erdi Öcal - Full Stack Developer. A software developer building corporate solutions with modern web technologies.">
+    <meta property="og:title" content="Erdi Öcal | Creative Developer">
+    <meta property="og:description" content="Full Stack Developer — ASP.NET, React, TypeScript. A software developer building corporate solutions." data-en-content="Full Stack Developer — ASP.NET, React, TypeScript. A software developer building corporate solutions.">
+    <meta property="og:type" content="website">
+    <meta property="og:locale" content="en_US" data-en-content="en_US">
+    <meta property="og:url" content="https://www.erdiocal.com/en/" data-en-content="https://www.erdiocal.com/en/">
+    <meta property="og:image" content="https://www.erdiocal.com/og-image.png">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Erdi Öcal | Creative Developer">
+    <meta name="twitter:description" content="Full Stack Developer — ASP.NET, React, TypeScript.">
+    <meta name="twitter:image" content="https://www.erdiocal.com/og-image.png">
+    <link rel="alternate" type="application/rss+xml" title="Erdi Öcal — Teknik Keşifler" href="https://www.erdiocal.com/feed.xml">
+    <link rel="canonical" href="https://www.erdiocal.com/en/" data-en-href="https://www.erdiocal.com/en/">
+    <!-- Aynı içeriğin İngilizcesi /en/ adresinde (scripts/en-sayfa.js üretir) -->
+    <link rel="alternate" hreflang="tr" href="https://www.erdiocal.com/">
+    <link rel="alternate" hreflang="en" href="https://www.erdiocal.com/en/">
+    <link rel="alternate" hreflang="x-default" href="https://www.erdiocal.com/">
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Person",
+        "name": "Erdi Öcal",
+        "url": "https://www.erdiocal.com",
+        "image": "https://www.erdiocal.com/erdi-portrait.webp",
+        "jobTitle": "Full Stack Developer",
+        "worksFor": { "@type": "Organization", "name": "Shaperon Works", "url": "https://shaperonworks.com" },
+        "address": { "@type": "PostalAddress", "addressLocality": "Istanbul", "addressCountry": "TR" },
+        "alumniOf": [
+            { "@type": "CollegeOrUniversity", "name": "İstanbul Medipol Üniversitesi" },
+            { "@type": "CollegeOrUniversity", "name": "İstanbul Üniversitesi" }
+        ],
+        "knowsAbout": ["ASP.NET Core", "React", "TypeScript", "C#", "PostgreSQL", "Docker", "REST API"],
+        "sameAs": [
+            "https://github.com/erdiyim",
+            "https://www.linkedin.com/in/erdiocal/",
+            "https://www.instagram.com/erdiocal"
+        ]
+    }
+    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;700&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet"></noscript>
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+    <link rel="icon" type="image/png" href="/favicon.png">
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+    <!-- Portre: telefonda 800px'lik küçük sürüm (23 KB), geniş ekranda tam boy -->
+    <link rel="preload" href="/erdi-portrait-800.webp" as="image" media="(max-width: 767px)">
+    <link rel="preload" href="/erdi-portrait.webp" as="image" media="(min-width: 768px)">
+    <link rel="preload" href="/app.min.js" as="script">
+    <link rel="stylesheet" href="/style.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+    <script>window.emailjs || document.write('<script src="/emailjs.min.js"><\/script>')</script>
+    <script src="https://unpkg.com/lenis@1/dist/lenis.min.js"></script>
+    <script>window.Lenis || document.write('<script src="/lenis.min.js"><\/script>')</script>
+</head>
+<body>
+
+    <!-- ERİŞİLEBİLİRLİK: İÇERİĞE ATLA -->
+    <a href="#ana-ekran" class="icerige-atla" data-tr="İçeriğe Atla" data-en="Skip to Content">Skip to Content</a>
+
+    <!-- SAYFA GEÇİŞ OVERLAY -->
+    <div class="sayfa-gecis" id="sayfaGecis">
+        <div class="sayfa-gecis-serit" style="--i:0"></div>
+        <div class="sayfa-gecis-serit" style="--i:1"></div>
+        <div class="sayfa-gecis-serit" style="--i:2"></div>
+        <div class="sayfa-gecis-serit" style="--i:3"></div>
+        <div class="sayfa-gecis-serit" style="--i:4"></div>
+    </div>
+
+    <!-- SCROLL PROGRESS BAR -->
+    <div class="scroll-ilerleme" id="scrollIlerleme"></div>
+
+    <!-- SİNEMATİK GİRİŞ EKRANI -->
+    <div id="acilis-ekrani">
+        <button class="atla-btn" id="atlaBtn" data-tr="Atla" data-en="Skip">Skip</button>
+        <!-- Masa yüzeyi -->
+        <div class="masa-yuzeyi"></div>
+        <div class="boot-sahne">
+            <div class="monitor" id="monitor">
+                <div class="monitor-govde">
+                    <div class="monitor-ekran" id="monitorEkran">
+                        <div class="crt-acilma"></div>
+                        <div class="ekran-icerik">
+                            <div class="kod-satirlari" id="kodSatirlari"></div>
+                            <span class="yanip-sonen-imlec">_</span>
+                        </div>
+                        <div class="crt-tarama"></div>
+                        <div class="ekran-yansima"></div>
+                    </div>
+                    <div class="monitor-guc-led"></div>
+                </div>
+                <div class="monitor-boyun"></div>
+                <div class="monitor-ayak"></div>
+            </div>
+            <div class="boot-alt-bilgi" id="bootAltBilgi">
+                <div class="boot-progress-bar"><div class="boot-progress-fill" id="bootProgress"></div></div>
+                <p class="boot-ipucu" id="bootIpucu" data-tr="Devam etmek için tıklayın veya ENTER tuşuna basın" data-en="Click or press ENTER to continue">Click or press ENTER to continue</p>
+            </div>
+        </div>
+        <div class="zoom-gecis" id="zoomGecis"></div>
+    </div>
+
+    <!-- ARKA PLAN CANVAS -->
+    <canvas id="tuval"></canvas>
+
+    <!-- NAVİGASYON -->
+    <nav id="navbar">
+        <a href="#" class="nav-logo">E<span class="vurgu">.</span>Öcal</a>
+        <div class="nav-linkler">
+            <a href="#ana-ekran" class="nav-link" data-tr="Ana Sayfa" data-en="Home">Home</a>
+            <a href="#hakkimda" class="nav-link" data-tr="Hakkımda" data-en="About">About</a>
+            <a href="#deneyim" class="nav-link" data-tr="Deneyim" data-en="Journey">Journey</a>
+            <a href="#projeler" class="nav-link" data-tr="Projeler" data-en="Projects">Projects</a>
+            <a href="#referanslar" class="nav-link" data-tr="Referanslar" data-en="Testimonials">Testimonials</a>
+            <a href="#iletisim" class="nav-link nav-link-ozel" data-tr="Bağlantı Kur" data-en="Connect">Connect</a>
+            <button id="dilBtn" class="dil-toggle" aria-label="Dil Değiştir">
+                <span class="dil-secim" data-dil="tr">TR</span>
+                <span class="dil-ayrac">|</span>
+                <span class="dil-secim aktif-dil" data-dil="en">EN</span>
+            </button>
+            <div class="canli-saat" id="canliSaat" aria-label="Yerel Saat">
+                <span class="saat-ikon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10" /><polyline points="12 6 12 12 16 14" /></svg></span>
+                <span class="saat-deger" id="saatDeger"></span>
+            </div>
+            <button id="temaBtn" class="tema-toggle" aria-label="Tema Değiştir">
+                <svg class="ikon-ay" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" /></svg>
+                <svg class="ikon-gunes" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5" /><line x1="12" y1="1" x2="12" y2="3" /><line x1="12" y1="21" x2="12" y2="23" /><line x1="4.22" y1="4.22" x2="5.64" y2="5.64" /><line x1="18.36" y1="18.36" x2="19.78" y2="19.78" /><line x1="1" y1="12" x2="3" y2="12" /><line x1="21" y1="12" x2="23" y2="12" /><line x1="4.22" y1="19.78" x2="5.64" y2="18.36" /><line x1="18.36" y1="5.64" x2="19.78" y2="4.22" /></svg>
+            </button>
+        </div>
+        <button id="hamburger" aria-label="Menü">
+            <span></span><span></span><span></span>
+        </button>
+    </nav>
+
+    <!-- MOBİL MENÜ -->
+    <div id="mobil-menu">
+        <a href="#ana-ekran" class="mobil-link" data-tr="Ana Sayfa" data-en="Home">Home</a>
+        <a href="#hakkimda" class="mobil-link" data-tr="Hakkımda" data-en="About">About</a>
+        <a href="#deneyim" class="mobil-link" data-tr="Deneyim" data-en="Journey">Journey</a>
+        <a href="#projeler" class="mobil-link" data-tr="Projeler" data-en="Projects">Projects</a>
+        <a href="#referanslar" class="mobil-link" data-tr="Referanslar" data-en="Testimonials">Testimonials</a>
+        <a href="#iletisim" class="mobil-link" data-tr="Bağlantı Kur" data-en="Connect">Connect</a>
+        <button class="dil-toggle mobil-dil-toggle" id="dilBtnMobil" aria-label="Dil Değiştir">
+            <span class="dil-secim" data-dil="tr">TR</span>
+            <span class="dil-ayrac">|</span>
+            <span class="dil-secim aktif-dil" data-dil="en">EN</span>
+        </button>
+        <button id="temaBtnMobil" class="tema-toggle mobil-tema-toggle" aria-label="Tema Değiştir">
+            <svg class="ikon-ay" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" /></svg>
+            <svg class="ikon-gunes" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5" /><line x1="12" y1="1" x2="12" y2="3" /><line x1="12" y1="21" x2="12" y2="23" /><line x1="4.22" y1="4.22" x2="5.64" y2="5.64" /><line x1="18.36" y1="18.36" x2="19.78" y2="19.78" /><line x1="1" y1="12" x2="3" y2="12" /><line x1="21" y1="12" x2="23" y2="12" /><line x1="4.22" y1="19.78" x2="5.64" y2="18.36" /><line x1="18.36" y1="5.64" x2="19.78" y2="4.22" /></svg>
+        </button>
+    </div>
+
+    <!-- HERO BÖLÜMÜ -->
+    <main id="ana-ekran" class="reveal-container">
+        <div class="kayan-yazi-kapsayici arka-yazi" data-parallax="0.3">
+            <div class="kayan-yazi gri-yazi" aria-hidden="true" data-tr="YARATICI GELİŞTİRİCİ • SİSTEM MİMARI • PROBLEM ÇÖZÜCÜ • YARATICI GELİŞTİRİCİ • SİSTEM MİMARI • PROBLEM ÇÖZÜCÜ •" data-en="CREATIVE DEVELOPER • SYSTEM ARCHITECT • PROBLEM SOLVER • CREATIVE DEVELOPER • SYSTEM ARCHITECT • PROBLEM SOLVER •">CREATIVE DEVELOPER • SYSTEM ARCHITECT • PROBLEM SOLVER • CREATIVE DEVELOPER • SYSTEM ARCHITECT • PROBLEM SOLVER •</div>
+        </div>
+        <div class="kayan-yazi-kapsayici on-yazi" data-parallax="0.5">
+            <div class="kayan-yazi beyaz-yazi" aria-hidden="true" data-tr="KODLA İNŞA ET • SİSTEM TASARLA • GÖNDER & TEKRARLA • KODLA İNŞA ET • SİSTEM TASARLA • GÖNDER & TEKRARLA •" data-en="BUILD WITH CODE • DESIGN SYSTEMS • SHIP & REPEAT • BUILD WITH CODE • DESIGN SYSTEMS • SHIP & REPEAT •">BUILD WITH CODE • DESIGN SYSTEMS • SHIP &amp; REPEAT • BUILD WITH CODE • DESIGN SYSTEMS • SHIP &amp; REPEAT •</div>
+        </div>
+
+        <div class="hero-icerik">
+            <p class="hero-ust-etiket anim" data-anim="fade-right" data-tr="<Merhaba Dünya />" data-en="<Hello World />">&lt;Hello World /&gt;</p>
+            <h1 class="hero-baslik anim" data-anim="fade-right" data-delay="1">Erdi<br><span class="vurgu">Öcal</span></h1>
+            <div class="hero-typing-alani anim" data-anim="fade-right" data-delay="2">
+                <span class="typing-cursor">|</span>
+                <span id="typing-text"></span>
+            </div>
+            <div class="hero-butonlar anim" data-anim="fade-up" data-delay="3">
+                <a href="#projeler" class="btn btn-dolu" data-tr="Projelerimi Gör" data-en="View Projects"><span class="btn-icerik">View Projects</span> <span class="btn-ok">→</span></a>
+                <a href="#iletisim" class="btn btn-cerceve" data-tr="Bağlantı Kur" data-en="Get in Touch">Get in Touch</a>
+                <a href="/Erdi_Ocal_CV.pdf" download="" class="btn btn-cerceve cv-btn" data-tr="CV İndir" data-en="Download CV"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4" /><polyline points="7 10 12 15 17 10" /><line x1="12" y1="15" x2="12" y2="3" /></svg> Download CV</a>
+            </div>
+            <div class="hero-istatistik anim" data-anim="fade-up" data-delay="4">
+                <div class="istatistik-item">
+                    <span class="istatistik-sayi" data-hedef="15">0</span>+
+                    <span class="istatistik-etiket" data-tr="Proje" data-en="Projects">Projects</span>
+                </div>
+                <div class="istatistik-item">
+                    <span class="istatistik-sayi" data-hedef="2">0</span>+
+                    <span class="istatistik-etiket" data-tr="Yıl Deneyim" data-en="Years Exp.">Years Exp.</span>
+                </div>
+                <div class="istatistik-item">
+                    <span class="istatistik-sayi" data-hedef="8">0</span>+
+                    <span class="istatistik-etiket" data-tr="Mutlu Müşteri" data-en="Happy Clients">Happy Clients</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="portre-kapsayici" id="portreKapsayici">
+            <canvas id="glitchTuvali" class="glitch-katman"></canvas>
+            <div class="crt-overlay"></div>
+            <div class="crt-flicker"></div>
+            <picture>
+                <source media="(max-width: 767px)" srcset="/erdi-portrait-800.webp" type="image/webp">
+                <source srcset="/erdi-portrait.webp" type="image/webp">
+                <img src="/erdi-portrait.png" alt="Erdi Öcal - Full Stack Developer, İstanbul" class="katman-normal" id="katmanNormal" fetchpriority="high">
+            </picture>
+            <div class="portre-glow"></div>
+        </div>
+
+        <div class="scroll-indicator" id="scrollIndicator">
+            <div class="scroll-fare">
+                <div class="scroll-tekerlek"></div>
+            </div>
+            <span data-tr="Kaydır" data-en="Scroll">Scroll</span>
+        </div>
+    </main>
+    <div class="bolum-ayirici anim" data-anim="scale-in"></div>
+
+    <!-- HAKKIMDA -->
+    <section id="hakkimda" class="bolum-container">
+        <div class="cam-kart-genis">
+            <p class="bolum-ust-etiket anim" data-anim="fade-down" data-tr="// hakkımda" data-en="// about">// about</p>
+            <h2 class="bolum-baslik anim" data-anim="scale-in" data-delay="1" data-tr="Ben Kimim?" data-en="Who Am I?">Who Am I?</h2>
+            <p class="aciklama-metin anim" data-anim="fade-up" data-delay="2" data-tr="Sadece bir arayüz geliştiricisi değil, <span class='vurgu'>sistemin bütününü gören</span> bir problem çözücüyüm. <span class='vurgu'>Shaperon Works</span> ekibinin kurucu ortağıyım — web geliştirme, dijital çözümler ve blog yönetimi alanlarında ekip olarak projeler üretiyoruz." data-en="Not just a frontend developer, but a problem solver who <span class='vurgu'>sees the whole system</span>. I'm a co-founder of <span class='vurgu'>Shaperon Works</span> — as a team, we build web solutions, digital products, and manage blog content for clients.">Not just a frontend developer, but a problem solver who <span class="vurgu">sees the whole system</span>. I'm a co-founder of <span class="vurgu">Shaperon Works</span> — as a team, we build web solutions, digital products, and manage blog content for clients.</p>
+            <div class="hakkimda-detaylar">
+                <div class="detay-item anim" data-anim="fade-left" data-delay="2">
+                    <span class="detay-baslik" data-tr="Konum" data-en="Location">Location</span>
+                    <span class="detay-deger" data-tr="İstanbul, TR" data-en="Istanbul, TR">Istanbul, TR</span>
+                </div>
+                <div class="detay-item anim" data-anim="fade-up" data-delay="3">
+                    <span class="detay-baslik" data-tr="Eğitim" data-en="Education">Education</span>
+                    <span class="detay-deger" data-tr="Yönetim Bilişim Sistemleri" data-en="Management Information Systems">Management Information Systems</span>
+                    <span class="detay-alt" data-tr="İstanbul Medipol Üniversitesi · 4. Sınıf" data-en="Istanbul Medipol University · 4th Year">Istanbul Medipol University · 4th Year</span>
+                    <span class="detay-alt" data-tr="İstanbul Üniversitesi · İşletme" data-en="Istanbul University · Business Administration">Istanbul University · Business Administration</span>
+                </div>
+                <div class="detay-item anim" data-anim="fade-right" data-delay="4">
+                    <span class="detay-baslik" data-tr="Odak" data-en="Focus">Focus</span>
+                    <span class="detay-deger">Full Stack Development</span>
+                </div>
+            </div>
+            <div class="deneyim-ozetler">
+                <div class="deneyim-item anim" data-anim="fade-up" data-delay="3" data-tr="Shaperon Works kurucu ortağı — ekip olarak dijital çözümler" data-en="Shaperon Works co-founder — digital solutions as a team">Shaperon Works co-founder — digital solutions as a team</div>
+                <div class="deneyim-item anim" data-anim="fade-up" data-delay="3" data-tr="Kurumsal web siteleri & blog yönetimi hizmetleri" data-en="Corporate websites & blog management services">Corporate websites &amp; blog management services</div>
+                <div class="deneyim-item anim" data-anim="fade-up" data-delay="4" data-tr="Full-stack web uygulamaları & QR menü sistemleri" data-en="Full-stack web applications & QR menu systems">Full-stack web applications &amp; QR menu systems</div>
+                <div class="deneyim-item anim" data-anim="fade-up" data-delay="4" data-tr="AI destekli uygulama geliştirme & prompt engineering" data-en="AI-powered app development & prompt engineering">AI-powered app development &amp; prompt engineering</div>
+                <div class="deneyim-item anim" data-anim="fade-up" data-delay="5" data-tr="REST API tasarımı & Clean Code prensipleri" data-en="REST API design & Clean Code principles">REST API design &amp; Clean Code principles</div>
+            </div>
+        </div>
+    </section>
+    <div class="bolum-ayirici anim" data-anim="scale-in"></div>
+
+    <!-- DENEYİM TİMELINE -->
+    <section id="deneyim" class="bolum-container">
+        <div class="timeline-icerik">
+            <p class="bolum-ust-etiket anim" data-anim="fade-down" data-tr="// yolculuk" data-en="// journey">// journey</p>
+            <h2 class="bolum-baslik anim" data-anim="scale-in" data-delay="1" data-tr="Kariyer Yolculuğum" data-en="My Journey">My Journey</h2>
+            <div class="timeline">
+                <div class="timeline-cizgi"></div>
+                <div class="timeline-item anim" data-anim="fade-right" data-delay="2">
+                    <div class="timeline-nokta"></div>
+                    <div class="timeline-tarih">2022</div>
+                    <div class="timeline-kart">
+                        <h3 data-tr="Üniversite & Kodlamaya Başlangıç" data-en="University & Started Coding">University &amp; Started Coding</h3>
+                        <p data-tr="İstanbul Medipol Üniversitesi Yönetim Bilişim Sistemleri bölümünde eğitimime başladım; aynı yıl İstanbul Üniversitesi İşletme bölümünde de okumaya başladım. Bilişim sistemleri kavramları, bilgisayar donanım-yazılım temelleri ve C# ile programlamaya giriş yaptım. Algoritma mantığı ve problem çözme becerilerini edindim." data-en="Started studying Management Information Systems at Istanbul Medipol University, and Business Administration at Istanbul University in the same year. Learned IT systems concepts, computer hardware-software fundamentals, and began programming with C#. Acquired algorithm logic and problem-solving skills.">Started studying Management Information Systems at Istanbul Medipol University, and Business Administration at Istanbul University in the same year. Learned IT systems concepts, computer hardware-software fundamentals, and began programming with C#. Acquired algorithm logic and problem-solving skills.</p>
+                        <div class="timeline-etiketler"><span>C#</span><span data-tr="Algoritmalar" data-en="Algorithms">Algorithms</span><span>YBS</span><span data-tr="İşletme" data-en="Business">Business</span></div>
+                    </div>
+                </div>
+                <div class="timeline-item anim" data-anim="fade-left" data-delay="3">
+                    <div class="timeline-nokta"></div>
+                    <div class="timeline-tarih">2025</div>
+                    <div class="timeline-kart">
+                        <h3 data-tr="Full-Stack Geçiş & İlk Projeler" data-en="Full-Stack Transition & First Projects">Full-Stack Transition &amp; First Projects</h3>
+                        <p data-tr="Python, web teknolojileri (HTML/CSS/JavaScript), ASP.NET Core ile backend geliştirme, veri yapıları ve veritabanı yönetimi öğrendim. Gerçek dünya projelerine başladım — QR menü sistemleri ve kurumsal web siteleri geliştirdim." data-en="Learned Python, web technologies (HTML/CSS/JavaScript), backend development with ASP.NET Core, data structures, and database management. Started real-world projects — built QR menu systems and corporate websites.">Learned Python, web technologies (HTML/CSS/JavaScript), backend development with ASP.NET Core, data structures, and database management. Started real-world projects — built QR menu systems and corporate websites.</p>
+                        <div class="timeline-etiketler"><span>ASP.NET Core</span><span>JavaScript</span><span>SQL</span><span>Python</span></div>
+                    </div>
+                </div>
+                <div class="timeline-item anim" data-anim="fade-right" data-delay="4">
+                    <div class="timeline-nokta"></div>
+                    <div class="timeline-tarih" data-tr="Mar 2026" data-en="Mar 2026">Mar 2026</div>
+                    <div class="timeline-kart">
+                        <h3 data-tr="Shaperon Works'ü Kurduk" data-en="Co-founded Shaperon Works">Co-founded Shaperon Works</h3>
+                        <p data-tr="Üç kişilik ekiple Shaperon Works'ü kurduk: kendi oyunlarını geliştiren; web tasarımı, özel yazılım, SEO ve dijital pazarlama hizmeti veren bir dijital ürün ve yazılım stüdyosu. Bu dönemde nesne yönelimli programlama, WPF/XAML ve Entity Framework üzerine derinleştim." data-en="We founded Shaperon Works as a team of three: a digital product and software studio that builds its own games and offers web design, custom software, SEO and digital marketing. In the same period I went deeper into object-oriented programming, WPF/XAML and Entity Framework.">We founded Shaperon Works as a team of three: a digital product and software studio that builds its own games and offers web design, custom software, SEO and digital marketing. In the same period I went deeper into object-oriented programming, WPF/XAML and Entity Framework.</p>
+                        <div class="timeline-etiketler"><span data-tr="Kurucu Ortak" data-en="Co-founder">Co-founder</span><span>OOP</span><span>Entity Framework</span></div>
+                    </div>
+                </div>
+                <div class="timeline-item anim" data-anim="fade-left" data-delay="4">
+                    <div class="timeline-nokta"></div>
+                    <div class="timeline-tarih">2026</div>
+                    <div class="timeline-kart">
+                        <h3 data-tr="SEOEVİM & Sağlık Siteleri SEO" data-en="SEOEVİM & Healthcare SEO">SEOEVİM &amp; Healthcare SEO</h3>
+                        <p data-tr="Stüdyonun sitesi <a href='https://shaperonworks.com' target='_blank' rel='noopener'>shaperonworks.com</a> ile SEO ve dijital ajans markamız <a href='https://seoevim.com' target='_blank' rel='noopener'>SEOEVİM</a>'in sitesini geliştirdik. Ekip olarak dört sağlık sitesinin SEO çalışmasını yürütüyoruz: Prof. Dr. Celal Çandırlı'nın üç WordPress sitesi (maxfaxzygomacenter.com, maxfaceimplant.com, celalcandirli.com) için Türkçe ve İngilizce makaleler, Maltepe'deki Dt. Salman Taştan kliniğinin çok dilli sitesi için SEO. Zigomatik implant gibi uzmanlık konularını hastaların anlayacağı dile çeviriyoruz." data-en="We built the studio site <a href='https://shaperonworks.com' target='_blank' rel='noopener'>shaperonworks.com</a> and the site of our SEO and digital agency brand <a href='https://seoevim.com' target='_blank' rel='noopener'>SEOEVİM</a>. As a team we run SEO for four healthcare websites: Turkish and English articles for Prof. Dr. Celal Çandırlı's three WordPress sites (maxfaxzygomacenter.com, maxfaceimplant.com, celalcandirli.com), and SEO for the multilingual site of Dt. Salman Taştan's dental clinic in Maltepe. We turn specialist topics such as zygomatic implants into language patients understand.">We built the studio site <a href="https://shaperonworks.com" target="_blank" rel="noopener">shaperonworks.com</a> and the site of our SEO and digital agency brand <a href="https://seoevim.com" target="_blank" rel="noopener">SEOEVİM</a>. As a team we run SEO for four healthcare websites: Turkish and English articles for Prof. Dr. Celal Çandırlı's three WordPress sites (maxfaxzygomacenter.com, maxfaceimplant.com, celalcandirli.com), and SEO for the multilingual site of Dt. Salman Taştan's dental clinic in Maltepe. We turn specialist topics such as zygomatic implants into language patients understand.</p>
+                        <div class="timeline-etiketler"><span>SEO</span><span>WordPress</span><span data-tr="TR / EN İçerik" data-en="TR / EN Content">TR / EN Content</span><span>Next.js</span></div>
+                    </div>
+                </div>
+                <div class="timeline-item anim" data-anim="fade-right" data-delay="4">
+                    <div class="timeline-nokta"></div>
+                    <div class="timeline-tarih" data-tr="Haz 2026" data-en="Jun 2026">Jun 2026</div>
+                    <div class="timeline-kart">
+                        <h3 data-tr="Work and Travel — ABD" data-en="Work and Travel — USA">Work and Travel — USA</h3>
+                        <p data-tr="Haziran–Eylül 2026'da Herndon, Virginia'da Ridgeline Pool'da havuz görevlisi olarak çalıştım. Düzenli su kimyası ölçümleri ve bakımla tesisin güvenli işleyişini sağladım; tamamen İngilizce bir ortamda ekip ve yöneticiyle koordineli çalıştım." data-en="From June to September 2026 I worked as a pool attendant at Ridgeline Pool in Herndon, Virginia. I kept the facility running safely with regular water-chemistry checks and maintenance, coordinating with the team and manager in a fully English-speaking workplace.">From June to September 2026 I worked as a pool attendant at Ridgeline Pool in Herndon, Virginia. I kept the facility running safely with regular water-chemistry checks and maintenance, coordinating with the team and manager in a fully English-speaking workplace.</p>
+                        <div class="timeline-etiketler"><span data-tr="İngilizce" data-en="English">English</span><span data-tr="Ekip Çalışması" data-en="Teamwork">Teamwork</span><span data-tr="Sorumluluk" data-en="Responsibility">Responsibility</span></div>
+                    </div>
+                </div>
+                <div class="timeline-item anim" data-anim="fade-left" data-delay="5">
+                    <div class="timeline-tarih">2026 — <span data-tr="Şimdi" data-en="Now">Now</span></div>
+                    <div class="timeline-kart aktif-kart">
+                        <h3 data-tr="Delete: E.A.D Core & Oyunlar" data-en="Delete: E.A.D Core & Games">Delete: E.A.D Core &amp; Games</h3>
+                        <p data-tr="Stüdyonun ilk Steam oyunu Delete: E.A.D Core'un pazarlamasını ve tanıtım videolarını yürütüyor, geliştirme ekibine oyun testi ve geri bildirimle destek veriyorum. Kişisel projem olarak Unity/C# ile Luxury Pawn Shop Simulator'ı geliştiriyorum. Sağlık sitelerinin SEO çalışmaları devam ediyor." data-en="I run marketing and trailer production for Delete: E.A.D Core, the studio's first Steam game, and support the dev team with playtesting and feedback. As a personal project I'm building Luxury Pawn Shop Simulator in Unity/C#. The healthcare SEO work continues.">I run marketing and trailer production for Delete: E.A.D Core, the studio's first Steam game, and support the dev team with playtesting and feedback. As a personal project I'm building Luxury Pawn Shop Simulator in Unity/C#. The healthcare SEO work continues.</p>
+                        <div class="timeline-etiketler"><span data-tr="Oyun Pazarlaması" data-en="Game Marketing">Game Marketing</span><span data-tr="Video Kurgu" data-en="Video Editing">Video Editing</span><span>Unity</span><span>SEO</span></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <div class="bolum-ayirici anim" data-anim="scale-in"></div>
+
+    <!-- YETENEKLER -->
+    <section id="yetenekler" class="bolum-container">
+        <div class="yetenekler-icerik">
+            <p class="bolum-ust-etiket anim" data-anim="fade-down" data-tr="// yetenekler" data-en="// skills">// skills</p>
+            <h2 class="bolum-baslik anim" data-anim="scale-in" data-delay="1" data-tr="Teknoloji Yığınım" data-en="My Tech Stack">My Tech Stack</h2>
+            <div class="yetenek-grid">
+                <div class="yetenek-kart anim" data-anim="fade-left" data-delay="1">
+                    <div class="yetenek-ikon"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#00ffcc" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6" /><polyline points="8 6 2 12 8 18" /></svg></div>
+                    <h3>Frontend</h3>
+                    <div class="yetenek-etiketler"><span>React</span><span>TypeScript</span><span>Tailwind CSS</span><span>UI/UX</span></div>
+                </div>
+                <div class="yetenek-kart anim" data-anim="fade-up" data-delay="2">
+                    <div class="yetenek-ikon"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#00ffcc" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2" /><line x1="8" y1="21" x2="16" y2="21" /><line x1="12" y1="17" x2="12" y2="21" /></svg></div>
+                    <h3>Backend</h3>
+                    <div class="yetenek-etiketler"><span>ASP.NET Core</span><span>C#</span><span>Entity Framework</span><span>API Design</span></div>
+                </div>
+                <div class="yetenek-kart anim" data-anim="fade-up" data-delay="3">
+                    <div class="yetenek-ikon"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#00ffcc" stroke-width="2"><ellipse cx="12" cy="5" rx="9" ry="3" /><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3" /><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5" /></svg></div>
+                    <h3>Database</h3>
+                    <div class="yetenek-etiketler"><span>PostgreSQL</span><span>SQL Server</span><span>Database Design</span></div>
+                </div>
+                <div class="yetenek-kart anim" data-anim="fade-right" data-delay="2">
+                    <div class="yetenek-ikon"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#00ffcc" stroke-width="2"><circle cx="12" cy="12" r="3" /><path d="M19.4 15a1.65 1.65 0 00.33 1.82l.06.06a2 2 0 010 2.83 2 2 0 01-2.83 0l-.06-.06a1.65 1.65 0 00-1.82-.33 1.65 1.65 0 00-1 1.51V21a2 2 0 01-4 0v-.09A1.65 1.65 0 009 19.4a1.65 1.65 0 00-1.82.33l-.06.06a2 2 0 01-2.83-2.83l.06-.06A1.65 1.65 0 004.68 15a1.65 1.65 0 00-1.51-1H3a2 2 0 010-4h.09A1.65 1.65 0 004.6 9a1.65 1.65 0 00-.33-1.82l-.06-.06a2 2 0 012.83-2.83l.06.06A1.65 1.65 0 009 4.68a1.65 1.65 0 001-1.51V3a2 2 0 014 0v.09a1.65 1.65 0 001 1.51 1.65 1.65 0 001.82-.33l.06-.06a2 2 0 012.83 2.83l-.06.06A1.65 1.65 0 0019.4 9a1.65 1.65 0 001.51 1H21a2 2 0 010 4h-.09a1.65 1.65 0 00-1.51 1z" /></svg></div>
+                    <h3 data-tr="Araçlar" data-en="Tools">Tools</h3>
+                    <div class="yetenek-etiketler"><span>Git</span><span>Docker</span><span>Agile</span><span>Clean Architecture</span></div>
+                </div>
+                <div class="yetenek-kart anim" data-anim="fade-right" data-delay="3">
+                    <div class="yetenek-ikon"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#00ffcc" stroke-width="2"><path d="M12 2a4 4 0 014 4c0 1.1-.9 2-2 2h-4a2 2 0 01-2-2 4 4 0 014-4z" /><path d="M8 8v2a6 6 0 008 0V8" /><path d="M6 14c-2 1-3 3-3 5h18c0-2-1-4-3-5" /><circle cx="9" cy="13" r="1" /><circle cx="15" cy="13" r="1" /></svg></div>
+                    <h3 data-tr="AI & Mimari" data-en="AI & Architecture">AI &amp; Architecture</h3>
+                    <div class="yetenek-etiketler"><span>Prompt Engineering</span><span data-tr="AI Entegrasyonu" data-en="AI Integration">AI Integration</span><span>LLM</span><span data-tr="Model Mimarisi" data-en="Model Architecture">Model Architecture</span></div>
+                </div>
+                <div class="yetenek-kart anim" data-anim="fade-up" data-delay="2">
+                    <div class="yetenek-ikon"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#00ffcc" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="6" width="20" height="12" rx="6" /><line x1="6" y1="12" x2="10" y2="12" /><line x1="8" y1="10" x2="8" y2="14" /><circle cx="15" cy="13" r="1" /><circle cx="18" cy="11" r="1" /></svg></div>
+                    <h3 data-tr="Oyun Geliştirme" data-en="Game Development">Game Development</h3>
+                    <div class="yetenek-etiketler"><span>Unity</span><span>C#</span><span data-tr="Oyun Ekonomisi" data-en="Game Economy">Game Economy</span><span data-tr="Piksel Art" data-en="Pixel Art">Pixel Art</span><span data-tr="Oyun Testi" data-en="Playtesting">Playtesting</span></div>
+                </div>
+                <div class="yetenek-kart anim" data-anim="fade-up" data-delay="3">
+                    <div class="yetenek-ikon"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#00ffcc" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7" /><line x1="21" y1="21" x2="16" y2="16" /><polyline points="8 13 10 10 12 12 14 9" /></svg></div>
+                    <h3 data-tr="SEO & İçerik" data-en="SEO & Content">SEO &amp; Content</h3>
+                    <div class="yetenek-etiketler"><span>SEO</span><span data-tr="TR / EN İçerik" data-en="TR / EN Content">TR / EN Content</span><span>WordPress</span><span data-tr="Teknik İçerik" data-en="Technical Writing">Technical Writing</span></div>
+                </div>
+                <div class="yetenek-kart anim" data-anim="fade-up" data-delay="4">
+                    <div class="yetenek-ikon"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#00ffcc" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="5" width="15" height="14" rx="2" /><polygon points="22 7 17 12 22 17 22 7" /></svg></div>
+                    <h3 data-tr="Pazarlama & Video" data-en="Marketing & Video">Marketing &amp; Video</h3>
+                    <div class="yetenek-etiketler"><span data-tr="Oyun Pazarlaması" data-en="Game Marketing">Game Marketing</span><span data-tr="Video Kurgu" data-en="Video Editing">Video Editing</span><span data-tr="Steam Sayfası" data-en="Steam Page">Steam Page</span><span data-tr="Sosyal Medya" data-en="Social Media">Social Media</span></div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <div class="bolum-ayirici anim" data-anim="scale-in"></div>
+
+    <!-- PROJELER -->
+    <section id="projeler" class="bolum-container">
+        <div class="projeler-icerik">
+            <p class="bolum-ust-etiket anim" data-anim="fade-down" data-tr="// projeler" data-en="// projects">// projects</p>
+            <h2 class="bolum-baslik anim" data-anim="scale-in" data-delay="1" data-tr="Öne Çıkan Çalışmalarım" data-en="Featured Works">Featured Works</h2>
+            <div class="proje-grid">
+                <div class="proje-kart proje-kart-genis anim" data-anim="fade-up" data-delay="2" data-proje="deleteead">
+                    <div class="proje-gorsel-tutucu"><img src="/img/projeler/delete-ead-core.webp" alt="Delete: E.A.D Core: Steam kapak görseli ve oyun içi ekran görüntüsü, karanlık koridorda el fenerli ekip ve yaratık" class="proje-gorsel" width="1600" height="400" loading="lazy" decoding="async"><div class="proje-numara">01</div></div>
+                    <div class="proje-detay">
+                        <h3>Delete: E.A.D Core</h3>
+                        <p data-tr="2010'dan beri terk edilmiş bir yeraltı veri imha tesisinde geçen, 1–4 oyunculu online co-op korku oyunu. ShaperonWorks'ün ilk Steam oyunu; pazarlamasını ve tanıtım videolarını yürütüyorum. Çıkış: Q4 2026." data-en="A 1–4 player online co-op horror game set in an underground data-destruction facility abandoned since 2010. ShaperonWorks' first Steam game; I run its marketing and trailers. Release: Q4 2026.">A 1–4 player online co-op horror game set in an underground data-destruction facility abandoned since 2010. ShaperonWorks' first Steam game; I run its marketing and trailers. Release: Q4 2026.</p>
+                        <div class="etiketler"><span>Steam</span><span>Co-op</span><span data-tr="Oyun Pazarlaması" data-en="Game Marketing">Game Marketing</span><span data-tr="Tanıtım Videosu" data-en="Trailers">Trailers</span></div>
+                        <span class="proje-incele" data-tr="Detayları İncele →" data-en="View Details →">View Details →</span>
+                    </div>
+                </div>
+                <div class="proje-kart anim" data-anim="fade-left" data-delay="2" data-proje="pawnshop">
+                    <div class="proje-gorsel-tutucu"><img src="/img/projeler/luxury-pawn-shop.svg" alt="Luxury Pawn Shop Simulator kapak görseli: piksel art rehinci tezgâhı" class="proje-gorsel" width="800" height="400" loading="lazy" decoding="async"><div class="proje-numara">02</div></div>
+                    <div class="proje-detay">
+                        <h3>Luxury Pawn Shop Simulator</h3>
+                        <p data-tr="Unity ve C# ile geliştirdiğim, izometrik 2D piksel art tarzında mobil tycoon oyunu. Gelir modeli ve oyun ekonomisi tasarımı dahil. Geliştirme aşamasında." data-en="A mobile tycoon game in isometric 2D pixel art that I'm building with Unity and C#, including the revenue model and in-game economy. In development.">A mobile tycoon game in isometric 2D pixel art that I'm building with Unity and C#, including the revenue model and in-game economy. In development.</p>
+                        <div class="etiketler"><span>Unity</span><span>C#</span><span data-tr="Piksel Art" data-en="Pixel Art">Pixel Art</span><span>iOS / Android</span></div>
+                        <span class="proje-incele" data-tr="Detayları İncele →" data-en="View Details →">View Details →</span>
+                    </div>
+                </div>
+                <div class="proje-kart anim" data-anim="fade-right" data-delay="3" data-proje="qrmenu">
+                    <div class="proje-gorsel-tutucu"><img src="/img/projeler/qr-menu.svg" alt="QR Menü Sistemi kapak görseli: telefonda dijital menü ve QR kod" class="proje-gorsel" width="800" height="400" loading="lazy" decoding="async"><div class="proje-numara">03</div></div>
+                    <div class="proje-detay">
+                        <h3 data-tr="QR Menü Sistemi" data-en="QR Menu System">QR Menu System</h3>
+                        <p data-tr="Restoranlar için temassız dijital menü ve sipariş çözüm mimarisi." data-en="Contactless digital menu and order management architecture for restaurants.">Contactless digital menu and order management architecture for restaurants.</p>
+                        <div class="etiketler"><span>System Design</span><span>Bootstrap</span><span>Backend</span></div>
+                        <span class="proje-incele" data-tr="Detayları İncele →" data-en="View Details →">View Details →</span>
+                    </div>
+                </div>
+                <div class="proje-kart anim" data-anim="fade-left" data-delay="3" data-proje="erdihub">
+                    <div class="proje-gorsel-tutucu"><img src="/img/projeler/yayin-platformu.svg" alt="Netflix Klonu kapak görseli: yayın platformu arayüzü" class="proje-gorsel" width="800" height="400" loading="lazy" decoding="async"><div class="proje-numara">04</div></div>
+                    <div class="proje-detay">
+                        <h3 data-tr="Netflix Klonu" data-en="Netflix Clone">Netflix Clone</h3>
+                        <p data-tr="Kullanıcı profili desteğine sahip, modern web teknolojileri ile geliştirilmiş yayın platformu arayüzü." data-en="A streaming platform interface built with modern web technologies, featuring user profile support.">A streaming platform interface built with modern web technologies, featuring user profile support.</p>
+                        <div class="etiketler"><span>JavaScript</span><span>UI/UX</span><span>API</span></div>
+                        <span class="proje-incele" data-tr="Detayları İncele →" data-en="View Details →">View Details →</span>
+                    </div>
+                </div>
+                <div class="proje-kart anim" data-anim="fade-right" data-delay="4" data-proje="laminagarden">
+                    <div class="proje-gorsel-tutucu"><img src="/img/projeler/lamina-garden.webp" alt="La'mina Garden web sitesinin ana sayfası: orman içinde havuzlu etkinlik alanı" class="proje-gorsel" width="1200" height="480" loading="lazy" decoding="async"><div class="proje-numara">05</div></div>
+                    <div class="proje-detay">
+                        <h3 data-tr="La'mina Garden — İşletme Web Sitesi" data-en="La'mina Garden — Business Website">La'mina Garden — Business Website</h3>
+                        <p data-tr="İstanbul Maltepe'de doğa temalı etkinlik mekanı için WhatsApp rezervasyon, galeri sistemi ve SEO optimizasyonlu kurumsal web sitesi." data-en="Corporate website for a nature-themed event venue in Istanbul with WhatsApp booking, gallery system, and SEO optimization.">Corporate website for a nature-themed event venue in Istanbul with WhatsApp booking, gallery system, and SEO optimization.</p>
+                        <div class="etiketler"><span data-tr="Kurumsal" data-en="Corporate">Corporate</span><span>SEO</span><span>Responsive</span><span>WhatsApp API</span></div>
+                        <a href="https://www.laminagarden.net" target="_blank" rel="noopener" class="proje-incele" data-tr="Siteyi Ziyaret Et →" data-en="Visit Website →">Visit Website →</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <div class="bolum-ayirici anim" data-anim="scale-in"></div>
+
+    <!-- TEKNİK KEŞİFLER -->
+    <section id="kesifler" class="bolum-container">
+        <div class="blog-icerik">
+            <p class="bolum-ust-etiket anim" data-anim="fade-down" data-tr="// keşifler" data-en="// explorations">// explorations</p>
+            <h2 class="bolum-baslik anim" data-anim="scale-in" data-delay="1" data-tr="Teknik Keşiflerim" data-en="Technical Explorations">Technical Explorations</h2>
+            <p class="aciklama-metin anim" data-anim="fade-up" data-delay="2" style="margin-bottom: 50px;" data-tr="Derinlemesine araştırdığım, deneyimlediğim ve pratiğe döktüğüm teknik konular." data-en="Topics I've deeply researched, experimented with, and put into practice.">Topics I've deeply researched, experimented with, and put into practice.</p>
+            <div class="blog-grid">
+                <article class="blog-kart anim" data-anim="fade-left" data-delay="2" data-blog="react-vs-vanilla">
+                    <div class="blog-kart-ust">
+                        <span class="blog-kategori" data-tr="Frontend" data-en="Frontend">Frontend</span>
+                        <span class="blog-tarih">2026</span>
+                    </div>
+                    <h3 data-tr="React vs Vanilla JS: Ne Zaman Hangisi?" data-en="React vs Vanilla JS: When to Use Which?">React vs Vanilla JS: When to Use Which?</h3>
+                    <p data-tr="Her projeye React eklemek doğru mu? Vanilla JS'in hâlâ parlak olduğu senaryolar ve framework seçim kriterleri." data-en="Is adding React to every project the right call? Scenarios where Vanilla JS still shines and framework selection criteria.">Is adding React to every project the right call? Scenarios where Vanilla JS still shines and framework selection criteria.</p>
+                    <div class="blog-alt">
+                        <div class="blog-etiketler"><span>React</span><span>JavaScript</span><span data-tr="Performans" data-en="Performance">Performance</span></div>
+                        <a href="/blog/react-vs-vanilla/" class="blog-oku" data-tr="Keşfet →" data-en="Explore →">Explore →</a>
+                    </div>
+                </article>
+                <article class="blog-kart anim" data-anim="fade-up" data-delay="3" data-blog="css-xray-efekti">
+                    <div class="blog-kart-ust">
+                        <span class="blog-kategori">CSS</span>
+                        <span class="blog-tarih">2026</span>
+                    </div>
+                    <h3 data-tr="CSS Mask ile X-Ray Efekti Nasıl Yapılır?" data-en="How to Create an X-Ray Effect with CSS Mask?">How to Create an X-Ray Effect with CSS Mask?</h3>
+                    <p data-tr="Bu portfolyödeki hover efektinin perde arkası: mask-image, canvas ve radial-gradient ile sinematik bir deneyim oluşturmak." data-en="Behind the scenes of this portfolio's hover effect: creating a cinematic experience with mask-image, canvas, and radial-gradient.">Behind the scenes of this portfolio's hover effect: creating a cinematic experience with mask-image, canvas, and radial-gradient.</p>
+                    <div class="blog-alt">
+                        <div class="blog-etiketler"><span>CSS</span><span>Canvas</span><span data-tr="Animasyon" data-en="Animation">Animation</span></div>
+                        <a href="/blog/css-xray-efekti/" class="blog-oku" data-tr="Keşfet →" data-en="Explore →">Explore →</a>
+                    </div>
+                </article>
+                <article class="blog-kart anim" data-anim="fade-right" data-delay="4" data-blog="vercel-deploy">
+                    <div class="blog-kart-ust">
+                        <span class="blog-kategori">DevOps</span>
+                        <span class="blog-tarih">2025</span>
+                    </div>
+                    <h3 data-tr="Vercel ile Ücretsiz Deploy: Adım Adım Rehber" data-en="Free Deployment with Vercel: Step-by-Step Guide">Free Deployment with Vercel: Step-by-Step Guide</h3>
+                    <p data-tr="GitHub entegrasyonu, custom domain ayarları ve otomatik CI/CD pipeline kurulumunu sıfırdan anlatıyorum." data-en="I explain GitHub integration, custom domain settings, and automatic CI/CD pipeline setup from scratch.">I explain GitHub integration, custom domain settings, and automatic CI/CD pipeline setup from scratch.</p>
+                    <div class="blog-alt">
+                        <div class="blog-etiketler"><span>Vercel</span><span>CI/CD</span><span>GitHub</span></div>
+                        <a href="/blog/vercel-deploy/" class="blog-oku" data-tr="Keşfet →" data-en="Explore →">Explore →</a>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </section>
+    <div class="bolum-ayirici anim" data-anim="scale-in"></div>
+
+    <!-- REFERANSLAR / TESTİMONİALS -->
+    <section id="referanslar" class="bolum-container">
+        <div class="referanslar-icerik">
+            <p class="bolum-ust-etiket anim" data-anim="fade-down" data-tr="// referanslar" data-en="// testimonials">// testimonials</p>
+            <h2 class="bolum-baslik anim" data-anim="scale-in" data-delay="1" data-tr="Ne Diyorlar?" data-en="What They Say?">What They Say?</h2>
+            <div class="referans-grid">
+                <div class="referans-kart anim" data-anim="fade-up" data-delay="2">
+                    <div class="referans-ust">
+                        <div class="referans-avatar">LG</div>
+                        <div class="referans-bilgi">
+                            <h4>La'mina Garden</h4>
+                            <span data-tr="Etkinlik Mekanı — İşletme Sahibi" data-en="Event Venue — Business Owner">Event Venue — Business Owner</span>
+                        </div>
+                    </div>
+                    <p data-tr="Web sitemiz için ihtiyaçlarımızı anlayan, hızlı ve profesyonel çözümler sunan bir ekiple çalıştık. Rezervasyon taleplerimiz site yayınlandıktan sonra gözle görülür biçimde arttı." data-en="We worked with a team that understood our needs and delivered fast, professional solutions. Booking inquiries visibly increased after the site launched.">We worked with a team that understood our needs and delivered fast, professional solutions. Booking inquiries visibly increased after the site launched.</p>
+                    <div class="referans-yildizlar">★★★★★</div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <div class="bolum-ayirici anim" data-anim="scale-in"></div>
+
+    <!-- İLETİŞİM -->
+    <section id="iletisim" class="bolum-container">
+        <div class="iletisim-kapsayici cam-kart-genis">
+            <p class="bolum-ust-etiket anim" data-anim="fade-down" data-tr="// iletişim" data-en="// contact">// contact</p>
+            <h2 class="bolum-baslik anim" data-anim="scale-in" data-delay="1" data-tr="Bağlantı Kur" data-en="Get in Touch">Get in Touch</h2>
+            <p class="aciklama-metin anim" data-anim="fade-up" data-delay="2" style="margin-bottom: 40px;" data-tr="Yeni bir proje, sistem mimarisi veya teknoloji konuşmak için mesaj bırakın." data-en="Leave a message to discuss a new project, system architecture, or technology.">Leave a message to discuss a new project, system architecture, or technology.</p>
+            <div class="iletisim-izgara anim" data-anim="fade-up" data-delay="3">
+                <div class="iletisim-bilgi">
+                    <h3 data-tr="Bilgiler" data-en="Info">Info</h3>
+                    <div class="bilgi-satir">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#00ffcc" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2" /><path d="M22 4L12 13 2 4" /></svg>
+                        <p>erdi-ocal@hotmail.com</p>
+                    </div>
+                    <div class="bilgi-satir">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#00ffcc" stroke-width="2"><path d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 0118 0z" /><circle cx="12" cy="10" r="3" /></svg>
+                        <p data-tr="İstanbul, Türkiye" data-en="Istanbul, Turkey">Istanbul, Turkey</p>
+                    </div>
+                    <div class="sosyal-medya">
+                        <a href="https://github.com/erdiyim" target="_blank" class="sosyal-link" aria-label="GitHub"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z" /></svg></a>
+                        <a href="https://www.linkedin.com/in/erdiocal/" target="_blank" class="sosyal-link" aria-label="LinkedIn"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" /></svg></a>
+                        <a href="https://www.instagram.com/erdiocal" target="_blank" class="sosyal-link" aria-label="Instagram"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" /></svg></a>
+                    </div>
+                </div>
+                <div class="iletisim-form-alani">
+                    <form id="iletisimFormu" class="ozel-form">
+                        <label for="formAd" class="sr-only" data-tr="Adınız Soyadınız" data-en="Your Name">Your Name</label>
+                        <input type="text" id="formAd" name="from_name" class="form-kontrol" data-tr-ph="Adınız Soyadınız" data-en-ph="Your Name" placeholder="Your Name" required>
+                        <label for="formEmail" class="sr-only" data-tr="E-posta Adresiniz" data-en="Your Email">Your Email</label>
+                        <input type="email" id="formEmail" name="from_email" class="form-kontrol" data-tr-ph="E-posta Adresiniz" data-en-ph="Your Email" placeholder="Your Email" required>
+                        <input type="text" name="website" class="honeypot-alan" tabindex="-1" autocomplete="off" aria-hidden="true">
+                        <label for="formMesaj" class="sr-only" data-tr="Mesajınız" data-en="Your Message">Your Message</label>
+                        <textarea class="form-kontrol" id="formMesaj" name="message" rows="4" data-tr-ph="Mesajınız..." data-en-ph="Your Message..." placeholder="Your Message..." required></textarea>
+                        <button type="submit" class="btn btn-dolu form-buton" id="formGonderBtn" data-tr="Gönder" data-en="Send"><span class="btn-icerik">Send</span> <span class="btn-ok">→</span></button>
+                        <p id="formDurum" class="form-durum"></p>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- BLOG MODAL -->
+    <div class="blog-modal-overlay" id="blogModalOverlay">
+        <div class="blog-modal" id="blogModal" role="dialog" aria-modal="true">
+            <div class="blog-modal-header">
+                <div class="blog-modal-header-sol">
+                    <span class="blog-modal-kategori" id="blogModalKategori"></span>
+                    <span class="blog-modal-tarih" id="blogModalTarih"></span>
+                </div>
+                <button class="blog-modal-kapat" id="blogModalKapat" aria-label="Kapat">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18" /><line x1="6" y1="6" x2="18" y2="18" /></svg>
+                </button>
+            </div>
+            <div class="blog-modal-konu">
+                <h2 id="blogModalBaslik"></h2>
+                <div class="blog-modal-etiketler" id="blogModalEtiketler"></div>
+            </div>
+            <div class="blog-modal-ayirici"></div>
+            <div class="blog-modal-icerik" id="blogModalIcerik"></div>
+        </div>
+    </div>
+
+    <!-- PROJE DETAY MODAL -->
+    <div class="proje-modal-overlay" id="projeModalOverlay">
+        <div class="proje-modal" id="projeModal" role="dialog" aria-modal="true">
+            <div class="proje-modal-header">
+                <div class="proje-modal-numara" id="projeModalNumara">01</div>
+                <button class="blog-modal-kapat" id="projeModalKapat" aria-label="Kapat">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18" /><line x1="6" y1="6" x2="18" y2="18" /></svg>
+                </button>
+            </div>
+            <div class="proje-modal-govde">
+                <h2 id="projeModalBaslik"></h2>
+                <div class="proje-modal-etiketler" id="projeModalEtiketler"></div>
+                <div class="proje-modal-bolumler" id="projeModalIcerik"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- COOKIE BANNER -->
+    <div id="cookieBanner" class="cookie-banner" style="display:none;">
+        <p data-tr="Bu site deneyiminizi iyileştirmek için çerez kullanır." data-en="This site uses cookies to improve your experience.">This site uses cookies to improve your experience.</p>
+        <div class="cookie-butonlar">
+            <button id="cookieKabul" class="btn btn-dolu cookie-btn" data-tr="Kabul Et" data-en="Accept">Accept</button>
+            <button id="cookieReddet" class="btn btn-cerceve cookie-btn" data-tr="Reddet" data-en="Decline">Decline</button>
+        </div>
+    </div>
+
+    <!-- YUKARI ÇIK BUTONU -->
+    <button id="yukariBtn" class="yukari-btn" aria-label="Yukarı Çık">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="18 15 12 9 6 15" /></svg>
+    </button>
+
+    <!-- FOOTER -->
+    <footer id="footer">
+        <div class="footer-icerik">
+            <div class="footer-sol">
+                <span class="footer-logo">E<span class="vurgu">.</span>Öcal</span>
+                <p class="footer-alt-yazi" data-tr="Tasarla. Kodla. Gönder." data-en="Design. Code. Ship.">Design. Code. Ship.</p>
+            </div>
+            <div class="footer-sosyal">
+                <a href="https://github.com/erdiyim" target="_blank" aria-label="GitHub"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z" /></svg></a>
+                <a href="https://www.linkedin.com/in/erdiocal/" target="_blank" aria-label="LinkedIn"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" /></svg></a>
+                <a href="https://www.instagram.com/erdiocal" target="_blank" aria-label="Instagram"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" /></svg></a>
+                <a href="https://shaperonworks.com/" target="_blank" aria-label="Shaperon Works"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M5.5 3C3.57 3 2 4.57 2 6.5V10c0 1.93 1.57 3.5 3.5 3.5h2.2l-1.4 5.6a1 1 0 0 0 .73 1.22 1 1 0 0 0 1.22-.73L9.9 13.5h4.2l1.65 6.09a1 1 0 0 0 1.22.73 1 1 0 0 0 .73-1.22l-1.4-5.6h2.2c1.93 0 3.5-1.57 3.5-3.5V6.5C22 4.57 20.43 3 18.5 3h-13zM5.5 5h13C19.33 5 20 5.67 20 6.5V10c0 .83-.67 1.5-1.5 1.5h-13C4.67 11.5 4 10.83 4 10V6.5C4 5.67 4.67 5 5.5 5z" /></svg></a>
+            </div>
+            <div class="footer-sag"><p data-tr="© 2026 Erdi Öcal. Tüm hakları saklıdır." data-en="© 2026 Erdi Öcal. All rights reserved.">© 2026 Erdi Öcal. All rights reserved.</p></div>
+        </div>
+    </footer>
+
+    <script src="/app.min.js"></script>
+</body>
+</html>

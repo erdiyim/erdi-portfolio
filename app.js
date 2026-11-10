@@ -52,7 +52,22 @@ function focusTrapKur(modalEl) {
 // 0. DİL DESTEĞİ (TR/EN)
 // ==========================================
 const DilYoneticisi = (() => {
-    let aktifDil = localStorage.getItem('dil') || 'tr';
+    // Sayfanın kendi dili: / Türkçe, /en/ İngilizce (en/index.html scripts/en-sayfa.js ile üretilir).
+    // /en/ her zaman İngilizce açılır; ana sayfada daha önce EN seçildiyse İngilizceye geçilir.
+    const sayfaDili = document.documentElement.lang === 'en' ? 'en' : 'tr';
+    let kayitli = null;
+    try { kayitli = localStorage.getItem('dil'); } catch (e) { /* depolama kapalı olabilir */ }
+    let aktifDil = (sayfaDili === 'tr' && kayitli === 'en') ? 'en' : sayfaDili;
+
+    // Dil değişince adres de değişsin (/ ↔ /en/); yalnızca ana sayfa adreslerinde
+    function adresiGuncelle(dil) {
+        const anaSayfa = ['/', '/index.html', '/en', '/en/', '/en/index.html'];
+        if (!anaSayfa.includes(location.pathname)) return;
+        const hedef = dil === 'en' ? '/en/' : '/';
+        if (location.pathname !== hedef) {
+            history.replaceState(history.state, '', hedef + location.search + location.hash);
+        }
+    }
 
     // Çeviride gerçek HTML etiketi var mı? ("<Merhaba Dünya />" gibi düz metin etiketlerini HTML sanma)
     const HTML_ETIKETI = /<\/?(span|a|br|strong|em|b|i)\b/i;
@@ -78,8 +93,9 @@ const DilYoneticisi = (() => {
 
     function uygula(dil) {
         aktifDil = dil;
-        localStorage.setItem('dil', dil);
+        try { localStorage.setItem('dil', dil); } catch (e) { /* depolama kapalı olabilir */ }
         document.documentElement.lang = dil;
+        adresiGuncelle(dil);
 
         // data-tr / data-en attribute'lu tüm elementleri güncelle
         document.querySelectorAll('[data-tr][data-en]').forEach(el => {
@@ -112,8 +128,8 @@ const DilYoneticisi = (() => {
         if (dilBtn) dilBtn.addEventListener('click', dilDegistir);
         if (dilBtnMobil) dilBtnMobil.addEventListener('click', dilDegistir);
 
-        // Başlangıç dilini uygula
-        if (aktifDil !== 'tr') uygula(aktifDil);
+        // Başlangıç dili sayfanınkinden farklıysa uygula (ana sayfada kayıtlı EN tercihi)
+        if (aktifDil !== sayfaDili) uygula(aktifDil);
     }
 
     return { uygula, dilDegistir, aktif, baslat };
@@ -246,7 +262,8 @@ document.addEventListener('DOMContentLoaded', () => { DilYoneticisi.baslat(); Te
     // Asset preload
     const assetler = [];
     const portre = new Image();
-    portre.src = 'erdi-portrait.png';
+    // Sayfadaki <picture> ile aynı dosya (önbellekten gelir); 3,7 MB'lık PNG artık indirilmiyor
+    portre.src = window.matchMedia('(max-width: 767px)').matches ? '/erdi-portrait-800.webp' : '/erdi-portrait.webp';
     assetler.push(new Promise(r => { portre.onload = r; portre.onerror = r; }));
     if (document.fonts) assetler.push(document.fonts.ready);
 

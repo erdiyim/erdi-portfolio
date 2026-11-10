@@ -20,8 +20,8 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
-      - name: Min dosyaları güncel mi?
-        run: npm run minify:check
+      - name: Üretilen dosyalar (min, en/index.html) güncel mi?
+        run: npm run check
 
   lighthouse:
     runs-on: ubuntu-latest

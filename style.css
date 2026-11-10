@@ -684,11 +684,11 @@ body { background-color: var(--renk-bg); color: var(--renk-metin); font-family: 
     position: absolute; top: 0; left: 0;
     width: 100%; height: 100%;
     z-index: 1; pointer-events: none;
-    -webkit-mask-image: url('erdi-portrait.png');
+    -webkit-mask-image: url('/erdi-portrait.webp');
     -webkit-mask-size: contain;
     -webkit-mask-position: bottom center;
     -webkit-mask-repeat: no-repeat;
-    mask-image: url('erdi-portrait.png');
+    mask-image: url('/erdi-portrait.webp');
     mask-size: contain;
     mask-position: bottom center;
     mask-repeat: no-repeat;
@@ -707,11 +707,11 @@ body { background-color: var(--renk-bg); color: var(--renk-metin); font-family: 
         rgba(0, 0, 0, 0.08) 4px
     );
     mix-blend-mode: overlay;
-    -webkit-mask-image: url('erdi-portrait.png');
+    -webkit-mask-image: url('/erdi-portrait.webp');
     -webkit-mask-size: contain;
     -webkit-mask-position: bottom center;
     -webkit-mask-repeat: no-repeat;
-    mask-image: url('erdi-portrait.png');
+    mask-image: url('/erdi-portrait.webp');
     mask-size: contain;
     mask-position: bottom center;
     mask-repeat: no-repeat;
@@ -724,14 +724,21 @@ body { background-color: var(--renk-bg); color: var(--renk-metin); font-family: 
     z-index: 4; pointer-events: none;
     background: rgba(0, 255, 204, 0.02);
     animation: crtFlicker 0.15s infinite alternate;
-    -webkit-mask-image: url('erdi-portrait.png');
+    -webkit-mask-image: url('/erdi-portrait.webp');
     -webkit-mask-size: contain;
     -webkit-mask-position: bottom center;
     -webkit-mask-repeat: no-repeat;
-    mask-image: url('erdi-portrait.png');
+    mask-image: url('/erdi-portrait.webp');
     mask-size: contain;
     mask-position: bottom center;
     mask-repeat: no-repeat;
+}
+/* Telefonda maskeler de sayfadaki küçük portreyi kullanır (ayrı bir 98 KB indirme olmasın) */
+@media (max-width: 767px) {
+    .glitch-katman, .crt-overlay, .crt-flicker {
+        -webkit-mask-image: url('/erdi-portrait-800.webp');
+        mask-image: url('/erdi-portrait-800.webp');
+    }
 }
 @keyframes crtFlicker {
     0% { opacity: 0.5; }
