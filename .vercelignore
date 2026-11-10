@@ -1,0 +1,6 @@
+# Yayına çıkmaması gereken geliştirme dosyaları (GitHub'da kalırlar, sitede 404 döner)
+/.claude
+/.githooks
+/.github
+/baslat.bat
+/.lighthouserc.json
