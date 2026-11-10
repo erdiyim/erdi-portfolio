@@ -261,6 +261,8 @@ document.addEventListener('DOMContentLoaded', () => { DilYoneticisi.baslat(); Te
                 hazir = true;
                 bootIpucu.innerHTML = bt.ipucu;
                 bootIpucu.classList.add('hazir');
+                // Tıklama beklemeden kısa bir süre sonra kendiliğinden devam et
+                setTimeout(girisYap, 1500);
             });
             return;
         }
@@ -325,6 +327,14 @@ document.addEventListener('DOMContentLoaded', () => { DilYoneticisi.baslat(); Te
 
     window.addEventListener('keydown', (e) => { if (e.key === 'Enter') girisYap(); });
     acilisEkrani.addEventListener('click', girisYap);
+
+    // Daha önce görüldüyse açılışı hiç gösterme; ilk ziyarette görüldü olarak işaretle
+    // (setTimeout: ağır motorlar bu dosyanın ilerisinde tanımlanıyor, önce onlar yüklensin)
+    if (document.documentElement.classList.contains('acilis-atla')) {
+        setTimeout(animasyonuAtla, 0);
+        return;
+    }
+    try { localStorage.setItem('acilis-goruldu', '1'); } catch (e) { /* depolama kapalı olabilir */ }
 })();
 
 // ==========================================
@@ -1419,8 +1429,84 @@ Type: CNAME | Name: www | Value: cname.vercel-dns.com</pre>
     const dil = () => DilYoneticisi.aktif();
 
     const projeler = {
-        erdihub: {
+        deleteead: {
             numara: '01',
+            etiketler: ['Steam', 'Co-op', 'Horror', 'Game Marketing', 'Trailers', 'Playtesting'],
+            tr: {
+                baslik: 'Delete: E.A.D Core',
+                icerik: `
+                    <h3>Oyun</h3>
+                    <p>2010'dan beri terk edilmiş bir yeraltı veri imha tesisinde geçen, 1–4 oyunculu online co-op hayatta kalma korku oyunu. Oyuncular veri disklerini bulup doğru sistemlerde imha ediyor; her oyuncunun kendine özgü bir yeteneği var. ShaperonWorks'ün ilk Steam oyunu, çıkış Q4 2026.</p>
+                    <h3>Özellikler</h3>
+                    <ul>
+                        <li>1–4 oyunculu online co-op</li>
+                        <li>Steam Başarımları, Steam Cloud ve istatistik desteği</li>
+                        <li>31 dilde arayüz ve altyazı</li>
+                        <li>Türkçe ve İngilizce tam seslendirme</li>
+                    </ul>
+                    <h3>Rolüm</h3>
+                    <p>Oyunun pazarlamasını ve tanıtım videolarının üretimini üstleniyorum: Steam mağaza sayfası, fragman kurgusu ve sosyal medya içerikleri. Geliştirme sürecinde oyunu test ederek ekibe geri bildirim veriyorum.</p>
+                    <p><a href="https://store.steampowered.com/app/4892710/Delete_EAD_Core/" target="_blank" rel="noopener" class="proje-modal-link">Steam'de İstek Listesine Ekle →</a></p>
+                `
+            },
+            en: {
+                baslik: 'Delete: E.A.D Core',
+                icerik: `
+                    <h3>The Game</h3>
+                    <p>A 1–4 player online co-op survival horror game set in an underground data-destruction facility abandoned since 2010. Players find data disks and destroy them in the right systems; each player has a unique ability. ShaperonWorks' first Steam game, releasing Q4 2026.</p>
+                    <h3>Features</h3>
+                    <ul>
+                        <li>1–4 player online co-op</li>
+                        <li>Steam Achievements, Steam Cloud and stats</li>
+                        <li>Interface and subtitles in 31 languages</li>
+                        <li>Full Turkish and English voice-over</li>
+                    </ul>
+                    <h3>My Role</h3>
+                    <p>I lead the game's marketing and trailer production: the Steam store page, trailer editing and social media content. During development I playtest the game and give the team feedback.</p>
+                    <p><a href="https://store.steampowered.com/app/4892710/Delete_EAD_Core/" target="_blank" rel="noopener" class="proje-modal-link">Wishlist on Steam →</a></p>
+                `
+            }
+        },
+        pawnshop: {
+            numara: '02',
+            etiketler: ['Unity', 'C#', 'Pixel Art', 'Tycoon', 'Unity IAP', 'AdMob'],
+            tr: {
+                baslik: 'Luxury Pawn Shop Simulator',
+                icerik: `
+                    <h3>Fikir</h3>
+                    <p>Lüks eşyaların alınıp satıldığı bir rehinci dükkânını yönettiğin, izometrik 2D piksel art tarzında bir mobil simülasyon / tycoon oyunu. Kişisel projem; iOS ve Android için geliştiriyorum.</p>
+                    <h3>Neler Yapıyorum</h3>
+                    <ul>
+                        <li>Unity ve C# ile oyun mantığı ve arayüz</li>
+                        <li>Oyun ekonomisi ve gelir modeli tasarımı (uygulama içi satın alma ve reklam)</li>
+                        <li>Unity Analytics ile ilk dakikaların akışını ve ekonomi dengesini ölçme</li>
+                        <li>Remote Config ile güncelleme beklemeden denge ayarı</li>
+                        <li>2D piksel art iş akışı</li>
+                    </ul>
+                    <h3>Durum</h3>
+                    <p>Geliştirme aşamasında. Oyunun <a href="/privacy/" class="proje-modal-link">gizlilik politikası</a> ve <a href="/support/" class="proje-modal-link">destek sayfası</a> bu sitede yayında.</p>
+                `
+            },
+            en: {
+                baslik: 'Luxury Pawn Shop Simulator',
+                icerik: `
+                    <h3>The Idea</h3>
+                    <p>A mobile simulation / tycoon game in isometric 2D pixel art where you run a pawn shop trading luxury goods. A personal project I'm building for iOS and Android.</p>
+                    <h3>What I'm Building</h3>
+                    <ul>
+                        <li>Game logic and UI in Unity and C#</li>
+                        <li>In-game economy and revenue model (in-app purchases and ads)</li>
+                        <li>Measuring first-session flow and economy balance with Unity Analytics</li>
+                        <li>Tuning balance without an app update via Remote Config</li>
+                        <li>2D pixel art workflow</li>
+                    </ul>
+                    <h3>Status</h3>
+                    <p>In development. The game's <a href="/privacy/" class="proje-modal-link">privacy policy</a> and <a href="/support/" class="proje-modal-link">support page</a> are live on this site.</p>
+                `
+            }
+        },
+        erdihub: {
+            numara: '04',
             etiketler: ['JavaScript', 'HTML/CSS', 'TMDB API', 'UI/UX', 'Responsive'],
             tr: {
                 baslik: 'Netflix Klonu',
@@ -1458,7 +1544,7 @@ Type: CNAME | Name: www | Value: cname.vercel-dns.com</pre>
             }
         },
         qrmenu: {
-            numara: '02',
+            numara: '03',
             etiketler: ['ASP.NET Core', 'Bootstrap', 'SQL Server', 'REST API', 'QR Code'],
             tr: {
                 baslik: 'QR Menü Sistemi',
@@ -1495,44 +1581,6 @@ Type: CNAME | Name: www | Value: cname.vercel-dns.com</pre>
                 `
             }
         },
-        haliflex: {
-            numara: '03',
-            etiketler: ['HTML/CSS', 'JavaScript', 'SEO', 'WhatsApp API', 'Responsive'],
-            tr: {
-                baslik: 'Halıflex — Kurumsal Web Sitesi',
-                icerik: `
-                    <h3>Problem</h3>
-                    <p>Bir işletmenin dijital varlığı yoktu. Müşteriler işletmeyi bulmakta zorlanıyor, sipariş süreci tamamen telefonla yürütülüyordu.</p>
-                    <h3>Çözüm</h3>
-                    <ul>
-                        <li>SEO odaklı kurumsal web sitesi tasarımı</li>
-                        <li>WhatsApp Business API ile tek tıkla iletişim</li>
-                        <li>Google Maps entegrasyonu ve SEO optimizasyonu</li>
-                        <li>Hizmet katalogu ve fiyat listesi modülleri</li>
-                        <li>Mobil uyumlu tasarım (müşterilerin %80'i mobil)</li>
-                    </ul>
-                    <h3>Sonuç</h3>
-                    <p>Shaperon Works olarak müşterinin dijital varlığını sıfırdan oluşturduk. Müşteri talepleri gözle görülür şekilde arttı. WhatsApp entegrasyonu sayesinde iletişim süreci hızlandı. Bu proje, kurumsal web sitesi oluşturma kapasitemizin kanıtı oldu.</p>
-                `
-            },
-            en: {
-                baslik: 'Halıflex — Corporate Website',
-                icerik: `
-                    <h3>Problem</h3>
-                    <p>A business had no digital presence. Customers struggled to find the business, and orders were handled entirely by phone.</p>
-                    <h3>Solution</h3>
-                    <ul>
-                        <li>SEO-focused corporate website design</li>
-                        <li>One-click contact via WhatsApp Business API</li>
-                        <li>Google Maps integration and SEO optimization</li>
-                        <li>Service catalog and pricing modules</li>
-                        <li>Mobile-responsive design (80% of customers are mobile)</li>
-                    </ul>
-                    <h3>Result</h3>
-                    <p>As Shaperon Works, we built the client's digital presence from scratch. Customer inquiries increased visibly. Communication sped up thanks to WhatsApp integration. This project proved our capability to create corporate websites.</p>
-                `
-            }
-        }
     };
 
     function projeModalAc(projeId) {
