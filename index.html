@@ -23,18 +23,23 @@
         try { if (localStorage.getItem('cookie-tercih') === 'kabul') window.analitikYukle(); } catch (e) {}
     </script>
     <title>Erdi Öcal | Creative Developer</title>
-    <meta name="description" content="Erdi Öcal - Full Stack Developer. Modern web teknolojileri ile kurumsal çözümler üreten yazılım geliştirici.">
+    <meta name="description" content="Erdi Öcal - Full Stack Developer. Modern web teknolojileri ile kurumsal çözümler üreten yazılım geliştirici." data-en-content="Erdi Öcal - Full Stack Developer. A software developer building corporate solutions with modern web technologies.">
     <meta property="og:title" content="Erdi Öcal | Creative Developer">
-    <meta property="og:description" content="Full Stack Developer — ASP.NET, React, TypeScript. Kurumsal çözümler üreten yazılım geliştirici.">
+    <meta property="og:description" content="Full Stack Developer — ASP.NET, React, TypeScript. Kurumsal çözümler üreten yazılım geliştirici." data-en-content="Full Stack Developer — ASP.NET, React, TypeScript. A software developer building corporate solutions.">
     <meta property="og:type" content="website">
-    <meta property="og:url" content="https://www.erdiocal.com/">
+    <meta property="og:locale" content="tr_TR" data-en-content="en_US">
+    <meta property="og:url" content="https://www.erdiocal.com/" data-en-content="https://www.erdiocal.com/en/">
     <meta property="og:image" content="https://www.erdiocal.com/og-image.png">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Erdi Öcal | Creative Developer">
     <meta name="twitter:description" content="Full Stack Developer — ASP.NET, React, TypeScript.">
     <meta name="twitter:image" content="https://www.erdiocal.com/og-image.png">
     <link rel="alternate" type="application/rss+xml" title="Erdi Öcal — Teknik Keşifler" href="https://www.erdiocal.com/feed.xml">
-    <link rel="canonical" href="https://www.erdiocal.com/">
+    <link rel="canonical" href="https://www.erdiocal.com/" data-en-href="https://www.erdiocal.com/en/">
+    <!-- Aynı içeriğin İngilizcesi /en/ adresinde (scripts/en-sayfa.js üretir) -->
+    <link rel="alternate" hreflang="tr" href="https://www.erdiocal.com/">
+    <link rel="alternate" hreflang="en" href="https://www.erdiocal.com/en/">
+    <link rel="alternate" hreflang="x-default" href="https://www.erdiocal.com/">
     <script type="application/ld+json">
     {
         "@context": "https://schema.org",
@@ -45,7 +50,10 @@
         "jobTitle": "Full Stack Developer",
         "worksFor": { "@type": "Organization", "name": "Shaperon Works", "url": "https://shaperonworks.com" },
         "address": { "@type": "PostalAddress", "addressLocality": "Istanbul", "addressCountry": "TR" },
-        "alumniOf": { "@type": "CollegeOrUniversity", "name": "İstanbul Medipol Üniversitesi" },
+        "alumniOf": [
+            { "@type": "CollegeOrUniversity", "name": "İstanbul Medipol Üniversitesi" },
+            { "@type": "CollegeOrUniversity", "name": "İstanbul Üniversitesi" }
+        ],
         "knowsAbout": ["ASP.NET Core", "React", "TypeScript", "C#", "PostgreSQL", "Docker", "REST API"],
         "sameAs": [
             "https://github.com/erdiyim",
@@ -58,16 +66,18 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;700&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
     <noscript><link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet"></noscript>
-    <link rel="icon" type="image/svg+xml" href="favicon.svg">
-    <link rel="icon" type="image/png" href="favicon.png">
-    <link rel="apple-touch-icon" href="apple-touch-icon.png">
-    <link rel="preload" href="erdi-portrait.webp" as="image">
-    <link rel="preload" href="app.min.js" as="script">
-    <link rel="stylesheet" href="style.min.css">
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+    <link rel="icon" type="image/png" href="/favicon.png">
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+    <!-- Portre: telefonda 800px'lik küçük sürüm (23 KB), geniş ekranda tam boy -->
+    <link rel="preload" href="/erdi-portrait-800.webp" as="image" media="(max-width: 767px)">
+    <link rel="preload" href="/erdi-portrait.webp" as="image" media="(min-width: 768px)">
+    <link rel="preload" href="/app.min.js" as="script">
+    <link rel="stylesheet" href="/style.min.css">
     <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
-    <script>window.emailjs || document.write('<script src="emailjs.min.js"><\/script>')</script>
+    <script>window.emailjs || document.write('<script src="/emailjs.min.js"><\/script>')</script>
     <script src="https://unpkg.com/lenis@1/dist/lenis.min.js"></script>
-    <script>window.Lenis || document.write('<script src="lenis.min.js"><\/script>')</script>
+    <script>window.Lenis || document.write('<script src="/lenis.min.js"><\/script>')</script>
 </head>
 <body>
 
@@ -186,7 +196,7 @@
             <div class="hero-butonlar anim" data-anim="fade-up" data-delay="3">
                 <a href="#projeler" class="btn btn-dolu" data-tr="Projelerimi Gör" data-en="View Projects"><span class="btn-icerik">Projelerimi Gör</span> <span class="btn-ok">&rarr;</span></a>
                 <a href="#iletisim" class="btn btn-cerceve" data-tr="Bağlantı Kur" data-en="Get in Touch">Bağlantı Kur</a>
-                <a href="Erdi_Ocal_CV.pdf" download class="btn btn-cerceve cv-btn" data-tr="CV İndir" data-en="Download CV"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg> CV İndir</a>
+                <a href="/Erdi_Ocal_CV.pdf" download class="btn btn-cerceve cv-btn" data-tr="CV İndir" data-en="Download CV"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg> CV İndir</a>
             </div>
             <div class="hero-istatistik anim" data-anim="fade-up" data-delay="4">
                 <div class="istatistik-item">
@@ -209,8 +219,9 @@
             <div class="crt-overlay"></div>
             <div class="crt-flicker"></div>
             <picture>
-                <source srcset="erdi-portrait.webp" type="image/webp">
-                <img src="erdi-portrait.png" alt="Erdi Öcal - Full Stack Developer, İstanbul" class="katman-normal" id="katmanNormal" fetchpriority="high">
+                <source media="(max-width: 767px)" srcset="/erdi-portrait-800.webp" type="image/webp">
+                <source srcset="/erdi-portrait.webp" type="image/webp">
+                <img src="/erdi-portrait.png" alt="Erdi Öcal - Full Stack Developer, İstanbul" class="katman-normal" id="katmanNormal" fetchpriority="high">
             </picture>
             <div class="portre-glow"></div>
         </div>
@@ -239,6 +250,7 @@
                     <span class="detay-baslik" data-tr="Eğitim" data-en="Education">Eğitim</span>
                     <span class="detay-deger" data-tr="Yönetim Bilişim Sistemleri" data-en="Management Information Systems">Yönetim Bilişim Sistemleri</span>
                     <span class="detay-alt" data-tr="İstanbul Medipol Üniversitesi &middot; 4. Sınıf" data-en="Istanbul Medipol University &middot; 4th Year">İstanbul Medipol Üniversitesi &middot; 4. Sınıf</span>
+                    <span class="detay-alt" data-tr="İstanbul Üniversitesi &middot; İşletme" data-en="Istanbul University &middot; Business Administration">İstanbul Üniversitesi &middot; İşletme</span>
                 </div>
                 <div class="detay-item anim" data-anim="fade-right" data-delay="4">
                     <span class="detay-baslik" data-tr="Odak" data-en="Focus">Odak</span>
@@ -265,11 +277,11 @@
                 <div class="timeline-cizgi"></div>
                 <div class="timeline-item anim" data-anim="fade-right" data-delay="2">
                     <div class="timeline-nokta"></div>
-                    <div class="timeline-tarih">2024</div>
+                    <div class="timeline-tarih">2022</div>
                     <div class="timeline-kart">
                         <h3 data-tr="Üniversite & Kodlamaya Başlangıç" data-en="University & Started Coding">Üniversite & Kodlamaya Başlangıç</h3>
-                        <p data-tr="İstanbul Medipol Üniversitesi Yönetim Bilişim Sistemleri bölümünde eğitimime başladım. Bilişim sistemleri kavramları, bilgisayar donanım-yazılım temelleri ve C# ile programlamaya giriş yaptım. Algoritma mantığı ve problem çözme becerilerini edindim." data-en="Started studying Management Information Systems at Istanbul Medipol University. Learned IT systems concepts, computer hardware-software fundamentals, and began programming with C#. Acquired algorithm logic and problem-solving skills.">İstanbul Medipol Üniversitesi Yönetim Bilişim Sistemleri bölümünde eğitimime başladım. Bilişim sistemleri kavramları, bilgisayar donanım-yazılım temelleri ve C# ile programlamaya giriş yaptım. Algoritma mantığı ve problem çözme becerilerini edindim.</p>
-                        <div class="timeline-etiketler"><span>C#</span><span data-tr="Algoritmalar" data-en="Algorithms">Algoritmalar</span><span>YBS</span></div>
+                        <p data-tr="İstanbul Medipol Üniversitesi Yönetim Bilişim Sistemleri bölümünde eğitimime başladım; aynı yıl İstanbul Üniversitesi İşletme bölümünde de okumaya başladım. Bilişim sistemleri kavramları, bilgisayar donanım-yazılım temelleri ve C# ile programlamaya giriş yaptım. Algoritma mantığı ve problem çözme becerilerini edindim." data-en="Started studying Management Information Systems at Istanbul Medipol University, and Business Administration at Istanbul University in the same year. Learned IT systems concepts, computer hardware-software fundamentals, and began programming with C#. Acquired algorithm logic and problem-solving skills.">İstanbul Medipol Üniversitesi Yönetim Bilişim Sistemleri bölümünde eğitimime başladım; aynı yıl İstanbul Üniversitesi İşletme bölümünde de okumaya başladım. Bilişim sistemleri kavramları, bilgisayar donanım-yazılım temelleri ve C# ile programlamaya giriş yaptım. Algoritma mantığı ve problem çözme becerilerini edindim.</p>
+                        <div class="timeline-etiketler"><span>C#</span><span data-tr="Algoritmalar" data-en="Algorithms">Algoritmalar</span><span>YBS</span><span data-tr="İşletme" data-en="Business">İşletme</span></div>
                     </div>
                 </div>
                 <div class="timeline-item anim" data-anim="fade-left" data-delay="3">
@@ -352,6 +364,21 @@
                     <h3 data-tr="AI & Mimari" data-en="AI & Architecture">AI & Mimari</h3>
                     <div class="yetenek-etiketler"><span>Prompt Engineering</span><span data-tr="AI Entegrasyonu" data-en="AI Integration">AI Entegrasyonu</span><span>LLM</span><span data-tr="Model Mimarisi" data-en="Model Architecture">Model Mimarisi</span></div>
                 </div>
+                <div class="yetenek-kart anim" data-anim="fade-up" data-delay="2">
+                    <div class="yetenek-ikon"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#00ffcc" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="6" width="20" height="12" rx="6"/><line x1="6" y1="12" x2="10" y2="12"/><line x1="8" y1="10" x2="8" y2="14"/><circle cx="15" cy="13" r="1"/><circle cx="18" cy="11" r="1"/></svg></div>
+                    <h3 data-tr="Oyun Geliştirme" data-en="Game Development">Oyun Geliştirme</h3>
+                    <div class="yetenek-etiketler"><span>Unity</span><span>C#</span><span data-tr="Oyun Ekonomisi" data-en="Game Economy">Oyun Ekonomisi</span><span data-tr="Piksel Art" data-en="Pixel Art">Piksel Art</span><span data-tr="Oyun Testi" data-en="Playtesting">Oyun Testi</span></div>
+                </div>
+                <div class="yetenek-kart anim" data-anim="fade-up" data-delay="3">
+                    <div class="yetenek-ikon"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#00ffcc" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16" y2="16"/><polyline points="8 13 10 10 12 12 14 9"/></svg></div>
+                    <h3 data-tr="SEO & İçerik" data-en="SEO & Content">SEO & İçerik</h3>
+                    <div class="yetenek-etiketler"><span>SEO</span><span data-tr="TR / EN İçerik" data-en="TR / EN Content">TR / EN İçerik</span><span>WordPress</span><span data-tr="Teknik İçerik" data-en="Technical Writing">Teknik İçerik</span></div>
+                </div>
+                <div class="yetenek-kart anim" data-anim="fade-up" data-delay="4">
+                    <div class="yetenek-ikon"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#00ffcc" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="5" width="15" height="14" rx="2"/><polygon points="22 7 17 12 22 17 22 7"/></svg></div>
+                    <h3 data-tr="Pazarlama & Video" data-en="Marketing & Video">Pazarlama & Video</h3>
+                    <div class="yetenek-etiketler"><span data-tr="Oyun Pazarlaması" data-en="Game Marketing">Oyun Pazarlaması</span><span data-tr="Video Kurgu" data-en="Video Editing">Video Kurgu</span><span data-tr="Steam Sayfası" data-en="Steam Page">Steam Sayfası</span><span data-tr="Sosyal Medya" data-en="Social Media">Sosyal Medya</span></div>
+                </div>
             </div>
         </div>
     </section>
@@ -364,7 +391,7 @@
             <h2 class="bolum-baslik anim" data-anim="scale-in" data-delay="1" data-tr="Öne Çıkan Çalışmalarım" data-en="Featured Works">Öne Çıkan Çalışmalarım</h2>
             <div class="proje-grid">
                 <div class="proje-kart proje-kart-genis anim" data-anim="fade-up" data-delay="2" data-proje="deleteead">
-                    <div class="proje-gorsel-tutucu"><img src="img/projeler/delete-ead-core.webp" alt="Delete: E.A.D Core: Steam kapak görseli ve oyun içi ekran görüntüsü, karanlık koridorda el fenerli ekip ve yaratık" class="proje-gorsel" width="1600" height="400" loading="lazy" decoding="async"><div class="proje-numara">01</div></div>
+                    <div class="proje-gorsel-tutucu"><img src="/img/projeler/delete-ead-core.webp" alt="Delete: E.A.D Core: Steam kapak görseli ve oyun içi ekran görüntüsü, karanlık koridorda el fenerli ekip ve yaratık" class="proje-gorsel" width="1600" height="400" loading="lazy" decoding="async"><div class="proje-numara">01</div></div>
                     <div class="proje-detay">
                         <h3>Delete: E.A.D Core</h3>
                         <p data-tr="2010'dan beri terk edilmiş bir yeraltı veri imha tesisinde geçen, 1–4 oyunculu online co-op korku oyunu. ShaperonWorks'ün ilk Steam oyunu; pazarlamasını ve tanıtım videolarını yürütüyorum. Çıkış: Q4 2026." data-en="A 1–4 player online co-op horror game set in an underground data-destruction facility abandoned since 2010. ShaperonWorks' first Steam game; I run its marketing and trailers. Release: Q4 2026.">2010'dan beri terk edilmiş bir yeraltı veri imha tesisinde geçen, 1–4 oyunculu online co-op korku oyunu. ShaperonWorks'ün ilk Steam oyunu; pazarlamasını ve tanıtım videolarını yürütüyorum. Çıkış: Q4 2026.</p>
@@ -373,7 +400,7 @@
                     </div>
                 </div>
                 <div class="proje-kart anim" data-anim="fade-left" data-delay="2" data-proje="pawnshop">
-                    <div class="proje-gorsel-tutucu"><img src="img/projeler/luxury-pawn-shop.svg" alt="Luxury Pawn Shop Simulator kapak görseli: piksel art rehinci tezgâhı" class="proje-gorsel" width="800" height="400" loading="lazy" decoding="async"><div class="proje-numara">02</div></div>
+                    <div class="proje-gorsel-tutucu"><img src="/img/projeler/luxury-pawn-shop.svg" alt="Luxury Pawn Shop Simulator kapak görseli: piksel art rehinci tezgâhı" class="proje-gorsel" width="800" height="400" loading="lazy" decoding="async"><div class="proje-numara">02</div></div>
                     <div class="proje-detay">
                         <h3>Luxury Pawn Shop Simulator</h3>
                         <p data-tr="Unity ve C# ile geliştirdiğim, izometrik 2D piksel art tarzında mobil tycoon oyunu. Gelir modeli ve oyun ekonomisi tasarımı dahil. Geliştirme aşamasında." data-en="A mobile tycoon game in isometric 2D pixel art that I'm building with Unity and C#, including the revenue model and in-game economy. In development.">Unity ve C# ile geliştirdiğim, izometrik 2D piksel art tarzında mobil tycoon oyunu. Gelir modeli ve oyun ekonomisi tasarımı dahil. Geliştirme aşamasında.</p>
@@ -382,7 +409,7 @@
                     </div>
                 </div>
                 <div class="proje-kart anim" data-anim="fade-right" data-delay="3" data-proje="qrmenu">
-                    <div class="proje-gorsel-tutucu"><img src="img/projeler/qr-menu.svg" alt="QR Menü Sistemi kapak görseli: telefonda dijital menü ve QR kod" class="proje-gorsel" width="800" height="400" loading="lazy" decoding="async"><div class="proje-numara">03</div></div>
+                    <div class="proje-gorsel-tutucu"><img src="/img/projeler/qr-menu.svg" alt="QR Menü Sistemi kapak görseli: telefonda dijital menü ve QR kod" class="proje-gorsel" width="800" height="400" loading="lazy" decoding="async"><div class="proje-numara">03</div></div>
                     <div class="proje-detay">
                         <h3 data-tr="QR Menü Sistemi" data-en="QR Menu System">QR Menü Sistemi</h3>
                         <p data-tr="Restoranlar için temassız dijital menü ve sipariş çözüm mimarisi." data-en="Contactless digital menu and order management architecture for restaurants.">Restoranlar için temassız dijital menü ve sipariş çözüm mimarisi.</p>
@@ -391,7 +418,7 @@
                     </div>
                 </div>
                 <div class="proje-kart anim" data-anim="fade-left" data-delay="3" data-proje="erdihub">
-                    <div class="proje-gorsel-tutucu"><img src="img/projeler/yayin-platformu.svg" alt="Netflix Klonu kapak görseli: yayın platformu arayüzü" class="proje-gorsel" width="800" height="400" loading="lazy" decoding="async"><div class="proje-numara">04</div></div>
+                    <div class="proje-gorsel-tutucu"><img src="/img/projeler/yayin-platformu.svg" alt="Netflix Klonu kapak görseli: yayın platformu arayüzü" class="proje-gorsel" width="800" height="400" loading="lazy" decoding="async"><div class="proje-numara">04</div></div>
                     <div class="proje-detay">
                         <h3 data-tr="Netflix Klonu" data-en="Netflix Clone">Netflix Klonu</h3>
                         <p data-tr="Kullanıcı profili desteğine sahip, modern web teknolojileri ile geliştirilmiş yayın platformu arayüzü." data-en="A streaming platform interface built with modern web technologies, featuring user profile support.">Kullanıcı profili desteğine sahip, modern web teknolojileri ile geliştirilmiş yayın platformu arayüzü.</p>
@@ -400,7 +427,7 @@
                     </div>
                 </div>
                 <div class="proje-kart anim" data-anim="fade-right" data-delay="4" data-proje="laminagarden">
-                    <div class="proje-gorsel-tutucu"><img src="img/projeler/lamina-garden.webp" alt="La'mina Garden web sitesinin ana sayfası: orman içinde havuzlu etkinlik alanı" class="proje-gorsel" width="1200" height="480" loading="lazy" decoding="async"><div class="proje-numara">05</div></div>
+                    <div class="proje-gorsel-tutucu"><img src="/img/projeler/lamina-garden.webp" alt="La'mina Garden web sitesinin ana sayfası: orman içinde havuzlu etkinlik alanı" class="proje-gorsel" width="1200" height="480" loading="lazy" decoding="async"><div class="proje-numara">05</div></div>
                     <div class="proje-detay">
                         <h3 data-tr="La'mina Garden — İşletme Web Sitesi" data-en="La'mina Garden — Business Website">La'mina Garden — İşletme Web Sitesi</h3>
                         <p data-tr="İstanbul Maltepe'de doğa temalı etkinlik mekanı için WhatsApp rezervasyon, galeri sistemi ve SEO optimizasyonlu kurumsal web sitesi." data-en="Corporate website for a nature-themed event venue in Istanbul with WhatsApp booking, gallery system, and SEO optimization.">İstanbul Maltepe'de doğa temalı etkinlik mekanı için WhatsApp rezervasyon, galeri sistemi ve SEO optimizasyonlu kurumsal web sitesi.</p>
@@ -469,28 +496,6 @@
             <div class="referans-grid">
                 <div class="referans-kart anim" data-anim="fade-up" data-delay="2">
                     <div class="referans-ust">
-                        <div class="referans-avatar">QM</div>
-                        <div class="referans-bilgi">
-                            <h4 data-tr="QR Menü Müşterisi" data-en="QR Menu Client">QR Menü Müşterisi</h4>
-                            <span data-tr="Restoran — Operasyon Yöneticisi" data-en="Restaurant — Operations Manager">Restoran — Operasyon Yöneticisi</span>
-                        </div>
-                    </div>
-                    <p data-tr="Shaperon Works'ün geliştirdiği QR menü sistemi restoranımızın dijitalleşme sürecini tamamen dönüştürdü. Basılı menü maliyetlerimizi sıfıra indirdi ve sipariş hızımızı ikiye katladı." data-en="The QR menu system developed by Shaperon Works completely transformed our restaurant's digitalization. Reduced our printed menu costs to zero and doubled our order speed.">Shaperon Works'ün geliştirdiği QR menü sistemi restoranımızın dijitalleşme sürecini tamamen dönüştürdü. Basılı menü maliyetlerimizi sıfıra indirdi ve sipariş hızımızı ikiye katladı.</p>
-                    <div class="referans-yildizlar">★★★★★</div>
-                </div>
-                <div class="referans-kart anim" data-anim="fade-up" data-delay="4">
-                    <div class="referans-ust">
-                        <div class="referans-avatar">BM</div>
-                        <div class="referans-bilgi">
-                            <h4 data-tr="Blog Yönetimi Müşterisi" data-en="Blog Management Client">Blog Yönetimi Müşterisi</h4>
-                            <span data-tr="Firma Yöneticisi" data-en="Company Manager">Firma Yöneticisi</span>
-                        </div>
-                    </div>
-                    <p data-tr="Shaperon Works ekibiyle blog yönetimi konusunda çalışıyoruz. İçerik kalitesi ve düzenli teslimat konusunda güvenilir bir ekip. İletişimleri ve çözüm odaklı yaklaşımları gerçekten fark yaratıyor." data-en="We work with the Shaperon Works team on blog management. A reliable team in terms of content quality and consistent delivery. Their communication and solution-oriented approach truly makes a difference.">Shaperon Works ekibiyle blog yönetimi konusunda çalışıyoruz. İçerik kalitesi ve düzenli teslimat konusunda güvenilir bir ekip. İletişimleri ve çözüm odaklı yaklaşımları gerçekten fark yaratıyor.</p>
-                    <div class="referans-yildizlar">★★★★★</div>
-                </div>
-                <div class="referans-kart anim" data-anim="fade-up" data-delay="5">
-                    <div class="referans-ust">
                         <div class="referans-avatar">LG</div>
                         <div class="referans-bilgi">
                             <h4>La'mina Garden</h4>
@@ -500,11 +505,6 @@
                     <p data-tr="Web sitemiz için ihtiyaçlarımızı anlayan, hızlı ve profesyonel çözümler sunan bir ekiple çalıştık. Rezervasyon taleplerimiz site yayınlandıktan sonra gözle görülür biçimde arttı." data-en="We worked with a team that understood our needs and delivered fast, professional solutions. Booking inquiries visibly increased after the site launched.">Web sitemiz için ihtiyaçlarımızı anlayan, hızlı ve profesyonel çözümler sunan bir ekiple çalıştık. Rezervasyon taleplerimiz site yayınlandıktan sonra gözle görülür biçimde arttı.</p>
                     <div class="referans-yildizlar">★★★★★</div>
                 </div>
-            </div>
-            <div class="referans-indicator" id="referansIndicator">
-                <span class="ind-nokta aktif-nokta"></span>
-                <span class="ind-nokta"></span>
-                <span class="ind-nokta"></span>
             </div>
         </div>
     </section>
@@ -619,6 +619,6 @@
         </div>
     </footer>
 
-    <script src="app.min.js"></script>
+    <script src="/app.min.js"></script>
 </body>
 </html>

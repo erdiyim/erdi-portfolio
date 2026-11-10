@@ -4,14 +4,17 @@
   "description": "Erdi Öcal kişisel portfolyo sitesi",
   "scripts": {
     "prepare": "git config core.hooksPath .githooks",
+    "build": "npm run minify && npm run en",
     "minify": "npm run minify:js && npm run minify:css",
     "minify:js": "terser app.js -o app.min.js --compress --mangle",
     "minify:css": "csso style.css -o style.min.css",
-    "minify:check": "npm run minify && git diff --exit-code -- app.min.js style.min.css",
+    "en": "node scripts/en-sayfa.js",
+    "check": "npm run build && git diff --exit-code -- app.min.js style.min.css en/index.html",
     "start": "serve -l 3000 --no-clipboard ."
   },
   "devDependencies": {
     "csso-cli": "^4.0.2",
+    "linkedom": "^0.18.12",
     "serve": "^14.2.4",
     "terser": "^5.36.0"
   }

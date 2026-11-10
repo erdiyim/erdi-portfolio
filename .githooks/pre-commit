@@ -1,19 +1,32 @@
 #!/bin/sh
-# app.js veya style.css commit'e giriyorsa min dosyalarını yeniden üretip commit'e ekler.
+# Commit öncesi üretilen dosyaları günceller:
+#  - app.js / style.css değiştiyse app.min.js ve style.min.css
+#  - index.html değiştiyse İngilizce sayfa en/index.html
 # Kurulum: npm install (prepare betiği core.hooksPath'i .githooks olarak ayarlar)
 
-degisti=0
+minify=0
+en=0
 for dosya in $(git diff --cached --name-only); do
     case "$dosya" in
-        app.js|style.css) degisti=1 ;;
+        app.js|style.css) minify=1 ;;
+        index.html) en=1 ;;
     esac
 done
 
-if [ "$degisti" = 1 ]; then
+if [ "$minify" = 1 ]; then
     echo "pre-commit: app.min.js ve style.min.css yeniden üretiliyor..."
     npm run minify --silent || {
         echo "pre-commit: minify başarısız, commit durduruldu." >&2
         exit 1
     }
     git add app.min.js style.min.css
+fi
+
+if [ "$en" = 1 ]; then
+    echo "pre-commit: en/index.html yeniden üretiliyor..."
+    npm run en --silent || {
+        echo "pre-commit: İngilizce sayfa üretilemedi, commit durduruldu." >&2
+        exit 1
+    }
+    git add en/index.html
 fi
