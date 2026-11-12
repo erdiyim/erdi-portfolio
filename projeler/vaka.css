@@ -73,6 +73,47 @@ img { max-width: 100%; display: block; }
 .sonraki strong { color: var(--guclu); font-size: clamp(1.4rem, 3vw, 2rem); }
 .sonraki strong i { color: var(--vurgu); font-style: normal; }
 
+/* Dönüşüm bölümü: kaydırdıkça önce → sonra (projeler/surec.js) */
+.surec { position: relative; height: 320vh; margin: 0 -24px; }
+.surec-sahne { position: sticky; top: 0; height: 100vh; height: 100svh; display: flex; flex-direction: column; justify-content: center; align-items: center; padding: 24px; gap: 18px; overflow: hidden; }
+.surec-ust { text-align: center; }
+.surec-ust .etiket { margin-bottom: 6px; }
+.surec-ust h2 { color: var(--guclu); font-size: clamp(1.7rem, 4vw, 2.8rem); font-weight: 900; letter-spacing: -1px; }
+.surec-adimlar { display: flex; gap: 26px; font: 500 0.85rem 'JetBrains Mono', monospace; }
+.surec-adim { color: var(--soluk); transition: color 0.3s ease; display: flex; align-items: center; gap: 8px; }
+.surec-adim i { width: 8px; height: 8px; border-radius: 50%; background: currentColor; }
+.surec-adim.aktif { color: var(--vurgu); }
+.surec-pencere {
+    width: min(1100px, 100%, calc((100svh - 330px) * 16 / 9));
+    border-radius: 14px; overflow: hidden; background: #1a1a1a;
+    box-shadow: 0 40px 120px rgba(0,0,0,0.5), 0 0 0 1px var(--cizgi),
+                0 0 calc(var(--parilti, 0) * 80px) rgba(0,255,204,calc(var(--parilti, 0) * 0.25));
+    transform: scale(var(--olcek, 0.96));
+}
+.surec-pencere.telefon { width: min(440px, 100%, calc((100svh - 330px) * 1080 / 1060)); border-radius: 30px; padding: 10px; background: #0b0b12; }
+.surec-pencere.telefon svg { border-radius: 22px; }
+.surec-pencere-ust { height: 34px; display: flex; align-items: center; gap: 7px; padding: 0 14px; background: #202020; }
+.surec-pencere-ust > span { width: 11px; height: 11px; border-radius: 50%; background: #3a3a3a; }
+.surec-pencere.telefon .surec-pencere-ust { height: 30px; background: none; justify-content: center; padding: 0; }
+.surec-pencere.telefon .surec-pencere-ust > span { display: none; }
+.surec-adres { margin-left: 14px; flex: 1; max-width: 360px; height: 20px; border-radius: 6px; background: #2b2b2b; font: 500 0.7rem 'JetBrains Mono', monospace; color: rgba(255,255,255,0.5); display: flex; align-items: center; padding: 0 10px; overflow: hidden; white-space: nowrap; }
+.surec-pencere.telefon .surec-adres { margin: 0; flex: 0 0 auto; justify-content: center; min-width: 140px; border-radius: 10px; }
+.surec-pencere svg { display: block; width: 100%; height: auto; }
+.surec-pencere .ciz { stroke-dasharray: 1; stroke-dashoffset: calc(1 - var(--c, 0)); }
+.surec-yazi { opacity: var(--c, 0); }
+.surec-not { opacity: var(--n, 0); }
+.surec-alt { font-size: 0.95rem; text-align: center; max-width: 34em; min-height: 3em; }
+.surec-alt strong { color: var(--guclu); }
+@media (prefers-reduced-motion: reduce) { .surec-pencere { transform: none; } }
+@media (max-width: 600px) {
+    .surec { height: 260vh; margin: 0 -16px; }
+    .surec-sahne { padding: 16px; gap: 14px; }
+    .surec-adimlar { gap: 12px; font-size: 0.72rem; }
+    .surec-adim:not(.aktif) > span { display: none; }
+    .surec-alt { font-size: 0.85rem; }
+    .surec-pencere:not(.telefon) .surec-not { display: none; }
+}
+
 footer { text-align: center; font-size: 0.85rem; padding: 0 24px 40px; color: var(--soluk); }
 footer a { text-decoration: none; }
 

@@ -54,8 +54,8 @@
     </script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;700&family=Caveat:wght@500;700&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
-    <noscript><link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;700&family=Caveat:wght@500;700&display=swap" rel="stylesheet"></noscript>
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;700&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet"></noscript>
     <link rel="icon" type="image/svg+xml" href="favicon.svg">
     <link rel="icon" type="image/png" href="favicon.png">
     <link rel="apple-touch-icon" href="apple-touch-icon.png">
@@ -93,6 +93,7 @@
         <div class="nav-linkler">
             <a href="#ana-ekran" class="nav-link" data-tr="Ana Sayfa" data-en="Home">Ana Sayfa</a>
             <a href="#hakkimda" class="nav-link" data-tr="Hakkımda" data-en="About">Hakkımda</a>
+            <a href="#hizmetler" class="nav-link" data-tr="Hizmetler" data-en="Services">Hizmetler</a>
             <a href="#deneyim" class="nav-link" data-tr="Deneyim" data-en="Journey">Deneyim</a>
             <a href="#projeler" class="nav-link" data-tr="Projeler" data-en="Projects">Projeler</a>
             <a href="#referanslar" class="nav-link" data-tr="Referanslar" data-en="Testimonials">Referanslar</a>
@@ -120,6 +121,7 @@
     <div id="mobil-menu">
         <a href="#ana-ekran" class="mobil-link" data-tr="Ana Sayfa" data-en="Home">Ana Sayfa</a>
         <a href="#hakkimda" class="mobil-link" data-tr="Hakkımda" data-en="About">Hakkımda</a>
+        <a href="#hizmetler" class="mobil-link" data-tr="Hizmetler" data-en="Services">Hizmetler</a>
         <a href="#deneyim" class="mobil-link" data-tr="Deneyim" data-en="Journey">Deneyim</a>
         <a href="#projeler" class="mobil-link" data-tr="Projeler" data-en="Projects">Projeler</a>
         <a href="#referanslar" class="mobil-link" data-tr="Referanslar" data-en="Testimonials">Referanslar</a>
@@ -189,105 +191,6 @@
     </main>
     <div class="bolum-ayirici anim" data-anim="scale-in"></div>
 
-    <!-- SÜREÇ: kaydırdıkça eskizden siteye -->
-    <section class="surec" id="surec" aria-labelledby="surecBaslik">
-        <div class="surec-sahne">
-            <div class="surec-ust">
-                <p class="surec-etiket" data-tr="// süreç" data-en="// process">// süreç</p>
-                <h2 class="surec-baslik" id="surecBaslik" data-tr="Fikirden yayına" data-en="From idea to launch">Fikirden yayına</h2>
-            </div>
-            <div class="surec-adimlar">
-                <span class="surec-adim"><i></i><span data-tr="01 Eskiz" data-en="01 Sketch">01 Eskiz</span></span>
-                <span class="surec-adim"><i></i><span data-tr="02 Tasarım &amp; kod" data-en="02 Design &amp; code">02 Tasarım &amp; kod</span></span>
-                <span class="surec-adim"><i></i><span data-tr="03 Yayında" data-en="03 Live">03 Yayında</span></span>
-            </div>
-            <div class="surec-pencere" id="surecPencere">
-                <div class="surec-pencere-ust"><span></span><span></span><span></span><div class="surec-adres" id="surecAdres">taslak.png</div></div>
-                <svg viewBox="0 0 1440 810" role="img" aria-label="La'mina Garden sitesinin eskizden bitmiş hale dönüşümü">
-                    <defs>
-                        <filter id="surecKalem" x="-2%" y="-2%" width="104%" height="104%">
-                            <feTurbulence type="fractalNoise" baseFrequency="0.035" numOctaves="2" seed="4" result="g"/>
-                            <feDisplacementMap in="SourceGraphic" in2="g" scale="4"/>
-                        </filter>
-                        <filter id="surecKagit">
-                            <feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="2" seed="2"/>
-                            <feColorMatrix values="0 0 0 0 0.4  0 0 0 0 0.37  0 0 0 0 0.32  0 0 0 0.09 0"/>
-                        </filter>
-                        <filter id="surecYumusak" x="-10%" y="-10%" width="120%" height="120%"><feGaussianBlur stdDeviation="16"/></filter>
-                        <pattern id="surecIzgara" width="40" height="40" patternUnits="userSpaceOnUse"><path d="M40 0H0V40" fill="none" stroke="#d9d3c5" stroke-width="1"/></pattern>
-                        <mask id="surecBoya" maskUnits="userSpaceOnUse" x="0" y="0" width="1440" height="810">
-                            <rect width="1440" height="810" fill="#000"/>
-                            <g id="surecLekeler" filter="url(#surecYumusak)" fill="#fff"></g>
-                            <rect id="surecTamDolgu" width="1440" height="810" fill="#fff" opacity="0"/>
-                        </mask>
-                    </defs>
-                    <rect width="1440" height="810" fill="#f5f1e8"/>
-                    <rect width="1440" height="810" fill="url(#surecIzgara)" opacity="0.55"/>
-                    <rect width="1440" height="810" filter="url(#surecKagit)"/>
-                    <g id="surecEskiz" filter="url(#surecKalem)" fill="none" stroke="#3d3a35" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-                        <path class="ciz" pathLength="1" d="M118 0 C122 160 112 330 126 560"/>
-                        <path class="ciz" pathLength="1" d="M330 0 C326 140 338 300 322 470"/>
-                        <path class="ciz" pathLength="1" d="M1108 0 C1114 180 1100 360 1116 600"/>
-                        <path class="ciz" pathLength="1" d="M1185 60 C1180 220 1192 380 1178 560"/>
-                        <path class="ciz" pathLength="1" d="M1338 0 C1344 200 1332 420 1346 640"/>
-                        <path class="ciz" pathLength="1" d="M0 170 Q 360 70 720 150 T 1440 260"/>
-                        <path class="ciz" pathLength="1" d="M60 120 Q 420 220 760 120 Q 1060 40 1420 180"/>
-                        <path class="ciz" pathLength="1" d="M200 0 L 720 150 L 1160 0"/>
-                        <path class="ciz" pathLength="1" d="M0 560 C 300 552 520 566 760 556 S 1200 560 1440 552"/>
-                        <path class="ciz" pathLength="1" d="M190 810 L 420 548 L 562 548 L 712 810"/>
-                        <path class="ciz" pathLength="1" d="M250 810 L 440 580 L 548 580 L 660 810"/>
-                        <path class="ciz" pathLength="1" d="M20 520 L 300 500 M 30 560 L 290 540 M 20 600 L 260 585 M 10 650 L 220 640"/>
-                        <path class="ciz" pathLength="1" d="M820 560 L 1100 590 M 840 610 L 1140 650 M 860 660 L 1180 710 M 880 720 L 1240 780"/>
-                        <path class="ciz" pathLength="1" d="M1180 520 L 1430 540 M 1200 580 L 1440 610"/>
-                        <path class="ciz" pathLength="1" d="M380 40 q 9 -6 18 0 t 18 0 t 18 0 t 18 0 M 491 40 q 10 -6 20 0 t 20 0 t 20 0 t 20 0 M 612 40 q 9 -6 18 0 t 18 0 t 18 0 t 18 0 M 721 40 q 9 -6 18 0 t 18 0 t 18 0 t 18 0 M 831 40 q 8 -6 16 0 t 16 0 t 16 0 M 915 40 q 8 -6 15 0 t 15 0 M 981 40 q 9 -6 18 0 t 18 0 t 18 0"/>
-                        <rect class="ciz" pathLength="1" x="1065" y="20" width="120" height="38" rx="6"/>
-                        <rect class="ciz" pathLength="1" x="1250" y="23" width="50" height="32" rx="4"/>
-                        <rect class="ciz" pathLength="1" x="1231" y="90" width="188" height="108" rx="14"/>
-                        <path class="ciz" pathLength="1" d="M1256 150 a 12 12 0 0 1 22 -8 a 10 10 0 0 1 14 12 z M 1300 125 h 60 M 1300 155 h 90 M 1300 175 h 70"/>
-                        <rect class="ciz" pathLength="1" x="520" y="271" width="203" height="49" rx="24"/>
-                        <rect class="ciz" pathLength="1" x="730" y="276" width="191" height="42" rx="21"/>
-                        <path class="ciz" pathLength="1" d="M552 478 q 14 -7 28 0 t 28 0 t 28 0 t 28 0 t 28 0 t 28 0 t 28 0 t 28 0 t 28 0 t 28 0 t 28 0 t 28 0"/>
-                        <path class="ciz" pathLength="1" d="M545 515 q 15 -7 29 0 t 29 0 t 29 0 t 29 0 t 29 0 t 29 0 t 29 0 t 29 0 t 29 0 t 29 0 t 29 0 t 29 0"/>
-                        <rect class="ciz" pathLength="1" x="561" y="570" width="109" height="58" rx="6"/>
-                        <rect class="ciz" pathLength="1" x="688" y="571" width="190" height="57" rx="6"/>
-                    </g>
-                    <g fill="#3d3a35" font-family="Caveat, cursive" font-weight="700" text-anchor="middle">
-                        <text class="surec-yazi" x="225" y="50" font-size="34">La'mina Garden</text>
-                        <text class="surec-yazi" x="720" y="420" font-size="104">La'mina Garden</text>
-                        <text class="surec-yazi" x="1125" y="46" font-size="20">Rezervasyon</text>
-                        <text class="surec-yazi" x="615" y="606" font-size="24">Keşfet</text>
-                        <text class="surec-yazi" x="783" y="606" font-size="24">Rezervasyon Yap</text>
-                        <text class="surec-yazi" x="621" y="303" font-size="22">★ 4.8 Google</text>
-                        <text class="surec-yazi" x="825" y="304" font-size="22">Maltepe</text>
-                    </g>
-                    <g class="surec-not" font-family="Caveat, cursive" font-weight="500" font-size="27">
-                        <g fill="none" stroke="#d6453d" stroke-width="2" stroke-linecap="round">
-                            <path d="M380 76 L 1040 76 M 380 68 v 16 M 1040 68 v 16"/>
-                            <path d="M300 410 C 360 400 400 400 440 406 l -10 -8 m 10 8 l -10 8"/>
-                            <path d="M1010 620 C 960 640 920 630 892 610 l 4 12 m -4 -12 l 12 2"/>
-                            <path d="M1062 120 C 1020 100 1040 70 1090 62 l -10 -6 m 10 6 l -8 8"/>
-                            <path d="M1240 250 C 1260 230 1280 222 1300 206 l -12 2 m 12 -2 l -2 12"/>
-                        </g>
-                        <g fill="#d6453d">
-                            <text x="710" y="104" text-anchor="middle">menü · 7 bağlantı</text>
-                            <text x="180" y="400" text-anchor="middle">hero başlığı</text>
-                            <text x="1080" y="640" text-anchor="middle">CTA → WhatsApp</text>
-                            <text x="960" y="140" text-anchor="middle">rezervasyon butonu</text>
-                            <text x="1200" y="280" text-anchor="middle">canlı hava durumu</text>
-                        </g>
-                        <g fill="#2f6fd6">
-                            <text x="470" y="720" text-anchor="middle">havuz fotoğrafı</text>
-                            <text x="1300" y="790" text-anchor="middle">1440 × 810</text>
-                        </g>
-                    </g>
-                    <image href="img/projeler/lamina/ana-sayfa.jpg" width="1440" height="810" mask="url(#surecBoya)" preserveAspectRatio="xMidYMid slice"/>
-                </svg>
-            </div>
-            <p class="surec-alt" id="surecAlt"></p>
-        </div>
-    </section>
-    <div class="bolum-ayirici anim" data-anim="scale-in"></div>
-
     <!-- HAKKIMDA -->
     <section id="hakkimda" class="bolum-container">
         <div class="cam-kart-genis">
@@ -316,6 +219,69 @@
                 <div class="deneyim-item anim" data-anim="fade-up" data-delay="4" data-tr="Delete: E.A.D Core — oyun pazarlaması, fragmanlar ve finans" data-en="Delete: E.A.D Core — game marketing, trailers and finance">Delete: E.A.D Core — oyun pazarlaması, fragmanlar ve finans</div>
                 <div class="deneyim-item anim" data-anim="fade-up" data-delay="5" data-tr="Full-stack web siteleri ve uygulamalar — ASP.NET Core, Next.js / React" data-en="Full-stack websites and apps — ASP.NET Core, Next.js / React">Full-stack web siteleri ve uygulamalar — ASP.NET Core, Next.js / React</div>
             </div>
+        </div>
+    </section>
+    <div class="bolum-ayirici anim" data-anim="scale-in"></div>
+
+    <!-- HİZMETLER: aşağı kaydırdıkça kartlar yana kayar -->
+    <section id="hizmetler" class="hizmetler" aria-labelledby="hizmetBaslik">
+        <div class="hizmet-sahne">
+            <div class="hizmet-ust">
+                <div>
+                    <p class="bolum-ust-etiket" data-tr="// hizmetler" data-en="// services">// hizmetler</p>
+                    <h2 class="hizmet-baslik" id="hizmetBaslik" data-tr="Markanızı bulunur kılan her şey" data-en="Everything that gets your brand found">Markanızı bulunur kılan her şey</h2>
+                </div>
+                <p class="hizmet-aciklama" data-tr="Shaperon Works ile; müşteriyi getiren pazarlamadan, onu karşılayan siteye kadar." data-en="With Shaperon Works: from the marketing that brings customers in to the site that welcomes them.">Shaperon Works ile; müşteriyi getiren pazarlamadan, onu karşılayan siteye kadar.</p>
+            </div>
+            <div class="hizmet-ray" id="hizmetRay">
+                <article class="hizmet-kart">
+                    <span class="hizmet-no">01</span>
+                    <div class="hizmet-ikon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></div>
+                    <h3>SEO</h3>
+                    <p class="hizmet-alt" data-tr="Aramada bulunun" data-en="Get found in search">Aramada bulunun</p>
+                    <p data-tr="Teknik SEO, anahtar kelime araştırması ve müşterinin dilinde içerik. Sağlık sitelerinde Türkçe ve İngilizce yürütüyoruz." data-en="Technical SEO, keyword research and content in your customers' language. We run it in Turkish and English for healthcare sites.">Teknik SEO, anahtar kelime araştırması ve müşterinin dilinde içerik. Sağlık sitelerinde Türkçe ve İngilizce yürütüyoruz.</p>
+                    <div class="hizmet-etiketler"><span data-tr="Teknik SEO" data-en="Technical SEO">Teknik SEO</span><span data-tr="İçerik" data-en="Content">İçerik</span><span>Search Console</span></div>
+                </article>
+                <article class="hizmet-kart">
+                    <span class="hizmet-no">02</span>
+                    <div class="hizmet-ikon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l1.9 5.1L19 10l-5.1 1.9L12 17l-1.9-5.1L5 10l5.1-1.9z"/><path d="M19 15l.8 2.2L22 18l-2.2.8L19 21l-.8-2.2L16 18l2.2-.8z"/></svg></div>
+                    <h3>GEO</h3>
+                    <p class="hizmet-alt" data-tr="Yapay zekâ cevaplarında yer alın" data-en="Show up in AI answers">Yapay zekâ cevaplarında yer alın</p>
+                    <p data-tr="ChatGPT, Gemini ve Google'ın yapay zekâ özetleri markanızdan bahsetsin diye içerik, yapılandırılmış veri ve güven sinyalleri." data-en="Content, structured data and trust signals so ChatGPT, Gemini and Google's AI Overviews mention your brand.">ChatGPT, Gemini ve Google'ın yapay zekâ özetleri markanızdan bahsetsin diye içerik, yapılandırılmış veri ve güven sinyalleri.</p>
+                    <div class="hizmet-etiketler"><span>AI Overviews</span><span>Schema.org</span><span data-tr="Marka görünürlüğü" data-en="Brand visibility">Marka görünürlüğü</span></div>
+                </article>
+                <article class="hizmet-kart">
+                    <span class="hizmet-no">03</span>
+                    <div class="hizmet-ikon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg></div>
+                    <h3>Google Ads</h3>
+                    <p class="hizmet-alt" data-tr="Bugün müşteri getirin" data-en="Bring in customers today">Bugün müşteri getirin</p>
+                    <p data-tr="Hedefli arama kampanyaları, dönüşüm takibi ve bütçeye göre düzenli optimizasyon; neye harcandığını gösteren sade raporlar." data-en="Targeted search campaigns, conversion tracking and regular optimisation within budget, with plain reports on where the money goes.">Hedefli arama kampanyaları, dönüşüm takibi ve bütçeye göre düzenli optimizasyon; neye harcandığını gösteren sade raporlar.</p>
+                    <div class="hizmet-etiketler"><span data-tr="Arama ağı" data-en="Search network">Arama ağı</span><span data-tr="Dönüşüm takibi" data-en="Conversion tracking">Dönüşüm takibi</span><span data-tr="Raporlama" data-en="Reporting">Raporlama</span></div>
+                </article>
+                <article class="hizmet-kart">
+                    <span class="hizmet-no">04</span>
+                    <div class="hizmet-ikon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg></div>
+                    <h3 data-tr="Web Sitesi" data-en="Websites">Web Sitesi</h3>
+                    <p class="hizmet-alt" data-tr="Müşteriyi karşılayan siteler" data-en="Sites that welcome customers">Müşteriyi karşılayan siteler</p>
+                    <p data-tr="Hızlı, iki dilli ve SEO'ya hazır kurumsal siteler; WhatsApp rezervasyonu ve işletmenin kendisinin güncelleyebildiği yönetim paneli." data-en="Fast, bilingual, SEO-ready business sites with WhatsApp booking and an admin panel the business can update itself.">Hızlı, iki dilli ve SEO'ya hazır kurumsal siteler; WhatsApp rezervasyonu ve işletmenin kendisinin güncelleyebildiği yönetim paneli.</p>
+                    <div class="hizmet-etiketler"><span>Next.js</span><span>ASP.NET Core</span><span data-tr="Yönetim paneli" data-en="Admin panel">Yönetim paneli</span></div>
+                </article>
+                <article class="hizmet-kart">
+                    <span class="hizmet-no">05</span>
+                    <div class="hizmet-ikon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="6" y="2" width="12" height="20" rx="2"/><line x1="11" y1="18" x2="13" y2="18"/></svg></div>
+                    <h3 data-tr="Uygulama &amp; Oyun" data-en="Apps &amp; Games">Uygulama &amp; Oyun</h3>
+                    <p class="hizmet-alt" data-tr="Fikirden mağazaya" data-en="From idea to store">Fikirden mağazaya</p>
+                    <p data-tr="Mobil uygulama ve oyun geliştirme, mağaza hazırlığı, tanıtım videoları ve çıkış pazarlaması." data-en="Mobile app and game development, store preparation, trailers and launch marketing.">Mobil uygulama ve oyun geliştirme, mağaza hazırlığı, tanıtım videoları ve çıkış pazarlaması.</p>
+                    <div class="hizmet-etiketler"><span>Unity</span><span>iOS / Android</span><span data-tr="Fragman" data-en="Trailers">Fragman</span></div>
+                </article>
+                <a class="hizmet-kart hizmet-cta" href="#iletisim">
+                    <span class="hizmet-no">→</span>
+                    <h3 data-tr="Projenizi konuşalım" data-en="Let's talk about your project">Projenizi konuşalım</h3>
+                    <p data-tr="Kısa bir mesaj bırakın; ihtiyacınızı dinleyip size uygun bir yol haritası ve teklif hazırlayalım." data-en="Leave a short message; we'll listen to what you need and prepare a roadmap and quote that fits.">Kısa bir mesaj bırakın; ihtiyacınızı dinleyip size uygun bir yol haritası ve teklif hazırlayalım.</p>
+                    <span class="hizmet-buton" data-tr="Teklif Al →" data-en="Get a Quote →">Teklif Al →</span>
+                </a>
+            </div>
+            <div class="hizmet-ilerleme" aria-hidden="true"><span id="hizmetIlerleme"></span></div>
         </div>
     </section>
     <div class="bolum-ayirici anim" data-anim="scale-in"></div>
@@ -652,7 +618,7 @@
                 <a href="https://github.com/erdiyim" target="_blank" aria-label="GitHub"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg></a>
                 <a href="https://www.linkedin.com/in/erdiocal/" target="_blank" aria-label="LinkedIn"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg></a>
                 <a href="https://www.instagram.com/erdiocal" target="_blank" aria-label="Instagram"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg></a>
-                <a href="https://shaperonworks.com/" target="_blank" aria-label="Shaperon Works"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M5.5 3C3.57 3 2 4.57 2 6.5V10c0 1.93 1.57 3.5 3.5 3.5h2.2l-1.4 5.6a1 1 0 0 0 .73 1.22 1 1 0 0 0 1.22-.73L9.9 13.5h4.2l1.65 6.09a1 1 0 0 0 1.22.73 1 1 0 0 0 .73-1.22l-1.4-5.6h2.2c1.93 0 3.5-1.57 3.5-3.5V6.5C22 4.57 20.43 3 18.5 3h-13zM5.5 5h13C19.33 5 20 5.67 20 6.5V10c0 .83-.67 1.5-1.5 1.5h-13C4.67 11.5 4 10.83 4 10V6.5C4 5.67 4.67 5 5.5 5z"/></svg></a>
+                <a href="https://shaperonworks.com/" target="_blank" rel="noopener" aria-label="Shaperon Works" class="footer-shaperon"><img src="img/shaperon-works.png" alt="Shaperon Works" width="139" height="120" class="shaperon-acik" loading="lazy"><img src="img/shaperon-works-koyu.png" alt="" width="139" height="120" class="shaperon-koyu" loading="lazy"></a>
             </div>
             <div class="footer-sag"><p data-tr="&copy; 2026 Erdi Öcal. Tüm hakları saklıdır." data-en="&copy; 2026 Erdi Öcal. All rights reserved.">&copy; 2026 Erdi Öcal. Tüm hakları saklıdır.</p></div>
         </div>

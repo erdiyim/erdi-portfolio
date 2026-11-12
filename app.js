@@ -1520,102 +1520,40 @@ function konfetiFirlat() {
 })();
 
 // ==========================================
-// SÜREÇ: KAYDIRDIKÇA ESKİZDEN SİTEYE
+// HİZMETLER: DİKEY KAYDIRMA → YATAY RAY
 // ==========================================
-// 0.00–0.32 eskiz kendini çizer · 0.36–0.86 gerçek site boyanarak açılır · 0.86–1 yayında
+// Bölüm, rayın taşan genişliği kadar uzar; sahne yapışkan kalır, ray kaydırmayla sola kayar.
+// Telefonda (≤768px) parmakla yatay kaydırma kullanılır.
 (() => {
-    const surec = document.getElementById('surec');
-    if (!surec) return;
-    const pencere = document.getElementById('surecPencere');
-    const adres = document.getElementById('surecAdres');
-    const altYazi = document.getElementById('surecAlt');
-    const adimlar = surec.querySelectorAll('.surec-adim');
-    const cizgiler = [...surec.querySelectorAll('.ciz')];
-    const yazilar = [...surec.querySelectorAll('.surec-yazi')];
-    const notlar = surec.querySelector('.surec-not');
-    const lekeGrubu = document.getElementById('surecLekeler');
-    const tamDolgu = document.getElementById('surecTamDolgu');
-    const NS = 'http://www.w3.org/2000/svg';
+    const bolum = document.getElementById('hizmetler');
+    const ray = document.getElementById('hizmetRay');
+    const ilerleme = document.getElementById('hizmetIlerleme');
+    if (!bolum || !ray) return;
+    let fazla = 0;
 
-    const metinler = {
-        tr: [
-            '<strong>Eskiz:</strong> önce kâğıtta; hangi bölüm nerede, ziyaretçi nereye tıklayacak.',
-            '<strong>Tasarım &amp; kod:</strong> eskiz parça parça gerçek siteye dönüşüyor.',
-            '<strong>Yayında:</strong> laminagarden.net, rezervasyonlar WhatsApp’a düşüyor. <a href="/projeler/lamina-garden/">Vaka çalışması →</a>'
-        ],
-        en: [
-            '<strong>Sketch:</strong> on paper first: where each section goes and where visitors will click.',
-            '<strong>Design &amp; code:</strong> the sketch turns into the real site, piece by piece.',
-            '<strong>Live:</strong> laminagarden.net, with bookings landing on WhatsApp. <a href="/projeler/lamina-garden/">Case study →</a>'
-        ]
-    };
-
-    // Boya lekeleri: merkezden dışa doğru, biraz rastgele sırayla açılır (sabit tohum: her seferinde aynı desen)
-    let tohum = 7;
-    const rast = () => { tohum = (tohum * 9301 + 49297) % 233280; return tohum / 233280; };
-    const lekeler = [];
-    for (let y = -40; y <= 860; y += 105) {
-        for (let x = -40; x <= 1480; x += 105) {
-            const px = x + (rast() - 0.5) * 50, py = y + (rast() - 0.5) * 50;
-            const uzaklik = Math.hypot((px - 720) / 1.6, py - 380) / 520;
-            const c = document.createElementNS(NS, 'circle');
-            c.setAttribute('cx', px.toFixed(0)); c.setAttribute('cy', py.toFixed(0)); c.setAttribute('r', '0');
-            lekeGrubu.appendChild(c);
-            lekeler.push({ el: c, gecikme: Math.min(1, uzaklik * 0.75 + rast() * 0.3), maks: 120 + rast() * 60 });
-        }
+    function olc() {
+        if (window.innerWidth <= 768) { bolum.style.height = ''; ray.style.transform = ''; fazla = 0; return; }
+        fazla = Math.max(0, ray.scrollWidth - ray.clientWidth);
+        bolum.style.height = (window.innerHeight + fazla) + 'px';
+        guncelle();
     }
-
-    const sinirla = (v) => Math.max(0, Math.min(1, v));
-    const yumusat = (v) => { v = sinirla(v); return v * v * (3 - 2 * v); };
-
-    function yaziGuncelle(adim) {
-        const dil = (typeof DilYoneticisi !== 'undefined' && DilYoneticisi.aktif() === 'en') ? 'en' : 'tr';
-        const anahtar = dil + adim;
-        if (altYazi.dataset.anahtar === anahtar) return;
-        altYazi.dataset.anahtar = anahtar;
-        altYazi.innerHTML = metinler[dil][adim];
+    function guncelle() {
+        if (!fazla) return;
+        const toplam = bolum.offsetHeight - window.innerHeight;
+        const p = Math.max(0, Math.min(1, -bolum.getBoundingClientRect().top / toplam));
+        ray.style.transform = `translate3d(${(-p * fazla).toFixed(1)}px, 0, 0)`;
+        if (ilerleme) ilerleme.style.setProperty('--ilerleme', p.toFixed(3));
     }
-
-    let sonP = -1;
-    function guncelle(zorla) {
-        const r = surec.getBoundingClientRect();
-        const toplam = surec.offsetHeight - window.innerHeight;
-        if (toplam <= 0) return;
-        const p = sinirla(-r.top / toplam);
-        if (!zorla && Math.abs(p - sonP) < 0.0005) return;
-        sonP = p;
-
-        const cizim = sinirla(p / 0.32);
-        cizgiler.forEach((el, i) => {
-            const bas = (i / cizgiler.length) * 0.7;
-            el.style.setProperty('--c', yumusat((cizim - bas) / 0.3).toFixed(3));
-        });
-        yazilar.forEach((el, i) => el.style.setProperty('--c', yumusat((cizim - 0.45 - i * 0.05) / 0.3).toFixed(3)));
-
-        const boya = sinirla((p - 0.36) / 0.5);
-        notlar.style.setProperty('--n', (yumusat((cizim - 0.75) / 0.25) * (1 - yumusat(boya / 0.45))).toFixed(3));
-        lekeler.forEach((l) => {
-            l.el.setAttribute('r', (l.maks * yumusat((boya - l.gecikme * 0.72) / 0.28)).toFixed(1));
-        });
-        tamDolgu.setAttribute('opacity', yumusat((boya - 0.85) / 0.15).toFixed(3));
-
-        const son = yumusat((p - 0.86) / 0.14);
-        pencere.style.setProperty('--olcek', (0.96 + son * 0.04).toFixed(4));
-        pencere.style.setProperty('--parilti', son.toFixed(3));
-
-        const adim = p < 0.36 ? 0 : (p < 0.86 ? 1 : 2);
-        adimlar.forEach((a, i) => a.classList.toggle('aktif', i === adim));
-        yaziGuncelle(adim);
-        adres.textContent = adim === 0 ? 'taslak.png' : (adim === 1 ? 'localhost:3000' : 'laminagarden.net');
-    }
-
     let bekliyor = false;
-    const iste = () => { if (!bekliyor) { bekliyor = true; requestAnimationFrame(() => { bekliyor = false; guncelle(false); }); } };
-    window.addEventListener('scroll', iste, { passive: true });
-    window.addEventListener('resize', () => guncelle(true));
-    // Dil değişince alt yazı da değişsin
-    document.querySelectorAll('#dilBtn, #dilBtnMobil').forEach(b => b.addEventListener('click', () => setTimeout(() => guncelle(true), 0)));
-    guncelle(true);
+    window.addEventListener('scroll', () => {
+        if (bekliyor) return;
+        bekliyor = true;
+        requestAnimationFrame(() => { bekliyor = false; guncelle(); });
+    }, { passive: true });
+    window.addEventListener('resize', olc);
+    window.addEventListener('load', olc);
+    if (document.fonts) document.fonts.ready.then(olc);
+    olc();
 })();
 
 // ==========================================
