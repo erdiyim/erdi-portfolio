@@ -1403,7 +1403,11 @@ Type: CNAME | Name: www | Value: cname.vercel-dns.com</pre>
 
     document.querySelectorAll('.proje-kart').forEach(kart => {
         kart.style.cursor = 'pointer';
-        kart.addEventListener('click', () => {
+        kart.addEventListener('click', (e) => {
+            // Kartın içindeki linkler kendi işini yapsın
+            if (e.target.closest('a')) return;
+            // Vaka çalışması sayfası olan projeler o sayfaya gider
+            if (kart.dataset.sayfa) { window.location.href = kart.dataset.sayfa; return; }
             const projeId = kart.dataset.proje;
             if (projeId) projeModalAc(projeId);
         });
