@@ -796,11 +796,12 @@ textarea.form-kontrol { resize: none; }
 .footer-sosyal a { color: rgba(255,255,255,0.4); transition: all 0.3s ease; }
 .footer-sosyal a:hover { color: #00ffcc; transform: translateY(-2px); }
 .footer-sosyal { align-items: center; }
-.footer-shaperon img { display: block; height: 30px; width: auto; opacity: 0.85; transition: opacity 0.3s ease; }
-.footer-shaperon:hover img { opacity: 1; }
-.footer-shaperon .shaperon-koyu { display: none; }
-[data-theme="light"] .footer-shaperon .shaperon-acik { display: none; }
-[data-theme="light"] .footer-shaperon .shaperon-koyu { display: block; }
+/* Shaperon logosu: diğer ikonlar gibi tek renk (logo maske olarak kullanılır, rengi bağlantıdan alır) */
+.shaperon-ikon {
+    display: block; width: 26px; height: 22px; background-color: currentColor;
+    -webkit-mask: url(img/shaperon-works.png) center / contain no-repeat;
+    mask: url(img/shaperon-works.png) center / contain no-repeat;
+}
 .footer-sag p { font-size: 0.85rem; color: rgba(255,255,255,0.3); }
 
 /* ========================================= */
