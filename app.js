@@ -3,7 +3,6 @@
 // ==========================================
 window.scrollTo(0, 0);
 if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
-document.body.style.overflow = 'hidden'; // Boot ekranı bitene kadar scroll kapalı
 
 // ==========================================
 // LENIS SMOOTH SCROLL
@@ -16,7 +15,6 @@ if (typeof Lenis !== 'undefined') {
         touchMultiplier: 2,
         infinite: false
     });
-    lenis.stop(); // Boot ekranı bitene kadar durdur
 
     function lenisRaf(time) {
         lenis.raf(time);
@@ -183,166 +181,15 @@ document.addEventListener('DOMContentLoaded', () => { DilYoneticisi.baslat(); Te
 })();
 
 // ==========================================
-// 1. SİNEMATİK GİRİŞ MOTORU (CRT Monitör)
+// 1. SAYFA BAŞLANGICI
 // ==========================================
-(() => {
-    const acilisEkrani = document.getElementById('acilis-ekrani');
-    const kodSatirlari = document.getElementById('kodSatirlari');
-    const bootIpucu = document.getElementById('bootIpucu');
-    const bootAltBilgi = document.getElementById('bootAltBilgi');
-    const monitor = document.getElementById('monitor');
-    const zoomGecis = document.getElementById('zoomGecis');
-    const navbar = document.getElementById('navbar');
-
-    const dil = DilYoneticisi.aktif();
-
-    const bootMetinleri = {
-        tr: {
-            loglar: ['✓ Tüm sistemler çevrimiçi', '✓ Portfolio hazır'],
-            yorum: '// Sistem hazır — Devam etmek için tıklayın',
-            ipucu: 'Devam etmek için tıklayın veya ENTER tuşuna basın'
-        },
-        en: {
-            loglar: ['✓ All systems online', '✓ Portfolio ready'],
-            yorum: '// System ready — Click to continue',
-            ipucu: 'Click to continue or press ENTER'
-        }
-    };
-    const bt = bootMetinleri[dil];
-
-    const kodlar = [
-        '<span class="kod-comment">// ERDI_OS v3.0 — Portfolio Runtime</span>',
-        '<span class="kod-keyword">import</span> <span class="kod-func">{ createApp }</span> <span class="kod-keyword">from</span> <span class="kod-string">\'erdi-framework\'</span>;',
-        '<span class="kod-keyword">import</span> <span class="kod-func">Router</span> <span class="kod-keyword">from</span> <span class="kod-string">\'./core/router\'</span>;',
-        '',
-        '<span class="kod-keyword">const</span> <span class="kod-func">config</span> = {',
-        '  name: <span class="kod-string">\'Erdi Öcal\'</span>,',
-        '  role: <span class="kod-string">\'Full Stack Developer\'</span>,',
-        '  stack: [<span class="kod-string">\'ASP.NET\'</span>, <span class="kod-string">\'React\'</span>, <span class="kod-string">\'TypeScript\'</span>],',
-        '  location: <span class="kod-string">\'İstanbul, TR\'</span>,',
-        '};',
-        '',
-        '<span class="kod-keyword">async function</span> <span class="kod-func">bootSystem</span>() {',
-        '  <span class="kod-keyword">await</span> <span class="kod-func">loadModules</span>(<span class="kod-string">\'ui\'</span>, <span class="kod-string">\'api\'</span>, <span class="kod-string">\'db\'</span>);',
-        '  <span class="kod-keyword">await</span> <span class="kod-func">connectDatabase</span>(<span class="kod-string">\'postgresql://erdi_db\'</span>);',
-        '  <span class="kod-keyword">await</span> <span class="kod-func">initRouter</span>(Router);',
-        '',
-        `  console.<span class="kod-func">log</span>(<span class="kod-string">'${bt.loglar[0]}'</span>);`,
-        `  console.<span class="kod-func">log</span>(<span class="kod-string">'${bt.loglar[1]}'</span>);`,
-        '  <span class="kod-keyword">return</span> <span class="kod-func">createApp</span>(config);',
-        '}',
-        '',
-        '<span class="kod-func">bootSystem</span>().<span class="kod-func">then</span>(app => {',
-        '  app.<span class="kod-func">mount</span>(<span class="kod-string">\'#portfolio\'</span>);',
-        `  <span class="kod-comment">${bt.yorum}</span>`,
-        '});',
-    ];
-
-    const bootProgress = document.getElementById('bootProgress');
-    let satirIndex = 0;
-    let hazir = false;
-    let girisYapildi = false;
-
-    // Asset preload
-    const assetler = [];
-    const portre = new Image();
-    portre.src = 'erdi-portrait.png';
-    assetler.push(new Promise(r => { portre.onload = r; portre.onerror = r; }));
-    if (document.fonts) assetler.push(document.fonts.ready);
-
-    function ilerlemeGuncelle(yuzde) {
-        if (bootProgress) bootProgress.style.width = yuzde + '%';
-    }
-
-    // 1. Monitör kapalı başlıyor → 1s sonra CRT açılma efekti
-    setTimeout(() => {
-        monitor.classList.add('acik');
-    }, 1000);
-
-    // 2. CRT açıldıktan sonra kodlar başlasın
-    function satirEkle() {
-        if (satirIndex >= kodlar.length) {
-            ilerlemeGuncelle(85);
-            Promise.all(assetler).then(() => {
-                ilerlemeGuncelle(100);
-                hazir = true;
-                bootIpucu.innerHTML = bt.ipucu;
-                bootIpucu.classList.add('hazir');
-                // Tıklama beklemeden kısa bir süre sonra kendiliğinden devam et
-                setTimeout(girisYap, 1500);
-            });
-            return;
-        }
-        const satirHTML = `<div><span class="kod-satir-numara">${String(satirIndex + 1).padStart(2, '0')}</span>${kodlar[satirIndex]}</div>`;
-        kodSatirlari.innerHTML += satirHTML;
-        satirIndex++;
-        kodSatirlari.scrollTop = kodSatirlari.scrollHeight;
-        ilerlemeGuncelle(Math.round((satirIndex / kodlar.length) * 80));
-        const gecikme = kodlar[satirIndex - 1] === '' ? 80 : Math.random() * 60 + 40;
-        setTimeout(satirEkle, gecikme);
-    }
-    // Kodlar CRT açıldıktan sonra başlasın (1s bekleme + 1.3s açılma efekti)
-    setTimeout(satirEkle, 2300);
-
-    // 3. Tıklayınca CRT kapanma efekti → sayfa geçişi
-    function girisYap() {
-        if (!hazir || girisYapildi) return;
-        girisYapildi = true;
-
-        // CRT kapanma: ekran ortadan bir çizgiye küçülür
-        monitor.classList.add('kapaniyor');
-
-        if (typeof window._baslatAgirMotorlar === 'function') {
-            window._baslatAgirMotorlar();
-        }
-
-        // Beyaz flaş + fade out
-        setTimeout(() => { zoomGecis.classList.add('aktif'); }, 800);
-
-        setTimeout(() => {
-            acilisEkrani.classList.add('kapaniyor');
-            acilisEkrani.style.display = 'none';
-            document.body.style.overflow = '';
-            if (lenis) lenis.start();
-            navbar.classList.add('gorunur');
-            document.querySelectorAll('#ana-ekran .anim').forEach(el => el.classList.add('gorunur'));
-            sayaclariBaslat();
-        }, 1300);
-
-        setTimeout(() => { zoomGecis.classList.remove('aktif'); }, 1800);
-    }
-
-    // Atla butonu — animasyonu tamamen atla
-    const atlaBtn = document.getElementById('atlaBtn');
-    function animasyonuAtla() {
-        if (girisYapildi) return;
-        girisYapildi = true;
-
-        if (typeof window._baslatAgirMotorlar === 'function') {
-            window._baslatAgirMotorlar();
-        }
-
-        acilisEkrani.classList.add('kapaniyor');
-        acilisEkrani.style.display = 'none';
-        document.body.style.overflow = '';
-        if (lenis) lenis.start();
-        navbar.classList.add('gorunur');
-        document.querySelectorAll('#ana-ekran .anim').forEach(el => el.classList.add('gorunur'));
-        sayaclariBaslat();
-    }
-    if (atlaBtn) atlaBtn.addEventListener('click', (e) => { e.stopPropagation(); animasyonuAtla(); });
-
-    window.addEventListener('keydown', (e) => { if (e.key === 'Enter') girisYap(); });
-    acilisEkrani.addEventListener('click', girisYap);
-
-    // Daha önce görüldüyse açılışı hiç gösterme; ilk ziyarette görüldü olarak işaretle
-    // (setTimeout: ağır motorlar bu dosyanın ilerisinde tanımlanıyor, önce onlar yüklensin)
-    if (document.documentElement.classList.contains('acilis-atla')) {
-        setTimeout(animasyonuAtla, 0);
-        return;
-    }
-    try { localStorage.setItem('acilis-goruldu', '1'); } catch (e) { /* depolama kapalı olabilir */ }
-})();
+// Açılış ekranı kaldırıldı: site doğrudan açılır.
+// (setTimeout: ağır motorlar bu dosyanın ilerisinde tanımlanıyor, önce onlar kaydolsun)
+setTimeout(() => {
+    if (typeof window._baslatAgirMotorlar === 'function') window._baslatAgirMotorlar();
+    document.getElementById('navbar').classList.add('gorunur');
+    document.querySelectorAll('#ana-ekran .anim').forEach(el => el.classList.add('gorunur'));
+}, 0);
 
 // ==========================================
 // 2. LETTER GLITCH MOTORU (Framer tarzı)
@@ -776,29 +623,6 @@ window._baslatAgirMotorlar = function() {
 };
 
 // ==========================================
-// 5. TYPING EFEKTİ
-// ==========================================
-const typingEl = document.getElementById('typing-text');
-const cumleler = ["Full Stack Developer", "System Architect", "ASP.NET Core Developer", "Problem Solver", "UI/UX Enthusiast", "AI & Prompt Engineer"];
-let ci = 0, hi = 0, sil = false;
-
-function typeMotor() {
-    const s = cumleler[ci];
-    if (!sil) {
-        typingEl.textContent = s.substring(0, hi + 1);
-        hi++;
-        if (hi === s.length) { sil = true; setTimeout(typeMotor, 2200); return; }
-        setTimeout(typeMotor, 65);
-    } else {
-        typingEl.textContent = s.substring(0, hi - 1);
-        hi--;
-        if (hi === 0) { sil = false; ci = (ci + 1) % cumleler.length; setTimeout(typeMotor, 400); return; }
-        setTimeout(typeMotor, 30);
-    }
-}
-setTimeout(typeMotor, 2500);
-
-// ==========================================
 // 6. NAVİGASYON
 // ==========================================
 const navbar = document.getElementById('navbar');
@@ -864,21 +688,6 @@ document.querySelectorAll('.anim').forEach(el => {
         }
     }, { passive: true });
 })();
-
-// ==========================================
-// 9. İSTATİSTİK SAYACI
-// ==========================================
-function sayaclariBaslat() {
-    document.querySelectorAll('.istatistik-sayi').forEach(sayi => {
-        const hedef = parseInt(sayi.dataset.hedef);
-        let val = 0;
-        const iv = setInterval(() => {
-            val++;
-            sayi.textContent = val;
-            if (val >= hedef) clearInterval(iv);
-        }, 80);
-    });
-}
 
 // ==========================================
 // 9. SMOOTH SCROLL (navbar offset ile)
@@ -1025,39 +834,17 @@ document.querySelectorAll('a[href^="#"]').forEach(a => {
 })();
 
 // ==========================================
-// 11. 3D TİLT KART EFEKTİ
+// 11. KART IŞIK TAKİBİ (hafif hover parıltısı)
 // ==========================================
 (() => {
-    const kartlar = document.querySelectorAll('.proje-kart');
-    const MAX_TILT = 12; // derece
-
-    kartlar.forEach(kart => {
+    document.querySelectorAll('.proje-kart').forEach(kart => {
         kart.addEventListener('mousemove', (e) => {
             const rect = kart.getBoundingClientRect();
-            const x = e.clientX - rect.left;
-            const y = e.clientY - rect.top;
-            const centerX = rect.width / 2;
-            const centerY = rect.height / 2;
-
-            const rotateY = ((x - centerX) / centerX) * MAX_TILT;
-            const rotateX = ((centerY - y) / centerY) * MAX_TILT;
-
-            kart.style.transform = `perspective(800px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.02, 1.02, 1.02)`;
-
-            // Işık yansıması pozisyonu
-            const percentX = (x / rect.width) * 100;
-            const percentY = (y / rect.height) * 100;
-            kart.style.setProperty('--mouse-x', percentX + '%');
-            kart.style.setProperty('--mouse-y', percentY + '%');
-        });
-
-        kart.addEventListener('mouseleave', () => {
-            kart.style.transform = 'perspective(800px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)';
+            kart.style.setProperty('--mouse-x', ((e.clientX - rect.left) / rect.width) * 100 + '%');
+            kart.style.setProperty('--mouse-y', ((e.clientY - rect.top) / rect.height) * 100 + '%');
         });
     });
 })();
-
-// 12. CUSTOM CURSOR — kaldırıldı (normal mouse kullanılıyor)
 
 // ==========================================
 // 13. BLOG MODAL SİSTEMİ
@@ -1632,55 +1419,6 @@ Type: CNAME | Name: www | Value: cname.vercel-dns.com</pre>
 })();
 
 // ==========================================
-// 15. MANYETİK BUTON EFEKTİ
-// ==========================================
-(() => {
-    // Dokunmatik cihazlarda devre dışı
-    if ('ontouchstart' in window) return;
-
-    const selektor = '.btn, .nav-link, .nav-link-ozel, .footer-sosyal a, .blog-oku, .tema-btn, .dil-btn';
-    const KUVVET = 0.35;   // ne kadar çekilsin (0-1)
-    const MESAFE = 60;     // px — tetikleme mesafesi
-
-    function bagla(el) {
-        el.addEventListener('mouseenter', () => {
-            el.style.transition = 'transform 0.15s cubic-bezier(0.23, 1, 0.32, 1)';
-        });
-
-        el.addEventListener('mousemove', (e) => {
-            const rect = el.getBoundingClientRect();
-            const merkezX = rect.left + rect.width / 2;
-            const merkezY = rect.top + rect.height / 2;
-            const dx = e.clientX - merkezX;
-            const dy = e.clientY - merkezY;
-
-            el.style.transform = `translate(${dx * KUVVET}px, ${dy * KUVVET}px) scale(1.05)`;
-        });
-
-        el.addEventListener('mouseleave', () => {
-            el.style.transition = 'transform 0.4s cubic-bezier(0.23, 1, 0.32, 1)';
-            el.style.transform = 'translate(0, 0) scale(1)';
-        });
-    }
-
-    document.querySelectorAll(selektor).forEach(bagla);
-
-    // Dinamik eklenen elementler için MutationObserver
-    const observer = new MutationObserver((mutations) => {
-        mutations.forEach(m => {
-            m.addedNodes.forEach(node => {
-                if (node.nodeType !== 1) return;
-                if (node.matches && node.matches(selektor)) bagla(node);
-                if (node.querySelectorAll) {
-                    node.querySelectorAll(selektor).forEach(bagla);
-                }
-            });
-        });
-    });
-    observer.observe(document.body, { childList: true, subtree: true });
-})();
-
-// ==========================================
 // 15. SCROLL PROGRESS BAR
 // ==========================================
 (() => {
@@ -1735,57 +1473,6 @@ Type: CNAME | Name: www | Value: cname.vercel-dns.com</pre>
         } else {
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
-    });
-})();
-
-// ==========================================
-// 16. TEXT SCRAMBLE EFEKTİ
-// ==========================================
-(() => {
-    if ('ontouchstart' in window) return;
-
-    const KARAKTERLER = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789@#$%&*!?<>/';
-    const HIZI = 40;       // ms per frame
-    const ADIM = 3;        // her frame'de kaç harf çözülsün
-
-    function scramble(el) {
-        const orijinal = el.getAttribute('data-scramble-orijinal') || el.textContent;
-        if (!el.getAttribute('data-scramble-orijinal')) {
-            el.setAttribute('data-scramble-orijinal', orijinal);
-        }
-
-        let cozulen = 0;
-        const uzunluk = orijinal.length;
-
-        const interval = setInterval(() => {
-            let sonuc = '';
-            for (let i = 0; i < uzunluk; i++) {
-                if (orijinal[i] === ' ') {
-                    sonuc += ' ';
-                } else if (i < cozulen) {
-                    sonuc += orijinal[i];
-                } else {
-                    sonuc += KARAKTERLER[Math.floor(Math.random() * KARAKTERLER.length)];
-                }
-            }
-            el.textContent = sonuc;
-            cozulen += ADIM;
-
-            if (cozulen >= uzunluk) {
-                clearInterval(interval);
-                el.textContent = orijinal;
-            }
-        }, HIZI);
-    }
-
-    // Bölüm başlıklarına uygula
-    document.querySelectorAll('.bolum-baslik').forEach(el => {
-        el.addEventListener('mouseenter', () => scramble(el));
-    });
-
-    // Nav linklere uygula
-    document.querySelectorAll('.nav-link').forEach(el => {
-        el.addEventListener('mouseenter', () => scramble(el));
     });
 })();
 

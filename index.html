@@ -3,8 +3,6 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- Açılış ekranı yalnızca ilk ziyarette gösterilir -->
-    <script>try { if (localStorage.getItem('acilis-goruldu')) document.documentElement.classList.add('acilis-atla'); } catch (e) {}</script>
     <!-- Google Analytics: betik yalnızca çerez onayı verildiyse yüklenir (onay anında app.js analitikYukle'yi çağırır) -->
     <script>
         window.dataLayer = window.dataLayer || [];
@@ -22,16 +20,16 @@
         };
         try { if (localStorage.getItem('cookie-tercih') === 'kabul') window.analitikYukle(); } catch (e) {}
     </script>
-    <title>Erdi Öcal | Creative Developer</title>
-    <meta name="description" content="Erdi Öcal - Full Stack Developer. Modern web teknolojileri ile kurumsal çözümler üreten yazılım geliştirici.">
-    <meta property="og:title" content="Erdi Öcal | Creative Developer">
-    <meta property="og:description" content="Full Stack Developer — ASP.NET, React, TypeScript. Kurumsal çözümler üreten yazılım geliştirici.">
+    <title>Erdi Öcal | SEO, Google Ads &amp; Full-Stack Geliştirme</title>
+    <meta name="description" content="Erdi Öcal — Shaperon Works kurucu ortağı. SEO, GEO ve Google Ads ile markaların bulunmasını sağlıyor; gereken web sitesini ve uygulamayı da geliştiriyor.">
+    <meta property="og:title" content="Erdi Öcal | SEO, Google Ads &amp; Full-Stack Geliştirme">
+    <meta property="og:description" content="Markaların bulunmasını sağlıyorum: SEO, GEO ve Google Ads ile müşteri getiriyor, gereken web sitesini ve uygulamayı da kendim geliştiriyorum.">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://www.erdiocal.com/">
     <meta property="og:image" content="https://www.erdiocal.com/og-image.png">
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Erdi Öcal | Creative Developer">
-    <meta name="twitter:description" content="Full Stack Developer — ASP.NET, React, TypeScript.">
+    <meta name="twitter:title" content="Erdi Öcal | SEO, Google Ads &amp; Full-Stack Geliştirme">
+    <meta name="twitter:description" content="SEO, GEO ve Google Ads ile markaların bulunmasını sağlıyor; web siteleri ve uygulamalar geliştiriyor.">
     <meta name="twitter:image" content="https://www.erdiocal.com/og-image.png">
     <link rel="alternate" type="application/rss+xml" title="Erdi Öcal — Teknik Keşifler" href="https://www.erdiocal.com/feed.xml">
     <link rel="canonical" href="https://www.erdiocal.com/">
@@ -42,11 +40,11 @@
         "name": "Erdi Öcal",
         "url": "https://www.erdiocal.com",
         "image": "https://www.erdiocal.com/erdi-portrait.webp",
-        "jobTitle": "Full Stack Developer",
+        "jobTitle": "Growth & Full-Stack Developer",
         "worksFor": { "@type": "Organization", "name": "Shaperon Works", "url": "https://shaperonworks.com" },
         "address": { "@type": "PostalAddress", "addressLocality": "Istanbul", "addressCountry": "TR" },
         "alumniOf": { "@type": "CollegeOrUniversity", "name": "İstanbul Medipol Üniversitesi" },
-        "knowsAbout": ["ASP.NET Core", "React", "TypeScript", "C#", "PostgreSQL", "Docker", "REST API"],
+        "knowsAbout": ["SEO", "GEO", "Google Ads", "Game Marketing", "ASP.NET Core", "React", "Next.js", "TypeScript", "C#", "PostgreSQL"],
         "sameAs": [
             "https://github.com/erdiyim",
             "https://www.linkedin.com/in/erdiocal/",
@@ -85,36 +83,6 @@
 
     <!-- SCROLL PROGRESS BAR -->
     <div class="scroll-ilerleme" id="scrollIlerleme"></div>
-
-    <!-- SİNEMATİK GİRİŞ EKRANI -->
-    <div id="acilis-ekrani">
-        <button class="atla-btn" id="atlaBtn" data-tr="Atla" data-en="Skip">Atla</button>
-        <!-- Masa yüzeyi -->
-        <div class="masa-yuzeyi"></div>
-        <div class="boot-sahne">
-            <div class="monitor" id="monitor">
-                <div class="monitor-govde">
-                    <div class="monitor-ekran" id="monitorEkran">
-                        <div class="crt-acilma"></div>
-                        <div class="ekran-icerik">
-                            <div class="kod-satirlari" id="kodSatirlari"></div>
-                            <span class="yanip-sonen-imlec">_</span>
-                        </div>
-                        <div class="crt-tarama"></div>
-                        <div class="ekran-yansima"></div>
-                    </div>
-                    <div class="monitor-guc-led"></div>
-                </div>
-                <div class="monitor-boyun"></div>
-                <div class="monitor-ayak"></div>
-            </div>
-            <div class="boot-alt-bilgi" id="bootAltBilgi">
-                <div class="boot-progress-bar"><div class="boot-progress-fill" id="bootProgress"></div></div>
-                <p class="boot-ipucu" id="bootIpucu" data-tr="Devam etmek için tıklayın veya ENTER tuşuna basın" data-en="Click or press ENTER to continue">Devam etmek için tıklayın veya ENTER tuşuna basın</p>
-            </div>
-        </div>
-        <div class="zoom-gecis" id="zoomGecis"></div>
-    </div>
 
     <!-- ARKA PLAN CANVAS -->
     <canvas id="tuval"></canvas>
@@ -170,19 +138,16 @@
     <!-- HERO BÖLÜMÜ -->
     <main id="ana-ekran" class="reveal-container">
         <div class="kayan-yazi-kapsayici arka-yazi" data-parallax="0.3">
-            <div class="kayan-yazi gri-yazi" aria-hidden="true" data-tr="YARATICI GELİŞTİRİCİ &bull; SİSTEM MİMARI &bull; PROBLEM ÇÖZÜCÜ &bull; YARATICI GELİŞTİRİCİ &bull; SİSTEM MİMARI &bull; PROBLEM ÇÖZÜCÜ &bull;" data-en="CREATIVE DEVELOPER &bull; SYSTEM ARCHITECT &bull; PROBLEM SOLVER &bull; CREATIVE DEVELOPER &bull; SYSTEM ARCHITECT &bull; PROBLEM SOLVER &bull;">CREATIVE DEVELOPER &bull; SYSTEM ARCHITECT &bull; PROBLEM SOLVER &bull; CREATIVE DEVELOPER &bull; SYSTEM ARCHITECT &bull; PROBLEM SOLVER &bull;</div>
+            <div class="kayan-yazi gri-yazi" aria-hidden="true" data-tr="SEO &bull; GEO &bull; GOOGLE ADS &bull; WEB &bull; UYGULAMA &bull; SEO &bull; GEO &bull; GOOGLE ADS &bull; WEB &bull; UYGULAMA &bull;" data-en="SEO &bull; GEO &bull; GOOGLE ADS &bull; WEB &bull; APPS &bull; SEO &bull; GEO &bull; GOOGLE ADS &bull; WEB &bull; APPS &bull;">SEO &bull; GEO &bull; GOOGLE ADS &bull; WEB &bull; UYGULAMA &bull; SEO &bull; GEO &bull; GOOGLE ADS &bull; WEB &bull; UYGULAMA &bull;</div>
         </div>
         <div class="kayan-yazi-kapsayici on-yazi" data-parallax="0.5">
-            <div class="kayan-yazi beyaz-yazi" aria-hidden="true" data-tr="KODLA İNŞA ET &bull; SİSTEM TASARLA &bull; GÖNDER &amp; TEKRARLA &bull; KODLA İNŞA ET &bull; SİSTEM TASARLA &bull; GÖNDER &amp; TEKRARLA &bull;" data-en="BUILD WITH CODE &bull; DESIGN SYSTEMS &bull; SHIP &amp; REPEAT &bull; BUILD WITH CODE &bull; DESIGN SYSTEMS &bull; SHIP &amp; REPEAT &bull;">BUILD WITH CODE &bull; DESIGN SYSTEMS &bull; SHIP &amp; REPEAT &bull; BUILD WITH CODE &bull; DESIGN SYSTEMS &bull; SHIP &amp; REPEAT &bull;</div>
+            <div class="kayan-yazi beyaz-yazi" aria-hidden="true" data-tr="STRATEJİ &bull; PAZARLAMA &bull; YAZILIM &bull; STRATEJİ &bull; PAZARLAMA &bull; YAZILIM &bull;" data-en="STRATEGY &bull; MARKETING &bull; SOFTWARE &bull; STRATEGY &bull; MARKETING &bull; SOFTWARE &bull;">STRATEJİ &bull; PAZARLAMA &bull; YAZILIM &bull; STRATEJİ &bull; PAZARLAMA &bull; YAZILIM &bull;</div>
         </div>
 
         <div class="hero-icerik">
-            <p class="hero-ust-etiket anim" data-anim="fade-right" data-tr="&#60;Merhaba Dünya /&#62;" data-en="&#60;Hello World /&#62;">&#60;Merhaba Dünya /&#62;</p>
+            <p class="hero-ust-etiket anim" data-anim="fade-right" data-tr="Büyüme &amp; Full-Stack &middot; Shaperon Works" data-en="Growth &amp; Full-Stack &middot; Shaperon Works">Büyüme &amp; Full-Stack &middot; Shaperon Works</p>
             <h1 class="hero-baslik anim" data-anim="fade-right" data-delay="1">Erdi<br><span class="vurgu">Öcal</span></h1>
-            <div class="hero-typing-alani anim" data-anim="fade-right" data-delay="2">
-                <span class="typing-cursor">|</span>
-                <span id="typing-text"></span>
-            </div>
+            <p class="hero-slogan anim" data-anim="fade-right" data-delay="2" data-tr="Markaların bulunmasını sağlıyorum: SEO, GEO ve Google Ads ile müşteri getiriyor, gereken web sitesini ve uygulamayı da kendim geliştiriyorum." data-en="I help brands get found: I bring in customers with SEO, GEO and Google Ads, and build the website or app they need myself.">Markaların bulunmasını sağlıyorum: SEO, GEO ve Google Ads ile müşteri getiriyor, gereken web sitesini ve uygulamayı da kendim geliştiriyorum.</p>
             <div class="hero-butonlar anim" data-anim="fade-up" data-delay="3">
                 <a href="#projeler" class="btn btn-dolu" data-tr="Projelerimi Gör" data-en="View Projects"><span class="btn-icerik">Projelerimi Gör</span> <span class="btn-ok">&rarr;</span></a>
                 <a href="#iletisim" class="btn btn-cerceve" data-tr="Bağlantı Kur" data-en="Get in Touch">Bağlantı Kur</a>
@@ -190,16 +155,16 @@
             </div>
             <div class="hero-istatistik anim" data-anim="fade-up" data-delay="4">
                 <div class="istatistik-item">
-                    <span class="istatistik-sayi" data-hedef="15">0</span>+
-                    <span class="istatistik-etiket" data-tr="Proje" data-en="Projects">Proje</span>
+                    <span class="istatistik-sayi">Q4 2026</span>
+                    <span class="istatistik-etiket" data-tr="Steam'de çıkış &middot; Delete: E.A.D Core" data-en="Steam launch &middot; Delete: E.A.D Core">Steam'de çıkış &middot; Delete: E.A.D Core</span>
                 </div>
                 <div class="istatistik-item">
-                    <span class="istatistik-sayi" data-hedef="2">0</span>+
-                    <span class="istatistik-etiket" data-tr="Yıl Deneyim" data-en="Years Exp.">Yıl Deneyim</span>
+                    <span class="istatistik-sayi">4</span>
+                    <span class="istatistik-etiket" data-tr="Sağlık sitesinde SEO" data-en="Healthcare sites in SEO">Sağlık sitesinde SEO</span>
                 </div>
                 <div class="istatistik-item">
-                    <span class="istatistik-sayi" data-hedef="8">0</span>+
-                    <span class="istatistik-etiket" data-tr="Mutlu Müşteri" data-en="Happy Clients">Mutlu Müşteri</span>
+                    <span class="istatistik-sayi">TR / EN</span>
+                    <span class="istatistik-etiket" data-tr="Çift dilli içerik ve reklam" data-en="Bilingual content &amp; ads">Çift dilli içerik ve reklam</span>
                 </div>
             </div>
         </div>
@@ -210,7 +175,7 @@
             <div class="crt-flicker"></div>
             <picture>
                 <source srcset="erdi-portrait.webp" type="image/webp">
-                <img src="erdi-portrait.png" alt="Erdi Öcal - Full Stack Developer, İstanbul" class="katman-normal" id="katmanNormal" fetchpriority="high">
+                <img src="erdi-portrait.png" alt="Erdi Öcal — SEO, Google Ads ve full-stack geliştirme, İstanbul" class="katman-normal" id="katmanNormal" fetchpriority="high">
             </picture>
             <div class="portre-glow"></div>
         </div>
