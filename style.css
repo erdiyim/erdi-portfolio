@@ -759,6 +759,8 @@ body { background-color: var(--renk-bg); color: var(--renk-metin); font-family: 
 .iletisim-bilgi h3 { color: #00ffcc; font-size: 1.3rem; margin-bottom: 24px; }
 .bilgi-satir { display: flex; align-items: center; gap: 12px; margin-bottom: 16px; }
 .bilgi-satir p { color: rgba(255,255,255,0.7); font-size: 0.95rem; }
+.bilgi-link { color: inherit; text-decoration: none; border-bottom: 1px solid transparent; transition: color 0.2s ease, border-color 0.2s ease; }
+.bilgi-link:hover { color: var(--renk-vurgu); border-bottom-color: currentColor; }
 .sosyal-medya { margin-top: 30px; display: flex; gap: 12px; }
 .sosyal-link {
     color: rgba(255,255,255,0.7); text-decoration: none;

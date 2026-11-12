@@ -90,6 +90,10 @@ const DilYoneticisi = (() => {
             el.placeholder = el.getAttribute(`data-${dil}-ph`);
         });
 
+        // Sekme başlığı
+        const baslik = document.querySelector(`meta[name="baslik-${dil}"]`);
+        if (baslik) document.title = baslik.content;
+
         // Dil butonlarını güncelle (hem desktop hem mobil)
         document.querySelectorAll('.dil-secim').forEach(s => {
             s.classList.toggle('aktif-dil', s.dataset.dil === dil);
@@ -731,7 +735,10 @@ function gecisIleScrollYap(hedef) {
 document.querySelectorAll('a[href^="#"]').forEach(a => {
     a.addEventListener('click', function(e) {
         e.preventDefault();
-        const hedef = document.querySelector(this.getAttribute('href'));
+        const href = this.getAttribute('href');
+        // "#" tek başına geçerli bir seçici değil: en üste çık
+        let hedef = null;
+        try { hedef = href.length > 1 ? document.querySelector(href) : document.getElementById('ana-ekran'); } catch (_) { hedef = null; }
         if (!hedef) return;
 
         // Hedef zaten görünürdeyse geçiş animasyonu olmadan direkt scroll
